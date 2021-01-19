@@ -4,7 +4,7 @@
 - SQL Server 2019
 - [SQL Server Management Studio 18](https://docs.microsoft.com/en-us/sql/ssms/download-sql-server-management-studio-ssms?view=sql-server-ver15)
 - [Git](https://git-scm.com/)
-- [DevExpress] (https://www.devexpress.com/ClientCenter/DownloadManager/)
+- [DevExpress](https://www.devexpress.com/ClientCenter/DownloadManager/)
 
 # Getting the code
 
