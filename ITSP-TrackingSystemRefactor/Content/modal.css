@@ -1,0 +1,46 @@
+﻿#overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #000;
+    opacity: 0.5;
+    filter: alpha(opacity=50);
+    z-index: 2
+}
+
+#modal {
+    position: absolute;
+    background: url(tint20.png) 0 0 repeat;
+    background: rgba(0,0,0,0.2);
+    border-radius: 14px;
+    padding: 8px;
+    z-index: 3
+}
+
+#content {
+    border-radius:8px;
+    background:#fff;
+    padding:20px;
+}
+
+.videostats {
+    position: absolute;
+    top: 8px;
+    left: 15px;
+}
+.videostats label {
+    font-size: small;
+    color: #808080;
+}
+#close {
+    position: absolute;
+    background: url('../Images/close_dialog.png') no-repeat 0 0;
+    width: 24px;
+    height: 27px;
+    display: block;
+    text-indent: -9999px;
+    top: 10px;
+    right: 0px;
+}

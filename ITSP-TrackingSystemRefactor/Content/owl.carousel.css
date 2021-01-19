@@ -1,0 +1,180 @@
+/* 
+ * 	Core Owl Carousel CSS File
+ *	v1.3.3
+ */
+
+/* clearfix */
+.owl-carousel .owl-wrapper:after {
+    content: ".";
+    display: block;
+    clear: both;
+    visibility: hidden;
+    line-height: 0;
+    height: 0;
+}
+/* display none until init */
+.owl-carousel {
+    display: none;
+    position: relative;
+    width: 100%;
+    -ms-touch-action: pan-y;
+    touch-action: pan-y;
+}
+
+    .owl-carousel .owl-wrapper {
+        display: none;
+        position: relative;
+        -webkit-transform: translate3d(0px, 0px, 0px);
+        -moz-transform: translate3d(0px, 0px, 0px);
+        -ms-transform: translate3d(0px, 0px, 0px);
+        -o-transform: translate3d(0px, 0px, 0px);
+        transform: translate3d(0px, 0px, 0px);
+    }
+
+    .owl-carousel .owl-wrapper-outer {
+        overflow: hidden;
+        position: relative;
+        width: 100%;
+    }
+
+        .owl-carousel .owl-wrapper-outer.autoHeight {
+            -webkit-transition: height 500ms ease-in-out;
+            -moz-transition: height 500ms ease-in-out;
+            -ms-transition: height 500ms ease-in-out;
+            -o-transition: height 500ms ease-in-out;
+            transition: height 500ms ease-in-out;
+        }
+
+    .owl-carousel .owl-item {
+        float: left;
+    }
+
+.owl-controls .owl-page,
+.owl-controls .owl-buttons div {
+    cursor: pointer;
+}
+
+.owl-controls {
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+
+/* mouse grab icon */
+.grabbing {
+    cursor: url(../Images/grabbing.png) 8 8, move;
+}
+
+/* fix */
+.owl-carousel .owl-wrapper,
+.owl-carousel .owl-item {
+    -moz-backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    -webkit-transform: translate3d(0,0,0);
+    -moz-transform: translate3d(0,0,0);
+    -ms-transform: translate3d(0,0,0);
+    -o-transform: translate3d(0,0,0);
+    transform: translate3d(0,0,0);
+}
+
+.result-box {
+    background: white;
+    border-style: solid;
+    border-radius: 5px;
+    border-width: 2px 0px 10px 0px;
+    min-height: 322px;
+    box-shadow: 1px 1px 2px rgba(0,0,0,0.2);
+}
+
+.Wi {
+    border-color: #3b197a;
+}
+
+.L1 {
+    border-color: #b5006b;
+}
+
+.L2 {
+    border-color: #11ae52;
+}
+
+.L3 {
+    border-color: #0099cc;
+}
+
+.result-item {
+    margin: 5px;
+}
+
+.result-icon {
+    background-position: center center;
+    width: 160px;
+    height: 120px;
+    position: relative;
+    margin: 0 auto;
+    background: transparent no-repeat center center;
+    background-image: url('../Images/novid.png');
+}
+
+.result-container {
+    padding: 5px;
+}
+
+    .result-container h3 {
+        min-height: 50px;
+    }
+
+.nobull ul li {
+    padding-bottom:5px;
+    list-style: none;
+}
+
+
+
+    .btnIntroVid:hover {
+        background-image: url( '../images/movie_F2.png' );   
+    }
+    .ocbutton{
+          background-repeat: no-repeat;
+    background-color: Transparent;
+    background-position: left;
+    width: 16px;
+    height: 16px;
+    cursor: pointer;
+    cursor: hand;
+    border: solid 0px #000000;
+    padding-left: 19px;
+    }
+    .ocbutton:hover{
+        background-repeat: no-repeat;
+        background-color: Transparent;
+        background-position: left;
+        width: 16px;
+        height: 16px;
+        cursor: pointer;
+        cursor: hand;
+        color: #2c77ba;
+        border: solid 0px #000000;
+        padding-left: 19px;
+    }
+    .Launch {
+    background-image: url( '../images/tut_launch.png' );
+}
+
+    .btnTutorialLaunch:hover {
+        background-image: url( '../images/tut_launch_F2.png' );
+    }
+
+.IntroVid {
+    background-image: url( '../images/movie.png' );
+}
+.ClearFilters {
+    background-image: url('../Images/filter-delete-icon.png');
+}
+.LogAwol {
+    background-image: url('../Images/control-record-icon.png');
+}

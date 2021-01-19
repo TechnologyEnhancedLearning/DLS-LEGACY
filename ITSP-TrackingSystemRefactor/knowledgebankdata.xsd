@@ -1,0 +1,948 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="knowledgebankdata" targetNamespace="http://tempuri.org/knowledgebankdata.xsd" xmlns:mstns="http://tempuri.org/knowledgebankdata.xsd" xmlns="http://tempuri.org/knowledgebankdata.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="1" FunctionsComponentName="QueriesTableAdapter" GeneratorFunctionsComponentClassName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" UserFunctionsComponentName="QueriesTableAdapter" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections>
+          <Connection AppSettingsObjectName="MySettings" AppSettingsPropertyName="csITSPDB" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="csITSPDB (MySettings)" ParameterPrefix="@" PropertyReference="ApplicationSettings.ITSP_TrackingSystemRefactor.My.MySettings.GlobalReference.Default.csITSPDB" Provider="System.Data.SqlClient" />
+        </Connections>
+        <Tables>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="TopRatedTableAdapter" GeneratorDataComponentClassName="TopRatedTableAdapter" Name="TopRated" UserDataComponentName="TopRatedTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="csITSPDB (MySettings)" DbObjectType="Unknown" GenerateMethods="Get" GenerateShortCommands="false" GeneratorGetMethodName="GetTopRated" GetMethodModifier="Public" GetMethodName="GetTopRated" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetTopRated" UserSourceName="GetTopRated">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT     TOP (50) vr.TutorialID, t.TutorialName, t.VideoPath, t.TutorialPath, a.ShortAppName, t.VideoCount, COUNT(vr.VideoRatingID) AS Rated, 
+                      CONVERT(Decimal(10, 1), AVG(vr.Rating * 1.0)) AS VidRating
+FROM         VideoRatings AS vr INNER JOIN
+                      Tutorials AS t ON vr.TutorialID = t.TutorialID INNER JOIN
+                      Sections AS s ON t.SectionID = s.SectionID INNER JOIN
+                      Applications AS a ON s.ApplicationID = a.ApplicationID
+WHERE     (t.Active = 1) AND (a.ApplicationID IN
+                          (SELECT     ApplicationID
+                            FROM          Applications))
+GROUP BY vr.TutorialID, t.TutorialName, t.VideoPath, t.TutorialPath, t.VideoCount, a.ShortAppName
+ORDER BY VidRating DESC, Rated DESC, t.VideoCount DESC</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="TutorialID" DataSetColumn="TutorialID" />
+              <Mapping SourceColumn="TutorialName" DataSetColumn="TutorialName" />
+              <Mapping SourceColumn="VideoPath" DataSetColumn="VideoPath" />
+              <Mapping SourceColumn="TutorialPath" DataSetColumn="TutorialPath" />
+              <Mapping SourceColumn="ShortAppName" DataSetColumn="ShortAppName" />
+              <Mapping SourceColumn="VideoCount" DataSetColumn="VideoCount" />
+              <Mapping SourceColumn="Rated" DataSetColumn="Rated" />
+              <Mapping SourceColumn="VidRating" DataSetColumn="VidRating" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="KBUsageTableAdapter" GeneratorDataComponentClassName="KBUsageTableAdapter" Name="KBUsage" UserDataComponentName="KBUsageTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="csITSPDB (MySettings)" DbObjectName="SELECT CandidateID, CandidateNumber, FirstName, LastName, (SELECT COUNT(kbSearchID) AS Expr1 FROM kbSearches AS kbs WHERE (CandidateID = C.CandidateID)) AS Searches, (SELECT COUNT(kbVideoTrackID) AS Expr1 FROM kbVideoTrack AS kbv WHERE (CandidateID = C.CandidateID)) AS VideosLaunched, (SELECT COUNT(kbLearnTrackID) AS Expr1 FROM kbLearnTrack AS kbl WHERE (CandidateID = C.CandidateID)) AS TutorialsViewed, (SELECT COUNT(YouTubeTrackID) AS Expr1 FROM kbYouTubeTrack AS kby WHERE (CandidateID = C.CandidateID)) AS YouTubeVideosWatched FROM Candidates AS C WHERE (CentreID = @CentreID) GROUP BY CandidateID, CandidateNumber, LastName, FirstName" DbObjectType="Unknown" GenerateMethods="Get" GenerateShortCommands="false" GeneratorGetMethodName="GetKBUsageData" GetMethodModifier="Public" GetMethodName="GetKBUsageData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetKBUsageData" UserSourceName="GetKBUsageData">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT        CandidateID, CandidateNumber, LastName + ', ' + FirstName AS Name, Searches, VideosLaunched, TutorialsViewed, YouTubeVideosWatched
+FROM            (SELECT        CandidateID, CandidateNumber, FirstName, LastName,
+                                                        (SELECT        COUNT(kbSearchID) AS Expr1
+                                                          FROM            kbSearches AS kbs
+                                                          WHERE        (CandidateID = C.CandidateID)) AS Searches,
+                                                        (SELECT        COUNT(kbVideoTrackID) AS Expr1
+                                                          FROM            kbVideoTrack AS kbv
+                                                          WHERE        (CandidateID = C.CandidateID)) AS VideosLaunched,
+                                                        (SELECT        COUNT(kbLearnTrackID) AS Expr1
+                                                          FROM            kbLearnTrack AS kbl
+                                                          WHERE        (CandidateID = C.CandidateID)) AS TutorialsViewed,
+                                                        (SELECT        COUNT(YouTubeTrackID) AS Expr1
+                                                          FROM            kbYouTubeTrack AS kby
+                                                          WHERE        (CandidateID = C.CandidateID)) AS YouTubeVideosWatched
+                          FROM            Candidates AS C
+                          WHERE        (CentreID = @CentreID)
+                          GROUP BY CandidateID, CandidateNumber, LastName, FirstName) AS Q1
+WHERE        (Searches &gt; 0) OR
+                         (VideosLaunched &gt; 0) OR
+                         (TutorialsViewed &gt; 0) OR
+                         (YouTubeVideosWatched &gt; 0)
+ORDER BY LastName, FirstName</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="false" AutogeneratedName="CentreID" ColumnName="" DataSourceName="" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@CentreID" Precision="0" Scale="0" Size="4" SourceColumn="" SourceColumnNullMapping="false" SourceVersion="Current" />
+                    </Parameters>
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="CandidateID" DataSetColumn="CandidateID" />
+              <Mapping SourceColumn="Searches" DataSetColumn="Searches" />
+              <Mapping SourceColumn="VideosLaunched" DataSetColumn="VideosLaunched" />
+              <Mapping SourceColumn="TutorialsViewed" DataSetColumn="TutorialsViewed" />
+              <Mapping SourceColumn="YouTubeVideosWatched" DataSetColumn="YouTubeVideosWatched" />
+              <Mapping SourceColumn="CandidateNumber" DataSetColumn="CandidateNumber" />
+              <Mapping SourceColumn="Name" DataSetColumn="Name" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="kbSearchesTableAdapter" GeneratorDataComponentClassName="kbSearchesTableAdapter" Name="kbSearches" UserDataComponentName="kbSearchesTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="csITSPDB (MySettings)" DbObjectName="mbdbx101.dbo.kbSearches" DbObjectType="Table" GenerateMethods="Get" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="GetData">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT        kbs.SearchDate, CASE kbs.OfficeVersionCSV WHEN '1' THEN '2007' WHEN '2' THEN '2010' ELSE '-' END AS OfficeVersionFilter, 
+                         CASE kbs.ApplicationCSV WHEN '1' THEN 'Office' WHEN '2' THEN 'Word' WHEN '3' THEN 'Excel' WHEN '4' THEN 'PowerPoint' WHEN '5' THEN 'Outlook' ELSE '-' END
+                          AS ApplicationFilter, COALESCE (ApplicationGroups.ApplicationGroup, '-') AS LevelFilter, COALESCE (kbs.SearchTerm, '-') AS SearchTerm, 
+                         kbs.Inadequate AS ReportedPoor
+FROM            kbSearches AS kbs LEFT OUTER JOIN
+                         ApplicationGroups ON kbs.ApplicationGroupCSV = ApplicationGroups.AppGroupID
+WHERE        (kbs.CandidateID = @CandidateID)
+ORDER BY kbs.SearchDate Desc</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="false" AutogeneratedName="CandidateID" ColumnName="CandidateID" DataSourceName="Mbdbx101.dbo.kbSearches" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@CandidateID" Precision="0" ProviderType="Int" Scale="0" Size="4" SourceColumn="CandidateID" SourceColumnNullMapping="false" SourceVersion="Current" />
+                    </Parameters>
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="SearchDate" DataSetColumn="SearchDate" />
+              <Mapping SourceColumn="OfficeVersionFilter" DataSetColumn="OfficeVersionFilter" />
+              <Mapping SourceColumn="ApplicationFilter" DataSetColumn="ApplicationFilter" />
+              <Mapping SourceColumn="LevelFilter" DataSetColumn="LevelFilter" />
+              <Mapping SourceColumn="SearchTerm" DataSetColumn="SearchTerm" />
+              <Mapping SourceColumn="ReportedPoor" DataSetColumn="ReportedPoor" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="kbVideosTableAdapter" GeneratorDataComponentClassName="kbVideosTableAdapter" Name="kbVideos" UserDataComponentName="kbVideosTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="csITSPDB (MySettings)" DbObjectType="Unknown" GenerateMethods="Get" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="GetData">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT        VT.VideoClickedDate AS ViewedDate, A.ShortAppName AS Course, S.SectionName AS Section, T.TutorialName AS Video
+FROM            kbVideoTrack AS VT INNER JOIN
+                         Tutorials AS T ON VT.TutorialID = T.TutorialID INNER JOIN
+                         Sections AS S ON T.SectionID = S.SectionID INNER JOIN
+                         Applications AS A ON S.ApplicationID = A.ApplicationID
+WHERE        (VT.CandidateID = @CandidateID)
+ORDER BY ViewedDate Desc</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="false" AutogeneratedName="CandidateID" ColumnName="CandidateID" DataSourceName="Mbdbx101.dbo.kbVideoTrack" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@CandidateID" Precision="0" ProviderType="Int" Scale="0" Size="4" SourceColumn="CandidateID" SourceColumnNullMapping="false" SourceVersion="Current" />
+                    </Parameters>
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="ViewedDate" DataSetColumn="ViewedDate" />
+              <Mapping SourceColumn="Course" DataSetColumn="Course" />
+              <Mapping SourceColumn="Section" DataSetColumn="Section" />
+              <Mapping SourceColumn="Video" DataSetColumn="Video" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="kbTutorialsTableAdapter" GeneratorDataComponentClassName="kbTutorialsTableAdapter" Name="kbTutorials" UserDataComponentName="kbTutorialsTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="csITSPDB (MySettings)" DbObjectType="Unknown" GenerateMethods="Get" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="GetData">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT        LT.LaunchDate, A.ShortAppName AS Course, S.SectionName AS Section, T.TutorialName AS Tutorial
+FROM            kbLearnTrack AS LT INNER JOIN
+                         Tutorials AS T ON LT.TutorialID = T.TutorialID INNER JOIN
+                         Sections AS S ON T.SectionID = S.SectionID INNER JOIN
+                         Applications AS A ON S.ApplicationID = A.ApplicationID
+WHERE        (LT.CandidateID = @CandidateID)
+ORDER BY LT.LaunchDate Desc</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="false" AutogeneratedName="CandidateID" ColumnName="CandidateID" DataSourceName="Mbdbx101.dbo.kbLearnTrack" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@CandidateID" Precision="0" ProviderType="Int" Scale="0" Size="4" SourceColumn="CandidateID" SourceColumnNullMapping="false" SourceVersion="Current" />
+                    </Parameters>
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="LaunchDate" DataSetColumn="LaunchDate" />
+              <Mapping SourceColumn="Course" DataSetColumn="Course" />
+              <Mapping SourceColumn="Section" DataSetColumn="Section" />
+              <Mapping SourceColumn="Tutorial" DataSetColumn="Tutorial" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="kbYouTubeTrackTableAdapter" GeneratorDataComponentClassName="kbYouTubeTrackTableAdapter" Name="kbYouTubeTrack" UserDataComponentName="kbYouTubeTrackTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="csITSPDB (MySettings)" DbObjectName="mbdbx101.dbo.kbYouTubeTrack" DbObjectType="Table" GenerateMethods="Get" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="GetData">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT        LaunchDateTime, YouTubeURL, VidTitle
+FROM            kbYouTubeTrack AS YT
+WHERE        (CandidateID = @CandidateID)
+ORDER BY LaunchDateTime Desc</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="false" AutogeneratedName="CandidateID" ColumnName="CandidateID" DataSourceName="Mbdbx101.dbo.kbYouTubeTrack" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@CandidateID" Precision="0" ProviderType="Int" Scale="0" Size="4" SourceColumn="CandidateID" SourceColumnNullMapping="false" SourceVersion="Current" />
+                    </Parameters>
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="LaunchDateTime" DataSetColumn="LaunchDateTime" />
+              <Mapping SourceColumn="YouTubeURL" DataSetColumn="YouTubeURL" />
+              <Mapping SourceColumn="VidTitle" DataSetColumn="VidTitle" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="csvTutorialTrackTableAdapter" GeneratorDataComponentClassName="csvTutorialTrackTableAdapter" Name="csvTutorialTrack" UserDataComponentName="csvTutorialTrackTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="csITSPDB (MySettings)" DbObjectType="Unknown" GenerateMethods="Get" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="GetData">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT        C.FirstName, C.LastName, C.CandidateNumber, JobGroups.JobGroupName, C.EmailAddress, C.AliasID, C.SelfReg, C.Answer1, C.Answer2, C.Answer3, 
+                         LT.LaunchDate, A.ShortAppName AS Course, S.SectionName AS Section, T.TutorialName AS Tutorial, C.EmailAddress AS Expr1, C.SelfReg AS Expr2
+FROM            kbLearnTrack AS LT INNER JOIN
+                         Candidates AS C ON LT.CandidateID = C.CandidateID INNER JOIN
+                         Tutorials AS T ON LT.TutorialID = T.TutorialID INNER JOIN
+                         Sections AS S ON T.SectionID = S.SectionID INNER JOIN
+                         Applications AS A ON S.ApplicationID = A.ApplicationID INNER JOIN
+                         JobGroups ON C.JobGroupID = JobGroups.JobGroupID
+WHERE        (C.CentreID = @CentreID)
+ORDER BY LT.LaunchDate DESC</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="false" AutogeneratedName="CentreID" ColumnName="CentreID" DataSourceName="Mbdbx101.dbo.Candidates" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@CentreID" Precision="0" ProviderType="Int" Scale="0" Size="4" SourceColumn="CentreID" SourceColumnNullMapping="false" SourceVersion="Current" />
+                    </Parameters>
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="FirstName" DataSetColumn="FirstName" />
+              <Mapping SourceColumn="LastName" DataSetColumn="LastName" />
+              <Mapping SourceColumn="CandidateNumber" DataSetColumn="CandidateNumber" />
+              <Mapping SourceColumn="JobGroupName" DataSetColumn="JobGroupName" />
+              <Mapping SourceColumn="EmailAddress" DataSetColumn="EmailAddress" />
+              <Mapping SourceColumn="AliasID" DataSetColumn="AliasID" />
+              <Mapping SourceColumn="SelfReg" DataSetColumn="SelfReg" />
+              <Mapping SourceColumn="Answer1" DataSetColumn="Answer1" />
+              <Mapping SourceColumn="Answer2" DataSetColumn="Answer2" />
+              <Mapping SourceColumn="Answer3" DataSetColumn="Answer3" />
+              <Mapping SourceColumn="LaunchDate" DataSetColumn="LaunchDate" />
+              <Mapping SourceColumn="Course" DataSetColumn="Course" />
+              <Mapping SourceColumn="Section" DataSetColumn="Section" />
+              <Mapping SourceColumn="Tutorial" DataSetColumn="Tutorial" />
+              <Mapping SourceColumn="Expr1" DataSetColumn="Expr1" />
+              <Mapping SourceColumn="Expr2" DataSetColumn="Expr2" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="csvVideoTrackTableAdapter" GeneratorDataComponentClassName="csvVideoTrackTableAdapter" Name="csvVideoTrack" UserDataComponentName="csvVideoTrackTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="csITSPDB (MySettings)" DbObjectType="Unknown" GenerateMethods="Get" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="GetData">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT        C.FirstName, C.LastName, C.CandidateNumber, JobGroups.JobGroupName, C.EmailAddress, C.AliasID, C.SelfReg, C.Answer1, C.Answer2, C.Answer3, 
+                         VT.VideoClickedDate AS ViewedDate, A.ShortAppName AS Course, S.SectionName AS Section, T.TutorialName AS Video
+FROM            kbVideoTrack AS VT INNER JOIN
+                         Candidates AS C ON VT.CandidateID = C.CandidateID INNER JOIN
+                         Tutorials AS T ON VT.TutorialID = T.TutorialID INNER JOIN
+                         Sections AS S ON T.SectionID = S.SectionID INNER JOIN
+                         Applications AS A ON S.ApplicationID = A.ApplicationID INNER JOIN
+                         JobGroups ON C.JobGroupID = JobGroups.JobGroupID
+WHERE        (C.CentreID = @CentreID)
+ORDER BY ViewedDate DESC</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="false" AutogeneratedName="CentreID" ColumnName="CentreID" DataSourceName="Mbdbx101.dbo.Candidates" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@CentreID" Precision="0" ProviderType="Int" Scale="0" Size="4" SourceColumn="CentreID" SourceColumnNullMapping="false" SourceVersion="Current" />
+                    </Parameters>
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="FirstName" DataSetColumn="FirstName" />
+              <Mapping SourceColumn="LastName" DataSetColumn="LastName" />
+              <Mapping SourceColumn="CandidateNumber" DataSetColumn="CandidateNumber" />
+              <Mapping SourceColumn="JobGroupName" DataSetColumn="JobGroupName" />
+              <Mapping SourceColumn="EmailAddress" DataSetColumn="EmailAddress" />
+              <Mapping SourceColumn="AliasID" DataSetColumn="AliasID" />
+              <Mapping SourceColumn="SelfReg" DataSetColumn="SelfReg" />
+              <Mapping SourceColumn="Answer1" DataSetColumn="Answer1" />
+              <Mapping SourceColumn="Answer2" DataSetColumn="Answer2" />
+              <Mapping SourceColumn="Answer3" DataSetColumn="Answer3" />
+              <Mapping SourceColumn="ViewedDate" DataSetColumn="ViewedDate" />
+              <Mapping SourceColumn="Course" DataSetColumn="Course" />
+              <Mapping SourceColumn="Section" DataSetColumn="Section" />
+              <Mapping SourceColumn="Video" DataSetColumn="Video" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="csvYouTubeTableAdapter" GeneratorDataComponentClassName="csvYouTubeTableAdapter" Name="csvYouTube" UserDataComponentName="csvYouTubeTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="csITSPDB (MySettings)" DbObjectType="Unknown" GenerateMethods="Get" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="GetData">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT        C.FirstName, C.LastName, C.CandidateNumber, JobGroups.JobGroupName, C.EmailAddress, C.AliasID, C.SelfReg, C.Answer1, C.Answer2, C.Answer3, 
+                         YT.LaunchDateTime, YT.YouTubeURL, YT.VidTitle
+FROM            kbYouTubeTrack AS YT INNER JOIN
+                         Candidates AS C ON YT.CandidateID = C.CandidateID INNER JOIN
+                         JobGroups ON C.JobGroupID = JobGroups.JobGroupID
+WHERE        (C.CentreID = @CentreID)
+ORDER BY YT.LaunchDateTime DESC</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="false" AutogeneratedName="CentreID" ColumnName="CentreID" DataSourceName="Mbdbx101.dbo.Candidates" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@CentreID" Precision="0" ProviderType="Int" Scale="0" Size="4" SourceColumn="CentreID" SourceColumnNullMapping="false" SourceVersion="Current" />
+                    </Parameters>
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="FirstName" DataSetColumn="FirstName" />
+              <Mapping SourceColumn="LastName" DataSetColumn="LastName" />
+              <Mapping SourceColumn="CandidateNumber" DataSetColumn="CandidateNumber" />
+              <Mapping SourceColumn="JobGroupName" DataSetColumn="JobGroupName" />
+              <Mapping SourceColumn="EmailAddress" DataSetColumn="EmailAddress" />
+              <Mapping SourceColumn="AliasID" DataSetColumn="AliasID" />
+              <Mapping SourceColumn="SelfReg" DataSetColumn="SelfReg" />
+              <Mapping SourceColumn="Answer1" DataSetColumn="Answer1" />
+              <Mapping SourceColumn="Answer2" DataSetColumn="Answer2" />
+              <Mapping SourceColumn="Answer3" DataSetColumn="Answer3" />
+              <Mapping SourceColumn="LaunchDateTime" DataSetColumn="LaunchDateTime" />
+              <Mapping SourceColumn="YouTubeURL" DataSetColumn="YouTubeURL" />
+              <Mapping SourceColumn="VidTitle" DataSetColumn="VidTitle" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="csvSearchDetailTableAdapter" GeneratorDataComponentClassName="csvSearchDetailTableAdapter" Name="csvSearchDetail" UserDataComponentName="csvSearchDetailTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="csITSPDB (MySettings)" DbObjectType="Unknown" GenerateMethods="Get" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="GetData">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT        c.FirstName, c.LastName, c.CandidateNumber, JobGroups.JobGroupName, c.EmailAddress, c.AliasID, c.SelfReg, c.Answer1, c.Answer2, c.Answer3, kbs.SearchDate, 
+                         CASE kbs.OfficeVersionCSV WHEN '1' THEN '2007' WHEN '2' THEN '2010' ELSE '-' END AS OfficeVersionFilter, 
+                         CASE kbs.ApplicationCSV WHEN '1' THEN 'Office' WHEN '2' THEN 'Word' WHEN '3' THEN 'Excel' WHEN '4' THEN 'PowerPoint' WHEN '5' THEN 'Outlook' ELSE '-' END
+                          AS ApplicationFilter, COALESCE (ApplicationGroups.ApplicationGroup, '-') AS LevelFilter, COALESCE (kbs.SearchTerm, '-') AS SearchTerm, 
+                         kbs.Inadequate AS ReportedPoor
+FROM            kbSearches AS kbs INNER JOIN
+                         Candidates AS c ON kbs.CandidateID = c.CandidateID INNER JOIN
+                         JobGroups ON c.JobGroupID = JobGroups.JobGroupID LEFT OUTER JOIN
+                         ApplicationGroups ON kbs.ApplicationGroupCSV = CAST(ApplicationGroups.AppGroupID AS varchar)
+WHERE        (c.CentreID = @CentreID)
+ORDER BY kbs.SearchDate DESC</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="false" AutogeneratedName="CentreID" ColumnName="CentreID" DataSourceName="Mbdbx101.dbo.Candidates" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@CentreID" Precision="0" ProviderType="Int" Scale="0" Size="4" SourceColumn="CentreID" SourceColumnNullMapping="false" SourceVersion="Current" />
+                    </Parameters>
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="FirstName" DataSetColumn="FirstName" />
+              <Mapping SourceColumn="LastName" DataSetColumn="LastName" />
+              <Mapping SourceColumn="CandidateNumber" DataSetColumn="CandidateNumber" />
+              <Mapping SourceColumn="JobGroupName" DataSetColumn="JobGroupName" />
+              <Mapping SourceColumn="EmailAddress" DataSetColumn="EmailAddress" />
+              <Mapping SourceColumn="AliasID" DataSetColumn="AliasID" />
+              <Mapping SourceColumn="SelfReg" DataSetColumn="SelfReg" />
+              <Mapping SourceColumn="Answer1" DataSetColumn="Answer1" />
+              <Mapping SourceColumn="Answer2" DataSetColumn="Answer2" />
+              <Mapping SourceColumn="Answer3" DataSetColumn="Answer3" />
+              <Mapping SourceColumn="SearchDate" DataSetColumn="SearchDate" />
+              <Mapping SourceColumn="OfficeVersionFilter" DataSetColumn="OfficeVersionFilter" />
+              <Mapping SourceColumn="ApplicationFilter" DataSetColumn="ApplicationFilter" />
+              <Mapping SourceColumn="LevelFilter" DataSetColumn="LevelFilter" />
+              <Mapping SourceColumn="SearchTerm" DataSetColumn="SearchTerm" />
+              <Mapping SourceColumn="ReportedPoor" DataSetColumn="ReportedPoor" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+        </Tables>
+        <Sources>
+          <DbSource ConnectionRef="EITSTrackingConnectionString (Web.config)" DbObjectName="Mbdbx101.dbo.uspIncrementVideoCountKB" DbObjectType="StoredProcedure" GenerateShortCommands="true" GeneratorSourceName="uspIncrementVideoCountKB" MethodsParameterType="CLR" Modifier="Public" Name="uspIncrementVideoCountKB" QueryType="Scalar" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy" UserSourceName="uspIncrementVideoCountKB">
+            <SelectCommand>
+              <DbCommand CommandType="StoredProcedure" ModifiedByUser="false">
+                <CommandText>dbo.uspIncrementVideoCountKB</CommandText>
+                <Parameters>
+                  <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DataTypeServer="int" DbType="Int32" Direction="ReturnValue" ParameterName="@RETURN_VALUE" Precision="10" ProviderType="Int" Scale="0" Size="4" SourceColumnNullMapping="false" SourceVersion="Current" />
+                  <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@TutorialID" Precision="10" ProviderType="Int" Scale="0" Size="4" SourceColumnNullMapping="false" SourceVersion="Current" />
+                </Parameters>
+              </DbCommand>
+            </SelectCommand>
+          </DbSource>
+          <DbSource ConnectionRef="EITSTrackingConnectionString (Web.config)" DbObjectName="Mbdbx101.dbo.Tutorials" DbObjectType="Table" GenerateShortCommands="true" GeneratorSourceName="GetVideoPathForTutID" MethodsParameterType="CLR" Modifier="Public" Name="GetVideoPathForTutID" QueryType="Scalar" ScalarCallRetval="System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy1" UserSourceName="GetVideoPathForTutID">
+            <SelectCommand>
+              <DbCommand CommandType="Text" ModifiedByUser="true">
+                <CommandText>SELECT     VideoPath
+FROM         Tutorials
+WHERE     (TutorialID = @TutorialID)</CommandText>
+                <Parameters>
+                  <Parameter AllowDbNull="false" AutogeneratedName="TutorialID" ColumnName="TutorialID" DataSourceName="Mbdbx101.dbo.Tutorials" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@TutorialID" Precision="0" ProviderType="Int" Scale="0" Size="4" SourceColumn="TutorialID" SourceColumnNullMapping="false" SourceVersion="Current" />
+                </Parameters>
+              </DbCommand>
+            </SelectCommand>
+          </DbSource>
+        </Sources>
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="knowledgebankdata" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="knowledgebankdata" msprop:Generator_UserDSName="knowledgebankdata">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="TopRated" msprop:Generator_UserTableName="TopRated" msprop:Generator_RowEvArgName="TopRatedRowChangeEvent" msprop:Generator_TableVarName="tableTopRated" msprop:Generator_TablePropName="TopRated" msprop:Generator_RowDeletingName="TopRatedRowDeleting" msprop:Generator_RowChangingName="TopRatedRowChanging" msprop:Generator_RowDeletedName="TopRatedRowDeleted" msprop:Generator_RowEvHandlerName="TopRatedRowChangeEventHandler" msprop:Generator_TableClassName="TopRatedDataTable" msprop:Generator_RowChangedName="TopRatedRowChanged" msprop:Generator_RowClassName="TopRatedRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="TutorialID" msprop:Generator_ColumnVarNameInTable="columnTutorialID" msprop:Generator_ColumnPropNameInRow="TutorialID" msprop:Generator_ColumnPropNameInTable="TutorialIDColumn" msprop:Generator_UserColumnName="TutorialID" type="xs:int" />
+              <xs:element name="TutorialName" msprop:Generator_ColumnVarNameInTable="columnTutorialName" msprop:Generator_ColumnPropNameInRow="TutorialName" msprop:Generator_ColumnPropNameInTable="TutorialNameColumn" msprop:Generator_UserColumnName="TutorialName">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="255" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="VideoPath" msprop:Generator_ColumnVarNameInTable="columnVideoPath" msprop:Generator_ColumnPropNameInRow="VideoPath" msprop:Generator_ColumnPropNameInTable="VideoPathColumn" msprop:Generator_UserColumnName="VideoPath" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="255" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="TutorialPath" msprop:Generator_ColumnVarNameInTable="columnTutorialPath" msprop:Generator_ColumnPropNameInRow="TutorialPath" msprop:Generator_ColumnPropNameInTable="TutorialPathColumn" msprop:Generator_UserColumnName="TutorialPath" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="255" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="ShortAppName" msprop:Generator_ColumnVarNameInTable="columnShortAppName" msprop:Generator_ColumnPropNameInRow="ShortAppName" msprop:Generator_ColumnPropNameInTable="ShortAppNameColumn" msprop:Generator_UserColumnName="ShortAppName" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="100" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="VideoCount" msprop:Generator_ColumnVarNameInTable="columnVideoCount" msprop:Generator_ColumnPropNameInRow="VideoCount" msprop:Generator_ColumnPropNameInTable="VideoCountColumn" msprop:Generator_UserColumnName="VideoCount" type="xs:int" />
+              <xs:element name="Rated" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnRated" msprop:Generator_ColumnPropNameInRow="Rated" msprop:Generator_ColumnPropNameInTable="RatedColumn" msprop:Generator_UserColumnName="Rated" type="xs:int" minOccurs="0" />
+              <xs:element name="VidRating" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnVidRating" msprop:Generator_ColumnPropNameInRow="VidRating" msprop:Generator_ColumnPropNameInTable="VidRatingColumn" msprop:Generator_UserColumnName="VidRating" type="xs:decimal" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="KBUsage" msprop:Generator_UserTableName="KBUsage" msprop:Generator_RowEvArgName="KBUsageRowChangeEvent" msprop:Generator_TableVarName="tableKBUsage" msprop:Generator_TablePropName="KBUsage" msprop:Generator_RowDeletingName="KBUsageRowDeleting" msprop:Generator_RowChangingName="KBUsageRowChanging" msprop:Generator_RowDeletedName="KBUsageRowDeleted" msprop:Generator_RowEvHandlerName="KBUsageRowChangeEventHandler" msprop:Generator_TableClassName="KBUsageDataTable" msprop:Generator_RowChangedName="KBUsageRowChanged" msprop:Generator_RowClassName="KBUsageRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="CandidateID" msdata:ReadOnly="true" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnVarNameInTable="columnCandidateID" msprop:Generator_ColumnPropNameInRow="CandidateID" msprop:Generator_ColumnPropNameInTable="CandidateIDColumn" msprop:Generator_UserColumnName="CandidateID" type="xs:int" />
+              <xs:element name="Searches" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnSearches" msprop:Generator_ColumnPropNameInRow="Searches" msprop:Generator_ColumnPropNameInTable="SearchesColumn" msprop:Generator_UserColumnName="Searches" type="xs:int" minOccurs="0" />
+              <xs:element name="VideosLaunched" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnVideosLaunched" msprop:Generator_ColumnPropNameInRow="VideosLaunched" msprop:Generator_ColumnPropNameInTable="VideosLaunchedColumn" msprop:Generator_UserColumnName="VideosLaunched" type="xs:int" minOccurs="0" />
+              <xs:element name="TutorialsViewed" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnTutorialsViewed" msprop:Generator_ColumnPropNameInRow="TutorialsViewed" msprop:Generator_ColumnPropNameInTable="TutorialsViewedColumn" msprop:Generator_UserColumnName="TutorialsViewed" type="xs:int" minOccurs="0" />
+              <xs:element name="YouTubeVideosWatched" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnYouTubeVideosWatched" msprop:Generator_ColumnPropNameInRow="YouTubeVideosWatched" msprop:Generator_ColumnPropNameInTable="YouTubeVideosWatchedColumn" msprop:Generator_UserColumnName="YouTubeVideosWatched" type="xs:int" minOccurs="0" />
+              <xs:element name="CandidateNumber" msprop:Generator_ColumnVarNameInTable="columnCandidateNumber" msprop:Generator_ColumnPropNameInRow="CandidateNumber" msprop:Generator_ColumnPropNameInTable="CandidateNumberColumn" msprop:Generator_UserColumnName="CandidateNumber">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="250" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Name" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnName" msprop:Generator_ColumnPropNameInRow="Name" msprop:Generator_ColumnPropNameInTable="NameColumn" msprop:Generator_UserColumnName="Name" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="502" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="kbSearches" msprop:Generator_UserTableName="kbSearches" msprop:Generator_RowEvArgName="kbSearchesRowChangeEvent" msprop:Generator_TableVarName="tablekbSearches" msprop:Generator_TablePropName="kbSearches" msprop:Generator_RowDeletingName="kbSearchesRowDeleting" msprop:Generator_RowChangingName="kbSearchesRowChanging" msprop:Generator_RowDeletedName="kbSearchesRowDeleted" msprop:Generator_RowEvHandlerName="kbSearchesRowChangeEventHandler" msprop:Generator_TableClassName="kbSearchesDataTable" msprop:Generator_RowChangedName="kbSearchesRowChanged" msprop:Generator_RowClassName="kbSearchesRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="SearchDate" msprop:Generator_ColumnVarNameInTable="columnSearchDate" msprop:Generator_ColumnPropNameInRow="SearchDate" msprop:Generator_ColumnPropNameInTable="SearchDateColumn" msprop:Generator_UserColumnName="SearchDate" type="xs:dateTime" />
+              <xs:element name="OfficeVersionFilter" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnOfficeVersionFilter" msprop:Generator_ColumnPropNameInRow="OfficeVersionFilter" msprop:Generator_ColumnPropNameInTable="OfficeVersionFilterColumn" msprop:Generator_UserColumnName="OfficeVersionFilter" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="4" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="ApplicationFilter" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnApplicationFilter" msprop:Generator_ColumnPropNameInRow="ApplicationFilter" msprop:Generator_ColumnPropNameInTable="ApplicationFilterColumn" msprop:Generator_UserColumnName="ApplicationFilter" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="10" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="LevelFilter" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnLevelFilter" msprop:Generator_ColumnPropNameInRow="LevelFilter" msprop:Generator_ColumnPropNameInTable="LevelFilterColumn" msprop:Generator_UserColumnName="LevelFilter" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="100" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="SearchTerm" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnSearchTerm" msprop:Generator_ColumnPropNameInRow="SearchTerm" msprop:Generator_ColumnPropNameInTable="SearchTermColumn" msprop:Generator_UserColumnName="SearchTerm" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="255" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="ReportedPoor" msprop:Generator_ColumnVarNameInTable="columnReportedPoor" msprop:Generator_ColumnPropNameInRow="ReportedPoor" msprop:Generator_ColumnPropNameInTable="ReportedPoorColumn" msprop:Generator_UserColumnName="ReportedPoor" type="xs:boolean" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="kbVideos" msprop:Generator_UserTableName="kbVideos" msprop:Generator_RowEvArgName="kbVideosRowChangeEvent" msprop:Generator_TableVarName="tablekbVideos" msprop:Generator_TablePropName="kbVideos" msprop:Generator_RowDeletingName="kbVideosRowDeleting" msprop:Generator_RowChangingName="kbVideosRowChanging" msprop:Generator_RowDeletedName="kbVideosRowDeleted" msprop:Generator_RowEvHandlerName="kbVideosRowChangeEventHandler" msprop:Generator_TableClassName="kbVideosDataTable" msprop:Generator_RowChangedName="kbVideosRowChanged" msprop:Generator_RowClassName="kbVideosRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="ViewedDate" msprop:Generator_ColumnVarNameInTable="columnViewedDate" msprop:Generator_ColumnPropNameInRow="ViewedDate" msprop:Generator_ColumnPropNameInTable="ViewedDateColumn" msprop:Generator_UserColumnName="ViewedDate" type="xs:dateTime" />
+              <xs:element name="Course" msprop:Generator_ColumnVarNameInTable="columnCourse" msprop:Generator_ColumnPropNameInRow="Course" msprop:Generator_ColumnPropNameInTable="CourseColumn" msprop:Generator_UserColumnName="Course" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="100" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Section" msprop:Generator_ColumnVarNameInTable="columnSection" msprop:Generator_ColumnPropNameInRow="Section" msprop:Generator_ColumnPropNameInTable="SectionColumn" msprop:Generator_UserColumnName="Section">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="250" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Video" msprop:Generator_ColumnVarNameInTable="columnVideo" msprop:Generator_ColumnPropNameInRow="Video" msprop:Generator_ColumnPropNameInTable="VideoColumn" msprop:Generator_UserColumnName="Video">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="255" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="kbTutorials" msprop:Generator_UserTableName="kbTutorials" msprop:Generator_RowEvArgName="kbTutorialsRowChangeEvent" msprop:Generator_TableVarName="tablekbTutorials" msprop:Generator_TablePropName="kbTutorials" msprop:Generator_RowDeletingName="kbTutorialsRowDeleting" msprop:Generator_RowChangingName="kbTutorialsRowChanging" msprop:Generator_RowDeletedName="kbTutorialsRowDeleted" msprop:Generator_RowEvHandlerName="kbTutorialsRowChangeEventHandler" msprop:Generator_TableClassName="kbTutorialsDataTable" msprop:Generator_RowChangedName="kbTutorialsRowChanged" msprop:Generator_RowClassName="kbTutorialsRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="LaunchDate" msprop:Generator_ColumnVarNameInTable="columnLaunchDate" msprop:Generator_ColumnPropNameInRow="LaunchDate" msprop:Generator_ColumnPropNameInTable="LaunchDateColumn" msprop:Generator_UserColumnName="LaunchDate" type="xs:dateTime" />
+              <xs:element name="Course" msprop:Generator_ColumnVarNameInTable="columnCourse" msprop:Generator_ColumnPropNameInRow="Course" msprop:Generator_ColumnPropNameInTable="CourseColumn" msprop:Generator_UserColumnName="Course" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="100" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Section" msprop:Generator_ColumnVarNameInTable="columnSection" msprop:Generator_ColumnPropNameInRow="Section" msprop:Generator_ColumnPropNameInTable="SectionColumn" msprop:Generator_UserColumnName="Section">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="250" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Tutorial" msprop:Generator_ColumnVarNameInTable="columnTutorial" msprop:Generator_ColumnPropNameInRow="Tutorial" msprop:Generator_ColumnPropNameInTable="TutorialColumn" msprop:Generator_UserColumnName="Tutorial">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="255" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="kbYouTubeTrack" msprop:Generator_UserTableName="kbYouTubeTrack" msprop:Generator_RowEvArgName="kbYouTubeTrackRowChangeEvent" msprop:Generator_TableVarName="tablekbYouTubeTrack" msprop:Generator_TablePropName="kbYouTubeTrack" msprop:Generator_RowDeletingName="kbYouTubeTrackRowDeleting" msprop:Generator_RowChangingName="kbYouTubeTrackRowChanging" msprop:Generator_RowDeletedName="kbYouTubeTrackRowDeleted" msprop:Generator_RowEvHandlerName="kbYouTubeTrackRowChangeEventHandler" msprop:Generator_TableClassName="kbYouTubeTrackDataTable" msprop:Generator_RowChangedName="kbYouTubeTrackRowChanged" msprop:Generator_RowClassName="kbYouTubeTrackRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="LaunchDateTime" msprop:Generator_ColumnVarNameInTable="columnLaunchDateTime" msprop:Generator_ColumnPropNameInRow="LaunchDateTime" msprop:Generator_ColumnPropNameInTable="LaunchDateTimeColumn" msprop:Generator_UserColumnName="LaunchDateTime" type="xs:dateTime" />
+              <xs:element name="YouTubeURL" msprop:Generator_ColumnVarNameInTable="columnYouTubeURL" msprop:Generator_ColumnPropNameInRow="YouTubeURL" msprop:Generator_ColumnPropNameInTable="YouTubeURLColumn" msprop:Generator_UserColumnName="YouTubeURL">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="256" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="VidTitle" msprop:Generator_ColumnVarNameInTable="columnVidTitle" msprop:Generator_ColumnPropNameInRow="VidTitle" msprop:Generator_ColumnPropNameInTable="VidTitleColumn" msprop:Generator_UserColumnName="VidTitle">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="100" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="csvTutorialTrack" msprop:Generator_TableClassName="csvTutorialTrackDataTable" msprop:Generator_RowEvArgName="csvTutorialTrackRowChangeEvent" msprop:Generator_TableVarName="tablecsvTutorialTrack" msprop:Generator_TablePropName="csvTutorialTrack" msprop:Generator_RowDeletingName="csvTutorialTrackRowDeleting" msprop:Generator_RowChangingName="csvTutorialTrackRowChanging" msprop:Generator_RowEvHandlerName="csvTutorialTrackRowChangeEventHandler" msprop:Generator_RowDeletedName="csvTutorialTrackRowDeleted" msprop:Generator_RowChangedName="csvTutorialTrackRowChanged" msprop:Generator_UserTableName="csvTutorialTrack" msprop:Generator_RowClassName="csvTutorialTrackRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="FirstName" msprop:Generator_ColumnVarNameInTable="columnFirstName" msprop:Generator_ColumnPropNameInRow="FirstName" msprop:Generator_ColumnPropNameInTable="FirstNameColumn" msprop:Generator_UserColumnName="FirstName" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="250" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="LastName" msprop:Generator_ColumnVarNameInTable="columnLastName" msprop:Generator_ColumnPropNameInRow="LastName" msprop:Generator_ColumnPropNameInTable="LastNameColumn" msprop:Generator_UserColumnName="LastName">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="250" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="CandidateNumber" msprop:Generator_ColumnVarNameInTable="columnCandidateNumber" msprop:Generator_ColumnPropNameInRow="CandidateNumber" msprop:Generator_ColumnPropNameInTable="CandidateNumberColumn" msprop:Generator_UserColumnName="CandidateNumber">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="250" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="JobGroupName" msprop:Generator_ColumnVarNameInTable="columnJobGroupName" msprop:Generator_ColumnPropNameInRow="JobGroupName" msprop:Generator_ColumnPropNameInTable="JobGroupNameColumn" msprop:Generator_UserColumnName="JobGroupName">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="EmailAddress" msprop:Generator_ColumnVarNameInTable="columnEmailAddress" msprop:Generator_ColumnPropNameInRow="EmailAddress" msprop:Generator_ColumnPropNameInTable="EmailAddressColumn" msprop:Generator_UserColumnName="EmailAddress" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="255" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="AliasID" msprop:Generator_ColumnVarNameInTable="columnAliasID" msprop:Generator_ColumnPropNameInRow="AliasID" msprop:Generator_ColumnPropNameInTable="AliasIDColumn" msprop:Generator_UserColumnName="AliasID" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="250" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="SelfReg" msprop:Generator_ColumnVarNameInTable="columnSelfReg" msprop:Generator_ColumnPropNameInRow="SelfReg" msprop:Generator_ColumnPropNameInTable="SelfRegColumn" msprop:Generator_UserColumnName="SelfReg" type="xs:boolean" />
+              <xs:element name="Answer1" msprop:Generator_ColumnVarNameInTable="columnAnswer1" msprop:Generator_ColumnPropNameInRow="Answer1" msprop:Generator_ColumnPropNameInTable="Answer1Column" msprop:Generator_UserColumnName="Answer1" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="100" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Answer2" msprop:Generator_ColumnVarNameInTable="columnAnswer2" msprop:Generator_ColumnPropNameInRow="Answer2" msprop:Generator_ColumnPropNameInTable="Answer2Column" msprop:Generator_UserColumnName="Answer2" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="100" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Answer3" msprop:Generator_ColumnVarNameInTable="columnAnswer3" msprop:Generator_ColumnPropNameInRow="Answer3" msprop:Generator_ColumnPropNameInTable="Answer3Column" msprop:Generator_UserColumnName="Answer3" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="100" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="LaunchDate" msprop:Generator_ColumnVarNameInTable="columnLaunchDate" msprop:Generator_ColumnPropNameInRow="LaunchDate" msprop:Generator_ColumnPropNameInTable="LaunchDateColumn" msprop:Generator_UserColumnName="LaunchDate" type="xs:dateTime" />
+              <xs:element name="Course" msprop:Generator_ColumnVarNameInTable="columnCourse" msprop:Generator_ColumnPropNameInRow="Course" msprop:Generator_ColumnPropNameInTable="CourseColumn" msprop:Generator_UserColumnName="Course" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="100" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Section" msprop:Generator_ColumnVarNameInTable="columnSection" msprop:Generator_ColumnPropNameInRow="Section" msprop:Generator_ColumnPropNameInTable="SectionColumn" msprop:Generator_UserColumnName="Section">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="250" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Tutorial" msprop:Generator_ColumnVarNameInTable="columnTutorial" msprop:Generator_ColumnPropNameInRow="Tutorial" msprop:Generator_ColumnPropNameInTable="TutorialColumn" msprop:Generator_UserColumnName="Tutorial">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="255" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Expr1" msprop:Generator_ColumnVarNameInTable="columnExpr1" msprop:Generator_ColumnPropNameInRow="Expr1" msprop:Generator_ColumnPropNameInTable="Expr1Column" msprop:Generator_UserColumnName="Expr1" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="255" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Expr2" msprop:Generator_ColumnVarNameInTable="columnExpr2" msprop:Generator_ColumnPropNameInRow="Expr2" msprop:Generator_ColumnPropNameInTable="Expr2Column" msprop:Generator_UserColumnName="Expr2" type="xs:boolean" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="csvVideoTrack" msprop:Generator_TableClassName="csvVideoTrackDataTable" msprop:Generator_RowEvArgName="csvVideoTrackRowChangeEvent" msprop:Generator_TableVarName="tablecsvVideoTrack" msprop:Generator_TablePropName="csvVideoTrack" msprop:Generator_RowDeletingName="csvVideoTrackRowDeleting" msprop:Generator_RowChangingName="csvVideoTrackRowChanging" msprop:Generator_RowEvHandlerName="csvVideoTrackRowChangeEventHandler" msprop:Generator_RowDeletedName="csvVideoTrackRowDeleted" msprop:Generator_RowChangedName="csvVideoTrackRowChanged" msprop:Generator_UserTableName="csvVideoTrack" msprop:Generator_RowClassName="csvVideoTrackRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="FirstName" msprop:Generator_ColumnVarNameInTable="columnFirstName" msprop:Generator_ColumnPropNameInRow="FirstName" msprop:Generator_ColumnPropNameInTable="FirstNameColumn" msprop:Generator_UserColumnName="FirstName" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="250" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="LastName" msprop:Generator_ColumnVarNameInTable="columnLastName" msprop:Generator_ColumnPropNameInRow="LastName" msprop:Generator_ColumnPropNameInTable="LastNameColumn" msprop:Generator_UserColumnName="LastName">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="250" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="CandidateNumber" msprop:Generator_ColumnVarNameInTable="columnCandidateNumber" msprop:Generator_ColumnPropNameInRow="CandidateNumber" msprop:Generator_ColumnPropNameInTable="CandidateNumberColumn" msprop:Generator_UserColumnName="CandidateNumber">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="250" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="JobGroupName" msprop:Generator_ColumnVarNameInTable="columnJobGroupName" msprop:Generator_ColumnPropNameInRow="JobGroupName" msprop:Generator_ColumnPropNameInTable="JobGroupNameColumn" msprop:Generator_UserColumnName="JobGroupName">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="EmailAddress" msprop:Generator_ColumnVarNameInTable="columnEmailAddress" msprop:Generator_ColumnPropNameInRow="EmailAddress" msprop:Generator_ColumnPropNameInTable="EmailAddressColumn" msprop:Generator_UserColumnName="EmailAddress" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="255" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="AliasID" msprop:Generator_ColumnVarNameInTable="columnAliasID" msprop:Generator_ColumnPropNameInRow="AliasID" msprop:Generator_ColumnPropNameInTable="AliasIDColumn" msprop:Generator_UserColumnName="AliasID" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="250" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="SelfReg" msprop:Generator_ColumnVarNameInTable="columnSelfReg" msprop:Generator_ColumnPropNameInRow="SelfReg" msprop:Generator_ColumnPropNameInTable="SelfRegColumn" msprop:Generator_UserColumnName="SelfReg" type="xs:boolean" />
+              <xs:element name="Answer1" msprop:Generator_ColumnVarNameInTable="columnAnswer1" msprop:Generator_ColumnPropNameInRow="Answer1" msprop:Generator_ColumnPropNameInTable="Answer1Column" msprop:Generator_UserColumnName="Answer1" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="100" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Answer2" msprop:Generator_ColumnVarNameInTable="columnAnswer2" msprop:Generator_ColumnPropNameInRow="Answer2" msprop:Generator_ColumnPropNameInTable="Answer2Column" msprop:Generator_UserColumnName="Answer2" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="100" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Answer3" msprop:Generator_ColumnVarNameInTable="columnAnswer3" msprop:Generator_ColumnPropNameInRow="Answer3" msprop:Generator_ColumnPropNameInTable="Answer3Column" msprop:Generator_UserColumnName="Answer3" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="100" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="ViewedDate" msprop:Generator_ColumnVarNameInTable="columnViewedDate" msprop:Generator_ColumnPropNameInRow="ViewedDate" msprop:Generator_ColumnPropNameInTable="ViewedDateColumn" msprop:Generator_UserColumnName="ViewedDate" type="xs:dateTime" />
+              <xs:element name="Course" msprop:Generator_ColumnVarNameInTable="columnCourse" msprop:Generator_ColumnPropNameInRow="Course" msprop:Generator_ColumnPropNameInTable="CourseColumn" msprop:Generator_UserColumnName="Course" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="100" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Section" msprop:Generator_ColumnVarNameInTable="columnSection" msprop:Generator_ColumnPropNameInRow="Section" msprop:Generator_ColumnPropNameInTable="SectionColumn" msprop:Generator_UserColumnName="Section">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="250" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Video" msprop:Generator_ColumnVarNameInTable="columnVideo" msprop:Generator_ColumnPropNameInRow="Video" msprop:Generator_ColumnPropNameInTable="VideoColumn" msprop:Generator_UserColumnName="Video">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="255" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="csvYouTube" msprop:Generator_TableClassName="csvYouTubeDataTable" msprop:Generator_RowEvArgName="csvYouTubeRowChangeEvent" msprop:Generator_TableVarName="tablecsvYouTube" msprop:Generator_TablePropName="csvYouTube" msprop:Generator_RowDeletingName="csvYouTubeRowDeleting" msprop:Generator_RowChangingName="csvYouTubeRowChanging" msprop:Generator_RowEvHandlerName="csvYouTubeRowChangeEventHandler" msprop:Generator_RowDeletedName="csvYouTubeRowDeleted" msprop:Generator_RowChangedName="csvYouTubeRowChanged" msprop:Generator_UserTableName="csvYouTube" msprop:Generator_RowClassName="csvYouTubeRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="FirstName" msprop:Generator_ColumnVarNameInTable="columnFirstName" msprop:Generator_ColumnPropNameInRow="FirstName" msprop:Generator_ColumnPropNameInTable="FirstNameColumn" msprop:Generator_UserColumnName="FirstName" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="250" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="LastName" msprop:Generator_ColumnVarNameInTable="columnLastName" msprop:Generator_ColumnPropNameInRow="LastName" msprop:Generator_ColumnPropNameInTable="LastNameColumn" msprop:Generator_UserColumnName="LastName">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="250" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="CandidateNumber" msprop:Generator_ColumnVarNameInTable="columnCandidateNumber" msprop:Generator_ColumnPropNameInRow="CandidateNumber" msprop:Generator_ColumnPropNameInTable="CandidateNumberColumn" msprop:Generator_UserColumnName="CandidateNumber">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="250" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="JobGroupName" msprop:Generator_ColumnVarNameInTable="columnJobGroupName" msprop:Generator_ColumnPropNameInRow="JobGroupName" msprop:Generator_ColumnPropNameInTable="JobGroupNameColumn" msprop:Generator_UserColumnName="JobGroupName">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="EmailAddress" msprop:Generator_ColumnVarNameInTable="columnEmailAddress" msprop:Generator_ColumnPropNameInRow="EmailAddress" msprop:Generator_ColumnPropNameInTable="EmailAddressColumn" msprop:Generator_UserColumnName="EmailAddress" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="255" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="AliasID" msprop:Generator_ColumnVarNameInTable="columnAliasID" msprop:Generator_ColumnPropNameInRow="AliasID" msprop:Generator_ColumnPropNameInTable="AliasIDColumn" msprop:Generator_UserColumnName="AliasID" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="250" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="SelfReg" msprop:Generator_ColumnVarNameInTable="columnSelfReg" msprop:Generator_ColumnPropNameInRow="SelfReg" msprop:Generator_ColumnPropNameInTable="SelfRegColumn" msprop:Generator_UserColumnName="SelfReg" type="xs:boolean" />
+              <xs:element name="Answer1" msprop:Generator_ColumnVarNameInTable="columnAnswer1" msprop:Generator_ColumnPropNameInRow="Answer1" msprop:Generator_ColumnPropNameInTable="Answer1Column" msprop:Generator_UserColumnName="Answer1" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="100" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Answer2" msprop:Generator_ColumnVarNameInTable="columnAnswer2" msprop:Generator_ColumnPropNameInRow="Answer2" msprop:Generator_ColumnPropNameInTable="Answer2Column" msprop:Generator_UserColumnName="Answer2" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="100" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Answer3" msprop:Generator_ColumnVarNameInTable="columnAnswer3" msprop:Generator_ColumnPropNameInRow="Answer3" msprop:Generator_ColumnPropNameInTable="Answer3Column" msprop:Generator_UserColumnName="Answer3" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="100" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="LaunchDateTime" msprop:Generator_ColumnVarNameInTable="columnLaunchDateTime" msprop:Generator_ColumnPropNameInRow="LaunchDateTime" msprop:Generator_ColumnPropNameInTable="LaunchDateTimeColumn" msprop:Generator_UserColumnName="LaunchDateTime" type="xs:dateTime" />
+              <xs:element name="YouTubeURL" msprop:Generator_ColumnVarNameInTable="columnYouTubeURL" msprop:Generator_ColumnPropNameInRow="YouTubeURL" msprop:Generator_ColumnPropNameInTable="YouTubeURLColumn" msprop:Generator_UserColumnName="YouTubeURL">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="256" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="VidTitle" msprop:Generator_ColumnVarNameInTable="columnVidTitle" msprop:Generator_ColumnPropNameInRow="VidTitle" msprop:Generator_ColumnPropNameInTable="VidTitleColumn" msprop:Generator_UserColumnName="VidTitle">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="100" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="csvSearchDetail" msprop:Generator_TableClassName="csvSearchDetailDataTable" msprop:Generator_RowEvArgName="csvSearchDetailRowChangeEvent" msprop:Generator_TableVarName="tablecsvSearchDetail" msprop:Generator_TablePropName="csvSearchDetail" msprop:Generator_RowDeletingName="csvSearchDetailRowDeleting" msprop:Generator_RowChangingName="csvSearchDetailRowChanging" msprop:Generator_RowEvHandlerName="csvSearchDetailRowChangeEventHandler" msprop:Generator_RowDeletedName="csvSearchDetailRowDeleted" msprop:Generator_RowChangedName="csvSearchDetailRowChanged" msprop:Generator_UserTableName="csvSearchDetail" msprop:Generator_RowClassName="csvSearchDetailRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="FirstName" msprop:Generator_ColumnVarNameInTable="columnFirstName" msprop:Generator_ColumnPropNameInRow="FirstName" msprop:Generator_ColumnPropNameInTable="FirstNameColumn" msprop:Generator_UserColumnName="FirstName" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="250" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="LastName" msprop:Generator_ColumnVarNameInTable="columnLastName" msprop:Generator_ColumnPropNameInRow="LastName" msprop:Generator_ColumnPropNameInTable="LastNameColumn" msprop:Generator_UserColumnName="LastName">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="250" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="CandidateNumber" msprop:Generator_ColumnVarNameInTable="columnCandidateNumber" msprop:Generator_ColumnPropNameInRow="CandidateNumber" msprop:Generator_ColumnPropNameInTable="CandidateNumberColumn" msprop:Generator_UserColumnName="CandidateNumber">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="250" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="JobGroupName" msprop:Generator_ColumnVarNameInTable="columnJobGroupName" msprop:Generator_ColumnPropNameInRow="JobGroupName" msprop:Generator_ColumnPropNameInTable="JobGroupNameColumn" msprop:Generator_UserColumnName="JobGroupName">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="EmailAddress" msprop:Generator_ColumnVarNameInTable="columnEmailAddress" msprop:Generator_ColumnPropNameInRow="EmailAddress" msprop:Generator_ColumnPropNameInTable="EmailAddressColumn" msprop:Generator_UserColumnName="EmailAddress" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="255" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="AliasID" msprop:Generator_ColumnVarNameInTable="columnAliasID" msprop:Generator_ColumnPropNameInRow="AliasID" msprop:Generator_ColumnPropNameInTable="AliasIDColumn" msprop:Generator_UserColumnName="AliasID" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="250" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="SelfReg" msprop:Generator_ColumnVarNameInTable="columnSelfReg" msprop:Generator_ColumnPropNameInRow="SelfReg" msprop:Generator_ColumnPropNameInTable="SelfRegColumn" msprop:Generator_UserColumnName="SelfReg" type="xs:boolean" />
+              <xs:element name="Answer1" msprop:Generator_ColumnVarNameInTable="columnAnswer1" msprop:Generator_ColumnPropNameInRow="Answer1" msprop:Generator_ColumnPropNameInTable="Answer1Column" msprop:Generator_UserColumnName="Answer1" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="100" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Answer2" msprop:Generator_ColumnVarNameInTable="columnAnswer2" msprop:Generator_ColumnPropNameInRow="Answer2" msprop:Generator_ColumnPropNameInTable="Answer2Column" msprop:Generator_UserColumnName="Answer2" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="100" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Answer3" msprop:Generator_ColumnVarNameInTable="columnAnswer3" msprop:Generator_ColumnPropNameInRow="Answer3" msprop:Generator_ColumnPropNameInTable="Answer3Column" msprop:Generator_UserColumnName="Answer3" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="100" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="SearchDate" msprop:Generator_ColumnVarNameInTable="columnSearchDate" msprop:Generator_ColumnPropNameInRow="SearchDate" msprop:Generator_ColumnPropNameInTable="SearchDateColumn" msprop:Generator_UserColumnName="SearchDate" type="xs:dateTime" />
+              <xs:element name="OfficeVersionFilter" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnOfficeVersionFilter" msprop:Generator_ColumnPropNameInRow="OfficeVersionFilter" msprop:Generator_ColumnPropNameInTable="OfficeVersionFilterColumn" msprop:Generator_UserColumnName="OfficeVersionFilter" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="4" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="ApplicationFilter" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnApplicationFilter" msprop:Generator_ColumnPropNameInRow="ApplicationFilter" msprop:Generator_ColumnPropNameInTable="ApplicationFilterColumn" msprop:Generator_UserColumnName="ApplicationFilter" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="10" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="LevelFilter" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnLevelFilter" msprop:Generator_ColumnPropNameInRow="LevelFilter" msprop:Generator_ColumnPropNameInTable="LevelFilterColumn" msprop:Generator_UserColumnName="LevelFilter" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="100" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="SearchTerm" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnSearchTerm" msprop:Generator_ColumnPropNameInRow="SearchTerm" msprop:Generator_ColumnPropNameInTable="SearchTermColumn" msprop:Generator_UserColumnName="SearchTerm" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="255" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="ReportedPoor" msprop:Generator_ColumnVarNameInTable="columnReportedPoor" msprop:Generator_ColumnPropNameInRow="ReportedPoor" msprop:Generator_ColumnPropNameInTable="ReportedPoorColumn" msprop:Generator_UserColumnName="ReportedPoor" type="xs:boolean" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+    <xs:unique name="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:KBUsage" />
+      <xs:field xpath="mstns:CandidateID" />
+    </xs:unique>
+  </xs:element>
+</xs:schema>

@@ -1,0 +1,480 @@
+﻿<%@ Master Language="VB" AutoEventWireup="true" CodeBehind="Site.master.vb" Inherits="ITSP_TrackingSystemRefactor.SiteMaster" %>
+
+<%@ Register Assembly="DevExpress.Web.v19.2, Version=19.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" Namespace="DevExpress.Web" TagPrefix="dx" %>
+<%@ Register Src="~/controls/usermx.ascx" TagPrefix="uc1" TagName="usermx" %>
+<%@ Register Src="~/controls/usermxmodals.ascx" TagPrefix="uc1" TagName="usermxmodals" %>
+
+
+<!DOCTYPE html>
+
+<html lang="en">
+<head runat="server">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no" />
+    <title><%: Page.Title %> - Digital Learning Solutions Tracking System</title>
+    <style>
+        .help-btn {
+            margin-right: 10px;
+            margin-top: 5px;
+        }
+
+        .help-q {
+            font-weight: bolder;
+        }
+    </style>
+    <asp:PlaceHolder runat="server">
+        <%: Scripts.Render("~/bundles/modernizr") %>
+    </asp:PlaceHolder>
+    <%--<link href="../Content/bootstrap.min.css" rel="stylesheet" />--%>
+    <link href="../Content/plugins.min.css" rel="stylesheet" />
+    <link href="../Content/master.css" rel="stylesheet" />
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.4/css/bootstrap-datepicker3.min.css">
+    <link href="../Content/dashboard.css" rel="stylesheet" />
+    <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+    <link href="../Content/bootstrap-toggle.min.css" rel="stylesheet" />
+    <script src="../Scripts/plugins.min.js"></script>
+    <script src="../Scripts/bootstrap-toggle.min.js"></script>
+    <script src="../Scripts/app.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.4/js/bootstrap-datepicker.min.js"></script>
+    <meta name="description" content="The Digital Learning Solutions Tracking System" />
+    <style>
+        @media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
+            /* IE11 fix for button positioning issue in modal footer */
+            .modal-footer{
+        display: block !important;
+     }
+}
+     video {
+    margin:0 auto;
+    min-width: 100%;
+    min-height: 100%;
+    width: auto;
+    height: auto;
+    z-index: -100;
+    background-size: cover;
+    transition: 1s opacity;
+}
+         .img-fluid {
+        max-width: 100% !important;
+    }
+          .img-overlay-monitor{
+            position: absolute;
+        width: 100%;
+        top: 0;
+        left: 15px
+        }
+         .ms-hero-material-list {
+        list-style-type: none;
+        padding: 0;
+        margin-top:20px
+         }
+
+        .ms-hero-material-list li {
+            display: table;
+            margin-bottom: 40px;
+            margin-bottom: 4rem
+        }
+
+            .ms-hero-material-list li .ms-list-icon {
+                display: table-cell;
+                vertical-align: middle
+            }
+
+                .ms-hero-material-list li .ms-list-icon .ms-icon {
+                    margin: 0 20px 0 0;
+                    margin: 0 2rem 0 0
+                }
+
+            .ms-hero-material-list li .ms-list-text {
+                display: table-cell;
+                vertical-align: middle;
+                font-size: 18px;
+                font-size: 1.8rem;
+                line-height: 30px;
+                line-height: 3rem
+            }
+                .pad-right-twenty{
+        margin-right:20px;
+    }
+    </style>
+</head>
+<body>
+
+    <form runat="server">
+        <asp:ScriptManager runat="server">
+
+            <Scripts>
+                <%--To learn more about bundling scripts in ScriptManager see http://go.microsoft.com/fwlink/?LinkID=301884 --%>
+                <%--Framework Scripts--%>
+                <asp:ScriptReference Name="MsAjaxBundle" />
+                <asp:ScriptReference Name="respond" />
+                <asp:ScriptReference Name="WebForms.js" Assembly="System.Web" Path="~/Scripts/WebForms/WebForms.js" />
+                <asp:ScriptReference Name="WebUIValidation.js" Assembly="System.Web" Path="~/Scripts/WebForms/WebUIValidation.js" />
+                <asp:ScriptReference Name="MenuStandards.js" Assembly="System.Web" Path="~/Scripts/WebForms/MenuStandards.js" />
+                <asp:ScriptReference Name="GridView.js" Assembly="System.Web" Path="~/Scripts/WebForms/GridView.js" />
+                <asp:ScriptReference Name="DetailsView.js" Assembly="System.Web" Path="~/Scripts/WebForms/DetailsView.js" />
+                <asp:ScriptReference Name="TreeView.js" Assembly="System.Web" Path="~/Scripts/WebForms/TreeView.js" />
+                <asp:ScriptReference Name="WebParts.js" Assembly="System.Web" Path="~/Scripts/WebForms/WebParts.js" />
+                <asp:ScriptReference Name="Focus.js" Assembly="System.Web" Path="~/Scripts/WebForms/Focus.js" />
+                <asp:ScriptReference Name="WebFormsBundle" />
+                <%--Site Scripts--%>
+            </Scripts>
+        </asp:ScriptManager>
+        <script src="../Scripts/bs.pagination.js"></script>
+        <script src="../Scripts/itsphelpers.js"></script>
+
+        <%--<script src="Scripts/bootstrap.js"></script>--%>
+        <script src="../Scripts/bootstrap-hover-dropdown.min.js"></script>
+        <script src="../Scripts/bsasper.js"></script>
+        <script src="../Scripts/app.min.js"></script>
+        <script>
+            function BindMasterEvents() {
+
+                $(document).ready(function () {
+                    $("input, textarea, select").bsasper({
+                        placement: "right", createContent: function (errors) {
+                            return '<span class="text-danger">' + errors[0] + '</span>';
+                        }
+                    });
+                    $('.pick-date').datepicker({
+                        format: "dd/mm/yyyy"
+                    });
+                });
+                $('.bs-toggle').bootstrapToggle({
+                    on: 'Subscribed',
+                    off: 'Unsubscribed',
+                    onstyle: 'success',
+                    offstyle: 'danger',
+                    width: '100px'
+                });
+
+                doPopover()
+
+                function doPopover(s, e) {
+                    $('[data-toggle="popover"]').popover();
+                }
+            };
+            jQuery(function ($) {
+                if (typeof $.fn.datepicker.defaults != 'undefined') {
+                    $.fn.datepicker.defaults.format = "dd/mm/yyyy";
+                    $.fn.datepicker.defaults.autoclose = true;
+                }
+                $('.ticker').jTicker();
+            });
+
+        </script>
+
+        <!--[if lt IE 9]>
+        <script src="//oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="//oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+        <div id="ms-preload" class="ms-preload">
+            <div id="status">
+                <div class="spinner">
+                    <div class="dot1"></div>
+                    <div class="dot2"></div>
+                </div>
+            </div>
+        </div>
+        <div class="ms-site-container">
+            <header class="ms-header ms-header-default clearfix">
+
+                <!--ms-header-primary-->
+                <div class="container container-full">
+
+                    <asp:Panel runat="server" ID="pnlMainLogo" class="ms-title">
+
+                        <a href="dashboard">
+                            <!-- <img src="assets/Images/demo/logo-header.png" alt=""> -->
+                            <span>
+                                <img alt="Digital Learning Solutions Logo" src="../Images/DLS-Logo-Colour-sm.png" /></span>
+                            <h1 class="text-break">
+                                <span>Digital Learning Solutions</span>&nbsp; Tracking System
+                            </h1>
+                        </a>
+                    </asp:Panel>
+                    <div class="float-right">
+                        <asp:Image ID="logoImage" runat="server" ImageUrl="~/centrelogo" AlternateText="Organisation Logo"
+                            Height="100px" Width="300px" />
+                        <img runat="server" id="nhsdlogo" style="padding-top: 10px" alt="Health Education Engand Logo" src="../Images/hee-logo-sm.png" />
+
+                    </div>
+
+                </div>
+            </header>
+            <nav class="navbar navbar-expand-md navbar-static ms-navbar ms-navbar-dls-purple">
+                <div class="container container-full">
+
+                    <div class="navbar-header">
+                        <a class="navbar-brand" href="home">
+                            <!-- <img src="assets/Images/demo/logo-navbar.png" alt=""> -->
+                            <span>
+                                <img src="../Images/DLS-Logo-Colour-sm.png" alt="Digital Learning Solutions Logo" />
+                            </span>
+
+                        </a>
+                    </div>
+                    <button class="navbar-toggler text-white ms-toggle-left" type="button" data-toggle="collapse" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbar">
+                        <ul class="navbar-nav">
+                            <li id="liCentre" runat="server" class="nav-item dropdown">
+                                <a href="dashboard" class="nav-link dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" aria-haspopup="true" aria-expanded="false">Centre <i class="fas fa-angle-down"></i></a>
+                                <ul class="dropdown-menu ddmain">
+                                    <li><a href="dashboard" class="dropdown-item">Dashboard</a></li>
+                                    <li><a href="centredetails" class="dropdown-item">Centre Configuration</a></li>
+                                    <li runat="server" id="liCentreLogins"><a href="centrelogins" class="dropdown-item">Administrators</a></li>
+                                    <li><a href="learningportal" class="dropdown-item">Learning Portal Config</a></li>
+                                    <li class="dropdown-submenu">
+                                        <a href="reports" class="dropdown-item has_children">Reports</a>
+                                        <ul class="dropdown-menu dropdown-menu-left">
+                                            <li><a href="reports" class="dropdown-item">Usage Stats</a></li>
+                                    <li runat="server" id="liReportFWA"><a href="reportfwa" class="dropdown-item">Framework Assessment Report</a></li>
+                                            <li runat="server" id="liDCSReport">
+                                                <asp:LinkButton CssClass="dropdown-item" ID="lbtDownloadDCSReport" runat="server">Digital Capability Self Assessment Report (Excel)</asp:LinkButton></li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li id="liDelegates" runat="server" class="nav-item dropdown">
+                                <a href="delegates" class="nav-link dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" aria-haspopup="true" aria-expanded="false">Delegates <i class="fas fa-angle-down"></i></a>
+                                <ul class="dropdown-menu ddmain">
+                                    <li><a href="delegates" class="dropdown-item">All Delegates</a></li>
+                                    <li><a href="delegategroups" class="dropdown-item">Groups</a></li>
+                                    <li><a href="coursedelegates" class="dropdown-item">Course Delegates</a></li>
+                                    <li><a href="approvedelegates" class="dropdown-item">Approve Registrations</a></li>
+                                </ul>
+                            </li>
+                            <li id="liCourseSetup" class="nav-item" runat="server"><a href="coursesetup">Course Setup</a></li>
+                            <li id="liSupervisor" class="nav-item dropdown" runat="server">
+                                <a href="supervise" class="nav-link dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" aria-haspopup="true" aria-expanded="false">Supervise <i class="fas fa-angle-down"></i></a>
+                                <ul class="dropdown-menu ddmain">
+                                    <li><a href="supervise" class="dropdown-item">Supervise Delegates</a></li>
+                                    <li><a href="sv-schedule" class="dropdown-item">Schedule</a></li>
+                                </ul>
+                            </li>
+                            <li id="liSupport" runat="server" class="nav-item dropdown">
+                                <a href="support" data-hover="dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link dropdown-toggle">Support <i class="fas fa-angle-down"></i></a>
+                                <ul class="dropdown-menu ddmain">
+                                    <li>
+                                        <asp:HyperLink ID="hlHelp" Target="_blank" CssClass="dropdown-item" runat="server" NavigateUrl="~/help/Introduction.html">Help</asp:HyperLink></li>
+                                    <li><a href="faqs" class="dropdown-item">FAQs</a></li>
+                                    <li runat="server" id="liTickets"><a href="tickets" class="dropdown-item">Tickets</a></li>
+                                    <li><a href="resources" class="dropdown-item">Resources</a></li>
+                                </ul>
+                            </li>
+                           
+                            <li id="liAdmin" runat="server" class="nav-item dropdown">
+                                <a href="statsdetail" data-hover="dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link dropdown-toggle">Admin <i class="fas fa-angle-down"></i></a>
+                                <ul class="dropdown-menu ddmain">
+                                    <li runat="server" id="liAdminConfiguration"><a href="admin-configuration" class="dropdown-item">Configuration</a></li>
+                                    <li runat="server" id="liPrelogin"><a href="admin-landing" class="dropdown-item">Landing Content</a></li>
+                                    <li runat="server" id="liAdminadminusers"><a href="admin-adminusers" class="dropdown-item">Admin Users</a></li>
+                                    <li runat="server" id="liAdmincentres"><a href="admin-centres" class="dropdown-item">Centres</a></li>
+                                    <li runat="server" id="liAdmincentrecourses"><a href="admin-centrecourses" class="dropdown-item">Centre Courses</a></li>
+                                    <li runat="server" id="liAdmindelegates"><a href="admin-delegates" class="dropdown-item">Delegates</a></li>
+                                    <li runat="server" id="liAdminresources"><a href="admin-resources" class="dropdown-item">Resources</a></li>
+                                    <li runat="server" id="liAdminfaqs"><a href="admin-faqs" class="dropdown-item">FAQs</a></li>
+                                    <li runat="server" id="liAdminNotifications"><a href="admin-notifications" class="dropdown-item">Notifications</a></li>
+                                    <li><a href="statsdetail" class="dropdown-item">Stats</a></li>
+                                </ul>
+                            </li>
+                            <li class="nav-item">
+                                <uc1:usermx runat="server" class="nav-link" ID="usermx" />
+                            </li>
+                        </ul>
+
+                    </div>
+                    <div class="form-inline my-2 my-lg-0">
+
+                        <asp:HyperLink ID="hlHelpBtn" CssClass="nav-item btn btn-circle-lg btn-outline-light my-2 my-sm-0" ToolTip="Help" Target="_blank" runat="server" NavigateUrl="~/help/Introduction.html"><i class="fas fa-question"></i></asp:HyperLink>
+                    </div>
+
+
+                </div>
+            </nav>
+            <div class="container container-full">
+                <nav aria-label="breadcrumb">
+                    <input id="UsernameDummy" aria-hidden="true" type="text" autocomplete="username" class="d-none" />
+                    <asp:ContentPlaceHolder runat="server" ID="breadtray" />
+                </nav>
+
+
+                <div class="wrap ms-hero-bg-default clearfix">
+                    <asp:ContentPlaceHolder runat="server" ID="MainContent" />
+                </div>
+                <uc1:usermxmodals runat="server" ID="usermxmodals" />
+            </div>
+            <footer class="ms-footer">
+                <div class="container">
+                    <p>
+                        <span>Copyright &copy; Digital Learning Solutions, Health Education England <%: DateTime.Now.Year %></span>
+                        <span class="float-right" style="padding-right: 8px;">
+                            <a style="cursor: pointer;" class="btn btn-dark btn-sm" data-toggle="modal" data-target="#termsMessage"><i aria-hidden="true" class="far fa-check-square hidden-sm"></i>
+                                Terms of use
+                            </a>&nbsp;&nbsp;
+                    <a style="cursor: pointer;" class="btn btn-dark btn-sm" data-toggle="modal" data-target="#accessMessage"><i aria-hidden="true" class="fas fa-search hidden-sm"></i>
+                        Accessibility
+                    </a>&nbsp;&nbsp;<a style="cursor: pointer;" class="btn btn-dark btn-sm"  href="https://www.hee.nhs.uk/about/privacy-notice" target="_blank"><i aria-hidden="true" class="fas fa-eye hidden-sm"></i>
+                        Privacy
+                    </a>
+                        </span>
+                    </p>
+
+                </div>
+            </footer>
+        </div>
+
+        <div class="ms-slidebar sb-slidebar sb-left sb-style-overlay" id="ms-slidebar">
+            <div class="sb-slidebar-container">
+                <header class="ms-slidebar-header">
+
+                    <div class="ms-slidebar-title">
+
+                        <div class="ms-slidebar-t">
+                            <h3>Menu</h3>
+                        </div>
+                    </div>
+                </header>
+                <ul class="ms-slidebar-menu" id="slidebar-menu" role="tablist" aria-multiselectable="true">
+                    <li class="card" role="tab" runat="server" id="sch1">
+                        <a class="collapsed" role="button" data-toggle="collapse" href="#sc1" aria-expanded="false" aria-controls="sc1">
+                            <i class="fas fa-building"></i>Centre </a>
+                        <ul id="sc1" class="card-collapse collapse" role="tabpanel" aria-labelledby="sch1" data-parent="#slidebar-menu">
+                            <li>
+                                <a href="dashboard">Dashboard</a></li>
+                            <li><a href="centredetails">Centre Configuration</a></li>
+                            <li runat="server" id="liCentreLogins2"><a href="centrelogins">Administrators</a></li>
+                            <li><a href="learningportal">Learning Portal Config</a></li>
+                            <li><a href="reports">Reports</a></li>
+                        </ul>
+                    </li>
+                    <li class="card" role="tab" runat="server" id="sch2">
+                        <a class="collapsed" role="button" data-toggle="collapse" href="#sc2" aria-expanded="false" aria-controls="sc2">
+                            <i class="fas fa-users"></i>Delegates </a>
+                        <ul id="sc2" class="card-collapse collapse" role="tabpanel" aria-labelledby="sch2" data-parent="#slidebar-menu">
+                            <li>
+                                <a href="delegates">All Delegates</a></li>
+                            <li><a href="delegategroups">Groups</a></li>
+                            <li><a href="coursedelegates">Course Delegates</a></li>
+                            <li><a href="approvedelegates">Approve Registrations</a></li>
+                        </ul>
+                    </li>
+                    <li  runat="server" id="sch3">
+                        <a class="link" href="coursesetup">
+                            <i class="fas fa-tools"></i>Course Setup</a>
+                    </li>
+                    <li  runat="server" id="sch6">
+                        <a class="link" href="supervise">
+                            <i class="fas fa-id-card-alt"></i>Supervise</a>
+                    </li>
+                    <li class="card" role="tab" runat="server" id="sch4">
+                        <a class="collapsed" role="button" data-toggle="collapse" href="#sc4" aria-expanded="false" aria-controls="sc4">
+                            <i class="fas fa-life-ring"></i>Support </a>
+                        <ul id="sc4" class="card-collapse collapse" role="tabpanel" aria-labelledby="sch4" data-parent="#slidebar-menu">
+                            <li>
+                                <asp:HyperLink ID="hlHelp2" Target="_blank" CssClass="dropdown-item" runat="server" NavigateUrl="~/help/Introduction.html">Help</asp:HyperLink></li>
+                            <li><a href="faqs" class="dropdown-item">FAQs</a></li>
+                            <li runat="server" id="liTickets1"><a href="tickets" class="dropdown-item">Tickets</a></li>
+                            <li><a href="resources" class="dropdown-item">Resources</a></li>
+                        </ul>
+                    </li>
+                    <li runat="server" class="card" role="tab" id="sch5">
+                        <a class="collapsed" role="button" data-toggle="collapse" href="#sc5" aria-expanded="false" aria-controls="sc5">
+                            <i class="fas fa-cog"></i>Admin </a>
+                        <ul id="sc5" class="card-collapse collapse" role="tabpanel" aria-labelledby="sch5" data-parent="#slidebar-menu">
+                            <li runat="server" id="li2"><a href="admin-configuration">Configuration</a></li>
+                            <li><a href="admin-landing">Landing Content</a></li>
+                            <li><a href="admin-adminusers">Admin Users</a></li>
+                            <li><a href="admin-centres">Centres</a></li>
+                            <li><a href="admin-centrecourses">Centre Courses</a></li>
+                            <li><a href="admin-delegates">Delegates</a></li>
+                            <li><a href="admin-resources">Resources</a></li>
+                            <li><a href="admin-faqs">FAQs</a></li>
+                            <li><a href="admin-notifications">Notifications</a></li>
+                            <li><a href="statsdetail">Stats</a></li>
+                        </ul>
+                    </li>
+
+                </ul>
+
+            </div>
+        </div>
+
+
+
+
+
+        <%-- Terms Modal --%>
+        <div id="termsMessage" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="lbltermsHeading" aria-hidden="true">
+            <div class="modal-dialog modal-xl">
+                <div class="modal-content">
+                    <div class="modal-header">
+
+                        <h4 class="modal-title">
+                            <asp:Label ID="lbltermsHeading" runat="server">Terms of Use</asp:Label></h4>
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    </div>
+                    <div class="modal-body" style="max-height: 600px; overflow: auto;">
+
+                        <asp:Literal ID="litTOUDetail" runat="server"></asp:Literal>
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary float-right" data-dismiss="modal">OK</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <%-- Privacy Modal --%>
+        <div id="privacyMessage" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="label1" aria-hidden="true">
+            <div class="modal-dialog modal-xl">
+                <div class="modal-content">
+                    <div class="modal-header">
+
+                        <h4 class="modal-title">
+                            <asp:Label ID="Label8" runat="server">Privacy Notice</asp:Label></h4>
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    </div>
+                    <div class="modal-body" style="max-height: 600px; overflow: auto;">
+
+                        <asp:Literal ID="litPrivacy" runat="server"></asp:Literal>
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary float-right" data-dismiss="modal">OK</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <%-- Privacy Modal --%>
+        <div id="accessMessage" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="label2" aria-hidden="true">
+            <div class="modal-dialog modal-xl">
+                <div class="modal-content">
+                    <div class="modal-header">
+
+                        <h4 class="modal-title">
+                            <asp:Label ID="Label9" runat="server">Accessibility Help</asp:Label></h4>
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    </div>
+                    <div class="modal-body" style="max-height: 600px; overflow: auto;">
+
+                        <asp:Literal ID="litAccess" runat="server"></asp:Literal>
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary float-right" data-dismiss="modal">OK</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script>
+            Sys.Application.add_load(BindMasterEvents);
+
+        </script>
+    </form>
+</body>
+</html>

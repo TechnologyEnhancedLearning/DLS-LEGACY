@@ -1,0 +1,1206 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="customise" targetNamespace="http://tempuri.org/customise.xsd" xmlns:mstns="http://tempuri.org/customise.xsd" xmlns="http://tempuri.org/customise.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" GeneratorFunctionsComponentClassName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" UserFunctionsComponentName="QueriesTableAdapter" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections>
+          <Connection AppSettingsObjectName="MySettings" AppSettingsPropertyName="csITSPDB" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="csITSPDB (MySettings)" ParameterPrefix="@" PropertyReference="ApplicationSettings.ITSP_TrackingSystemRefactor.My.MySettings.GlobalReference.Default.csITSPDB" Provider="System.Data.SqlClient" />
+        </Connections>
+        <Tables>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="CustomisationsTableAdapter" GeneratorDataComponentClassName="CustomisationsTableAdapter" Name="Customisations" UserDataComponentName="CustomisationsTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="csITSPDB (MySettings)" DbObjectName="mbdbx101.dbo.Customisations" DbObjectType="Table" GenerateMethods="Get" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="GetData">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT (SELECT Applications.ApplicationName
+              FROM    Applications INNER JOIN
+                            Customisations AS CS2 ON Applications.ApplicationID = CS2.ApplicationID
+              WHERE  (CS2.CustomisationID = CS.CustomisationID)) AS AppName,
+                 (SELECT Applications_1.PLAssess
+                 FROM    Applications AS Applications_1 INNER JOIN
+                              Customisations AS CS3 ON Applications_1.ApplicationID = CS3.ApplicationID
+                 WHERE (CS3.CustomisationID = CS.CustomisationID)) AS HasAssess,
+                 (SELECT App.DiagAssess
+                 FROM    Applications AS App INNER JOIN
+                              Customisations AS CS3 ON App.ApplicationID = CS3.ApplicationID
+                 WHERE (CS3.CustomisationID = CS.CustomisationID)) AS HasDiag, CustomisationID, Active, CurrentVersion, CentreID, ApplicationID, CustomisationName, CustomisationText, IsAssessed, IsStandard, Password, SelfRegister,
+                 (SELECT COUNT(CustomisationID) AS Expr1
+                 FROM    Progress AS p1
+                 WHERE (CustomisationID = CS.CustomisationID) AND (Completed IS NULL)) AS CandidateCountInProgress, TutCompletionThreshold, DiagCompletionThreshold, DiagObjSelect, CASE WHEN
+                 (SELECT App1.LaunchedAssess
+                 FROM    Applications AS App1 INNER JOIN
+                              Customisations AS CS3 ON App1.ApplicationID = CS3.ApplicationID
+                 WHERE (CS3.CustomisationID = CS.CustomisationID)) = 1 THEN 1 WHEN
+                 (SELECT ct.BetaTesting
+                 FROM    Centres AS ct INNER JOIN
+                              Customisations AS cu ON ct.CentreID = cu.CentreID
+                 WHERE (cu.CustomisationID = @CustomisationID)) = 1 THEN 1 ELSE 0 END AS AssessAvailable,
+                 (SELECT COUNT(ProgressID) AS cs
+                 FROM    Progress AS P2
+                 WHERE (CustomisationID = CS.CustomisationID) AND (NOT (Completed IS NULL))) AS Completions, HideInLearnerPortal, CompleteWithinMonths, Mandatory, ValidityMonths, AutoRefresh, RefreshToCustomisationID, AutoRefreshMonths, Q1Options, Q2Options, Q3Options, 
+             CourseField1PromptID, CourseField2PromptID, CourseField3PromptID, COALESCE
+                 ((SELECT CoursePrompt
+                  FROM    CoursePrompts
+                  WHERE (CoursePromptID = CS.CourseField1PromptID)), '') AS CField1, COALESCE
+                 ((SELECT CoursePrompt
+                  FROM    CoursePrompts AS CoursePrompts_2
+                  WHERE (CoursePromptID = CS.CourseField2PromptID)), '') AS CField2, COALESCE
+                 ((SELECT CoursePrompt
+                  FROM    CoursePrompts AS CoursePrompts_1
+                  WHERE (CoursePromptID = CS.CourseField3PromptID)), '') AS CField3, DisableCompletion, InviteContributors, CreatedDate,
+                 (SELECT MAX(SubmittedTime) AS LastAccess
+                 FROM    Progress
+                 WHERE (CustomisationID = CS.CustomisationID)) AS LastAccess, NotificationEmails, ApplyLPDefaultsToSelfEnrol
+FROM   Customisations AS CS
+WHERE (CustomisationID = @CustomisationID)</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="false" AutogeneratedName="CustomisationID" ColumnName="CustomisationID" DataSourceName="mbdbx101.dbo.Customisations" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@CustomisationID" Precision="0" ProviderType="Int" Scale="0" Size="4" SourceColumn="CustomisationID" SourceColumnNullMapping="false" SourceVersion="Current" />
+                    </Parameters>
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="AppName" DataSetColumn="AppName" />
+              <Mapping SourceColumn="HasAssess" DataSetColumn="HasAssess" />
+              <Mapping SourceColumn="HasDiag" DataSetColumn="HasDiag" />
+              <Mapping SourceColumn="CustomisationID" DataSetColumn="CustomisationID" />
+              <Mapping SourceColumn="Active" DataSetColumn="Active" />
+              <Mapping SourceColumn="CurrentVersion" DataSetColumn="CurrentVersion" />
+              <Mapping SourceColumn="CentreID" DataSetColumn="CentreID" />
+              <Mapping SourceColumn="ApplicationID" DataSetColumn="ApplicationID" />
+              <Mapping SourceColumn="CustomisationName" DataSetColumn="CustomisationName" />
+              <Mapping SourceColumn="CustomisationText" DataSetColumn="CustomisationText" />
+              <Mapping SourceColumn="IsAssessed" DataSetColumn="IsAssessed" />
+              <Mapping SourceColumn="IsStandard" DataSetColumn="IsStandard" />
+              <Mapping SourceColumn="Password" DataSetColumn="Password" />
+              <Mapping SourceColumn="SelfRegister" DataSetColumn="SelfRegister" />
+              <Mapping SourceColumn="CandidateCountInProgress" DataSetColumn="CandidateCountInProgress" />
+              <Mapping SourceColumn="TutCompletionThreshold" DataSetColumn="TutCompletionThreshold" />
+              <Mapping SourceColumn="DiagCompletionThreshold" DataSetColumn="DiagCompletionThreshold" />
+              <Mapping SourceColumn="DiagObjSelect" DataSetColumn="DiagObjSelect" />
+              <Mapping SourceColumn="AssessAvailable" DataSetColumn="AssessAvailable" />
+              <Mapping SourceColumn="Completions" DataSetColumn="Completions" />
+              <Mapping SourceColumn="HideInLearnerPortal" DataSetColumn="HideInLearnerPortal" />
+              <Mapping SourceColumn="CompleteWithinMonths" DataSetColumn="CompleteWithinMonths" />
+              <Mapping SourceColumn="Mandatory" DataSetColumn="Mandatory" />
+              <Mapping SourceColumn="ValidityMonths" DataSetColumn="ValidityMonths" />
+              <Mapping SourceColumn="AutoRefresh" DataSetColumn="AutoRefresh" />
+              <Mapping SourceColumn="RefreshToCustomisationID" DataSetColumn="RefreshToCustomisationID" />
+              <Mapping SourceColumn="AutoRefreshMonths" DataSetColumn="AutoRefreshMonths" />
+              <Mapping SourceColumn="Q1Options" DataSetColumn="Q1Options" />
+              <Mapping SourceColumn="Q2Options" DataSetColumn="Q2Options" />
+              <Mapping SourceColumn="Q3Options" DataSetColumn="Q3Options" />
+              <Mapping SourceColumn="CourseField1PromptID" DataSetColumn="CourseField1PromptID" />
+              <Mapping SourceColumn="CourseField2PromptID" DataSetColumn="CourseField2PromptID" />
+              <Mapping SourceColumn="CourseField3PromptID" DataSetColumn="CourseField3PromptID" />
+              <Mapping SourceColumn="CField1" DataSetColumn="CField1" />
+              <Mapping SourceColumn="CField2" DataSetColumn="CField2" />
+              <Mapping SourceColumn="CField3" DataSetColumn="CField3" />
+              <Mapping SourceColumn="DisableCompletion" DataSetColumn="DisableCompletion" />
+              <Mapping SourceColumn="InviteContributors" DataSetColumn="InviteContributors" />
+              <Mapping SourceColumn="CreatedDate" DataSetColumn="CreatedDate" />
+              <Mapping SourceColumn="LastAccess" DataSetColumn="LastAccess" />
+              <Mapping SourceColumn="NotificationEmails" DataSetColumn="NotificationEmails" />
+              <Mapping SourceColumn="ApplyLPDefaultsToSelfEnrol" DataSetColumn="ApplyLPDefaultsToSelfEnrol" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="SectionsTableAdapter" GeneratorDataComponentClassName="SectionsTableAdapter" Name="Sections" UserDataComponentName="SectionsTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="csITSPDB (MySettings)" DbObjectType="Unknown" GenerateMethods="Get" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="GetData">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT        Sections.SectionID, Sections.SectionName, Applications.PLAssess AS HasAssess, Applications.DiagAssess as HasDiag
+FROM            Sections INNER JOIN
+                         Customisations ON Sections.ApplicationID = Customisations.ApplicationID INNER JOIN
+                         Applications ON Sections.ApplicationID = Applications.ApplicationID
+WHERE        (Customisations.CustomisationID = @CustomisationID) AND (Sections.ArchivedDate IS NULL)
+ORDER BY Sections.SectionNumber</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="false" AutogeneratedName="CustomisationID" ColumnName="CustomisationID" DataSourceName="mbdbx101.dbo.Customisations" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@CustomisationID" Precision="0" ProviderType="Int" Scale="0" Size="4" SourceColumn="CustomisationID" SourceColumnNullMapping="false" SourceVersion="Current" />
+                    </Parameters>
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="SectionID" DataSetColumn="SectionID" />
+              <Mapping SourceColumn="SectionName" DataSetColumn="SectionName" />
+              <Mapping SourceColumn="HasAssess" DataSetColumn="HasAssess" />
+              <Mapping SourceColumn="HasDiag" DataSetColumn="HasDiag" />
+            </Mappings>
+            <Sources>
+              <DbSource ConnectionRef="csITSPDB (MySettings)" DbObjectType="Unknown" GenerateMethods="Get" GenerateShortCommands="true" GeneratorGetMethodName="GetForNew" GetMethodModifier="Public" GetMethodName="GetForNew" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetForNew" UserSourceName="GetForNew">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT        s.SectionID, s.SectionName, a.PLAssess AS HasAssess, a.DiagAssess AS HasDiag
+FROM            Sections AS s INNER JOIN
+                         Applications AS a ON s.ApplicationID = a.ApplicationID
+WHERE        (s.ArchivedDate IS NULL) AND (s.ApplicationID = @ApplicationID)
+ORDER BY s.SectionNumber</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="false" AutogeneratedName="ApplicationID" ColumnName="ApplicationID" DataSourceName="mbdbx101.dbo.Sections" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@ApplicationID" Precision="0" ProviderType="Int" Scale="0" Size="4" SourceColumn="ApplicationID" SourceColumnNullMapping="false" SourceVersion="Current" />
+                    </Parameters>
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </Sources>
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="CustomisationTutorialsTableAdapter" GeneratorDataComponentClassName="CustomisationTutorialsTableAdapter" Name="CustomisationTutorials" UserDataComponentName="CustomisationTutorialsTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="csITSPDB (MySettings)" DbObjectType="Unknown" GenerateMethods="Get" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="GetData">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT CT.TutorialID, T.TutorialName AS TutName, CT.Status, CT.DiagStatus, a.DiagAssess AS HasDiag, T.SectionID
+FROM   Customisations AS c LEFT OUTER JOIN
+             Applications AS a ON c.ApplicationID = a.ApplicationID RIGHT OUTER JOIN
+             CustomisationTutorials AS CT LEFT OUTER JOIN
+             Tutorials AS T ON CT.TutorialID = T.TutorialID ON c.CustomisationID = CT.CustomisationID
+WHERE (CT.CustomisationID = @CustomisationID) AND (T.SectionID = @SectionID) AND (T.ArchivedDate IS NULL)
+ORDER BY T.OrderByNumber</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="false" AutogeneratedName="CustomisationID" ColumnName="CustomisationID" DataSourceName="mbdbx101.dbo.CustomisationTutorials" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@CustomisationID" Precision="0" ProviderType="Int" Scale="0" Size="4" SourceColumn="CustomisationID" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="SectionID" ColumnName="SectionID" DataSourceName="mbdbx101.dbo.Tutorials" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@SectionID" Precision="0" ProviderType="Int" Scale="0" Size="4" SourceColumn="SectionID" SourceColumnNullMapping="false" SourceVersion="Current" />
+                    </Parameters>
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="TutName" DataSetColumn="TutName" />
+              <Mapping SourceColumn="TutorialID" DataSetColumn="TutorialID" />
+              <Mapping SourceColumn="Status" DataSetColumn="Status" />
+              <Mapping SourceColumn="DiagStatus" DataSetColumn="DiagStatus" />
+              <Mapping SourceColumn="HasDiag" DataSetColumn="HasDiag" />
+              <Mapping SourceColumn="SectionID" DataSetColumn="SectionID" />
+            </Mappings>
+            <Sources>
+              <DbSource ConnectionRef="csITSPDB (MySettings)" DbObjectType="Unknown" GenerateMethods="Get" GenerateShortCommands="true" GeneratorGetMethodName="GetDataForNew" GetMethodModifier="Public" GetMethodName="GetDataForNew" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataForNew" UserSourceName="GetDataForNew">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT T.TutorialID, T.TutorialName AS TutName, 1 AS Status, 1 AS DiagStatus, a.DiagAssess AS HasDiag, T.SectionID
+FROM   Applications AS a INNER JOIN
+             Sections AS s ON a.ApplicationID = s.ApplicationID INNER JOIN
+             Tutorials AS T ON s.SectionID = T.SectionID
+WHERE (T.SectionID = @SectionID) AND (T.ArchivedDate IS NULL)
+ORDER BY T.OrderByNumber</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="true" AutogeneratedName="SectionID" ColumnName="SectionID" DataSourceName="mbdbx101.dbo.Tutorials" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@SectionID" Precision="0" ProviderType="Int" Scale="0" Size="4" SourceColumn="SectionID" SourceColumnNullMapping="false" SourceVersion="Current" />
+                    </Parameters>
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </Sources>
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="ApplicationsTableAdapter" GeneratorDataComponentClassName="ApplicationsTableAdapter" Name="Applications" UserDataComponentName="ApplicationsTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="csITSPDB (MySettings)" DbObjectName="mbdbx101.dbo.Applications" DbObjectType="Table" GenerateMethods="Get" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="GetData">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT        A.ApplicationID, A.ApplicationName, A.CourseCategoryID
+FROM            Applications AS A INNER JOIN
+                         CentreApplications AS CA ON A.ApplicationID = CA.ApplicationID
+WHERE        (CA.CentreID = @CentreID) AND (A.ASPMenu = 1) AND (A.ArchivedDate IS NULL) AND (A.CourseTopicID = @CourseTopicID) AND (A.CourseCategoryID = @AdminCategoryID) OR
+                         (CA.CentreID = @CentreID) AND (A.ASPMenu = 1) AND (A.ArchivedDate IS NULL) AND (A.CourseTopicID = @CourseTopicID) AND (@AdminCategoryID = 0) OR
+                         (CA.CentreID = @CentreID) AND (A.ASPMenu = 1) AND (A.ArchivedDate IS NULL) AND (@CourseTopicID = 0) AND (A.CourseCategoryID = @AdminCategoryID) OR
+                         (CA.CentreID = @CentreID) AND (A.ASPMenu = 1) AND (A.ArchivedDate IS NULL) AND (@CourseTopicID = 0) AND (@AdminCategoryID = 0)
+ORDER BY A.ApplicationName</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="false" AutogeneratedName="CentreID" ColumnName="CentreID" DataSourceName="mbdbx101.dbo.CentreApplications" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@CentreID" Precision="0" ProviderType="Int" Scale="0" Size="4" SourceColumn="CentreID" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="CourseTopicID" ColumnName="CourseTopicID" DataSourceName="mbdbx101.dbo.Applications" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@CourseTopicID" Precision="0" ProviderType="Int" Scale="0" Size="4" SourceColumn="CourseTopicID" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="AdminCategoryID" ColumnName="CourseCategoryID" DataSourceName="mbdbx101.dbo.Applications" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@AdminCategoryID" Precision="0" ProviderType="Int" Scale="0" Size="4" SourceColumn="CourseCategoryID" SourceColumnNullMapping="false" SourceVersion="Current" />
+                    </Parameters>
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="ApplicationID" DataSetColumn="ApplicationID" />
+              <Mapping SourceColumn="ApplicationName" DataSetColumn="ApplicationName" />
+              <Mapping SourceColumn="CourseCategoryID" DataSetColumn="CourseCategoryID" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="GroupCustomisationsTableAdapter" GeneratorDataComponentClassName="GroupCustomisationsTableAdapter" Name="GroupCustomisations" UserDataComponentName="GroupCustomisationsTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="csITSPDB (MySettings)" DbObjectType="Unknown" GenerateMethods="Get" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="GetData">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT        gc.GroupCustomisationID, gc.AddedDate, a.ApplicationName + ' - ' + c.CustomisationName AS Course, gc.CompleteWithinMonths, c.Mandatory, c.ValidityMonths, c.IsAssessed, c.TutCompletionThreshold, 
+                         c.DiagCompletionThreshold, gc.InactivatedDate, gc.CohortLearners, gc.SupervisorAdminID, a.CourseCategoryID
+FROM            GroupCustomisations AS gc INNER JOIN
+                         Customisations AS c ON gc.CustomisationID = c.CustomisationID INNER JOIN
+                         Applications AS a ON c.ApplicationID = a.ApplicationID
+WHERE        (gc.GroupID = @GroupID)
+ORDER BY Course</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="false" AutogeneratedName="GroupID" ColumnName="GroupID" DataSourceName="mbdbx101.dbo.GroupCustomisations" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@GroupID" Precision="0" ProviderType="Int" Scale="0" Size="4" SourceColumn="GroupID" SourceColumnNullMapping="false" SourceVersion="Current" />
+                    </Parameters>
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="GroupCustomisationID" DataSetColumn="GroupCustomisationID" />
+              <Mapping SourceColumn="AddedDate" DataSetColumn="AddedDate" />
+              <Mapping SourceColumn="Course" DataSetColumn="Course" />
+              <Mapping SourceColumn="CompleteWithinMonths" DataSetColumn="CompleteWithinMonths" />
+              <Mapping SourceColumn="Mandatory" DataSetColumn="Mandatory" />
+              <Mapping SourceColumn="ValidityMonths" DataSetColumn="ValidityMonths" />
+              <Mapping SourceColumn="IsAssessed" DataSetColumn="IsAssessed" />
+              <Mapping SourceColumn="TutCompletionThreshold" DataSetColumn="TutCompletionThreshold" />
+              <Mapping SourceColumn="DiagCompletionThreshold" DataSetColumn="DiagCompletionThreshold" />
+              <Mapping SourceColumn="InactivatedDate" DataSetColumn="InactivatedDate" />
+              <Mapping SourceColumn="CohortLearners" DataSetColumn="CohortLearners" />
+              <Mapping SourceColumn="SupervisorAdminID" DataSetColumn="SupervisorAdminID" />
+              <Mapping SourceColumn="CourseCategoryID" DataSetColumn="CourseCategoryID" />
+            </Mappings>
+            <Sources>
+              <DbSource ConnectionRef="csITSPDB (MySettings)" DbObjectName="" DbObjectType="Unknown" GenerateShortCommands="true" GeneratorSourceName="InactivateGroupCustomisation" Modifier="Public" Name="InactivateGroupCustomisation" QueryType="NoData" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy" UserSourceName="InactivateGroupCustomisation">
+                <UpdateCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>UPDATE       GroupCustomisations
+SET                InactivatedDate = GETDATE()
+WHERE        (GroupCustomisationID = @GroupCustomisationID)</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="false" AutogeneratedName="GroupCustomisationID" ColumnName="GroupCustomisationID" DataSourceName="mbdbx101.dbo.GroupCustomisations" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@GroupCustomisationID" Precision="0" ProviderType="Int" Scale="0" Size="4" SourceColumn="GroupCustomisationID" SourceColumnNullMapping="false" SourceVersion="Original" />
+                    </Parameters>
+                  </DbCommand>
+                </UpdateCommand>
+              </DbSource>
+            </Sources>
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="CustomisationsNotInGroupTableAdapter" GeneratorDataComponentClassName="CustomisationsNotInGroupTableAdapter" Name="CustomisationsNotInGroup" UserDataComponentName="CustomisationsNotInGroupTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="csITSPDB (MySettings)" DbObjectName="mbdbx101.dbo.Customisations" DbObjectType="Table" GenerateMethods="Get" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="GetData">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT        cu.CustomisationID, a.ApplicationName + ' - ' + cu.CustomisationName AS CourseName, cu.IsAssessed, dbo.CheckCustomisationSectionHasDiagnostic(cu.CustomisationID, 0) AS HasDiagnostic, 
+                         dbo.CheckCustomisationSectionHasLearning(cu.CustomisationID, 0) AS HasLearning,
+                             (SELECT        CategoryName
+                               FROM            CourseCategories
+                               WHERE        (CourseCategoryID = a.CourseCategoryID)) AS Category,
+                             (SELECT        CourseTopic
+                               FROM            CourseTopics
+                               WHERE        (CourseTopicID = a.CourseTopicID)) AS Topic
+FROM            Customisations AS cu INNER JOIN
+                         Applications AS a ON cu.ApplicationID = a.ApplicationID
+WHERE        (cu.CentreID = @CentreID) AND (cu.Active = 1) AND (a.ASPMenu = 1) AND (a.ArchivedDate IS NULL) AND (cu.CustomisationID NOT IN
+                             (SELECT        CustomisationID
+                               FROM            GroupCustomisations
+                               WHERE        (GroupID = @GroupID))) AND (a.CourseCategoryID = @AdminCategoryID) OR
+                         (cu.Active = 1) AND (a.ASPMenu = 1) AND (a.ArchivedDate IS NULL) AND (cu.CustomisationID NOT IN
+                             (SELECT        CustomisationID
+                               FROM            GroupCustomisations AS GroupCustomisations_2
+                               WHERE        (GroupID = @GroupID))) AND (a.CourseCategoryID = @AdminCategoryID) AND (cu.AllCentres = 1) AND EXISTS
+                             (SELECT        CentreApplicationID
+                               FROM            CentreApplications
+                               WHERE        (ApplicationID = cu.ApplicationID) AND (CentreID = @CentreID) AND (Active = 1)) OR
+                         (cu.CentreID = @CentreID) AND (cu.Active = 1) AND (a.ASPMenu = 1) AND (a.ArchivedDate IS NULL) AND (cu.CustomisationID NOT IN
+                             (SELECT        CustomisationID
+                               FROM            GroupCustomisations AS GroupCustomisations_1
+                               WHERE        (GroupID = @GroupID))) AND (CAST(@AdminCategoryID AS Int) = 0) OR
+                         (cu.Active = 1) AND (a.ASPMenu = 1) AND (a.ArchivedDate IS NULL) AND (cu.CustomisationID NOT IN
+                             (SELECT        CustomisationID
+                               FROM            GroupCustomisations AS GroupCustomisations_1
+                               WHERE        (GroupID = @GroupID))) AND (CAST(@AdminCategoryID AS Int) = 0) AND (cu.AllCentres = 1) AND EXISTS
+                             (SELECT        CentreApplicationID
+                               FROM            CentreApplications AS CentreApplications_1
+                               WHERE        (ApplicationID = cu.ApplicationID) AND (CentreID = @CentreID) AND (Active = 1))
+ORDER BY Category, Topic, cu.CustomisationID</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="false" AutogeneratedName="CentreID" ColumnName="CentreID" DataSourceName="mbdbx101.dbo.Customisations" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@CentreID" Precision="0" ProviderType="Int" Scale="0" Size="4" SourceColumn="CentreID" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="AdminCategoryID" ColumnName="CourseCategoryID" DataSourceName="mbdbx101.dbo.Applications" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@AdminCategoryID" Precision="0" ProviderType="Int" Scale="0" Size="4" SourceColumn="CourseCategoryID" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="GroupID" ColumnName="" DataSourceName="" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@GroupID" Precision="0" Scale="0" Size="4" SourceColumn="" SourceColumnNullMapping="false" SourceVersion="Current" />
+                    </Parameters>
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="CustomisationID" DataSetColumn="CustomisationID" />
+              <Mapping SourceColumn="CourseName" DataSetColumn="CourseName" />
+              <Mapping SourceColumn="IsAssessed" DataSetColumn="IsAssessed" />
+              <Mapping SourceColumn="HasDiagnostic" DataSetColumn="HasDiagnostic" />
+              <Mapping SourceColumn="HasLearning" DataSetColumn="HasLearning" />
+              <Mapping SourceColumn="Category" DataSetColumn="Category" />
+              <Mapping SourceColumn="Topic" DataSetColumn="Topic" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="CourseTopicsTableAdapter" GeneratorDataComponentClassName="CourseTopicsTableAdapter" Name="CourseTopics" UserDataComponentName="CourseTopicsTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="csITSPDB (MySettings)" DbObjectName="mbdbx101.dbo.CourseTopics" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
+                <DeleteCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>DELETE FROM [CourseTopics] WHERE (([CourseTopicID] = @Original_CourseTopicID))</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@Original_CourseTopicID" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="CourseTopicID" SourceColumnNullMapping="false" SourceVersion="Original" />
+                    </Parameters>
+                  </DbCommand>
+                </DeleteCommand>
+                <InsertCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>INSERT INTO [CourseTopics] ([CentreID], [CourseTopic], [Active]) VALUES (@CentreID, @CourseTopic, @Active)</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@CentreID" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="CentreID" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@CourseTopic" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="CourseTopic" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Boolean" Direction="Input" ParameterName="@Active" Precision="0" ProviderType="Bit" Scale="0" Size="0" SourceColumn="Active" SourceColumnNullMapping="false" SourceVersion="Current" />
+                    </Parameters>
+                  </DbCommand>
+                </InsertCommand>
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT        CourseTopicID, CentreID, CourseTopic, Active
+FROM            CourseTopics
+ORDER BY CourseTopic</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+                <UpdateCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>UPDATE [CourseTopics] SET [CentreID] = @CentreID, [CourseTopic] = @CourseTopic, [Active] = @Active WHERE (([CourseTopicID] = @Original_CourseTopicID))</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@CentreID" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="CentreID" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@CourseTopic" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="CourseTopic" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Boolean" Direction="Input" ParameterName="@Active" Precision="0" ProviderType="Bit" Scale="0" Size="0" SourceColumn="Active" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@Original_CourseTopicID" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="CourseTopicID" SourceColumnNullMapping="false" SourceVersion="Original" />
+                    </Parameters>
+                  </DbCommand>
+                </UpdateCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="CourseTopicID" DataSetColumn="CourseTopicID" />
+              <Mapping SourceColumn="CentreID" DataSetColumn="CentreID" />
+              <Mapping SourceColumn="CourseTopic" DataSetColumn="CourseTopic" />
+              <Mapping SourceColumn="Active" DataSetColumn="Active" />
+            </Mappings>
+            <Sources>
+              <DbSource ConnectionRef="csITSPDB (MySettings)" DbObjectName="mbdbx101.dbo.CourseTopics" DbObjectType="Table" GenerateMethods="Get" GenerateShortCommands="true" GeneratorGetMethodName="GetActiveForCentre" GetMethodModifier="Public" GetMethodName="GetActiveForCentre" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetActiveForCentre" UserSourceName="GetActiveForCentre">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT        CourseTopicID, CentreID, CourseTopic, Active
+FROM            CourseTopics
+WHERE        (Active = 1) AND (CentreID = 0) OR
+                         (Active = 1) AND (CentreID = @CentreID)
+ORDER BY CourseTopic</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="false" AutogeneratedName="CentreID" ColumnName="CentreID" DataSourceName="mbdbx101.dbo.CourseTopics" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@CentreID" Precision="0" ProviderType="Int" Scale="0" Size="4" SourceColumn="CentreID" SourceColumnNullMapping="false" SourceVersion="Current" />
+                    </Parameters>
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+              <DbSource ConnectionRef="csITSPDB (MySettings)" DbObjectName="mbdbx101.dbo.CourseTopics" DbObjectType="Table" GenerateMethods="Get" GenerateShortCommands="true" GeneratorGetMethodName="GetCentralTopics" GetMethodModifier="Public" GetMethodName="GetCentralTopics" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetCentralTopics" UserSourceName="GetCentralTopics">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT        CourseTopicID, CentreID, CourseTopic, Active
+FROM            CourseTopics
+WHERE        (CentreID = 0)
+ORDER BY CourseTopic</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </Sources>
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="CourseCategoriesTableAdapter" GeneratorDataComponentClassName="CourseCategoriesTableAdapter" Name="CourseCategories" UserDataComponentName="CourseCategoriesTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="csITSPDB (MySettings)" DbObjectName="mbdbx101.dbo.CourseCategories" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
+                <DeleteCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>DELETE FROM [CourseCategories] WHERE (([CourseCategoryID] = @Original_CourseCategoryID))</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@Original_CourseCategoryID" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="CourseCategoryID" SourceColumnNullMapping="false" SourceVersion="Original" />
+                    </Parameters>
+                  </DbCommand>
+                </DeleteCommand>
+                <InsertCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>INSERT INTO [CourseCategories] ([CentreID], [CategoryName], [CategoryContactEmail], [CategoryContactPhone], [Active]) VALUES (@CentreID, @CategoryName, @CategoryContactEmail, @CategoryContactPhone, @Active)</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@CentreID" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="CentreID" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@CategoryName" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="CategoryName" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@CategoryContactEmail" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="CategoryContactEmail" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@CategoryContactPhone" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="CategoryContactPhone" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Boolean" Direction="Input" ParameterName="@Active" Precision="0" ProviderType="Bit" Scale="0" Size="0" SourceColumn="Active" SourceColumnNullMapping="false" SourceVersion="Current" />
+                    </Parameters>
+                  </DbCommand>
+                </InsertCommand>
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT        CourseCategoryID, CentreID, CategoryName, CategoryContactEmail, CategoryContactPhone, Active
+FROM            CourseCategories
+ORDER BY CategoryName</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+                <UpdateCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>UPDATE [CourseCategories] SET [CentreID] = @CentreID, [CategoryName] = @CategoryName, [CategoryContactEmail] = @CategoryContactEmail, [CategoryContactPhone] = @CategoryContactPhone, [Active] = @Active WHERE (([CourseCategoryID] = @Original_CourseCategoryID))</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@CentreID" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="CentreID" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@CategoryName" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="CategoryName" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@CategoryContactEmail" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="CategoryContactEmail" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@CategoryContactPhone" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="CategoryContactPhone" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Boolean" Direction="Input" ParameterName="@Active" Precision="0" ProviderType="Bit" Scale="0" Size="0" SourceColumn="Active" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@Original_CourseCategoryID" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="CourseCategoryID" SourceColumnNullMapping="false" SourceVersion="Original" />
+                    </Parameters>
+                  </DbCommand>
+                </UpdateCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="CourseCategoryID" DataSetColumn="CourseCategoryID" />
+              <Mapping SourceColumn="CentreID" DataSetColumn="CentreID" />
+              <Mapping SourceColumn="CategoryName" DataSetColumn="CategoryName" />
+              <Mapping SourceColumn="CategoryContactEmail" DataSetColumn="CategoryContactEmail" />
+              <Mapping SourceColumn="CategoryContactPhone" DataSetColumn="CategoryContactPhone" />
+              <Mapping SourceColumn="Active" DataSetColumn="Active" />
+            </Mappings>
+            <Sources>
+              <DbSource ConnectionRef="csITSPDB (MySettings)" DbObjectName="mbdbx101.dbo.CourseCategories" DbObjectType="Table" GenerateMethods="Get" GenerateShortCommands="true" GeneratorGetMethodName="GetActiveForCentre" GetMethodModifier="Public" GetMethodName="GetActiveForCentre" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetActiveForCentre" UserSourceName="GetActiveForCentre">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT        CourseCategoryID, CentreID, CategoryName, CategoryContactEmail, CategoryContactPhone, Active
+FROM            CourseCategories
+WHERE        (CentreID = 0) AND (Active = 1) OR
+                         (CentreID = @CentreID) AND (Active = 1)
+ORDER BY CategoryName</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="false" AutogeneratedName="CentreID" ColumnName="CentreID" DataSourceName="mbdbx101.dbo.CourseCategories" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@CentreID" Precision="0" ProviderType="Int" Scale="0" Size="4" SourceColumn="CentreID" SourceColumnNullMapping="false" SourceVersion="Current" />
+                    </Parameters>
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+              <DbSource ConnectionRef="csITSPDB (MySettings)" DbObjectName="mbdbx101.dbo.CourseCategories" DbObjectType="Table" GenerateMethods="Get" GenerateShortCommands="true" GeneratorGetMethodName="GetCentralCategories" GetMethodModifier="Public" GetMethodName="GetCentralCategories" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetCentralCategories" UserSourceName="GetCentralCategories">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT        CourseCategoryID, CentreID, CategoryName, CategoryContactEmail, CategoryContactPhone, Active
+FROM            CourseCategories
+WHERE        (CentreID = 0)
+ORDER BY CategoryName</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </Sources>
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="SupervisorsTableAdapter" GeneratorDataComponentClassName="SupervisorsTableAdapter" Name="Supervisors" UserDataComponentName="SupervisorsTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="csITSPDB (MySettings)" DbObjectName="mbdbx101.dbo.AdminUsers" DbObjectType="Table" GenerateMethods="Get" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="GetData">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT        AdminID, Forename + ' ' + Surname AS Name, Email
+FROM            AdminUsers AS au
+WHERE        (Supervisor = 1) AND (CentreID = @CentreID) AND (CategoryID = 0 OR
+                         CategoryID =
+                             (SELECT        au.CategoryID
+                               FROM            Applications AS a INNER JOIN
+                                                         Customisations AS c ON a.ApplicationID = c.ApplicationID
+                               WHERE        (c.CustomisationID = @CustomisationID))) AND (Active = 1) AND (Approved = 1)
+GROUP BY AdminID, Surname, Forename, Email
+ORDER BY Surname, Forename</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="false" AutogeneratedName="CentreID" ColumnName="CentreID" DataSourceName="mbdbx101.dbo.AdminUsers" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@CentreID" Precision="0" ProviderType="Int" Scale="0" Size="4" SourceColumn="CentreID" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="CustomisationID" ColumnName="" DataSourceName="" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@CustomisationID" Precision="0" Scale="0" Size="4" SourceColumn="" SourceColumnNullMapping="false" SourceVersion="Current" />
+                    </Parameters>
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="AdminID" DataSetColumn="AdminID" />
+              <Mapping SourceColumn="Name" DataSetColumn="Name" />
+              <Mapping SourceColumn="Email" DataSetColumn="Email" />
+            </Mappings>
+            <Sources>
+              <DbSource ConnectionRef="csITSPDB (MySettings)" DbObjectName="mbdbx101.dbo.AdminUsers" DbObjectType="Table" GenerateMethods="Get" GenerateShortCommands="true" GeneratorGetMethodName="GetByProgressID" GetMethodModifier="Public" GetMethodName="GetByProgressID" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetByProgressID" UserSourceName="GetByProgressID">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT        AdminID, Forename + ' ' + Surname AS Name, Email
+FROM            AdminUsers AS au
+WHERE        (Supervisor = 1) AND (CentreID =
+                             (SELECT        ca.CentreID
+                               FROM            Progress AS p1 INNER JOIN
+                                                         Candidates AS ca ON p1.CandidateID = ca.CandidateID
+                               WHERE        (p1.ProgressID = @ProgressID))) AND (CategoryID = 0 OR
+                         CategoryID =
+                             (SELECT        au.CategoryID
+                               FROM            Applications AS a INNER JOIN
+                                                         Customisations AS c ON a.ApplicationID = c.ApplicationID INNER JOIN
+                                                         Progress AS p ON c.CustomisationID = p.CustomisationID
+                               WHERE        (p.ProgressID = @ProgressID))) AND (Active = 1) AND (Approved = 1)
+GROUP BY AdminID, Surname, Forename, Email
+ORDER BY Surname, Forename</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="false" AutogeneratedName="ProgressID" ColumnName="" DataSourceName="" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@ProgressID" Precision="0" Scale="0" Size="4" SourceColumn="" SourceColumnNullMapping="false" SourceVersion="Current" />
+                    </Parameters>
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+              <DbSource ConnectionRef="csITSPDB (MySettings)" DbObjectName="mbdbx101.dbo.AdminUsers" DbObjectType="Table" GenerateMethods="Get" GenerateShortCommands="true" GeneratorGetMethodName="GetDataByCentre" GetMethodModifier="Public" GetMethodName="GetDataByCentre" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataByCentre" UserSourceName="GetDataByCentre">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT AdminID, Forename + ' ' + Surname AS Name, Email
+FROM   AdminUsers AS au
+WHERE (Supervisor = 1) AND (CentreID = @CentreID) AND (Active = 1) AND (Approved = 1)
+GROUP BY AdminID, Surname, Forename, Email
+ORDER BY Surname, Forename</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="false" AutogeneratedName="CentreID" ColumnName="CentreID" DataSourceName="mbdbx101.dbo.AdminUsers" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@CentreID" Precision="0" ProviderType="Int" Scale="0" Size="4" SourceColumn="CentreID" SourceColumnNullMapping="false" SourceVersion="Current" />
+                    </Parameters>
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </Sources>
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="CoursePromptsTableAdapter" GeneratorDataComponentClassName="CoursePromptsTableAdapter" Name="CoursePrompts" UserDataComponentName="CoursePromptsTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="csITSPDB (MySettings)" DbObjectName="mbdbx101.dbo.CoursePrompts" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
+                <DeleteCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>DELETE FROM [CoursePrompts] WHERE (([CoursePromptID] = @Original_CoursePromptID))</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@Original_CoursePromptID" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="CoursePromptID" SourceColumnNullMapping="false" SourceVersion="Original" />
+                    </Parameters>
+                  </DbCommand>
+                </DeleteCommand>
+                <InsertCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>INSERT INTO [CoursePrompts] ([CoursePrompt], [Active]) VALUES (@CoursePrompt, @Active)</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@CoursePrompt" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="CoursePrompt" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Boolean" Direction="Input" ParameterName="@Active" Precision="0" ProviderType="Bit" Scale="0" Size="0" SourceColumn="Active" SourceColumnNullMapping="false" SourceVersion="Current" />
+                    </Parameters>
+                  </DbCommand>
+                </InsertCommand>
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT        CoursePromptID, CoursePrompt, Active
+FROM            CoursePrompts</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+                <UpdateCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>UPDATE [CoursePrompts] SET [CoursePrompt] = @CoursePrompt, [Active] = @Active WHERE (([CoursePromptID] = @Original_CoursePromptID))</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@CoursePrompt" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="CoursePrompt" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Boolean" Direction="Input" ParameterName="@Active" Precision="0" ProviderType="Bit" Scale="0" Size="0" SourceColumn="Active" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@Original_CoursePromptID" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="CoursePromptID" SourceColumnNullMapping="false" SourceVersion="Original" />
+                    </Parameters>
+                  </DbCommand>
+                </UpdateCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="CoursePromptID" DataSetColumn="CoursePromptID" />
+              <Mapping SourceColumn="CoursePrompt" DataSetColumn="CoursePrompt" />
+              <Mapping SourceColumn="Active" DataSetColumn="Active" />
+            </Mappings>
+            <Sources>
+              <DbSource ConnectionRef="csITSPDB (MySettings)" DbObjectName="mbdbx101.dbo.CoursePrompts" DbObjectType="Table" GenerateMethods="Get" GenerateShortCommands="true" GeneratorGetMethodName="GetActive" GetMethodModifier="Public" GetMethodName="GetActive" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetActive" UserSourceName="GetActive">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT        CoursePromptID, CoursePrompt, Active
+FROM            CoursePrompts
+WHERE        (Active = 1)
+ORDER BY CoursePrompt</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </Sources>
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="ApplicationInfoTableAdapter" GeneratorDataComponentClassName="ApplicationInfoTableAdapter" Name="ApplicationInfo" UserDataComponentName="ApplicationInfoTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="csITSPDB (MySettings)" DbObjectName="mbdbx101.dbo.Applications" DbObjectType="Table" GenerateMethods="Get" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="GetData">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT      ApplicationID, ApplicationName AS AppName, PLAssess AS HasAssess, DiagAssess AS HasDiag, LaunchedAssess AS AssessAvailable
+FROM            Applications
+WHERE        (ApplicationID = @ApplicationID)</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="false" AutogeneratedName="ApplicationID" ColumnName="ApplicationID" DataSourceName="mbdbx101.dbo.Applications" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@ApplicationID" Precision="0" ProviderType="Int" Scale="0" Size="4" SourceColumn="ApplicationID" SourceColumnNullMapping="false" SourceVersion="Current" />
+                    </Parameters>
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="ApplicationID" DataSetColumn="ApplicationID" />
+              <Mapping SourceColumn="AppName" DataSetColumn="AppName" />
+              <Mapping SourceColumn="HasAssess" DataSetColumn="HasAssess" />
+              <Mapping SourceColumn="HasDiag" DataSetColumn="HasDiag" />
+              <Mapping SourceColumn="AssessAvailable" DataSetColumn="AssessAvailable" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+        </Tables>
+        <Sources>
+          <DbSource ConnectionRef="csITSPDB (MySettings)" DbObjectName="" DbObjectType="Unknown" GenerateShortCommands="true" GeneratorSourceName="DeleteCustomisation" MethodsParameterType="CLR" Modifier="Public" Name="DeleteCustomisation" QueryType="NoData" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy" UserSourceName="DeleteCustomisation">
+            <DeleteCommand>
+              <DbCommand CommandType="Text" ModifiedByUser="true">
+                <CommandText>DELETE FROM  Customisations WHERE CustomisationID = @CustomisationID</CommandText>
+                <Parameters>
+                  <Parameter AllowDbNull="false" AutogeneratedName="CustomisationID" ColumnName="CustomisationID" DataSourceName="mbdbx101.dbo.Customisations" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@CustomisationID" Precision="0" ProviderType="Int" Scale="0" Size="4" SourceColumn="CustomisationID" SourceColumnNullMapping="false" SourceVersion="Original" />
+                </Parameters>
+              </DbCommand>
+            </DeleteCommand>
+          </DbSource>
+          <DbSource ConnectionRef="csITSPDB (MySettings)" DbObjectName="" DbObjectType="Unknown" GenerateShortCommands="true" GeneratorSourceName="DeleteCustomisationTutorials" MethodsParameterType="CLR" Modifier="Public" Name="DeleteCustomisationTutorials" QueryType="NoData" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy1" UserSourceName="DeleteCustomisationTutorials">
+            <DeleteCommand>
+              <DbCommand CommandType="Text" ModifiedByUser="true">
+                <CommandText>DELETE FROM CustomisationTutorials
+WHERE     (CustomisationID = @CustomisationID)</CommandText>
+                <Parameters>
+                  <Parameter AllowDbNull="false" AutogeneratedName="CustomisationID" ColumnName="CustomisationID" DataSourceName="mbdbx101.dbo.CustomisationTutorials" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@CustomisationID" Precision="0" ProviderType="Int" Scale="0" Size="4" SourceColumn="CustomisationID" SourceColumnNullMapping="false" SourceVersion="Original" />
+                </Parameters>
+              </DbCommand>
+            </DeleteCommand>
+          </DbSource>
+          <DbSource ConnectionRef="csITSPDB (MySettings)" DbObjectName="mbdbx101.dbo.Applications" DbObjectType="Table" GenerateShortCommands="true" GeneratorSourceName="GetAppNameFromCustID" MethodsParameterType="CLR" Modifier="Public" Name="GetAppNameFromCustID" QueryType="Scalar" ScalarCallRetval="System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy2" UserSourceName="GetAppNameFromCustID">
+            <SelectCommand>
+              <DbCommand CommandType="Text" ModifiedByUser="true">
+                <CommandText>SELECT     Applications.ApplicationName
+FROM         Applications INNER JOIN
+                      Customisations ON Applications.ApplicationID = Customisations.ApplicationID
+WHERE     (Customisations.CustomisationID = @CustomisationID)</CommandText>
+                <Parameters>
+                  <Parameter AllowDbNull="false" AutogeneratedName="CustomisationID" ColumnName="CustomisationID" DataSourceName="mbdbx101.dbo.Customisations" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@CustomisationID" Precision="0" ProviderType="Int" Scale="0" Size="4" SourceColumn="CustomisationID" SourceColumnNullMapping="false" SourceVersion="Current" />
+                </Parameters>
+              </DbCommand>
+            </SelectCommand>
+          </DbSource>
+          <DbSource ConnectionRef="csITSPDB (MySettings)" DbObjectType="Unknown" GenerateShortCommands="true" GeneratorSourceName="GetDupCusts" MethodsParameterType="CLR" Modifier="Public" Name="GetDupCusts" QueryType="Scalar" ScalarCallRetval="System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy3" UserSourceName="GetDupCusts">
+            <SelectCommand>
+              <DbCommand CommandType="Text" ModifiedByUser="true">
+                <CommandText>SELECT     COUNT(CustomisationID) AS Custs
+FROM         Customisations
+WHERE     (CustomisationName = @CustName) AND (ApplicationID = @AppID) AND (CentreID = @CentreID) AND (CustomisationID &lt;&gt; @CustID)</CommandText>
+                <Parameters>
+                  <Parameter AllowDbNull="false" AutogeneratedName="CustName" ColumnName="CustomisationName" DataSourceName="mbdbx101.dbo.Customisations" DataTypeServer="varchar(250)" DbType="AnsiString" Direction="Input" ParameterName="@CustName" Precision="0" ProviderType="VarChar" Scale="0" Size="250" SourceColumn="CustomisationName" SourceColumnNullMapping="false" SourceVersion="Current" />
+                  <Parameter AllowDbNull="false" AutogeneratedName="AppID" ColumnName="ApplicationID" DataSourceName="mbdbx101.dbo.Customisations" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@AppID" Precision="0" ProviderType="Int" Scale="0" Size="4" SourceColumn="ApplicationID" SourceColumnNullMapping="false" SourceVersion="Current" />
+                  <Parameter AllowDbNull="false" AutogeneratedName="CentreID" ColumnName="CentreID" DataSourceName="mbdbx101.dbo.Customisations" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@CentreID" Precision="0" ProviderType="Int" Scale="0" Size="4" SourceColumn="CentreID" SourceColumnNullMapping="false" SourceVersion="Current" />
+                  <Parameter AllowDbNull="false" AutogeneratedName="CustID" ColumnName="CustomisationID" DataSourceName="mbdbx101.dbo.Customisations" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@CustID" Precision="0" ProviderType="Int" Scale="0" Size="4" SourceColumn="CustomisationID" SourceColumnNullMapping="false" SourceVersion="Current" />
+                </Parameters>
+              </DbCommand>
+            </SelectCommand>
+          </DbSource>
+          <DbSource ConnectionRef="csITSPDB (MySettings)" DbObjectName="" DbObjectType="Unknown" GenerateShortCommands="true" GeneratorSourceName="ResetCompletionsForCust" MethodsParameterType="CLR" Modifier="Public" Name="ResetCompletionsForCust" QueryType="NoData" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy4" UserSourceName="ResetCompletionsForCust">
+            <UpdateCommand>
+              <DbCommand CommandType="Text" ModifiedByUser="true">
+                <CommandText>UPDATE Progress SET Completed = NULL WHERE CustomisationID = @CustomisationID</CommandText>
+                <Parameters>
+                  <Parameter AllowDbNull="false" AutogeneratedName="CustomisationID" ColumnName="CustomisationID" DataSourceName="mbdbx101.dbo.Progress" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@CustomisationID" Precision="0" ProviderType="Int" Scale="0" Size="4" SourceColumn="CustomisationID" SourceColumnNullMapping="false" SourceVersion="Original" />
+                </Parameters>
+              </DbCommand>
+            </UpdateCommand>
+          </DbSource>
+          <DbSource ConnectionRef="csITSPDB (MySettings)" DbObjectName="" DbObjectType="Unknown" GenerateShortCommands="true" GeneratorSourceName="UpdateCustomisationTutorialStatus" MethodsParameterType="CLR" Modifier="Public" Name="UpdateCustomisationTutorialStatus" QueryType="NoData" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy5" UserSourceName="UpdateCustomisationTutorialStatus">
+            <UpdateCommand>
+              <DbCommand CommandType="Text" ModifiedByUser="true">
+                <CommandText>UPDATE    CustomisationTutorials
+SET              Status = @Status, DiagStatus = @DiagStatus
+WHERE     (CusTutID = @CustTutID)</CommandText>
+                <Parameters>
+                  <Parameter AllowDbNull="false" AutogeneratedName="Status" ColumnName="Status" DataSourceName="mbdbx101.dbo.CustomisationTutorials" DataTypeServer="bit" DbType="Boolean" Direction="Input" ParameterName="@Status" Precision="0" ProviderType="Bit" Scale="0" Size="1" SourceColumn="Status" SourceColumnNullMapping="false" SourceVersion="Current" />
+                  <Parameter AllowDbNull="false" AutogeneratedName="DiagStatus" ColumnName="DiagStatus" DataSourceName="mbdbx101.dbo.CustomisationTutorials" DataTypeServer="bit" DbType="Boolean" Direction="Input" ParameterName="@DiagStatus" Precision="0" ProviderType="Bit" Scale="0" Size="1" SourceColumn="DiagStatus" SourceColumnNullMapping="false" SourceVersion="Current" />
+                  <Parameter AllowDbNull="false" AutogeneratedName="CustTutID" ColumnName="CusTutID" DataSourceName="mbdbx101.dbo.CustomisationTutorials" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@CustTutID" Precision="0" ProviderType="Int" Scale="0" Size="4" SourceColumn="CusTutID" SourceColumnNullMapping="false" SourceVersion="Original" />
+                </Parameters>
+              </DbCommand>
+            </UpdateCommand>
+          </DbSource>
+          <DbSource ConnectionRef="csITSPDB (MySettings)" DbObjectName="mbdbx101.dbo.uspCreateASPCustomisation" DbObjectType="StoredProcedure" GenerateShortCommands="true" GeneratorSourceName="uspCreateASPCustomisation" MethodsParameterType="CLR" Modifier="Public" Name="uspCreateASPCustomisation" QueryType="Scalar" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy6" UserSourceName="uspCreateASPCustomisation">
+            <SelectCommand>
+              <DbCommand CommandType="StoredProcedure" ModifiedByUser="false">
+                <CommandText>dbo.uspCreateASPCustomisation</CommandText>
+                <Parameters>
+                  <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DataTypeServer="int" DbType="Int32" Direction="ReturnValue" ParameterName="@RETURN_VALUE" Precision="10" ProviderType="Int" Scale="0" Size="4" SourceColumnNullMapping="false" SourceVersion="Current" />
+                  <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@ApplicationID" Precision="10" ProviderType="Int" Scale="0" Size="4" SourceColumnNullMapping="false" SourceVersion="Current" />
+                  <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@CentreID" Precision="10" ProviderType="Int" Scale="0" Size="4" SourceColumnNullMapping="false" SourceVersion="Current" />
+                  <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DataTypeServer="varchar" DbType="AnsiString" Direction="Input" ParameterName="@CustomisationName" Precision="0" ProviderType="VarChar" Scale="0" Size="250" SourceColumnNullMapping="false" SourceVersion="Current" />
+                </Parameters>
+              </DbCommand>
+            </SelectCommand>
+          </DbSource>
+          <DbSource ConnectionRef="csITSPDB (MySettings)" DbObjectName="" DbObjectType="Unknown" GenerateShortCommands="true" GeneratorSourceName="UpdateCustomisationLearningTime" MethodsParameterType="CLR" Modifier="Public" Name="UpdateCustomisationLearningTime" QueryType="NoData" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy7" UserSourceName="UpdateCustomisationLearningTime">
+            <UpdateCommand>
+              <DbCommand CommandType="Text" ModifiedByUser="true">
+                <CommandText>UPDATE Customisations
+SET          LearningTimeMins = dbo.GetMinsForCustomisation(CustomisationID)
+WHERE CustomisationID = @CustomisationID</CommandText>
+                <Parameters>
+                  <Parameter AllowDbNull="false" AutogeneratedName="CustomisationID" ColumnName="CustomisationID" DataSourceName="mbdbx101.dbo.Customisations" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@CustomisationID" Precision="0" ProviderType="Int" Scale="0" Size="4" SourceColumn="CustomisationID" SourceColumnNullMapping="false" SourceVersion="Original" />
+                </Parameters>
+              </DbCommand>
+            </UpdateCommand>
+          </DbSource>
+          <DbSource ConnectionRef="csITSPDB (MySettings)" DbObjectName="mbdbx101.dbo.InsertCustomisation_V3" DbObjectType="StoredProcedure" GenerateShortCommands="true" GeneratorSourceName="InsertCustomisation" MethodsParameterType="CLR" Modifier="Public" Name="InsertCustomisation" QueryType="Scalar" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy8" UserSourceName="InsertCustomisation">
+            <SelectCommand>
+              <DbCommand CommandType="StoredProcedure" ModifiedByUser="false">
+                <CommandText>dbo.InsertCustomisation_V3</CommandText>
+                <Parameters>
+                  <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DataTypeServer="int" DbType="Int32" Direction="ReturnValue" ParameterName="@RETURN_VALUE" Precision="10" ProviderType="Int" Scale="0" Size="4" SourceColumnNullMapping="false" SourceVersion="Current" />
+                  <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DataTypeServer="bit" DbType="Boolean" Direction="Input" ParameterName="@Active" Precision="1" ProviderType="Bit" Scale="0" Size="1" SourceColumnNullMapping="false" SourceVersion="Current" />
+                  <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@ApplicationID" Precision="10" ProviderType="Int" Scale="0" Size="4" SourceColumnNullMapping="false" SourceVersion="Current" />
+                  <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@CentreID" Precision="10" ProviderType="Int" Scale="0" Size="4" SourceColumnNullMapping="false" SourceVersion="Current" />
+                  <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DataTypeServer="nvarchar" DbType="String" Direction="Input" ParameterName="@CustomisationName" Precision="0" ProviderType="NVarChar" Scale="0" Size="250" SourceColumnNullMapping="false" SourceVersion="Current" />
+                  <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DataTypeServer="nvarchar" DbType="String" Direction="Input" ParameterName="@Password" Precision="0" ProviderType="NVarChar" Scale="0" Size="50" SourceColumnNullMapping="false" SourceVersion="Current" />
+                  <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DataTypeServer="bit" DbType="Boolean" Direction="Input" ParameterName="@SelfRegister" Precision="1" ProviderType="Bit" Scale="0" Size="1" SourceColumnNullMapping="false" SourceVersion="Current" />
+                  <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@TutCompletionThreshold" Precision="10" ProviderType="Int" Scale="0" Size="4" SourceColumnNullMapping="false" SourceVersion="Current" />
+                  <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DataTypeServer="bit" DbType="Boolean" Direction="Input" ParameterName="@IsAssessed" Precision="1" ProviderType="Bit" Scale="0" Size="1" SourceColumnNullMapping="false" SourceVersion="Current" />
+                  <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@DiagCompletionThreshold" Precision="10" ProviderType="Int" Scale="0" Size="4" SourceColumnNullMapping="false" SourceVersion="Current" />
+                  <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DataTypeServer="bit" DbType="Boolean" Direction="Input" ParameterName="@DiagObjSelect" Precision="1" ProviderType="Bit" Scale="0" Size="1" SourceColumnNullMapping="false" SourceVersion="Current" />
+                  <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DataTypeServer="bit" DbType="Boolean" Direction="Input" ParameterName="@HideInPortal" Precision="1" ProviderType="Bit" Scale="0" Size="1" SourceColumnNullMapping="false" SourceVersion="Current" />
+                  <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@CompleteWithinMonths" Precision="10" ProviderType="Int" Scale="0" Size="4" SourceColumnNullMapping="false" SourceVersion="Current" />
+                  <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DataTypeServer="bit" DbType="Boolean" Direction="Input" ParameterName="@Mandatory" Precision="1" ProviderType="Bit" Scale="0" Size="1" SourceColumnNullMapping="false" SourceVersion="Current" />
+                  <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@ValidityMonths" Precision="10" ProviderType="Int" Scale="0" Size="4" SourceColumnNullMapping="false" SourceVersion="Current" />
+                  <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DataTypeServer="bit" DbType="Boolean" Direction="Input" ParameterName="@AutoRefresh" Precision="1" ProviderType="Bit" Scale="0" Size="1" SourceColumnNullMapping="false" SourceVersion="Current" />
+                  <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@RefreshToCustomisationID" Precision="10" ProviderType="Int" Scale="0" Size="4" SourceColumnNullMapping="false" SourceVersion="Current" />
+                  <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@AutoRefreshMonths" Precision="10" ProviderType="Int" Scale="0" Size="4" SourceColumnNullMapping="false" SourceVersion="Current" />
+                  <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DataTypeServer="nvarchar" DbType="String" Direction="Input" ParameterName="@Q1Options" Precision="0" ProviderType="NVarChar" Scale="0" Size="1000" SourceColumnNullMapping="false" SourceVersion="Current" />
+                  <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DataTypeServer="nvarchar" DbType="String" Direction="Input" ParameterName="@Q2Options" Precision="0" ProviderType="NVarChar" Scale="0" Size="1000" SourceColumnNullMapping="false" SourceVersion="Current" />
+                  <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DataTypeServer="nvarchar" DbType="String" Direction="Input" ParameterName="@Q3Options" Precision="0" ProviderType="NVarChar" Scale="0" Size="1000" SourceColumnNullMapping="false" SourceVersion="Current" />
+                  <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@CourseField1PromptID" Precision="10" ProviderType="Int" Scale="0" Size="4" SourceColumnNullMapping="false" SourceVersion="Current" />
+                  <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@CourseField2PromptID" Precision="10" ProviderType="Int" Scale="0" Size="4" SourceColumnNullMapping="false" SourceVersion="Current" />
+                  <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@CourseField3PromptID" Precision="10" ProviderType="Int" Scale="0" Size="4" SourceColumnNullMapping="false" SourceVersion="Current" />
+                  <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DataTypeServer="bit" DbType="Boolean" Direction="Input" ParameterName="@InviteContributors" Precision="1" ProviderType="Bit" Scale="0" Size="1" SourceColumnNullMapping="false" SourceVersion="Current" />
+                  <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DataTypeServer="nvarchar" DbType="String" Direction="Input" ParameterName="@CCCompletion" Precision="0" ProviderType="NVarChar" Scale="0" Size="500" SourceColumnNullMapping="false" SourceVersion="Current" />
+                  <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DataTypeServer="bit" DbType="Boolean" Direction="Input" ParameterName="@ApplyLPDefaultsToSelfEnrol" Precision="1" ProviderType="Bit" Scale="0" Size="1" SourceColumnNullMapping="false" SourceVersion="Current" />
+                </Parameters>
+              </DbCommand>
+            </SelectCommand>
+          </DbSource>
+          <DbSource ConnectionRef="csITSPDB (MySettings)" DbObjectName="mbdbx101.dbo.UpdateCustomisation_V3" DbObjectType="StoredProcedure" GenerateShortCommands="true" GeneratorSourceName="UpdateCustomisation" MethodsParameterType="CLR" Modifier="Public" Name="UpdateCustomisation" QueryType="Scalar" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy9" UserSourceName="UpdateCustomisation">
+            <SelectCommand>
+              <DbCommand CommandType="StoredProcedure" ModifiedByUser="false">
+                <CommandText>dbo.UpdateCustomisation_V3</CommandText>
+                <Parameters>
+                  <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DataTypeServer="int" DbType="Int32" Direction="ReturnValue" ParameterName="@RETURN_VALUE" Precision="10" ProviderType="Int" Scale="0" Size="4" SourceColumnNullMapping="false" SourceVersion="Current" />
+                  <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@CustomisationID" Precision="10" ProviderType="Int" Scale="0" Size="4" SourceColumnNullMapping="false" SourceVersion="Current" />
+                  <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DataTypeServer="bit" DbType="Boolean" Direction="Input" ParameterName="@Active" Precision="1" ProviderType="Bit" Scale="0" Size="1" SourceColumnNullMapping="false" SourceVersion="Current" />
+                  <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DataTypeServer="nvarchar" DbType="String" Direction="Input" ParameterName="@CustomisationName" Precision="0" ProviderType="NVarChar" Scale="0" Size="250" SourceColumnNullMapping="false" SourceVersion="Current" />
+                  <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DataTypeServer="nvarchar" DbType="String" Direction="Input" ParameterName="@Password" Precision="0" ProviderType="NVarChar" Scale="0" Size="50" SourceColumnNullMapping="false" SourceVersion="Current" />
+                  <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DataTypeServer="bit" DbType="Boolean" Direction="Input" ParameterName="@SelfRegister" Precision="1" ProviderType="Bit" Scale="0" Size="1" SourceColumnNullMapping="false" SourceVersion="Current" />
+                  <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@TutCompletionThreshold" Precision="10" ProviderType="Int" Scale="0" Size="4" SourceColumnNullMapping="false" SourceVersion="Current" />
+                  <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DataTypeServer="bit" DbType="Boolean" Direction="Input" ParameterName="@IsAssessed" Precision="1" ProviderType="Bit" Scale="0" Size="1" SourceColumnNullMapping="false" SourceVersion="Current" />
+                  <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@DiagCompletionThreshold" Precision="10" ProviderType="Int" Scale="0" Size="4" SourceColumnNullMapping="false" SourceVersion="Current" />
+                  <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DataTypeServer="bit" DbType="Boolean" Direction="Input" ParameterName="@DiagObjSelect" Precision="1" ProviderType="Bit" Scale="0" Size="1" SourceColumnNullMapping="false" SourceVersion="Current" />
+                  <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DataTypeServer="bit" DbType="Boolean" Direction="Input" ParameterName="@HideInPortal" Precision="1" ProviderType="Bit" Scale="0" Size="1" SourceColumnNullMapping="false" SourceVersion="Current" />
+                  <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@CompleteWithinMonths" Precision="10" ProviderType="Int" Scale="0" Size="4" SourceColumnNullMapping="false" SourceVersion="Current" />
+                  <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DataTypeServer="bit" DbType="Boolean" Direction="Input" ParameterName="@Mandatory" Precision="1" ProviderType="Bit" Scale="0" Size="1" SourceColumnNullMapping="false" SourceVersion="Current" />
+                  <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@ValidityMonths" Precision="10" ProviderType="Int" Scale="0" Size="4" SourceColumnNullMapping="false" SourceVersion="Current" />
+                  <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DataTypeServer="bit" DbType="Boolean" Direction="Input" ParameterName="@AutoRefresh" Precision="1" ProviderType="Bit" Scale="0" Size="1" SourceColumnNullMapping="false" SourceVersion="Current" />
+                  <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@RefreshToCustomisationID" Precision="10" ProviderType="Int" Scale="0" Size="4" SourceColumnNullMapping="false" SourceVersion="Current" />
+                  <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@AutoRefreshMonths" Precision="10" ProviderType="Int" Scale="0" Size="4" SourceColumnNullMapping="false" SourceVersion="Current" />
+                  <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DataTypeServer="nvarchar" DbType="String" Direction="Input" ParameterName="@Q1Options" Precision="0" ProviderType="NVarChar" Scale="0" Size="1000" SourceColumnNullMapping="false" SourceVersion="Current" />
+                  <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DataTypeServer="nvarchar" DbType="String" Direction="Input" ParameterName="@Q2Options" Precision="0" ProviderType="NVarChar" Scale="0" Size="1000" SourceColumnNullMapping="false" SourceVersion="Current" />
+                  <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DataTypeServer="nvarchar" DbType="String" Direction="Input" ParameterName="@Q3Options" Precision="0" ProviderType="NVarChar" Scale="0" Size="1000" SourceColumnNullMapping="false" SourceVersion="Current" />
+                  <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@CourseField1PromptID" Precision="10" ProviderType="Int" Scale="0" Size="4" SourceColumnNullMapping="false" SourceVersion="Current" />
+                  <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@CourseField2PromptID" Precision="10" ProviderType="Int" Scale="0" Size="4" SourceColumnNullMapping="false" SourceVersion="Current" />
+                  <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@CourseField3PromptID" Precision="10" ProviderType="Int" Scale="0" Size="4" SourceColumnNullMapping="false" SourceVersion="Current" />
+                  <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DataTypeServer="bit" DbType="Boolean" Direction="Input" ParameterName="@InviteContributors" Precision="1" ProviderType="Bit" Scale="0" Size="1" SourceColumnNullMapping="false" SourceVersion="Current" />
+                  <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DataTypeServer="nvarchar" DbType="String" Direction="Input" ParameterName="@CCEmail" Precision="0" ProviderType="NVarChar" Scale="0" Size="500" SourceColumnNullMapping="false" SourceVersion="Current" />
+                  <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DataTypeServer="bit" DbType="Boolean" Direction="Input" ParameterName="@ApplyLPDefaultsToSelfEnrol" Precision="1" ProviderType="Bit" Scale="0" Size="1" SourceColumnNullMapping="false" SourceVersion="Current" />
+                </Parameters>
+              </DbCommand>
+            </SelectCommand>
+          </DbSource>
+          <DbSource ConnectionRef="csITSPDB (MySettings)" DbObjectName="mbdbx101.dbo.InsertUpdateCustomisationTutorials" DbObjectType="StoredProcedure" GenerateShortCommands="true" GeneratorSourceName="InsertUpdateCustomisationTutorials" MethodsParameterType="CLR" Modifier="Public" Name="InsertUpdateCustomisationTutorials" QueryType="Scalar" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy10" UserSourceName="InsertUpdateCustomisationTutorials">
+            <SelectCommand>
+              <DbCommand CommandType="StoredProcedure" ModifiedByUser="false">
+                <CommandText>dbo.InsertUpdateCustomisationTutorials</CommandText>
+                <Parameters>
+                  <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DataTypeServer="int" DbType="Int32" Direction="ReturnValue" ParameterName="@RETURN_VALUE" Precision="10" ProviderType="Int" Scale="0" Size="4" SourceColumnNullMapping="false" SourceVersion="Current" />
+                  <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@CustomisationID" Precision="10" ProviderType="Int" Scale="0" Size="4" SourceColumnNullMapping="false" SourceVersion="Current" />
+                  <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@TutorialID" Precision="10" ProviderType="Int" Scale="0" Size="4" SourceColumnNullMapping="false" SourceVersion="Current" />
+                  <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DataTypeServer="bit" DbType="Boolean" Direction="Input" ParameterName="@Status" Precision="1" ProviderType="Bit" Scale="0" Size="1" SourceColumnNullMapping="false" SourceVersion="Current" />
+                  <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DataTypeServer="bit" DbType="Boolean" Direction="Input" ParameterName="@DiagStatus" Precision="1" ProviderType="Bit" Scale="0" Size="1" SourceColumnNullMapping="false" SourceVersion="Current" />
+                </Parameters>
+              </DbCommand>
+            </SelectCommand>
+          </DbSource>
+        </Sources>
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="customise" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="customise" msprop:Generator_UserDSName="customise">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="Customisations" msprop:Generator_TableClassName="CustomisationsDataTable" msprop:Generator_TableVarName="tableCustomisations" msprop:Generator_RowChangedName="CustomisationsRowChanged" msprop:Generator_TablePropName="Customisations" msprop:Generator_RowDeletingName="CustomisationsRowDeleting" msprop:Generator_RowChangingName="CustomisationsRowChanging" msprop:Generator_RowEvHandlerName="CustomisationsRowChangeEventHandler" msprop:Generator_RowDeletedName="CustomisationsRowDeleted" msprop:Generator_RowClassName="CustomisationsRow" msprop:Generator_UserTableName="Customisations" msprop:Generator_RowEvArgName="CustomisationsRowChangeEvent">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="AppName" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnAppName" msprop:Generator_ColumnPropNameInRow="AppName" msprop:Generator_ColumnPropNameInTable="AppNameColumn" msprop:Generator_UserColumnName="AppName" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="250" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="HasAssess" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnHasAssess" msprop:Generator_ColumnPropNameInRow="HasAssess" msprop:Generator_ColumnPropNameInTable="HasAssessColumn" msprop:Generator_UserColumnName="HasAssess" type="xs:boolean" minOccurs="0" />
+              <xs:element name="HasDiag" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnHasDiag" msprop:Generator_ColumnPropNameInRow="HasDiag" msprop:Generator_ColumnPropNameInTable="HasDiagColumn" msprop:Generator_UserColumnName="HasDiag" type="xs:boolean" minOccurs="0" />
+              <xs:element name="CustomisationID" msdata:ReadOnly="true" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnVarNameInTable="columnCustomisationID" msprop:Generator_ColumnPropNameInRow="CustomisationID" msprop:Generator_ColumnPropNameInTable="CustomisationIDColumn" msprop:Generator_UserColumnName="CustomisationID" type="xs:int" />
+              <xs:element name="Active" msprop:Generator_ColumnVarNameInTable="columnActive" msprop:Generator_ColumnPropNameInRow="Active" msprop:Generator_ColumnPropNameInTable="ActiveColumn" msprop:Generator_UserColumnName="Active" type="xs:boolean" />
+              <xs:element name="CurrentVersion" msprop:Generator_ColumnVarNameInTable="columnCurrentVersion" msprop:Generator_ColumnPropNameInRow="CurrentVersion" msprop:Generator_ColumnPropNameInTable="CurrentVersionColumn" msprop:Generator_UserColumnName="CurrentVersion" type="xs:int" />
+              <xs:element name="CentreID" msprop:Generator_ColumnVarNameInTable="columnCentreID" msprop:Generator_ColumnPropNameInRow="CentreID" msprop:Generator_ColumnPropNameInTable="CentreIDColumn" msprop:Generator_UserColumnName="CentreID" type="xs:int" />
+              <xs:element name="ApplicationID" msprop:Generator_ColumnVarNameInTable="columnApplicationID" msprop:Generator_ColumnPropNameInRow="ApplicationID" msprop:Generator_ColumnPropNameInTable="ApplicationIDColumn" msprop:Generator_UserColumnName="ApplicationID" type="xs:int" />
+              <xs:element name="CustomisationName" msprop:nullValue="_empty" msprop:Generator_ColumnPropNameInRow="CustomisationName" msprop:Generator_ColumnVarNameInTable="columnCustomisationName" msprop:Generator_ColumnPropNameInTable="CustomisationNameColumn" msprop:Generator_UserColumnName="CustomisationName">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="250" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="CustomisationText" msprop:nullValue="_empty" msprop:Generator_ColumnPropNameInRow="CustomisationText" msprop:Generator_ColumnVarNameInTable="columnCustomisationText" msprop:Generator_ColumnPropNameInTable="CustomisationTextColumn" msprop:Generator_UserColumnName="CustomisationText" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="2147483647" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="IsAssessed" msprop:Generator_ColumnVarNameInTable="columnIsAssessed" msprop:Generator_ColumnPropNameInRow="IsAssessed" msprop:Generator_ColumnPropNameInTable="IsAssessedColumn" msprop:Generator_UserColumnName="IsAssessed" type="xs:boolean" />
+              <xs:element name="IsStandard" msprop:Generator_ColumnVarNameInTable="columnIsStandard" msprop:Generator_ColumnPropNameInRow="IsStandard" msprop:Generator_ColumnPropNameInTable="IsStandardColumn" msprop:Generator_UserColumnName="IsStandard" type="xs:boolean" />
+              <xs:element name="Password" msprop:nullValue="_empty" msprop:Generator_ColumnPropNameInRow="Password" msprop:Generator_ColumnVarNameInTable="columnPassword" msprop:Generator_ColumnPropNameInTable="PasswordColumn" msprop:Generator_UserColumnName="Password" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="SelfRegister" msprop:Generator_ColumnVarNameInTable="columnSelfRegister" msprop:Generator_ColumnPropNameInRow="SelfRegister" msprop:Generator_ColumnPropNameInTable="SelfRegisterColumn" msprop:Generator_UserColumnName="SelfRegister" type="xs:boolean" />
+              <xs:element name="CandidateCountInProgress" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnCandidateCountInProgress" msprop:Generator_ColumnPropNameInRow="CandidateCountInProgress" msprop:Generator_ColumnPropNameInTable="CandidateCountInProgressColumn" msprop:Generator_UserColumnName="CandidateCountInProgress" type="xs:int" minOccurs="0" />
+              <xs:element name="TutCompletionThreshold" msprop:Generator_ColumnVarNameInTable="columnTutCompletionThreshold" msprop:Generator_ColumnPropNameInRow="TutCompletionThreshold" msprop:Generator_ColumnPropNameInTable="TutCompletionThresholdColumn" msprop:Generator_UserColumnName="TutCompletionThreshold" type="xs:int" />
+              <xs:element name="DiagCompletionThreshold" msprop:Generator_ColumnVarNameInTable="columnDiagCompletionThreshold" msprop:Generator_ColumnPropNameInRow="DiagCompletionThreshold" msprop:Generator_ColumnPropNameInTable="DiagCompletionThresholdColumn" msprop:Generator_UserColumnName="DiagCompletionThreshold" type="xs:int" />
+              <xs:element name="DiagObjSelect" msprop:Generator_ColumnVarNameInTable="columnDiagObjSelect" msprop:Generator_ColumnPropNameInRow="DiagObjSelect" msprop:Generator_ColumnPropNameInTable="DiagObjSelectColumn" msprop:Generator_UserColumnName="DiagObjSelect" type="xs:boolean" />
+              <xs:element name="AssessAvailable" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnAssessAvailable" msprop:Generator_ColumnPropNameInRow="AssessAvailable" msprop:Generator_ColumnPropNameInTable="AssessAvailableColumn" msprop:Generator_UserColumnName="AssessAvailable" type="xs:int" minOccurs="0" />
+              <xs:element name="Completions" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnCompletions" msprop:Generator_ColumnPropNameInRow="Completions" msprop:Generator_ColumnPropNameInTable="CompletionsColumn" msprop:Generator_UserColumnName="Completions" type="xs:int" minOccurs="0" />
+              <xs:element name="HideInLearnerPortal" msprop:Generator_ColumnVarNameInTable="columnHideInLearnerPortal" msprop:Generator_ColumnPropNameInRow="HideInLearnerPortal" msprop:Generator_ColumnPropNameInTable="HideInLearnerPortalColumn" msprop:Generator_UserColumnName="HideInLearnerPortal" type="xs:boolean" />
+              <xs:element name="CompleteWithinMonths" msprop:Generator_ColumnVarNameInTable="columnCompleteWithinMonths" msprop:Generator_ColumnPropNameInRow="CompleteWithinMonths" msprop:Generator_ColumnPropNameInTable="CompleteWithinMonthsColumn" msprop:Generator_UserColumnName="CompleteWithinMonths" type="xs:int" />
+              <xs:element name="Mandatory" msprop:Generator_ColumnVarNameInTable="columnMandatory" msprop:Generator_ColumnPropNameInRow="Mandatory" msprop:Generator_ColumnPropNameInTable="MandatoryColumn" msprop:Generator_UserColumnName="Mandatory" type="xs:boolean" />
+              <xs:element name="ValidityMonths" msprop:Generator_ColumnVarNameInTable="columnValidityMonths" msprop:Generator_ColumnPropNameInRow="ValidityMonths" msprop:Generator_ColumnPropNameInTable="ValidityMonthsColumn" msprop:Generator_UserColumnName="ValidityMonths" type="xs:int" />
+              <xs:element name="AutoRefresh" msprop:Generator_ColumnVarNameInTable="columnAutoRefresh" msprop:Generator_ColumnPropNameInRow="AutoRefresh" msprop:Generator_ColumnPropNameInTable="AutoRefreshColumn" msprop:Generator_UserColumnName="AutoRefresh" type="xs:boolean" />
+              <xs:element name="RefreshToCustomisationID" msprop:Generator_ColumnVarNameInTable="columnRefreshToCustomisationID" msprop:Generator_ColumnPropNameInRow="RefreshToCustomisationID" msprop:Generator_ColumnPropNameInTable="RefreshToCustomisationIDColumn" msprop:Generator_UserColumnName="RefreshToCustomisationID" type="xs:int" />
+              <xs:element name="AutoRefreshMonths" msprop:Generator_ColumnVarNameInTable="columnAutoRefreshMonths" msprop:Generator_ColumnPropNameInRow="AutoRefreshMonths" msprop:Generator_ColumnPropNameInTable="AutoRefreshMonthsColumn" msprop:Generator_UserColumnName="AutoRefreshMonths" type="xs:int" />
+              <xs:element name="Q1Options" msprop:nullValue="_empty" msprop:Generator_ColumnPropNameInRow="Q1Options" msprop:Generator_ColumnVarNameInTable="columnQ1Options" msprop:Generator_ColumnPropNameInTable="Q1OptionsColumn" msprop:Generator_UserColumnName="Q1Options" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="1000" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Q2Options" msprop:nullValue="_empty" msprop:Generator_ColumnPropNameInRow="Q2Options" msprop:Generator_ColumnVarNameInTable="columnQ2Options" msprop:Generator_ColumnPropNameInTable="Q2OptionsColumn" msprop:Generator_UserColumnName="Q2Options" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="1000" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Q3Options" msprop:nullValue="_empty" msprop:Generator_ColumnPropNameInRow="Q3Options" msprop:Generator_ColumnVarNameInTable="columnQ3Options" msprop:Generator_ColumnPropNameInTable="Q3OptionsColumn" msprop:Generator_UserColumnName="Q3Options" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="1000" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="CourseField1PromptID" msprop:Generator_ColumnVarNameInTable="columnCourseField1PromptID" msprop:Generator_ColumnPropNameInRow="CourseField1PromptID" msprop:Generator_ColumnPropNameInTable="CourseField1PromptIDColumn" msprop:Generator_UserColumnName="CourseField1PromptID" type="xs:int" />
+              <xs:element name="CourseField2PromptID" msprop:Generator_ColumnVarNameInTable="columnCourseField2PromptID" msprop:Generator_ColumnPropNameInRow="CourseField2PromptID" msprop:Generator_ColumnPropNameInTable="CourseField2PromptIDColumn" msprop:Generator_UserColumnName="CourseField2PromptID" type="xs:int" />
+              <xs:element name="CourseField3PromptID" msprop:Generator_ColumnVarNameInTable="columnCourseField3PromptID" msprop:Generator_ColumnPropNameInRow="CourseField3PromptID" msprop:Generator_ColumnPropNameInTable="CourseField3PromptIDColumn" msprop:Generator_UserColumnName="CourseField3PromptID" type="xs:int" />
+              <xs:element name="CField1" msdata:ReadOnly="true" msprop:nullValue="_empty" msprop:Generator_ColumnPropNameInRow="CField1" msprop:Generator_ColumnVarNameInTable="columnCField1" msprop:Generator_ColumnPropNameInTable="CField1Column" msprop:Generator_UserColumnName="CField1" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="100" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="CField2" msdata:ReadOnly="true" msprop:nullValue="_empty" msprop:Generator_ColumnPropNameInRow="CField2" msprop:Generator_ColumnVarNameInTable="columnCField2" msprop:Generator_ColumnPropNameInTable="CField2Column" msprop:Generator_UserColumnName="CField2" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="100" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="CField3" msdata:ReadOnly="true" msprop:nullValue="_empty" msprop:Generator_ColumnPropNameInRow="CField3" msprop:Generator_ColumnVarNameInTable="columnCField3" msprop:Generator_ColumnPropNameInTable="CField3Column" msprop:Generator_UserColumnName="CField3" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="100" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="DisableCompletion" msprop:Generator_ColumnVarNameInTable="columnDisableCompletion" msprop:Generator_ColumnPropNameInRow="DisableCompletion" msprop:Generator_ColumnPropNameInTable="DisableCompletionColumn" msprop:Generator_UserColumnName="DisableCompletion" type="xs:boolean" />
+              <xs:element name="InviteContributors" msprop:Generator_ColumnVarNameInTable="columnInviteContributors" msprop:Generator_ColumnPropNameInRow="InviteContributors" msprop:Generator_ColumnPropNameInTable="InviteContributorsColumn" msprop:Generator_UserColumnName="InviteContributors" type="xs:boolean" />
+              <xs:element name="CreatedDate" msprop:Generator_ColumnVarNameInTable="columnCreatedDate" msprop:Generator_ColumnPropNameInRow="CreatedDate" msprop:Generator_ColumnPropNameInTable="CreatedDateColumn" msprop:Generator_UserColumnName="CreatedDate" type="xs:dateTime" />
+              <xs:element name="LastAccess" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnLastAccess" msprop:Generator_ColumnPropNameInRow="LastAccess" msprop:Generator_ColumnPropNameInTable="LastAccessColumn" msprop:Generator_UserColumnName="LastAccess" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="NotificationEmails" msprop:nullValue="_empty" msprop:Generator_ColumnPropNameInRow="NotificationEmails" msprop:Generator_ColumnVarNameInTable="columnNotificationEmails" msprop:Generator_ColumnPropNameInTable="NotificationEmailsColumn" msprop:Generator_UserColumnName="NotificationEmails" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="500" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="ApplyLPDefaultsToSelfEnrol" msprop:Generator_ColumnVarNameInTable="columnApplyLPDefaultsToSelfEnrol" msprop:Generator_ColumnPropNameInRow="ApplyLPDefaultsToSelfEnrol" msprop:Generator_ColumnPropNameInTable="ApplyLPDefaultsToSelfEnrolColumn" msprop:Generator_UserColumnName="ApplyLPDefaultsToSelfEnrol" type="xs:boolean" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="Sections" msprop:Generator_TableClassName="SectionsDataTable" msprop:Generator_TableVarName="tableSections" msprop:Generator_RowChangedName="SectionsRowChanged" msprop:Generator_TablePropName="Sections" msprop:Generator_RowDeletingName="SectionsRowDeleting" msprop:Generator_RowChangingName="SectionsRowChanging" msprop:Generator_RowEvHandlerName="SectionsRowChangeEventHandler" msprop:Generator_RowDeletedName="SectionsRowDeleted" msprop:Generator_RowClassName="SectionsRow" msprop:Generator_UserTableName="Sections" msprop:Generator_RowEvArgName="SectionsRowChangeEvent">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="SectionID" msdata:ReadOnly="true" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnVarNameInTable="columnSectionID" msprop:Generator_ColumnPropNameInRow="SectionID" msprop:Generator_ColumnPropNameInTable="SectionIDColumn" msprop:Generator_UserColumnName="SectionID" type="xs:int" />
+              <xs:element name="SectionName" msprop:Generator_ColumnVarNameInTable="columnSectionName" msprop:Generator_ColumnPropNameInRow="SectionName" msprop:Generator_ColumnPropNameInTable="SectionNameColumn" msprop:Generator_UserColumnName="SectionName">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="250" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="HasAssess" msprop:Generator_ColumnVarNameInTable="columnHasAssess" msprop:Generator_ColumnPropNameInRow="HasAssess" msprop:Generator_ColumnPropNameInTable="HasAssessColumn" msprop:Generator_UserColumnName="HasAssess" type="xs:boolean" />
+              <xs:element name="HasDiag" msprop:Generator_ColumnVarNameInTable="columnHasDiag" msprop:Generator_ColumnPropNameInRow="HasDiag" msprop:Generator_ColumnPropNameInTable="HasDiagColumn" msprop:Generator_UserColumnName="HasDiag" type="xs:boolean" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="CustomisationTutorials" msprop:Generator_TableClassName="CustomisationTutorialsDataTable" msprop:Generator_TableVarName="tableCustomisationTutorials" msprop:Generator_RowChangedName="CustomisationTutorialsRowChanged" msprop:Generator_TablePropName="CustomisationTutorials" msprop:Generator_RowDeletingName="CustomisationTutorialsRowDeleting" msprop:Generator_RowChangingName="CustomisationTutorialsRowChanging" msprop:Generator_RowEvHandlerName="CustomisationTutorialsRowChangeEventHandler" msprop:Generator_RowDeletedName="CustomisationTutorialsRowDeleted" msprop:Generator_RowClassName="CustomisationTutorialsRow" msprop:Generator_UserTableName="CustomisationTutorials" msprop:Generator_RowEvArgName="CustomisationTutorialsRowChangeEvent">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="TutName" msprop:Generator_ColumnVarNameInTable="columnTutName" msprop:Generator_ColumnPropNameInRow="TutName" msprop:Generator_ColumnPropNameInTable="TutNameColumn" msprop:Generator_UserColumnName="TutName" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="255" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="TutorialID" msprop:Generator_ColumnVarNameInTable="columnTutorialID" msprop:Generator_ColumnPropNameInRow="TutorialID" msprop:Generator_ColumnPropNameInTable="TutorialIDColumn" msprop:Generator_UserColumnName="TutorialID" type="xs:int" />
+              <xs:element name="Status" msprop:Generator_ColumnVarNameInTable="columnStatus" msprop:Generator_ColumnPropNameInRow="Status" msprop:Generator_ColumnPropNameInTable="StatusColumn" msprop:Generator_UserColumnName="Status" type="xs:boolean" />
+              <xs:element name="DiagStatus" msprop:Generator_ColumnVarNameInTable="columnDiagStatus" msprop:Generator_ColumnPropNameInRow="DiagStatus" msprop:Generator_ColumnPropNameInTable="DiagStatusColumn" msprop:Generator_UserColumnName="DiagStatus" type="xs:boolean" />
+              <xs:element name="HasDiag" msprop:Generator_ColumnVarNameInTable="columnHasDiag" msprop:Generator_ColumnPropNameInRow="HasDiag" msprop:Generator_ColumnPropNameInTable="HasDiagColumn" msprop:Generator_UserColumnName="HasDiag" type="xs:boolean" minOccurs="0" />
+              <xs:element name="SectionID" msprop:Generator_ColumnVarNameInTable="columnSectionID" msprop:Generator_ColumnPropNameInRow="SectionID" msprop:Generator_ColumnPropNameInTable="SectionIDColumn" msprop:Generator_UserColumnName="SectionID" type="xs:int" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="Applications" msprop:Generator_TableClassName="ApplicationsDataTable" msprop:Generator_TableVarName="tableApplications" msprop:Generator_RowChangedName="ApplicationsRowChanged" msprop:Generator_TablePropName="Applications" msprop:Generator_RowDeletingName="ApplicationsRowDeleting" msprop:Generator_RowChangingName="ApplicationsRowChanging" msprop:Generator_RowEvHandlerName="ApplicationsRowChangeEventHandler" msprop:Generator_RowDeletedName="ApplicationsRowDeleted" msprop:Generator_RowClassName="ApplicationsRow" msprop:Generator_UserTableName="Applications" msprop:Generator_RowEvArgName="ApplicationsRowChangeEvent">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="ApplicationID" msdata:ReadOnly="true" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnVarNameInTable="columnApplicationID" msprop:Generator_ColumnPropNameInRow="ApplicationID" msprop:Generator_ColumnPropNameInTable="ApplicationIDColumn" msprop:Generator_UserColumnName="ApplicationID" type="xs:int" />
+              <xs:element name="ApplicationName" msprop:Generator_ColumnVarNameInTable="columnApplicationName" msprop:Generator_ColumnPropNameInRow="ApplicationName" msprop:Generator_ColumnPropNameInTable="ApplicationNameColumn" msprop:Generator_UserColumnName="ApplicationName">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="250" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="CourseCategoryID" msprop:Generator_ColumnVarNameInTable="columnCourseCategoryID" msprop:Generator_ColumnPropNameInRow="CourseCategoryID" msprop:Generator_ColumnPropNameInTable="CourseCategoryIDColumn" msprop:Generator_UserColumnName="CourseCategoryID" type="xs:int" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="GroupCustomisations" msprop:Generator_TableClassName="GroupCustomisationsDataTable" msprop:Generator_TableVarName="tableGroupCustomisations" msprop:Generator_RowChangedName="GroupCustomisationsRowChanged" msprop:Generator_TablePropName="GroupCustomisations" msprop:Generator_RowDeletingName="GroupCustomisationsRowDeleting" msprop:Generator_RowChangingName="GroupCustomisationsRowChanging" msprop:Generator_RowEvHandlerName="GroupCustomisationsRowChangeEventHandler" msprop:Generator_RowDeletedName="GroupCustomisationsRowDeleted" msprop:Generator_RowClassName="GroupCustomisationsRow" msprop:Generator_UserTableName="GroupCustomisations" msprop:Generator_RowEvArgName="GroupCustomisationsRowChangeEvent">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="GroupCustomisationID" msdata:ReadOnly="true" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnVarNameInTable="columnGroupCustomisationID" msprop:Generator_ColumnPropNameInRow="GroupCustomisationID" msprop:Generator_ColumnPropNameInTable="GroupCustomisationIDColumn" msprop:Generator_UserColumnName="GroupCustomisationID" type="xs:int" />
+              <xs:element name="AddedDate" msprop:Generator_ColumnVarNameInTable="columnAddedDate" msprop:Generator_ColumnPropNameInRow="AddedDate" msprop:Generator_ColumnPropNameInTable="AddedDateColumn" msprop:Generator_UserColumnName="AddedDate" type="xs:dateTime" />
+              <xs:element name="Course" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnCourse" msprop:Generator_ColumnPropNameInRow="Course" msprop:Generator_ColumnPropNameInTable="CourseColumn" msprop:Generator_UserColumnName="Course" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="503" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="CompleteWithinMonths" msprop:Generator_ColumnVarNameInTable="columnCompleteWithinMonths" msprop:Generator_ColumnPropNameInRow="CompleteWithinMonths" msprop:Generator_ColumnPropNameInTable="CompleteWithinMonthsColumn" msprop:Generator_UserColumnName="CompleteWithinMonths" type="xs:int" />
+              <xs:element name="Mandatory" msprop:Generator_ColumnVarNameInTable="columnMandatory" msprop:Generator_ColumnPropNameInRow="Mandatory" msprop:Generator_ColumnPropNameInTable="MandatoryColumn" msprop:Generator_UserColumnName="Mandatory" type="xs:boolean" />
+              <xs:element name="ValidityMonths" msprop:Generator_ColumnVarNameInTable="columnValidityMonths" msprop:Generator_ColumnPropNameInRow="ValidityMonths" msprop:Generator_ColumnPropNameInTable="ValidityMonthsColumn" msprop:Generator_UserColumnName="ValidityMonths" type="xs:int" />
+              <xs:element name="IsAssessed" msprop:Generator_ColumnVarNameInTable="columnIsAssessed" msprop:Generator_ColumnPropNameInRow="IsAssessed" msprop:Generator_ColumnPropNameInTable="IsAssessedColumn" msprop:Generator_UserColumnName="IsAssessed" type="xs:boolean" />
+              <xs:element name="TutCompletionThreshold" msprop:Generator_ColumnVarNameInTable="columnTutCompletionThreshold" msprop:Generator_ColumnPropNameInRow="TutCompletionThreshold" msprop:Generator_ColumnPropNameInTable="TutCompletionThresholdColumn" msprop:Generator_UserColumnName="TutCompletionThreshold" type="xs:int" />
+              <xs:element name="DiagCompletionThreshold" msprop:Generator_ColumnVarNameInTable="columnDiagCompletionThreshold" msprop:Generator_ColumnPropNameInRow="DiagCompletionThreshold" msprop:Generator_ColumnPropNameInTable="DiagCompletionThresholdColumn" msprop:Generator_UserColumnName="DiagCompletionThreshold" type="xs:int" />
+              <xs:element name="InactivatedDate" msprop:Generator_ColumnVarNameInTable="columnInactivatedDate" msprop:Generator_ColumnPropNameInRow="InactivatedDate" msprop:Generator_ColumnPropNameInTable="InactivatedDateColumn" msprop:Generator_UserColumnName="InactivatedDate" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="CohortLearners" msprop:Generator_ColumnVarNameInTable="columnCohortLearners" msprop:Generator_ColumnPropNameInRow="CohortLearners" msprop:Generator_ColumnPropNameInTable="CohortLearnersColumn" msprop:Generator_UserColumnName="CohortLearners" type="xs:boolean" />
+              <xs:element name="SupervisorAdminID" msprop:Generator_ColumnVarNameInTable="columnSupervisorAdminID" msprop:Generator_ColumnPropNameInRow="SupervisorAdminID" msprop:Generator_ColumnPropNameInTable="SupervisorAdminIDColumn" msprop:Generator_UserColumnName="SupervisorAdminID" type="xs:int" minOccurs="0" />
+              <xs:element name="CourseCategoryID" msprop:Generator_ColumnVarNameInTable="columnCourseCategoryID" msprop:Generator_ColumnPropNameInRow="CourseCategoryID" msprop:Generator_ColumnPropNameInTable="CourseCategoryIDColumn" msprop:Generator_UserColumnName="CourseCategoryID" type="xs:int" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="CustomisationsNotInGroup" msprop:Generator_TableClassName="CustomisationsNotInGroupDataTable" msprop:Generator_TableVarName="tableCustomisationsNotInGroup" msprop:Generator_TablePropName="CustomisationsNotInGroup" msprop:Generator_RowDeletingName="CustomisationsNotInGroupRowDeleting" msprop:Generator_RowChangingName="CustomisationsNotInGroupRowChanging" msprop:Generator_RowEvHandlerName="CustomisationsNotInGroupRowChangeEventHandler" msprop:Generator_RowDeletedName="CustomisationsNotInGroupRowDeleted" msprop:Generator_UserTableName="CustomisationsNotInGroup" msprop:Generator_RowChangedName="CustomisationsNotInGroupRowChanged" msprop:Generator_RowEvArgName="CustomisationsNotInGroupRowChangeEvent" msprop:Generator_RowClassName="CustomisationsNotInGroupRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="CustomisationID" msdata:ReadOnly="true" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnVarNameInTable="columnCustomisationID" msprop:Generator_ColumnPropNameInRow="CustomisationID" msprop:Generator_ColumnPropNameInTable="CustomisationIDColumn" msprop:Generator_UserColumnName="CustomisationID" type="xs:int" />
+              <xs:element name="CourseName" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnCourseName" msprop:Generator_ColumnPropNameInRow="CourseName" msprop:Generator_ColumnPropNameInTable="CourseNameColumn" msprop:Generator_UserColumnName="CourseName" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="503" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="IsAssessed" msprop:Generator_ColumnVarNameInTable="columnIsAssessed" msprop:Generator_ColumnPropNameInRow="IsAssessed" msprop:Generator_ColumnPropNameInTable="IsAssessedColumn" msprop:Generator_UserColumnName="IsAssessed" type="xs:boolean" />
+              <xs:element name="HasDiagnostic" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnHasDiagnostic" msprop:Generator_ColumnPropNameInRow="HasDiagnostic" msprop:Generator_ColumnPropNameInTable="HasDiagnosticColumn" msprop:Generator_UserColumnName="HasDiagnostic" type="xs:boolean" minOccurs="0" />
+              <xs:element name="HasLearning" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnHasLearning" msprop:Generator_ColumnPropNameInRow="HasLearning" msprop:Generator_ColumnPropNameInTable="HasLearningColumn" msprop:Generator_UserColumnName="HasLearning" type="xs:boolean" minOccurs="0" />
+              <xs:element name="Category" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnCategory" msprop:Generator_ColumnPropNameInRow="Category" msprop:Generator_ColumnPropNameInTable="CategoryColumn" msprop:Generator_UserColumnName="Category" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="100" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Topic" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnTopic" msprop:Generator_ColumnPropNameInRow="Topic" msprop:Generator_ColumnPropNameInTable="TopicColumn" msprop:Generator_UserColumnName="Topic" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="100" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="CourseTopics" msprop:Generator_TableClassName="CourseTopicsDataTable" msprop:Generator_TableVarName="tableCourseTopics" msprop:Generator_TablePropName="CourseTopics" msprop:Generator_RowDeletingName="CourseTopicsRowDeleting" msprop:Generator_RowChangingName="CourseTopicsRowChanging" msprop:Generator_RowEvHandlerName="CourseTopicsRowChangeEventHandler" msprop:Generator_RowDeletedName="CourseTopicsRowDeleted" msprop:Generator_UserTableName="CourseTopics" msprop:Generator_RowChangedName="CourseTopicsRowChanged" msprop:Generator_RowEvArgName="CourseTopicsRowChangeEvent" msprop:Generator_RowClassName="CourseTopicsRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="CourseTopicID" msdata:ReadOnly="true" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnVarNameInTable="columnCourseTopicID" msprop:Generator_ColumnPropNameInRow="CourseTopicID" msprop:Generator_ColumnPropNameInTable="CourseTopicIDColumn" msprop:Generator_UserColumnName="CourseTopicID" type="xs:int" />
+              <xs:element name="CentreID" msprop:Generator_ColumnVarNameInTable="columnCentreID" msprop:Generator_ColumnPropNameInRow="CentreID" msprop:Generator_ColumnPropNameInTable="CentreIDColumn" msprop:Generator_UserColumnName="CentreID" type="xs:int" />
+              <xs:element name="CourseTopic" msprop:Generator_ColumnVarNameInTable="columnCourseTopic" msprop:Generator_ColumnPropNameInRow="CourseTopic" msprop:Generator_ColumnPropNameInTable="CourseTopicColumn" msprop:Generator_UserColumnName="CourseTopic">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="100" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Active" msprop:Generator_ColumnVarNameInTable="columnActive" msprop:Generator_ColumnPropNameInRow="Active" msprop:Generator_ColumnPropNameInTable="ActiveColumn" msprop:Generator_UserColumnName="Active" type="xs:boolean" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="CourseCategories" msprop:Generator_TableClassName="CourseCategoriesDataTable" msprop:Generator_TableVarName="tableCourseCategories" msprop:Generator_TablePropName="CourseCategories" msprop:Generator_RowDeletingName="CourseCategoriesRowDeleting" msprop:Generator_RowChangingName="CourseCategoriesRowChanging" msprop:Generator_RowEvHandlerName="CourseCategoriesRowChangeEventHandler" msprop:Generator_RowDeletedName="CourseCategoriesRowDeleted" msprop:Generator_UserTableName="CourseCategories" msprop:Generator_RowChangedName="CourseCategoriesRowChanged" msprop:Generator_RowEvArgName="CourseCategoriesRowChangeEvent" msprop:Generator_RowClassName="CourseCategoriesRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="CourseCategoryID" msdata:ReadOnly="true" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnVarNameInTable="columnCourseCategoryID" msprop:Generator_ColumnPropNameInRow="CourseCategoryID" msprop:Generator_ColumnPropNameInTable="CourseCategoryIDColumn" msprop:Generator_UserColumnName="CourseCategoryID" type="xs:int" />
+              <xs:element name="CentreID" msprop:Generator_ColumnVarNameInTable="columnCentreID" msprop:Generator_ColumnPropNameInRow="CentreID" msprop:Generator_ColumnPropNameInTable="CentreIDColumn" msprop:Generator_UserColumnName="CentreID" type="xs:int" />
+              <xs:element name="CategoryName" msprop:Generator_ColumnVarNameInTable="columnCategoryName" msprop:Generator_ColumnPropNameInRow="CategoryName" msprop:Generator_ColumnPropNameInTable="CategoryNameColumn" msprop:Generator_UserColumnName="CategoryName">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="100" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="CategoryContactEmail" msprop:Generator_ColumnVarNameInTable="columnCategoryContactEmail" msprop:Generator_ColumnPropNameInRow="CategoryContactEmail" msprop:Generator_ColumnPropNameInTable="CategoryContactEmailColumn" msprop:Generator_UserColumnName="CategoryContactEmail" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="255" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="CategoryContactPhone" msprop:Generator_ColumnVarNameInTable="columnCategoryContactPhone" msprop:Generator_ColumnPropNameInRow="CategoryContactPhone" msprop:Generator_ColumnPropNameInTable="CategoryContactPhoneColumn" msprop:Generator_UserColumnName="CategoryContactPhone" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="20" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Active" msprop:Generator_ColumnVarNameInTable="columnActive" msprop:Generator_ColumnPropNameInRow="Active" msprop:Generator_ColumnPropNameInTable="ActiveColumn" msprop:Generator_UserColumnName="Active" type="xs:boolean" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="Supervisors" msprop:Generator_TableClassName="SupervisorsDataTable" msprop:Generator_TableVarName="tableSupervisors" msprop:Generator_RowChangedName="SupervisorsRowChanged" msprop:Generator_TablePropName="Supervisors" msprop:Generator_RowDeletingName="SupervisorsRowDeleting" msprop:Generator_RowChangingName="SupervisorsRowChanging" msprop:Generator_RowEvHandlerName="SupervisorsRowChangeEventHandler" msprop:Generator_RowDeletedName="SupervisorsRowDeleted" msprop:Generator_RowClassName="SupervisorsRow" msprop:Generator_UserTableName="Supervisors" msprop:Generator_RowEvArgName="SupervisorsRowChangeEvent">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="AdminID" msdata:ReadOnly="true" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnVarNameInTable="columnAdminID" msprop:Generator_ColumnPropNameInRow="AdminID" msprop:Generator_ColumnPropNameInTable="AdminIDColumn" msprop:Generator_UserColumnName="AdminID" type="xs:int" />
+              <xs:element name="Name" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnName" msprop:Generator_ColumnPropNameInRow="Name" msprop:Generator_ColumnPropNameInTable="NameColumn" msprop:Generator_UserColumnName="Name" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="501" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Email" msprop:Generator_ColumnVarNameInTable="columnEmail" msprop:Generator_ColumnPropNameInRow="Email" msprop:Generator_ColumnPropNameInTable="EmailColumn" msprop:Generator_UserColumnName="Email" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="250" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="CoursePrompts" msprop:Generator_TableClassName="CoursePromptsDataTable" msprop:Generator_TableVarName="tableCoursePrompts" msprop:Generator_TablePropName="CoursePrompts" msprop:Generator_RowDeletingName="CoursePromptsRowDeleting" msprop:Generator_RowChangingName="CoursePromptsRowChanging" msprop:Generator_RowEvHandlerName="CoursePromptsRowChangeEventHandler" msprop:Generator_RowDeletedName="CoursePromptsRowDeleted" msprop:Generator_UserTableName="CoursePrompts" msprop:Generator_RowChangedName="CoursePromptsRowChanged" msprop:Generator_RowEvArgName="CoursePromptsRowChangeEvent" msprop:Generator_RowClassName="CoursePromptsRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="CoursePromptID" msdata:ReadOnly="true" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnVarNameInTable="columnCoursePromptID" msprop:Generator_ColumnPropNameInRow="CoursePromptID" msprop:Generator_ColumnPropNameInTable="CoursePromptIDColumn" msprop:Generator_UserColumnName="CoursePromptID" type="xs:int" />
+              <xs:element name="CoursePrompt" msprop:Generator_ColumnVarNameInTable="columnCoursePrompt" msprop:Generator_ColumnPropNameInRow="CoursePrompt" msprop:Generator_ColumnPropNameInTable="CoursePromptColumn" msprop:Generator_UserColumnName="CoursePrompt" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="100" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Active" msprop:Generator_ColumnVarNameInTable="columnActive" msprop:Generator_ColumnPropNameInRow="Active" msprop:Generator_ColumnPropNameInTable="ActiveColumn" msprop:Generator_UserColumnName="Active" type="xs:boolean" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="ApplicationInfo" msprop:Generator_TableClassName="ApplicationInfoDataTable" msprop:Generator_TableVarName="tableApplicationInfo" msprop:Generator_RowChangedName="ApplicationInfoRowChanged" msprop:Generator_TablePropName="ApplicationInfo" msprop:Generator_RowDeletingName="ApplicationInfoRowDeleting" msprop:Generator_RowChangingName="ApplicationInfoRowChanging" msprop:Generator_RowEvHandlerName="ApplicationInfoRowChangeEventHandler" msprop:Generator_RowDeletedName="ApplicationInfoRowDeleted" msprop:Generator_RowClassName="ApplicationInfoRow" msprop:Generator_UserTableName="ApplicationInfo" msprop:Generator_RowEvArgName="ApplicationInfoRowChangeEvent">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="ApplicationID" msdata:ReadOnly="true" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnVarNameInTable="columnApplicationID" msprop:Generator_ColumnPropNameInRow="ApplicationID" msprop:Generator_ColumnPropNameInTable="ApplicationIDColumn" msprop:Generator_UserColumnName="ApplicationID" type="xs:int" />
+              <xs:element name="AppName" msprop:Generator_ColumnVarNameInTable="columnAppName" msprop:Generator_ColumnPropNameInRow="AppName" msprop:Generator_ColumnPropNameInTable="AppNameColumn" msprop:Generator_UserColumnName="AppName">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="250" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="HasAssess" msprop:Generator_ColumnVarNameInTable="columnHasAssess" msprop:Generator_ColumnPropNameInRow="HasAssess" msprop:Generator_ColumnPropNameInTable="HasAssessColumn" msprop:Generator_UserColumnName="HasAssess" type="xs:boolean" />
+              <xs:element name="HasDiag" msprop:Generator_ColumnVarNameInTable="columnHasDiag" msprop:Generator_ColumnPropNameInRow="HasDiag" msprop:Generator_ColumnPropNameInTable="HasDiagColumn" msprop:Generator_UserColumnName="HasDiag" type="xs:boolean" />
+              <xs:element name="AssessAvailable" msprop:Generator_ColumnVarNameInTable="columnAssessAvailable" msprop:Generator_ColumnPropNameInRow="AssessAvailable" msprop:Generator_ColumnPropNameInTable="AssessAvailableColumn" msprop:Generator_UserColumnName="AssessAvailable" type="xs:boolean" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+    <xs:unique name="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:Customisations" />
+      <xs:field xpath="mstns:CustomisationID" />
+    </xs:unique>
+    <xs:unique name="Sections_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:Sections" />
+      <xs:field xpath="mstns:SectionID" />
+    </xs:unique>
+    <xs:unique name="CustomisationTutorials_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:CustomisationTutorials" />
+      <xs:field xpath="mstns:TutorialID" />
+    </xs:unique>
+    <xs:unique name="Applications_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:Applications" />
+      <xs:field xpath="mstns:ApplicationID" />
+    </xs:unique>
+    <xs:unique name="GroupCustomisations_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:GroupCustomisations" />
+      <xs:field xpath="mstns:GroupCustomisationID" />
+    </xs:unique>
+    <xs:unique name="CustomisationsNotInGroup_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:CustomisationsNotInGroup" />
+      <xs:field xpath="mstns:CustomisationID" />
+    </xs:unique>
+    <xs:unique name="CourseTopics_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:CourseTopics" />
+      <xs:field xpath="mstns:CourseTopicID" />
+    </xs:unique>
+    <xs:unique name="CourseCategories_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:CourseCategories" />
+      <xs:field xpath="mstns:CourseCategoryID" />
+    </xs:unique>
+    <xs:unique name="Supervisors_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:Supervisors" />
+      <xs:field xpath="mstns:AdminID" />
+    </xs:unique>
+    <xs:unique name="CoursePrompts_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:CoursePrompts" />
+      <xs:field xpath="mstns:CoursePromptID" />
+    </xs:unique>
+    <xs:unique name="ApplicationInfo_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:ApplicationInfo" />
+      <xs:field xpath="mstns:ApplicationID" />
+    </xs:unique>
+  </xs:element>
+  <xs:annotation>
+    <xs:appinfo>
+      <msdata:Relationship name="FK_Customisations_Applications" msdata:parent="Applications" msdata:child="Customisations" msdata:parentkey="ApplicationID" msdata:childkey="ApplicationID" msprop:Generator_UserChildTable="Customisations" msprop:Generator_ChildPropName="GetCustomisationsRows" msprop:Generator_UserRelationName="FK_Customisations_Applications" msprop:Generator_ParentPropName="ApplicationsRow" msprop:Generator_RelationVarName="relationFK_Customisations_Applications" msprop:Generator_UserParentTable="Applications" />
+      <msdata:Relationship name="FK_Applications_CourseCategories" msdata:parent="CourseCategories" msdata:child="GroupCustomisations" msdata:parentkey="CourseCategoryID" msdata:childkey="CourseCategoryID" msprop:Generator_UserChildTable="GroupCustomisations" msprop:Generator_ChildPropName="GetGroupCustomisationsRows" msprop:Generator_UserRelationName="FK_Applications_CourseCategories" msprop:Generator_RelationVarName="relationFK_Applications_CourseCategories" msprop:Generator_UserParentTable="CourseCategories" msprop:Generator_ParentPropName="CourseCategoriesRow" />
+      <msdata:Relationship name="FK_Applications_CourseCategories1" msdata:parent="CourseCategories" msdata:child="Applications" msdata:parentkey="CourseCategoryID" msdata:childkey="CourseCategoryID" msprop:Generator_UserChildTable="Applications" msprop:Generator_ChildPropName="GetApplicationsRows" msprop:Generator_UserRelationName="FK_Applications_CourseCategories1" msprop:Generator_ParentPropName="CourseCategoriesRow" msprop:Generator_RelationVarName="relationFK_Applications_CourseCategories1" msprop:Generator_UserParentTable="CourseCategories" />
+      <msdata:Relationship name="FK_Customisations_Applications1" msdata:parent="ApplicationInfo" msdata:child="Customisations" msdata:parentkey="ApplicationID" msdata:childkey="ApplicationID" msprop:Generator_UserChildTable="Customisations" msprop:Generator_ChildPropName="GetCustomisationsRows" msprop:Generator_UserRelationName="FK_Customisations_Applications1" msprop:Generator_ParentPropName="ApplicationInfoRow" msprop:Generator_RelationVarName="relationFK_Customisations_Applications1" msprop:Generator_UserParentTable="ApplicationInfo" />
+    </xs:appinfo>
+  </xs:annotation>
+</xs:schema>

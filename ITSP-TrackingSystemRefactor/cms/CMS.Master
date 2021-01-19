@@ -1,0 +1,250 @@
+﻿<%@ Master Language="VB" AutoEventWireup="true" CodeBehind="CMS.Master.vb" Inherits="ITSP_TrackingSystemRefactor.SiteMasterCMS" %>
+
+<%@ Register Src="~/controls/usermx.ascx" TagPrefix="uc1" TagName="usermx" %>
+<%@ Register Src="~/controls/usermxmodals.ascx" TagPrefix="uc1" TagName="usermxmodals" %>
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head runat="server">
+    <meta charset="utf-8" />
+    <title><%: Page.Title %> - DLS Content Management System</title>
+    <asp:PlaceHolder runat="server">        
+        <%: Scripts.Render("~/bundles/modernizr") %>
+    </asp:PlaceHolder>
+       <link href="../Content/plugins.min.css" rel="stylesheet" />
+    <link href="../Content/master.css" rel="stylesheet" />
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.4/css/bootstrap-datepicker3.min.css">
+    <link href="../Content/dashboard.css" rel="stylesheet" />
+    <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+    <link href="../Content/bootstrap-toggle.min.css" rel="stylesheet" />
+    <script src="../Scripts/plugins.min.js"></script>
+    <script src="../Scripts/bootstrap-toggle.min.js"></script>
+    <script src="../Scripts/app.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.4/js/bootstrap-datepicker.min.js"></script>
+    <meta name="description" content="The Digital Learning Solutions Tracking System" />
+ <style>
+     @media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
+     /* IE11 fix for button positioning issue in modal footer */
+     .modal-footer{
+        display: block !important;
+     }
+}
+ </style>
+</head>
+<body> 
+
+    <form runat="server">
+        <asp:ScriptManager runat="server">
+           
+            <Scripts>
+                <%--To learn more about bundling scripts in ScriptManager see http://go.microsoft.com/fwlink/?LinkID=301884 --%>
+                <%--Framework Scripts--%>
+                <asp:ScriptReference Name="MsAjaxBundle" />
+                <asp:ScriptReference Name="respond" />
+                <asp:ScriptReference Name="WebForms.js" Assembly="System.Web" Path="~/Scripts/WebForms/WebForms.js" />
+                <asp:ScriptReference Name="WebUIValidation.js" Assembly="System.Web" Path="~/Scripts/WebForms/WebUIValidation.js" />
+                <asp:ScriptReference Name="MenuStandards.js" Assembly="System.Web" Path="~/Scripts/WebForms/MenuStandards.js" />
+                <asp:ScriptReference Name="GridView.js" Assembly="System.Web" Path="~/Scripts/WebForms/GridView.js" />
+                <asp:ScriptReference Name="DetailsView.js" Assembly="System.Web" Path="~/Scripts/WebForms/DetailsView.js" />
+                <asp:ScriptReference Name="TreeView.js" Assembly="System.Web" Path="~/Scripts/WebForms/TreeView.js" />
+                <asp:ScriptReference Name="WebParts.js" Assembly="System.Web" Path="~/Scripts/WebForms/WebParts.js" />
+                <asp:ScriptReference Name="Focus.js" Assembly="System.Web" Path="~/Scripts/WebForms/Focus.js" />
+                <asp:ScriptReference Name="WebFormsBundle" />
+                <%--Site Scripts--%>
+            </Scripts>
+        </asp:ScriptManager>
+        <script src="../Scripts/bs.pagination.js"></script>
+        <script src="../Scripts/itsphelpers.js"></script>
+       
+        <%--<script src="Scripts/bootstrap.js"></script>--%>
+        <script src="../Scripts/bootstrap-hover-dropdown.min.js"></script>
+        <script src="../Scripts/bsasper.js"></script>
+        <script src="../Scripts/app.min.js"></script>
+        <style>
+ 		     @media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
+ 		     /* IE11 fix for button positioning issue in modal footer */
+ 	     .modal-footer{
+ 		        display: block !important;
+ 		     }
+ 		}
+ 		 </style>
+    <div id="ms-preload" class="ms-preload">
+            <div id="status">
+                <div class="spinner">
+                    <div class="dot1"></div>
+                    <div class="dot2"></div>
+                </div>
+            </div>
+        </div>
+        <div class="ms-site-container">
+             <header class="ms-header ms-header-default clearfix">
+                 
+                <!--ms-header-primary-->
+                <div class="container container-full">
+                    
+                    <asp:panel runat="server" id="pnlMainLogo" class="ms-title">
+<asp:Panel ID="pnlUser" Visible="false" runat="server">
+                    <div class="small" style="margin-bottom: 5px;">
+                        <asp:Label ID="lblUser" runat="server" Text=""></asp:Label>&nbsp;&nbsp;&nbsp;&nbsp;
+                        <asp:LinkButton ID="lbtManage" runat="server"><i class="fas fa-user" aria-hidden="true"></i> My Details</asp:LinkButton>&nbsp;&nbsp;&nbsp;&nbsp;
+            <asp:Label ID="lblUserCount" CssClass="userNameText" runat="server" Visible="false" />&nbsp;&nbsp;&nbsp;&nbsp;<asp:LinkButton ID="LinkButton1" runat="server"><i class="fas fa-sign-out-alt" aria-hidden="true"></i> Log out</asp:LinkButton>
+                    </div>
+                </asp:Panel>
+                        <a href="courses">
+                            <span>
+                                <img src="../Images/DLS-Logo-Colour-sm.png" alt="Digital Learning Solutions logo" /></span>
+                            <h1 class="text-break">
+                                <span>Digital Learning Solutions</span>&nbsp; CMS
+                            </h1>
+                        </a>
+                    </asp:panel>
+                    <div class="float-right">
+                        <asp:Image ID="logoImage" AlternateText="Organisation Logo" Visible="false" runat="server" ImageUrl="~/centrelogo"
+                        Height="100px" Width="300px" />
+                        <img runat="server" id="nhsdlogo" alt="Health Education England Logo" style="padding-top: 10px" src="../Images/hee-logo-sm.png" />
+
+                    </div>
+
+                </div>
+            </header>
+
+            
+
+                        <nav class="navbar navbar-expand-md navbar-static ms-navbar ms-navbar-dls-pink">
+                <div class="container container-full">
+
+                    <div class="navbar-header">
+                        <a class="navbar-brand" href="home">
+                            <span>
+                                <img src="../Images/DLS-Logo-Colour-sm.png" alt="Digital Learning Solutions Logo" />
+                                </span>
+                           
+                        </a>
+                    </div>
+                    <button class="navbar-toggler text-white ms-toggle-left" type="button" data-toggle="collapse" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
+                        <i class="fas fa-bars"></i>
+  </button>
+                    <div class="collapse navbar-collapse" id="navbar">
+                        <ul class="navbar-nav">
+                            
+                            <li id="liCourses" class="nav-item" runat="server"><a href="Courses"><span class="fas fa-bars" aria-hidden="true"></span>&nbsp; Courses</a>
+                </li>
+                <li id="liContent" class="nav-item" runat="server"><a href="ManageContent"><span class="fas fa-pencil-alt" aria-hidden="true"></span>&nbsp; Content</a>
+                </li>
+                <li id="liPublish" class="nav-item" runat="server"><a href="Publish"><span class="fas fa-share-square" aria-hidden="true"></span>&nbsp; Publish</a>
+                </li>
+                 <li id="liContentCreator" class="nav-item" runat="server"><a href="ContentCreator"><span class="fas fa-edit" aria-hidden="true"></span>&nbsp; Content Creator</a>
+                </li>
+                <li id="liConfig" class="nav-item" runat="server"><a href="Config"><span class="fas fa-cog" aria-hidden="true"></span>&nbsp; Config</a>
+                </li>
+                        <li class="nav-item"><uc1:usermx class="nav-link" runat="server" ID="usermx" /></li>    
+                        </ul>
+                     
+                        </div>   <div class="form-inline my-2 my-lg-0">
+                            
+       <asp:HyperLink ID="hlHelpBtn" CssClass="nav-item btn btn-circle-lg btn-outline-light my-2 my-sm-0" ToolTip="Help" Target="_blank"  runat="server" NavigateUrl="~/help/ContentManagementSystem.html"><i class="fas fa-question"></i></asp:HyperLink>
+    <%--<a href="javascript:void(0)" class="ms-toggle-left btn-navbar-menu text-white">
+                        <i class="fas fa-bars"></i>
+                    </a>--%></div>
+                   <%-- <div class="header-right">
+  
+                        
+                    </div>--%>
+                     
+                </div></nav>
+            <div class="container container-full">
+        <asp:ContentPlaceHolder runat="server" ID="FeaturedContent" />
+        <input id="UsernameDummy" aria-hidden="true" type="text" autocomplete="username" class="d-none" />
+        <asp:ContentPlaceHolder runat="server" ID="MainContent" />
+                <uc1:usermxmodals runat="server" id="usermxmodals" />
+  <footer>
+                <div class="content-wrapper">
+                   
+                        <div class="footer clearfix">
+                <div class="text-muted">
+                    <div class="float-left" style="padding-left:8px;padding-top:5px;">
+&copy; <%: DateTime.Now.Year %> - Digital Learning Solutions, Health Education England.
+                            </div>
+                            <div class="float-right" style="padding-right:8px;">
+                                   <a style="cursor: pointer;" class="btn btn-outline-secondary btn-sm" data-toggle="modal" data-target="#termsMessage"><i aria-hidden="true" class="far fa-check-square hidden-sm"></i>
+                        Terms of use
+                    </a>&nbsp;&nbsp;
+                    <a style="cursor: pointer;" class="btn btn-outline-secondary btn-sm" data-toggle="modal" data-target="#accessMessage"><i aria-hidden="true" class="fas fa-search hidden-sm"></i>
+                        Accessibility
+                    </a>&nbsp;&nbsp;<a style="cursor: pointer;" class="btn btn-outline-secondary btn-sm" href="https://www.hee.nhs.uk/about/privacy-notice" target="_blank" ><i aria-hidden="true" class="fas fa-eye hidden-sm"></i>
+                        Privacy
+                    </a>
+                            </div>
+                    
+                </div>
+            </div></div>
+        </footer> 
+
+        </div>
+        </div>
+         <%-- Terms Modal --%>
+        <div id="termsMessage" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="lbltermsHeading" aria-hidden="true">
+            <div class="modal-dialog modal-xl">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        
+                        <h4 class="modal-title">
+                            <asp:Label ID="lbltermsHeading" runat="server">Terms of Use</asp:Label></h4><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    </div>
+                    <div class="modal-body" style="max-height: 600px; overflow: auto;">
+
+                        <asp:Literal ID="litTOUDetail" runat="server"></asp:Literal>
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary float-right" data-dismiss="modal">OK</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <%-- Privacy Modal --%>
+        <div id="privacyMessage" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="label1" aria-hidden="true">
+            <div class="modal-dialog modal-xl">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        
+                        <h4 class="modal-title">
+                            <asp:Label ID="Label8" runat="server">Privacy Notice</asp:Label></h4><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    </div>
+                    <div class="modal-body" style="max-height: 600px; overflow: auto;">
+
+                        <asp:Literal ID="litPrivacy" runat="server"></asp:Literal>
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary float-right" data-dismiss="modal">OK</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <%-- Accessibility Modal --%>
+        <div id="accessMessage" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="label2" aria-hidden="true">
+            <div class="modal-dialog modal-xl">
+                <div class="modal-content">
+                    <div class="modal-header">
+                       
+                        <h4 class="modal-title">
+                            <asp:Label ID="Label9" runat="server">Accessibility Help</asp:Label></h4> <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    </div>
+                    <div class="modal-body" style="max-height: 600px; overflow: auto;">
+
+                        <asp:Literal ID="litAccess" runat="server"></asp:Literal>
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary float-right" data-dismiss="modal">OK</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</body>
+</html>

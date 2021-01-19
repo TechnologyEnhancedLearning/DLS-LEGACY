@@ -1,0 +1,266 @@
+﻿<%@ Master Language="VB" AutoEventWireup="false" CodeBehind="lportal.master.vb" Inherits="ITSP_TrackingSystemRefactor.lportal" %>
+
+<%@ Register Src="~/controls/usermx.ascx" TagPrefix="uc1" TagName="usermx" %>
+<%@ Register Src="~/controls/usermxmodals.ascx" TagPrefix="uc1" TagName="usermxmodals" %>
+
+
+
+<!DOCTYPE html>
+
+<html lang="en">
+<head runat="server">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title><%: Page.Title %> - DLS Learning Portal</title>
+
+    <asp:PlaceHolder runat="server">
+        <%: Scripts.Render("~/bundles/modernizr") %>
+    </asp:PlaceHolder>
+
+ <link href="../Content/plugins.min.css" rel="stylesheet" />
+    <link href="../Content/master.css" rel="stylesheet" />
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.4/css/bootstrap-datepicker3.min.css">
+    <link href="../Content/dashboard.css" rel="stylesheet" />
+    <link href="../Content/bootstrap-toggle.min.css" rel="stylesheet" />
+    <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.7/dist/css/bootstrap-select.min.css">
+    <link href="../Content/lpmenu.css" rel="stylesheet" />
+    <script src="../Scripts/plugins.min.js"></script>
+    <script src="../Scripts/bootstrap-toggle.min.js"></script>
+    <script src="../Scripts/app.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.4/js/bootstrap-datepicker.min.js"></script>
+    <meta name="description" content="The Digital Learning Solutions Tracking System" />
+ 
+</head>
+<body> 
+
+    <form runat="server">
+        <asp:ScriptManager runat="server">
+           
+            <Scripts>
+                <%--To learn more about bundling scripts in ScriptManager see http://go.microsoft.com/fwlink/?LinkID=301884 --%>
+                <%--Framework Scripts--%>
+                <asp:ScriptReference Name="MsAjaxBundle" />
+                <asp:ScriptReference Name="respond" />
+                <asp:ScriptReference Name="WebForms.js" Assembly="System.Web" Path="~/Scripts/WebForms/WebForms.js" />
+                <asp:ScriptReference Name="WebUIValidation.js" Assembly="System.Web" Path="~/Scripts/WebForms/WebUIValidation.js" />
+                <asp:ScriptReference Name="MenuStandards.js" Assembly="System.Web" Path="~/Scripts/WebForms/MenuStandards.js" />
+                <asp:ScriptReference Name="GridView.js" Assembly="System.Web" Path="~/Scripts/WebForms/GridView.js" />
+                <asp:ScriptReference Name="DetailsView.js" Assembly="System.Web" Path="~/Scripts/WebForms/DetailsView.js" />
+                <asp:ScriptReference Name="TreeView.js" Assembly="System.Web" Path="~/Scripts/WebForms/TreeView.js" />
+                <asp:ScriptReference Name="WebParts.js" Assembly="System.Web" Path="~/Scripts/WebForms/WebParts.js" />
+                <asp:ScriptReference Name="Focus.js" Assembly="System.Web" Path="~/Scripts/WebForms/Focus.js" />
+                <asp:ScriptReference Name="WebFormsBundle" />
+                <%--Site Scripts--%>
+            </Scripts>
+        </asp:ScriptManager>
+        <script src="../Scripts/bs.pagination.js"></script>
+        <script src="../Scripts/itsphelpers.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.7/dist/js/bootstrap-select.min.js"></script>
+        <%--<script src="Scripts/bootstrap.js"></script>--%>
+        <script src="../Scripts/bootstrap-hover-dropdown.min.js"></script>
+        <script src="../Scripts/bsasper.js"></script>
+        <script src="../Scripts/app.min.js"></script>
+     <script>
+         function BindMasterEvents() {
+             $(document).ready(function () {
+                 $("input, textarea, select").bsasper({
+                     placement: "right", createContent: function (errors) {
+                         return '<span class="text-danger">' + errors[0] + '</span>';
+                     }
+                 });
+             });
+              $('.bs-toggle').bootstrapToggle({
+                    on: 'Subscribed',
+                    off: 'Unsubscribed',
+                    onstyle: 'success',
+                    offstyle: 'danger',
+                    width: '100px'
+                });
+             doPopover()
+
+             function doPopover(s, e) {
+                 $('[data-toggle="popover"]').popover();
+             }
+         };
+    </script>
+        <style>
+ 		     @media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
+ 		     /* IE11 fix for button positioning issue in modal footer */
+ 		     .modal-footer{
+ 		        display: block !important;
+ 		     }
+ 		}
+ 		 </style>
+         <header class="ms-header ms-header-default">
+                <!--ms-header-primary-->
+                <div class="container container-full">
+                    <div class="ms-title">
+                        
+                            <span>
+                                <img src="../Images/DLS-Logo-Colour-sm.png"  alt="Digital Learning Solutions Logo"></span>
+                            <h1 class="text-break">
+                                <span>Digital Learning Solutions</span> Learning Portal
+                            </h1>
+                    </div>
+                     <div  class="float-right">
+                
+                    <div class="float-right clearfix"><asp:Image ID="logoImage" runat="server" AlternateText="Organisation Logo" ImageUrl="~/centrelogo.aspx" Height="100px"
+        Width="300px" Style="float: left;" />
+                        <%--<img style="padding-top: 10px" src="Images/NHS-Digital-logo.png">--%>
+ <img runat="server" id="nhsdlogo"  alt="Health Education England Logo" style="padding-top: 10px" src="../Images/hee-logo-sm.png" />
+                    </div>
+
+                </div>
+                   
+             <div class="clearfix"></div>
+           
+             
+            </div>
+            </header>
+    <div id="body">
+        <div class="container">
+     <asp:Panel ID="pnlMenu" runat="server">
+            <nav id="mmenu" class="nav pad-menu">
+            <ul id="ulMenu" runat="server" >
+                <li id="liCurrent" runat="server"><a id="aCurrent" runat="server" href="Current"><span class="icon"><i class="fas fa-play-circle" aria-hidden="true"></i></span> Current</a>
+                </li>
+                <li id="liCompleted" runat="server"><a id="aCompleted" runat="server" href="Completed"><span class="icon"><i class="fas fa-check-circle" aria-hidden="true"></i></span> Completed</a>
+                </li>
+                <li id="liAvailable" runat="server"><a id="aAvailable" runat="server" href="Available"><span class="icon"><i class="fas fa-plus-circle" aria-hidden="true"></i></span> Available</a>
+                 </li>
+                <li id="liKnowledgeBank" runat="server">
+                    <a id="aKnowledgeBank" runat="server" href="KnowledgeBank"><span class="icon"><i class="fas fa-piggy-bank" aria-hidden="true"></i></span> Knowledge Bank</a>
+                </li>
+               
+            </ul>
+          
+                </nav></asp:Panel>
+            
+                 
+               
+               
+
+            <script src="../Scripts/menu.js"></script>
+            <div class="float-right"><div class="mr-1 fa-2x">
+                <uc1:usermx runat="server" ID="usermx" /><asp:HyperLink ID="hlHelpBtn" CssClass="nav-item btn btn-circle-lg btn-info ml-1" ToolTip="Help" Target="_blank"  runat="server" NavigateUrl="~/learningportal/help/LearningPortal.html"><i class="fas fa-question"></i></asp:HyperLink>
+           </div> </div>
+        <asp:ContentPlaceHolder runat="server" ID="FeaturedContent" />
+        <input id="UsernameDummy" aria-hidden="true" type="text" autocomplete="username" class="d-none" />
+         <asp:ContentPlaceHolder runat="server" ID="MainContent" />
+            
+            <uc1:usermxmodals  runat="server" ID="usermxmodals" />
+    </div>
+        </div>
+    <footer class="footer">
+            <div class="container">
+                <div class="text-muted">
+                    <div class="float-left" style="padding-left:8px;padding-top:5px;">
+&copy; <%: DateTime.Now.Year %> - Digital Learning Solutions, Health Education England.  <%: Session("BannerText") %>
+                            </div>
+                            <div class="float-right" style="padding-right:8px;">
+                                    <a style="cursor: pointer;" class="btn btn-outline-secondary btn-sm" data-toggle="modal" data-target="#termsMessage"><i aria-hidden="true" class="far fa-check-square hidden-sm"></i>
+                        Terms of use
+                    </a>&nbsp;&nbsp;    
+                    <a style="cursor: pointer;" class="btn btn-outline-secondary btn-sm" data-toggle="modal" data-target="#accessMessage"><i aria-hidden="true" class="fas fa-search hidden-sm"></i>
+                        Accessibility
+                    </a>&nbsp;&nbsp;<a style="cursor: pointer;" class="btn btn-outline-secondary btn-sm" href="https://www.hee.nhs.uk/about/privacy-notice" target="_blank"><i aria-hidden="true" class="fas fa-eye hidden-sm"></i>
+                        Privacy
+                    </a>
+                            </div>
+                    
+                </div>
+            </div>
+        </footer>
+        
+      
+       
+<%-- Manage details modal popup ends here --%> 
+        <%--standard modal--%>
+       <div class="modal fade" id="messageModal" tabindex="-1" role="dialog" aria-labelledby="lblModalTitle">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        
+        <h5 class="modal-title">
+            <asp:Label ID="lblModalTitle" runat="server" Text="Label"></asp:Label></h5><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+      </div>
+      <div class="modal-body">
+        <p>
+            <asp:Label ID="lblModalBody" runat="server" Text="Label"></asp:Label></p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-outline-secondary float-right" data-dismiss="modal">OK</button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+         <%-- Terms Modal --%>
+        <div id="termsMessage" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="lbltermsHeading" aria-hidden="true">
+            <div class="modal-dialog modal-xl">
+                <div class="modal-content">
+                    <div class="modal-header">
+                       
+                        <h4 class="modal-title">
+                            <asp:Label ID="lbltermsHeading" runat="server">Terms of Use</asp:Label></h4> <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    </div>
+                    <div class="modal-body" style="max-height: 600px; overflow: auto;">
+
+                        <asp:Literal ID="litTOUDetail" runat="server"></asp:Literal>
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary float-right" data-dismiss="modal">OK</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+           <%-- Privacy Modal --%>
+        <div id="privacyMessage" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="label1" aria-hidden="true">
+            <div class="modal-dialog modal-xl">
+                <div class="modal-content">
+                    <div class="modal-header">
+                       
+                        <h4 class="modal-title">
+                            <asp:Label ID="Label10" runat="server">Privacy Notice</asp:Label></h4> <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    </div>
+                    <div class="modal-body" style="max-height: 600px; overflow: auto;">
+
+                        <asp:Literal ID="litPrivacy" runat="server"></asp:Literal>
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary float-right" data-dismiss="modal">OK</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <%-- Accessibility Modal --%>
+        <div id="accessMessage" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="label2" aria-hidden="true">
+            <div class="modal-dialog modal-xl">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        
+                        <h4 class="modal-title">
+                            <asp:Label ID="Label9" runat="server">Accessibility Help</asp:Label></h4><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    </div>
+                    <div class="modal-body" style="max-height: 600px; overflow: auto;">
+
+                        <asp:Literal ID="litAccess" runat="server"></asp:Literal>
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary float-right" data-dismiss="modal">OK</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script>
+        Sys.Application.add_load(BindMasterEvents);
+    </script>
+    </form>
+</body>
+    
+</html>

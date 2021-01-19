@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="geo" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="geo" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="geo">
+      <s:element name="GetGeoCode">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="addstr" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetGeoCodeResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetGeoCodeResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="PingSession">
+        <s:complexType />
+      </s:element>
+      <s:element name="PingSessionResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="SendCoursePublishedNotifications">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="nCentreID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="sCourseName" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SendCoursePublishedNotificationsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="SendCoursePublishedNotificationsResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SendDelegateRegRequiresApprovalNotification">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="sFName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="sLName" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="nCentreID" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SendDelegateRegRequiresApprovalNotificationResponse">
+        <s:complexType />
+      </s:element>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="GetGeoCodeSoapIn">
+    <wsdl:part name="parameters" element="tns:GetGeoCode" />
+  </wsdl:message>
+  <wsdl:message name="GetGeoCodeSoapOut">
+    <wsdl:part name="parameters" element="tns:GetGeoCodeResponse" />
+  </wsdl:message>
+  <wsdl:message name="PingSessionSoapIn">
+    <wsdl:part name="parameters" element="tns:PingSession" />
+  </wsdl:message>
+  <wsdl:message name="PingSessionSoapOut">
+    <wsdl:part name="parameters" element="tns:PingSessionResponse" />
+  </wsdl:message>
+  <wsdl:message name="SendCoursePublishedNotificationsSoapIn">
+    <wsdl:part name="parameters" element="tns:SendCoursePublishedNotifications" />
+  </wsdl:message>
+  <wsdl:message name="SendCoursePublishedNotificationsSoapOut">
+    <wsdl:part name="parameters" element="tns:SendCoursePublishedNotificationsResponse" />
+  </wsdl:message>
+  <wsdl:message name="SendDelegateRegRequiresApprovalNotificationSoapIn">
+    <wsdl:part name="parameters" element="tns:SendDelegateRegRequiresApprovalNotification" />
+  </wsdl:message>
+  <wsdl:message name="SendDelegateRegRequiresApprovalNotificationSoapOut">
+    <wsdl:part name="parameters" element="tns:SendDelegateRegRequiresApprovalNotificationResponse" />
+  </wsdl:message>
+  <wsdl:portType name="servicesSoap">
+    <wsdl:operation name="GetGeoCode">
+      <wsdl:input message="tns:GetGeoCodeSoapIn" />
+      <wsdl:output message="tns:GetGeoCodeSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="PingSession">
+      <wsdl:input message="tns:PingSessionSoapIn" />
+      <wsdl:output message="tns:PingSessionSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SendCoursePublishedNotifications">
+      <wsdl:input message="tns:SendCoursePublishedNotificationsSoapIn" />
+      <wsdl:output message="tns:SendCoursePublishedNotificationsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SendDelegateRegRequiresApprovalNotification">
+      <wsdl:input message="tns:SendDelegateRegRequiresApprovalNotificationSoapIn" />
+      <wsdl:output message="tns:SendDelegateRegRequiresApprovalNotificationSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="servicesSoap" type="tns:servicesSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GetGeoCode">
+      <soap:operation soapAction="geo/GetGeoCode" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="PingSession">
+      <soap:operation soapAction="geo/PingSession" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SendCoursePublishedNotifications">
+      <soap:operation soapAction="geo/SendCoursePublishedNotifications" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SendDelegateRegRequiresApprovalNotification">
+      <soap:operation soapAction="geo/SendDelegateRegRequiresApprovalNotification" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="servicesSoap12" type="tns:servicesSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GetGeoCode">
+      <soap12:operation soapAction="geo/GetGeoCode" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="PingSession">
+      <soap12:operation soapAction="geo/PingSession" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SendCoursePublishedNotifications">
+      <soap12:operation soapAction="geo/SendCoursePublishedNotifications" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SendDelegateRegRequiresApprovalNotification">
+      <soap12:operation soapAction="geo/SendDelegateRegRequiresApprovalNotification" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="services">
+    <wsdl:port name="servicesSoap" binding="tns:servicesSoap">
+      <soap:address location="http://localhost:1976/services.asmx" />
+    </wsdl:port>
+    <wsdl:port name="servicesSoap12" binding="tns:servicesSoap12">
+      <soap12:address location="http://localhost:1976/services.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

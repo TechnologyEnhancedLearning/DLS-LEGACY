@@ -1,0 +1,497 @@
+﻿<%@ Master Language="VB" AutoEventWireup="false" CodeBehind="Landing.master.vb" Inherits="ITSP_TrackingSystemRefactor.Landing" %>
+
+<%@ Register Src="~/controls/usermx.ascx" TagPrefix="uc1" TagName="usermx" %>
+<%@ Register Src="~/controls/usermxmodals.ascx" TagPrefix="uc1" TagName="usermxmodals" %>
+
+
+
+<!DOCTYPE html>
+
+<html lang="en">
+<head runat="server">
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title><%: Page.Title %> - Digital Learning Solutions</title>
+    <asp:PlaceHolder runat="server">
+        <%: Scripts.Render("~/bundles/modernizr") %>
+    </asp:PlaceHolder>
+    <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+    <link href="Content/plugins.min.css" rel="stylesheet" />
+    <link href="Content/landing.css" rel="stylesheet" />
+    <link href="Content/preload.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="//use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+        <link href="Content/bootstrap-toggle.min.css" rel="stylesheet" />
+    <style>
+     @media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
+     /* IE11 fix for button positioning issue in modal footer */
+     .modal-footer{
+        display: block !important;
+     }
+}
+     video {
+    margin:0 auto;
+    min-width: 100%;
+    min-height: 100%;
+    width: auto;
+    height: auto;
+    z-index: -100;
+    background-size: cover;
+    transition: 1s opacity;
+}
+         .img-fluid {
+        max-width: 100% !important;
+    }
+          .img-overlay-monitor{
+            position: absolute;
+        width: 100%;
+        top: 0;
+        left: 15px
+        }
+         .ms-hero-material-list {
+        list-style-type: none;
+        padding: 0;
+        margin-top:20px
+         }
+
+        .ms-hero-material-list li {
+            display: table;
+            margin-bottom: 40px;
+            margin-bottom: 4rem
+        }
+
+            .ms-hero-material-list li .ms-list-icon {
+                display: table-cell;
+                vertical-align: middle
+            }
+
+                .ms-hero-material-list li .ms-list-icon .ms-icon {
+                    margin: 0 20px 0 0;
+                    margin: 0 2rem 0 0
+                }
+
+            .ms-hero-material-list li .ms-list-text {
+                display: table-cell;
+                vertical-align: middle;
+                font-size: 18px;
+                font-size: 1.8rem;
+                line-height: 30px;
+                line-height: 3rem
+            }
+                .pad-right-twenty{
+        margin-right:20px;
+    }
+ </style>
+     <noscript>
+         <style>
+             .ms-preload{
+                 display: none !important;
+             }
+         </style>
+     </noscript>
+</head>
+<body>
+    <form id="form1" runat="server">
+        <script src="Scripts/plugins.min.js"></script>
+            <script src="Scripts/bootstrap-toggle.min.js"></script>
+    <script src="Scripts/app.min.js"></script>
+     <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
+        <script src="Scripts/bsasper.js"></script>
+        <script>
+            function BindMasterEvents() {
+
+                $(document).ready(function () {
+                    $("input, textarea, select").bsasper({
+                        placement: "right", createContent: function (errors) {
+                            return '<span class="text-danger">' + errors[0] + '</span>';
+                        }
+                    });
+                    $('.pick-date').datepicker({
+                        format: "dd/mm/yyyy"
+                    });
+                });
+                $('.bs-toggle').bootstrapToggle({
+                    on: 'Subscribed',
+                    off: 'Unsubscribed',
+                    onstyle: 'success',
+                    offstyle: 'danger',
+                    width: '100px'
+                });
+                
+                doPopover()
+
+                function doPopover(s, e) {
+                    $('[data-toggle="popover"]').popover();
+                }
+            };
+            jQuery(function ($) {
+                if (typeof $.fn.datepicker.defaults != 'undefined') {
+                    $.fn.datepicker.defaults.format = "dd/mm/yyyy";
+                    $.fn.datepicker.defaults.autoclose = true;
+                }
+                $('.ticker').jTicker();
+                $('.dropdown-toggle').on('focus', function () {
+                    $(this).click();
+                })
+            });
+
+        </script>
+        <asp:ObjectDataSource ID="dsBrandsList" runat="server" OldValuesParameterFormatString="original_{0}" SelectMethod="GetData" TypeName="ITSP_TrackingSystemRefactor.prelogindataTableAdapters.BrandsListTableAdapter"></asp:ObjectDataSource>
+        <asp:ObjectDataSource ID="dsProductsList" runat="server" OldValuesParameterFormatString="original_{0}" SelectMethod="GetData" TypeName="ITSP_TrackingSystemRefactor.prelogindataTableAdapters.pl_ProductsListTableAdapter"></asp:ObjectDataSource>
+        <div id="ms-preload" class="ms-preload">
+            <div id="status">
+                <div class="spinner">
+                    <div class="dot1"></div>
+                    <div class="dot2"></div>
+                </div>
+            </div>
+        </div>
+        <asp:ContentPlaceHolder ID="SkipToContentLink" runat="server">
+
+            </asp:ContentPlaceHolder>
+        <div class="ms-site-container">
+            
+            <div class="ms-header ms-header-default">
+                <!--ms-header-primary-->
+                <div class="container container-full">
+                    <div class="ms-title">
+                        <a href="home">
+                            <!-- <img src="assets/Images/demo/logo-header.png" alt=""> -->
+                            <span class="animated zoomInDown animation-delay-5">
+                                <img src="Images/DLS-Logo-Colour-sm.png" alt="Digital Learning Solutions Logo" /></span>
+                            <h1 class="animated fadeInRight animation-delay-6">
+                                <span>Digital Learning</span> Solutions
+                            </h1>
+                        </a>
+                    </div>
+                    <div class="float-right clearfix d-md-none d-lg-block">
+                        <img style="padding-top: 10px" src="Images/hee-logo-sm.png" alt="Health Education England Logo" />
+
+                    </div>
+
+                </div>
+            </div>
+
+            <nav class="navbar navbar-expand-md navbar-static ms-navbar ms-navbar-default">
+                <div class="container container-full">
+
+                    <div class="navbar-header">
+                        <a class="navbar-brand" href="home">
+                            <span class="">
+                                <img src="Images/DLS-Logo-Colour-sm.png" alt="Digital Learning Solutions Logo" />
+                                </span>
+                           
+                        </a>
+                    </div>
+                    <div class="collapse navbar-collapse" id="navbar">
+                        <ul class="navbar-nav float-right">
+                            <li class="nav-item dropdown">
+                                <a href="welcome" class="nav-link dropdown-toggle animated fadeIn animation-delay-7" data-toggle="dropdown" data-hover="dropdown" role="button" aria-haspopup="true" data-name="home">Welcome
+                        <i class="fas fa-angle-down"></i></a>
+                                <ul class="dropdown-menu"  aria-expanded="false">
+                                    <li>
+                                        <a href="home#" data-scroll class="dropdown-item">Welcome</a>
+
+                                    </li>
+                                    <li>
+                                        <a href="https://www.e-lfh.org.uk/programmes/coronavirus/" class="dropdown-item">Coronavirus (COVID-19) Learning (e-LfH)</a>
+
+                                    </li>
+                                    <li>
+                                        <a href="home#learning" data-scroll class="dropdown-item">Learning content</a>
+
+                                    </li>
+                                    <li>
+                                        <a href="home#products" data-scroll class="dropdown-item">Product overview</a>
+
+                                    </li>
+                                    <li>
+                                        <a href="home#customerstories" data-scroll class="dropdown-item">Customer stories</a>
+
+                                    </li>
+                                    <li>
+                                        <a href="home#quotes" data-scroll class="dropdown-item">Testimonials</a>
+
+                                    </li>
+                                    <li>
+                                        <a href="home#news" data-scroll class="dropdown-item">News</a>
+
+                                    </li>
+                                    <li>
+                                        <a href="home#team" data-scroll class="dropdown-item">Meet the team</a>
+
+                                    </li>
+                                    <li>
+                                        <a href="home#contact" data-scroll class="dropdown-item">Contact</a>
+
+                                    </li>
+                                </ul>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle animated fadeIn animation-delay-7" data-toggle="dropdown" data-hover="dropdown" role="button" aria-haspopup="true" data-name="home">Learning
+                  <i class="fas fa-angle-down"></i>
+                                </a>
+                                <ul class="dropdown-menu" aria-expanded="false">
+                                    <li>
+                                        <a href="https://www.e-lfh.org.uk/programmes/coronavirus/" class="dropdown-item">Coronavirus (COVID-19) Learning (e-LfH)</a>
+                                    </li>
+                                    <asp:Repeater ID="rptBrandsList" runat="server" DataSourceID="dsBrandsList">
+                                        <ItemTemplate>
+                                            <li>
+                                                <a href='<%# "Learning?brand=" & Eval("BrandName").Replace(" ", "") %>' class="dropdown-item"><%# Eval("BrandName") %></a>
+                                            </li>
+                                        </ItemTemplate>
+                                    </asp:Repeater>
+                                     <li>
+                                                <a href="findyourcentre" class="dropdown-item">Find your centre</a>
+                                            </li>
+                                </ul>
+
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a href="products" class="nav-link dropdown-toggle animated fadeIn animation-delay-7" data-toggle="dropdown" data-hover="dropdown" role="button" aria-haspopup="true" data-name="page">Products
+                  <i class="fas fa-angle-down"></i>
+                                </a>
+                                <ul class="dropdown-menu" aria-expanded="false">
+                                    <asp:Repeater ID="rptProductsList" runat="server" DataSourceID="dsProductsList">
+                                        <ItemTemplate>
+                                            <li>
+                                                <a href='<%# "Product?product=" & Eval("ProductName").Replace(" ", "") %>' class="dropdown-item"><%# Eval("ProductName") %></a>
+
+                                            </li>
+                                        </ItemTemplate>
+                                    </asp:Repeater>
+                                    <li>
+                                        <a href="pricing" class="dropdown-item">Pricing</a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle animated fadeIn animation-delay-7" data-toggle="dropdown" data-hover="dropdown" role="button" aria-haspopup="true" data-name="component">Publications
+                  <i class="fas fa-angle-down"></i>
+                                </a>
+                                <ul class="dropdown-menu" aria-expanded="false">
+                                    <li>
+                                        <a href="customerstories" class="dropdown-item">Customer Stories</a>
+
+                                    </li>
+                                    <li>
+                                        <a href="bulletin" class="dropdown-item">Bulletins</a>
+
+                                    </li>
+                                </ul>
+                            </li>
+                            <li class="nav-item">
+ <uc1:usermx class="nav-link" runat="server" id="usermx" />
+                            </li>
+                        </ul>
+                        
+                    </div>
+                    <a href="javascript:void(0)" class="ms-toggle-left btn-navbar-menu">
+                        <i class="fas fa-bars"></i>
+                    </a>
+                </div>
+                <!-- container -->
+            </nav>
+            <main id="maincontent">
+            <asp:ContentPlaceHolder ID="MainContent" runat="server">
+            </asp:ContentPlaceHolder></main>
+            <uc1:usermxmodals runat="server" id="usermxmodals" />
+           <footer class="ms-footer">
+                <div class="container">
+                    <p>Copyright &copy; Digital Learning Solutions, Health Education England <%: DateTime.Now.Year %></p>
+                
+                     <p class="float-right" style="padding-right:8px;">
+                                <a href="javascript:void(0)" style="cursor: pointer;" class="btn btn-dark btn-sm" data-toggle="modal" data-target="#termsMessage"><i aria-hidden="true" class="far fa-check-square hidden-sm"></i>
+                        Terms of use
+                    </a>&nbsp;&nbsp;
+                    <a href="javascript:void(0)" style="cursor: pointer;" class="btn btn-dark btn-sm" data-toggle="modal" data-target="#accessMessage"><i aria-hidden="true" class="fas fa-search hidden-sm"></i>
+                        Accessibility
+                    </a>&nbsp;&nbsp;
+                         <a href="https://www.hee.nhs.uk/about/privacy-notice" style="cursor: pointer;" class="btn btn-dark btn-sm" target="_blank" ><i aria-hidden="true" class="fas fa-eye hidden-sm"></i>
+                        Privacy
+                    </a>
+                            </p></div>
+            </footer>
+            <div class="btn-back-top">
+                <a href="#" data-scroll id="back-top" aria-label="Scroll to top of page" class="btn-circle btn-circle-primary btn-circle-sm btn-circle-raised ">
+                    <i class="fas fa-arrow-up"></i>
+                </a>
+            </div>
+
+        </div>
+        <!-- ms-site-container -->
+        <div class="ms-slidebar sb-slidebar sb-left sb-style-overlay" id="ms-slidebar">
+            <div class="sb-slidebar-container">
+                <header class="ms-slidebar-header">
+                    <div class="ms-slidebar-login">
+                        <a href="javascript:void(0)" class="withripple">
+                            <i class="fas fa-account"></i>Login</a>
+                        <a href="javascript:void(0)" class="withripple">
+                            <i class="fas fa-account-add"></i>Register</a>
+                    </div>
+                    <div class="ms-slidebar-title">
+                        
+                        <div class="ms-slidebar-t">
+                            
+                            <div class="h3">
+                                <span>Digital Learning</span> Solutions
+                            </div>
+                        </div>
+                    </div>
+                </header>
+                <ul class="ms-slidebar-menu" id="slidebar-menu" role="tablist" aria-multiselectable="true">
+                    <li class="card" role="tab" id="sch1">
+                        <a class="collapsed" role="button" data-toggle="collapse" href="#sc1" aria-expanded="false" aria-controls="sc1">
+                            <i class="fas fa-home"></i>Welcome </a>
+                        <ul id="sc1" class="card-collapse collapse" role="tabpanel" aria-labelledby="sch1" data-parent="#slidebar-menu">
+                            <li>
+                                        <a href="home#" data-scroll>Welcome</a>
+
+                                    </li>
+                                    <li>
+                                        <a href="home#learning" data-scroll>Learning content</a>
+
+                                    </li>
+                                    <li>
+                                        <a href="home#products" data-scroll>Product overview</a>
+
+                                    </li>
+                                    <li>
+                                        <a href="home#customerstories" data-scroll>Customer stories</a>
+
+                                    </li>
+                                    <li>
+                                        <a href="home#quotes" data-scroll>Testimonials</a>
+
+                                    </li>
+                                    <li>
+                                        <a href="home#news" data-scroll>News</a>
+
+                                    </li>
+                            <li>
+                                        <a href="home#team" data-scroll>Meet the team</a>
+
+                                    </li>
+                            <li>
+                                        <a href="home#contact" data-scroll>Contact</a>
+
+                                    </li>
+                        </ul>
+                    </li>
+                    <li class="card" role="tab" id="sch2">
+                        <a class="collapsed" role="button" data-toggle="collapse" href="#sc2" aria-expanded="false" aria-controls="sc2">
+                            <i class="fas fa-book-reader"></i>Learning </a>
+                        <ul id="sc2" class="card-collapse collapse" role="tabpanel" aria-labelledby="sch2" data-parent="#slidebar-menu">
+                          
+                                    <asp:Repeater ID="Repeater1" runat="server" DataSourceID="dsBrandsList">
+                                        <ItemTemplate>
+                                            <li>
+                                                <a href='<%# "Learning?brand=" & Eval("BrandName").Replace(" ", "") %>'><%# Eval("BrandName") %></a>
+                                            </li>
+                                        </ItemTemplate>
+                                    </asp:Repeater>
+ <li>
+                                                <a href="findyourcentre">Find your centre</a>
+                                            </li>
+                        </ul>
+                    </li>
+                    <li class="card" role="tab" id="sch4">
+                        <a class="collapsed" role="button" data-toggle="collapse" href="#sc4" aria-expanded="false" aria-controls="sc4">
+                            <i class="fas fa-desktop"></i>Products </a>
+                        <ul id="sc4" class="card-collapse collapse" role="tabpanel" aria-labelledby="sch4" data-parent="#slidebar-menu">
+                            <asp:Repeater ID="Repeater2" runat="server" DataSourceID="dsProductsList">
+                                        <ItemTemplate>
+                                            <li>
+                                                <a href='<%# "Product?product=" & Eval("ProductName").Replace(" ", "") %>' class="dropdown-item"><%# Eval("ProductName") %></a>
+
+                                            </li>
+                                        </ItemTemplate>
+                                    </asp:Repeater>
+                        </ul>
+                    </li>
+                    <li class="card" role="tab" id="sch5">
+                        <a class="collapsed" role="button" data-toggle="collapse" href="#sc5" aria-expanded="false" aria-controls="sc5">
+                            <i class="fas fa-shopping-basket"></i>Publications </a>
+                        <ul id="sc5" class="card-collapse collapse" role="tabpanel" aria-labelledby="sch5" data-parent="#slidebar-menu">
+                            <li>
+                                <a href="customerstories">Customer Stories</a>
+                            </li>
+                            <li>
+                                        <a href="bulletin">Bulletins</a>
+
+                                    </li>
+                        </ul>
+                    </li>
+                  
+                </ul>
+
+            </div>
+        </div>
+         <div id="termsMessage" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="lbltermsHeading" aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        
+                        <h4 class="modal-title">
+                            <asp:Label ID="lbltermsHeading" runat="server">Terms of Use</asp:Label></h4><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    </div>
+                    <div class="modal-body" style="max-height: 600px; overflow: auto;">
+
+                        <asp:Literal ID="litTOUDetail" runat="server"></asp:Literal>
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary float-right" data-dismiss="modal">OK</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <%-- Privacy Modal --%>
+        <div id="privacyMessage" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="label8" aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        
+                        <h4 class="modal-title">
+                            <asp:Label ID="label8" ClientIDMode="Static" runat="server">Privacy Notice</asp:Label></h4><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    </div>
+                    <div class="modal-body" style="max-height: 600px; overflow: auto;">
+
+                        <asp:Literal ID="litPrivacy" runat="server"></asp:Literal>
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary float-right" data-dismiss="modal">OK</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <%-- Privacy Modal --%>
+        <div id="accessMessage" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="label9" aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        
+                        <h4 class="modal-title">
+                            <asp:Label ID="label9" ClientIDMode="Static" runat="server">Accessibility Help</asp:Label></h4><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    </div>
+                    <div class="modal-body" style="max-height: 600px; overflow: auto;">
+
+                        <asp:Literal ID="litAccess" runat="server"></asp:Literal>
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary float-right" data-dismiss="modal">OK</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+         <script>
+            Sys.Application.add_load(BindMasterEvents);
+          
+        </script>
+    </form>
+</body>
+    
+</html>
