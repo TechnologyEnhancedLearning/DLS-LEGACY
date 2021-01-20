@@ -12,7 +12,7 @@ Imports System.IO
 <ToolboxItem(False)>
 Public Class services
     Inherits System.Web.Services.WebService
-    Private Shared ReadOnly FindGeocodeUrl As String = "https://maps.google.com/maps/api/geocode/json?address={0}&key=AIzaSyChRVpjEZbrnmVhVcP_DebdexWPpmdgsBk"
+    Private Shared ReadOnly FindGeocodeUrl As String = "https://maps.google.com/maps/api/geocode/json?address={0}&key=" & ConfigurationManager.AppSettings("mapsAPIKey")
     <WebMethod()>
     Public Function GetGeoCode(ByVal addstr As String) As String
         Dim formattedUri As String = [String].Format(CultureInfo.InvariantCulture, FindGeocodeUrl, addstr)
