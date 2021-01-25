@@ -373,7 +373,6 @@
     <Content Include="cms\ManageContent.aspx" />
     <Content Include="cms\Publish.aspx" />
     <Content Include="cms\scoplayer\Lib\API.js" />
-    <Content Include="cms\scoplayer\Lib\API_1484_11.js" />
     <Content Include="cms\scoplayer\Lib\API_BASE.js" />
     <Content Include="cms\scoplayer\Lib\Controls.js" />
     <Content Include="cms\scoplayer\Lib\Ext\qunit\qunit.css" />
@@ -1524,7 +1523,6 @@
       <DependentUpon>progress.xsd</DependentUpon>
     </Content>
     <Content Include="scoplayer\Lib\API.js" />
-    <Content Include="scoplayer\Lib\API_1484_11.js" />
     <Content Include="scoplayer\Lib\API_BASE.js" />
     <Content Include="scoplayer\Lib\Controls.js" />
     <Content Include="scoplayer\Lib\Ext\qunit\qunit.css" />
