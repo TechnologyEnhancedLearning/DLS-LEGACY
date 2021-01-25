@@ -56,18 +56,11 @@
 	<script src="Lib/sscorlib.js"></script>  
 	<script src="Lib/ssfx.Core.js"></script> 
     <script src="../Scripts/sw_page_close.js"></script>
-	<%--<script src="../js/sw_page_close.js"></script>--%>
 	<script src="Lib/API_BASE.js"></script>    
-        <script src="Lib/API.js"></script>  
-        <script src="Lib/API_1484_11.js"></script>
-
-        <script src="Lib/Controls.js"></script>        
+    <script src="Lib/API.js"></script> 
+    <script src="Lib/Controls.js"></script>        
 	<script src="Lib/LocalStorage.js"></script>
 	<script src="Lib/Player.js"></script>
-	<script >
-		//if (!window.location.href.match(/localhost/gi)) {
-			//document.domain = "www.dls.nhs.uk";		} 
-	</script>
 </head>
 <body style="background-color:#3B1979;">
 	
