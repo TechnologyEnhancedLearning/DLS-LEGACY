@@ -84,7 +84,7 @@
        
         <SelectParameters>
             <asp:SessionParameter Name="CentreID" SessionField="UserCentreID" Type="Int32" />
-            <asp:Parameter Name="IsSuperAdmin" Type="Boolean" DefaultValue="0" />
+            <asp:Parameter Name="IsSuperAdmin" Type="Boolean" DefaultValue="False" />
         </SelectParameters>
        
     </asp:ObjectDataSource>

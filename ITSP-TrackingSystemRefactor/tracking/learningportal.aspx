@@ -33,7 +33,7 @@
     <asp:ObjectDataSource ID="dsCategories" runat="server"  OldValuesParameterFormatString="original_{0}" SelectMethod="GetActiveForCentre" TypeName="ITSP_TrackingSystemRefactor.itspdbTableAdapters.CourseCategoriesTableAdapter">
         <SelectParameters>
             <asp:SessionParameter Name="CentreID" SessionField="UserCentreID" Type="Int32" />
-            <asp:Parameter Name="IsSuperAdmin" Type="Boolean" DefaultValue="0" />
+            <asp:Parameter Name="IsSuperAdmin" Type="Boolean" DefaultValue="False" />
         </SelectParameters>
     </asp:ObjectDataSource>
     <asp:ObjectDataSource ID="dsKBUsage" runat="server" OldValuesParameterFormatString="original_{0}" SelectMethod="GetKBUsageData" TypeName="ITSP_TrackingSystemRefactor.knowledgebankdataTableAdapters.KBUsageTableAdapter">
