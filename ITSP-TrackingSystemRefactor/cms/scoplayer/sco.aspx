@@ -37,6 +37,7 @@
     <script src="../../Scripts/sw_page_close.js"></script>
     <script src="Lib/API_BASE.js"></script>
     <script src="Lib/API.js"></script>
+    <script src="Lib/Controls.js"></script>  
     <script src="Lib/LocalStorage.js"></script>
     <script src="Lib/Player.js"></script>
 
