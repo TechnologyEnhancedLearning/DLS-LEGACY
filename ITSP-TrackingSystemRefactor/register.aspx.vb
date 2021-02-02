@@ -341,14 +341,7 @@ Public Class register
         Dim taDelegate As New LearnMenuTableAdapters.CandidatesTableAdapter
         Dim tDelegate As New LearnMenu.CandidatesDataTable
         Dim taQ As New itspdbTableAdapters.QueriesTableAdapter
-        Dim sLPURL As String = taQ.GetLearningPortalUrlForCentre(Session("UserCentreID"))
-        If Not sLPURL Is Nothing Then
-            Session("LearningPortalUrl") = sLPURL
-        ElseIf taQ.GetBetaTestingForCentreID(Session("UserCentreID")) And Session("UserAdminID") > 0 Then
-            Session("LearningPortalUrl") = "https://www.dls.nhs.uk/v2/LearningPortal/Current"
-        Else
-            Session("LearningPortalUrl") = My.Settings.LearningPortalURL
-        End If
+        Session("LearningPortalUrl") = CCommon.GetLPURL(Session("UserAdminID"), Session("UserCentreID"))
         If sCandidateNumber = "-4" Then
             ScriptManager.RegisterStartupScript(Me, Me.GetType(), "ShowDupDelegateModal", "<script>$('#duplicateEmailModal').modal('show');</script>", False)
         Else
