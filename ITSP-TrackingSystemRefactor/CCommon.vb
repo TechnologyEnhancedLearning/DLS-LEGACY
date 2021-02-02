@@ -1517,4 +1517,22 @@ Public Class CCommon
         Return nTotalBytes
     End Function
 #End Region
+#Region "Configuration"
+    Public Shared Function GetLPURL(ByVal AdminID As Integer, ByVal CentreID As Integer) As String
+        Dim sWCLPURL As String = My.Settings.LearningPortalURL
+        If sWCLPURL = "https://www.dls.nhs.uk/dev-my-learning-portal/LearningPortal/Current" Then
+            Return sWCLPURL
+        Else
+            Dim taQ As New itspdbTableAdapters.QueriesTableAdapter
+            Dim sLPURL As String = taQ.GetLearningPortalUrlForCentre(CentreID)
+            If Not sLPURL Is Nothing Then
+                Return sLPURL
+            ElseIf taQ.GetBetaTestingForCentreID(CentreID) And AdminID > 0 Then
+                Return "https://www.dls.nhs.uk/v2/LearningPortal/Current"
+            Else
+                Return sWCLPURL
+            End If
+        End If
+    End Function
+#End Region
 End Class
