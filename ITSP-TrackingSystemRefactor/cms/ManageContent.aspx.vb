@@ -110,6 +110,7 @@ Public Class ManageContent
                 Dim fPath As String = fPathBase & "Course" + Page.Request.Item("courseid").ToString() + "\"
                 fPath = fPath & "Section" + e.CommandArgument.ToString() + "\"
                 If Directory.Exists(fPath) Then
+                    RemoveFileAttributes(fPath)
                     Directory.Delete(fPath, True)
                 End If
                 Dim taSec As New itspdbTableAdapters.SectionsTableAdapter
@@ -715,12 +716,14 @@ Public Class ManageContent
                             'we need to delete the containing folder:
                             Dim sPath As String = sOldPath.Substring(0, sOldPath.LastIndexOf("\"))
                             If Directory.Exists(sPath) Then
+                                RemoveFileAttributes(sPath)
                                 Directory.Delete(sPath, True)
                                 bContentDeleted = True
                             End If
                         Else
                             'we need to delete the file:
                             If File.Exists(sOldPath) Then
+                                RemoveFileAttributes(sOldPath)
                                 File.Delete(sOldPath)
                                 bContentDeleted = True
 
@@ -735,6 +738,12 @@ Public Class ManageContent
         End If
         Return bContentDeleted
     End Function
+    Public Shared Sub RemoveFileAttributes(ByVal target_dir As String)
+        Dim files As String() = Directory.GetFiles(target_dir)
+        For Each sFile In files
+            File.SetAttributes(sFile, FileAttributes.Normal)
+        Next
+    End Sub
     Protected Function CorrectTutorialURL(ByVal sURL As String) As String
         If sURL.StartsWith("/cms/CMSContent") Then
             sURL = My.Settings.MyURL & sURL
