@@ -264,6 +264,7 @@
                                     <li><a href="faqs" class="dropdown-item">FAQs</a></li>
                                     <li runat="server" id="liTickets"><a href="tickets" class="dropdown-item">Tickets</a></li>
                                     <li><a href="resources" class="dropdown-item">Resources</a></li>
+                                    <li><a href="https://github.com/TechnologyEnhancedLearning/DLS-LEGACY/projects/1?fullscreen=true" class="dropdown-item" target="_blank">Change Request Status (GitHub)</a></li>
                                 </ul>
                             </li>
                            
