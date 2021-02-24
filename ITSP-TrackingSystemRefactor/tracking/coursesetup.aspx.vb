@@ -237,6 +237,7 @@ Public Class coursesetup
                 Dim taTut As New customiseTableAdapters.CustomisationTutorialsTableAdapter
                 Dim tTut As New customise.CustomisationTutorialsDataTable
                 If Session("tsCustomisationID") > 0 Then
+                    taTut.AddNewTutorials(Session("tsCustomisationID"), nSectionID)
                     tTut = taTut.GetData(Session("tsCustomisationID"), nSectionID)
                 Else
                     tTut = taTut.GetDataForNew(nSectionID)
