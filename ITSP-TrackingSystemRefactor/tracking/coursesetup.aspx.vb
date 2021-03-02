@@ -4,6 +4,7 @@ Public Class coursesetup
     Inherits System.Web.UI.Page
 
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
+        Session("V2URL") = CCommon.GetConfigString("V2AppBaseUrl")
         Dim sTrackingURL As String = CCommon.GetConfigString("TrackingSystemBaseURL")
         Session("TSURL") = sTrackingURL
         If Session("AdminCategoryID") > 0 Then
