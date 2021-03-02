@@ -212,7 +212,7 @@
         </div>
     </div>
 </asp:Panel>
-<asp:Panel CssClass="modal modal-primary" ID="pnlAppSelect" ClientIDMode="Static" TabIndex="-1" role="dialog" aria-labelledby="lblAppSelect" runat="server">
+<asp:Panel CssClass="modal modal-primary" ID="pnlAppSelect" ClientIDMode="Static" role="dialog" aria-labelledby="lblAppSelect" runat="server">
     <div class="modal-dialog modal-lg animated zoomIn animated-3x" role="document">
         <div class="modal-content">
             <div class="modal-header d-block shadow-2dp no-pb">
