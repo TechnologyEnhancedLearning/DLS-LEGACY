@@ -485,7 +485,7 @@ Public Class register
                         Page.Response.Redirect("~/home")
                     Else
                         If Not Page.Request.Item("customisationid") Is Nothing Then
-                            Page.Response.Redirect("~/tracking/learn?customisationid=" & Page.Request.Item("customisationid"))
+                            Page.Response.Redirect("~/v2/LearninMenu/" & Page.Request.Item("customisationid"))
                         Else
                             Page.Response.Redirect("~/home?action=appselect")
                         End If
