@@ -39,7 +39,7 @@
                     </dx:BootstrapGridViewTextColumn>
                     <dx:BootstrapGridViewTextColumn Caption="Launch" Name="Launch" VisibleIndex="2">
                         <DataItemTemplate>
-                            <asp:HyperLink ID="hlLaunch" EnableViewState="false" ToolTip="Launch course" CssClass="btn btn-circle btn-success btn-sm" NavigateUrl='<%# "~/tracking/learn?centreid=" & Session("UserCentreID").ToString & "&customisationid=" & Eval("CustomisationID") %>' Target="_blank" runat="server"><i aria-hidden="false" class="fas fa-play"></i></asp:HyperLink>
+                            <asp:HyperLink ID="hlLaunch" EnableViewState="false" ToolTip="Launch course" CssClass="btn btn-circle btn-success btn-sm" NavigateUrl='<%# "~/v2/LearninMenu/" & Session("UserCentreID").ToString & "&customisationid=" & Eval("CustomisationID") %>' Target="_blank" runat="server"><i aria-hidden="false" class="fas fa-play"></i></asp:HyperLink>
                             <%--<asp:LinkButton ID="lbtLaunch" EnableViewState="false" ToolTip="Launch course" CssClass="btn btn-circle btn-success btn-sm" PostBackUrl='<%# "~/learn?centreid=" & Session("UserCentreID").ToString & "&customisationid=" & Eval("CustomisationID") %>' runat="server"><i aria-hidden="false" class="fa fa-play"></i></asp:LinkButton>--%>
                         </DataItemTemplate>
                     </dx:BootstrapGridViewTextColumn>
@@ -64,7 +64,7 @@
 
                     <dx:BootstrapGridViewTextColumn Caption="Copy" Name="Copy" VisibleIndex="10">
                         <DataItemTemplate>
-                            <span style="display: none;" id='<%# "lblURL" & Eval("CustomisationID")%>'><%# Session("TSURL") & "learn?centreid=" & Session("UserCentreID").ToString & "&customisationid=" & Eval("CustomisationID") %></span>
+                            <span style="display: none;" id='<%# "lblURL" & Eval("CustomisationID")%>'><%# Session("TSURL") & "v2/LearninMenu/" & Eval("CustomisationID") %></span>
                             <%--  <button id="copyButton" onclick='<%# "javascript:copyToClipboardMsg(document.getElementById('lblURL" & Eval("CustomisationID") & "');"%>'>Copy</button>
                    <asp:Label ID='<%# "lblURL2" & Eval("CustomisationID")%>' CssClass="hidden" runat="server" Text='<%# "~/learn?centreid=" & Session("UserCentreID").ToString & "&customisationid=" & Eval("CustomisationID") %>'></asp:Label>--%>
                             <asp:LinkButton EnableViewState="false" CausesValidation="false" OnClientClick='<%# "copyToClipboardMsg(""lblURL" & Eval("CustomisationID") & """); return false;" %>' CssClass="btn btn-circle btn-outline-secondary btn-sm" ID="lbtCopy" runat="server"><i aria-hidden="false" class="far fa-copy"></i></asp:LinkButton>
