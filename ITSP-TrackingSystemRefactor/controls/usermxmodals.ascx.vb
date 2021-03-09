@@ -629,6 +629,7 @@ Public Class usermxmodals
             Session("AdminCategoryID") = 0
             Session("IsSupervisor") = False
             Session("IsTrainer") = False
+            Session("IsFrameworkDeveloper") = False
             GetAdminRecord(sUsername, nCentreID, sPassword)
             GetDelegateRecord(sUsername, nCentreID, sPassword)
             If Session("UserAdminID") Is Nothing And Session("learnUserAuthenticated") Then
@@ -650,8 +651,9 @@ Public Class usermxmodals
                     claims.Add(New Claim("learnUserAuthenticated", Session("learnUserAuthenticated")))
                     claims.Add(New Claim("AdminCategoryID", Session("AdminCategoryID")))
                     claims.Add(New Claim("IsSupervisor", Session("IsSupervisor")))
-                    claims.Add(New Claim("IsTrainer", Session("IsTrainer")))
-                    If Not Session("learnCandidateNumber") Is Nothing Then
+                claims.Add(New Claim("IsTrainer", Session("IsTrainer")))
+                claims.Add(New Claim("IsFrameworkDeveloper", Session("IsFrameworkDeveloper")))
+                If Not Session("learnCandidateNumber") Is Nothing Then
                         claims.Add(New Claim("learnCandidateNumber", Session("learnCandidateNumber"), ""))
                     End If
                     If Not Session("UserForename") Is Nothing Then
@@ -802,6 +804,7 @@ Public Class usermxmodals
                     Session("IsSupervisor") = r.Item("Supervisor")
                     Session("IsTrainer") = r.Item("Trainer")
                     Session("UserCentreReports") = r.Item("SummaryReports")
+                    Session("IsFrameworkDeveloper") = r.Item("IsFrameworkDeveloper")
                     CEITSProfile.LoadProfileFromString(r.Item("EITSProfile")).SetProfile(Session)
                     'lbtAccount.Visible = False
                     'lbtAppSelect.Visible = True
