@@ -257,6 +257,24 @@ Partial Public Class usermxmodals
     Protected WithEvents lbtCC As Global.System.Web.UI.WebControls.LinkButton
 
     '''<summary>
+    '''pnlFrameworkDeveloper control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents pnlFrameworkDeveloper As Global.System.Web.UI.WebControls.Panel
+
+    '''<summary>
+    '''lnkFrameworkDeveloper control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lnkFrameworkDeveloper As Global.System.Web.UI.HtmlControls.HtmlAnchor
+
+    '''<summary>
     '''pnlWebSite control.
     '''</summary>
     '''<remarks>

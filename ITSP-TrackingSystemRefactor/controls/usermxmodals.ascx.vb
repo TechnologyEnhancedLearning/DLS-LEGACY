@@ -114,6 +114,10 @@ Public Class usermxmodals
             End If
             pnlCMS.Visible = Session("UserAuthenticatedCM")
             pnlCC.Visible = Session("UserCentreManager")
+            pnlFrameworkDeveloper.Visible = Session("IsFrameworkDeveloper")
+            If Session("IsFrameworkDeveloper") Then
+                lnkFrameworkDeveloper.HRef = CCommon.GetConfigString("V2AppBaseUrl") & "Frameworks/MyFrameworks"
+            End If
         End If
 
     End Sub
