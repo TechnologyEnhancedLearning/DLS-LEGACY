@@ -5244,6 +5244,8 @@ Partial Public Class ITSP
         
         Private columnLogin As Global.System.Data.DataColumn
         
+        Private columnIsFrameworkDeveloper As Global.System.Data.DataColumn
+        
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
         Public Sub New()
@@ -5496,6 +5498,14 @@ Partial Public Class ITSP
         End Property
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public ReadOnly Property IsFrameworkDeveloperColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnIsFrameworkDeveloper
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0"),  _
          Global.System.ComponentModel.Browsable(false)>  _
         Public ReadOnly Property Count() As Integer
@@ -5558,9 +5568,10 @@ Partial Public Class ITSP
                     ByVal Supervisor As Boolean,  _
                     ByVal Trainer As Boolean,  _
                     ByVal CategoryID As Integer,  _
-                    ByVal Login As String) As AdminUsersRow
+                    ByVal Login As String,  _
+                    ByVal IsFrameworkDeveloper As Boolean) As AdminUsersRow
             Dim rowAdminUsersRow As AdminUsersRow = CType(Me.NewRow,AdminUsersRow)
-            Dim columnValuesArray() As Object = New Object() {Nothing, Password, Nothing, CentreAdmin, ConfigAdmin, SummaryReports, UserAdmin, CentreName, BetaTesting, Forename, Surname, Email, IsCentreManager, Approved, PasswordReminder, EITSProfile, Active, ContentManager, PublishToAll, ImportOnly, ContentCreator, FailedLoginCount, ProfileImage, Supervisor, Trainer, CategoryID, Login}
+            Dim columnValuesArray() As Object = New Object() {Nothing, Password, Nothing, CentreAdmin, ConfigAdmin, SummaryReports, UserAdmin, CentreName, BetaTesting, Forename, Surname, Email, IsCentreManager, Approved, PasswordReminder, EITSProfile, Active, ContentManager, PublishToAll, ImportOnly, ContentCreator, FailedLoginCount, ProfileImage, Supervisor, Trainer, CategoryID, Login, IsFrameworkDeveloper}
             If (Not (parentCentresRowByFK_AdminUsers_Centres) Is Nothing) Then
                 columnValuesArray(2) = parentCentresRowByFK_AdminUsers_Centres(0)
             End If
@@ -5619,6 +5630,7 @@ Partial Public Class ITSP
             Me.columnTrainer = MyBase.Columns("Trainer")
             Me.columnCategoryID = MyBase.Columns("CategoryID")
             Me.columnLogin = MyBase.Columns("Login")
+            Me.columnIsFrameworkDeveloper = MyBase.Columns("IsFrameworkDeveloper")
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -5678,6 +5690,8 @@ Partial Public Class ITSP
             MyBase.Columns.Add(Me.columnCategoryID)
             Me.columnLogin = New Global.System.Data.DataColumn("Login", GetType(String), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnLogin)
+            Me.columnIsFrameworkDeveloper = New Global.System.Data.DataColumn("IsFrameworkDeveloper", GetType(Boolean), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnIsFrameworkDeveloper)
             Me.Constraints.Add(New Global.System.Data.UniqueConstraint("Constraint1", New Global.System.Data.DataColumn() {Me.columnAdminID}, true))
             Me.columnAdminID.AutoIncrement = true
             Me.columnAdminID.AutoIncrementSeed = -1
@@ -5715,6 +5729,7 @@ Partial Public Class ITSP
             Me.columnTrainer.AllowDBNull = false
             Me.columnCategoryID.AllowDBNull = false
             Me.columnLogin.MaxLength = 250
+            Me.columnIsFrameworkDeveloper.AllowDBNull = false
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -21005,6 +21020,17 @@ Partial Public Class ITSP
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Property IsFrameworkDeveloper() As Boolean
+            Get
+                Return CType(Me(Me.tableAdminUsers.IsFrameworkDeveloperColumn),Boolean)
+            End Get
+            Set
+                Me(Me.tableAdminUsers.IsFrameworkDeveloperColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
         Public Property CentresRow() As CentresRow
             Get
                 Return CType(Me.GetParentRow(Me.Table.ParentRelations("FK_AdminUsers_Centres")),CentresRow)
@@ -34119,6 +34145,7 @@ Namespace ITSPTableAdapters
             tableMapping.ColumnMappings.Add("Trainer", "Trainer")
             tableMapping.ColumnMappings.Add("CategoryID", "CategoryID")
             tableMapping.ColumnMappings.Add("Login", "Login")
+            tableMapping.ColumnMappings.Add("IsFrameworkDeveloper", "IsFrameworkDeveloper")
             Me._adapter.TableMappings.Add(tableMapping)
             Me._adapter.DeleteCommand = New Global.System.Data.SqlClient.SqlCommand()
             Me._adapter.DeleteCommand.Connection = Me.Connection
@@ -34131,11 +34158,12 @@ Namespace ITSPTableAdapters
                 "SummaryReports], [UserAdmin], [Forename], [Surname], [Email], [IsCentreManager],"& _ 
                 " [Approved], [PasswordReminder], [EITSProfile], [Active], [ContentManager], [Pub"& _ 
                 "lishToAll], [ImportOnly], [ContentCreator], [FailedLoginCount], [ProfileImage], "& _ 
-                "[Supervisor], [Trainer], [CategoryID], [Login]) VALUES (@Password, @CentreID, @C"& _ 
-                "entreAdmin, @ConfigAdmin, @SummaryReports, @UserAdmin, @Forename, @Surname, @Ema"& _ 
-                "il, @IsCentreManager, @Approved, @PasswordReminder, @EITSProfile, @Active, @Cont"& _ 
-                "entManager, @PublishToAll, @ImportOnly, @ContentCreator, @FailedLoginCount, @Pro"& _ 
-                "fileImage, @Supervisor, @Trainer, @CategoryID, @Login)"
+                "[Supervisor], [Trainer], [CategoryID], [Login], [IsFrameworkDeveloper]) VALUES ("& _ 
+                "@Password, @CentreID, @CentreAdmin, @ConfigAdmin, @SummaryReports, @UserAdmin, @"& _ 
+                "Forename, @Surname, @Email, @IsCentreManager, @Approved, @PasswordReminder, @EIT"& _ 
+                "SProfile, @Active, @ContentManager, @PublishToAll, @ImportOnly, @ContentCreator,"& _ 
+                " @FailedLoginCount, @ProfileImage, @Supervisor, @Trainer, @CategoryID, @Login, @"& _ 
+                "IsFrameworkDeveloper)"
             Me._adapter.InsertCommand.CommandType = Global.System.Data.CommandType.Text
             Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Password", Global.System.Data.SqlDbType.VarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "Password", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
             Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@CentreID", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "CentreID", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
@@ -34161,6 +34189,7 @@ Namespace ITSPTableAdapters
             Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Trainer", Global.System.Data.SqlDbType.Bit, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "Trainer", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
             Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@CategoryID", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "CategoryID", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
             Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Login", Global.System.Data.SqlDbType.VarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "Login", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IsFrameworkDeveloper", Global.System.Data.SqlDbType.Bit, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "IsFrameworkDeveloper", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
             Me._adapter.UpdateCommand = New Global.System.Data.SqlClient.SqlCommand()
             Me._adapter.UpdateCommand.Connection = Me.Connection
             Me._adapter.UpdateCommand.CommandText = "UPDATE [AdminUsers] SET [Password] = @Password, [CentreID] = @CentreID, [CentreAd"& _ 
@@ -34171,8 +34200,8 @@ Namespace ITSPTableAdapters
                 "@Active, [ContentManager] = @ContentManager, [PublishToAll] = @PublishToAll, [Im"& _ 
                 "portOnly] = @ImportOnly, [ContentCreator] = @ContentCreator, [FailedLoginCount] "& _ 
                 "= @FailedLoginCount, [ProfileImage] = @ProfileImage, [Supervisor] = @Supervisor,"& _ 
-                " [Trainer] = @Trainer, [CategoryID] = @CategoryID, [Login] = @Login WHERE (([Adm"& _ 
-                "inID] = @Original_AdminID))"
+                " [Trainer] = @Trainer, [CategoryID] = @CategoryID, [Login] = @Login, [IsFramewor"& _ 
+                "kDeveloper] = @IsFrameworkDeveloper WHERE (([AdminID] = @Original_AdminID))"
             Me._adapter.UpdateCommand.CommandType = Global.System.Data.CommandType.Text
             Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Password", Global.System.Data.SqlDbType.VarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "Password", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
             Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@CentreID", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "CentreID", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
@@ -34198,6 +34227,7 @@ Namespace ITSPTableAdapters
             Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Trainer", Global.System.Data.SqlDbType.Bit, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "Trainer", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
             Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@CategoryID", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "CategoryID", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
             Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Login", Global.System.Data.SqlDbType.VarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "Login", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IsFrameworkDeveloper", Global.System.Data.SqlDbType.Bit, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "IsFrameworkDeveloper", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
             Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_AdminID", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "AdminID", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
         End Sub
         
@@ -34214,17 +34244,15 @@ Namespace ITSPTableAdapters
             Me._commandCollection = New Global.System.Data.SqlClient.SqlCommand(15) {}
             Me._commandCollection(0) = New Global.System.Data.SqlClient.SqlCommand()
             Me._commandCollection(0).Connection = Me.Connection
-            Me._commandCollection(0).CommandText = "SELECT        AdminID, Password, CentreID, CentreAdmin, ConfigAdmin, SummaryRepor"& _ 
-                "ts, UserAdmin,"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                             (SELECT        CentreName"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"        "& _ 
-                "                       FROM            Centres"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                               W"& _ 
-                "HERE        (CentreID = AdminUsers.CentreID)) AS CentreName,"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                  "& _ 
-                "           (SELECT        BetaTesting"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                               FROM      "& _ 
-                "      Centres AS Centres_1"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                               WHERE        (CentreI"& _ 
-                "D = AdminUsers.CentreID)) AS BetaTesting, Forename, Surname, Email, IsCentreMana"& _ 
-                "ger, Approved, PasswordReminder, EITSProfile, Active, ContentManager, PublishToA"& _ 
-                "ll, ImportOnly, ContentCreator, "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         FailedLoginCount, Pro"& _ 
-                "fileImage, Supervisor, Trainer, CategoryID, Login"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"FROM            AdminUsers"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"O"& _ 
-                "RDER BY Surname, Forename"
+            Me._commandCollection(0).CommandText = "SELECT AdminID, Password, CentreID, CentreAdmin, ConfigAdmin, SummaryReports, Use"& _ 
+                "rAdmin,"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                 (SELECT CentreName"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                 FROM    Centres"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)& _ 
+                "                 WHERE (CentreID = AdminUsers.CentreID)) AS CentreName,"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"       "& _ 
+                "          (SELECT BetaTesting"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                 FROM    Centres AS Centres_1"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"  "& _ 
+                "               WHERE (CentreID = AdminUsers.CentreID)) AS BetaTesting, Forename,"& _ 
+                " Surname, Email, IsCentreManager, Approved, PasswordReminder, EITSProfile, Activ"& _ 
+                "e, ContentManager, PublishToAll, ImportOnly, ContentCreator, FailedLoginCount, P"& _ 
+                "rofileImage, Supervisor, Trainer, "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"             CategoryID, Login, IsFrameworkD"& _ 
+                "eveloper"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"FROM   AdminUsers"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"ORDER BY Surname, Forename"
             Me._commandCollection(0).CommandType = Global.System.Data.CommandType.Text
             Me._commandCollection(1) = New Global.System.Data.SqlClient.SqlCommand()
             Me._commandCollection(1).Connection = Me.Connection
@@ -34232,9 +34260,10 @@ Namespace ITSPTableAdapters
                 "HERE (CentreID = AdminUsers.CentreID)) AS BetaTesting, CategoryID, CentreAdmin, "& _ 
                 "CentreID, (SELECT CentreName FROM Centres WHERE (CentreID = AdminUsers.CentreID)"& _ 
                 ") AS CentreName, ConfigAdmin, ContentCreator, ContentManager, EITSProfile, Email"& _ 
-                ", FailedLoginCount, Forename, ImportOnly, IsCentreManager, Login, Password, Pass"& _ 
-                "wordReminder, ProfileImage, PublishToAll, SummaryReports, Supervisor, Surname, T"& _ 
-                "rainer, UserAdmin FROM AdminUsers WHERE (AdminID = @AdminID) AND (Active = 1)"
+                ", FailedLoginCount, Forename, ImportOnly, IsCentreManager, IsFrameworkDeveloper,"& _ 
+                " Login, Password, PasswordReminder, ProfileImage, PublishToAll, SummaryReports, "& _ 
+                "Supervisor, Surname, Trainer, UserAdmin FROM AdminUsers WHERE (AdminID = @AdminI"& _ 
+                "D) AND (Active = 1)"
             Me._commandCollection(1).CommandType = Global.System.Data.CommandType.Text
             Me._commandCollection(1).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@AdminID", Global.System.Data.SqlDbType.Int, 4, Global.System.Data.ParameterDirection.Input, 0, 0, "AdminID", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
             Me._commandCollection(2) = New Global.System.Data.SqlClient.SqlCommand()
@@ -34243,10 +34272,10 @@ Namespace ITSPTableAdapters
                 "HERE (CentreID = AdminUsers.CentreID)) AS BetaTesting, CategoryID, CentreAdmin, "& _ 
                 "CentreID, (SELECT CentreName FROM Centres WHERE (CentreID = AdminUsers.CentreID)"& _ 
                 ") AS CentreName, ConfigAdmin, ContentCreator, ContentManager, EITSProfile, Email"& _ 
-                ", FailedLoginCount, Forename, ImportOnly, IsCentreManager, Login, Password, Pass"& _ 
-                "wordReminder, ProfileImage, PublishToAll, SummaryReports, Supervisor, Surname, T"& _ 
-                "rainer, UserAdmin FROM AdminUsers WHERE (CentreID = @CentreID) AND (UserAdmin = "& _ 
-                "0) AND (Active = 1)"
+                ", FailedLoginCount, Forename, ImportOnly, IsCentreManager, IsFrameworkDeveloper,"& _ 
+                " Login, Password, PasswordReminder, ProfileImage, PublishToAll, SummaryReports, "& _ 
+                "Supervisor, Surname, Trainer, UserAdmin FROM AdminUsers WHERE (CentreID = @Centr"& _ 
+                "eID) AND (UserAdmin = 0) AND (Active = 1)"
             Me._commandCollection(2).CommandType = Global.System.Data.CommandType.Text
             Me._commandCollection(2).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@CentreID", Global.System.Data.SqlDbType.Int, 4, Global.System.Data.ParameterDirection.Input, 0, 0, "CentreID", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
             Me._commandCollection(3) = New Global.System.Data.SqlClient.SqlCommand()
@@ -34255,10 +34284,10 @@ Namespace ITSPTableAdapters
                 "HERE (CentreID = AdminUsers.CentreID)) AS BetaTesting, CategoryID, CentreAdmin, "& _ 
                 "CentreID, (SELECT CentreName FROM Centres WHERE (CentreID = AdminUsers.CentreID)"& _ 
                 ") AS CentreName, ConfigAdmin, ContentCreator, ContentManager, EITSProfile, Email"& _ 
-                ", FailedLoginCount, Forename, ImportOnly, IsCentreManager, Login, Password, Pass"& _ 
-                "wordReminder, ProfileImage, PublishToAll, SummaryReports, Supervisor, Surname, T"& _ 
-                "rainer, UserAdmin FROM AdminUsers WHERE (Email = @Email) AND (Approved = 1) AND "& _ 
-                "(Active = 1)"
+                ", FailedLoginCount, Forename, ImportOnly, IsCentreManager, IsFrameworkDeveloper,"& _ 
+                " Login, Password, PasswordReminder, ProfileImage, PublishToAll, SummaryReports, "& _ 
+                "Supervisor, Surname, Trainer, UserAdmin FROM AdminUsers WHERE (Email = @Email) A"& _ 
+                "ND (Approved = 1) AND (Active = 1)"
             Me._commandCollection(3).CommandType = Global.System.Data.CommandType.Text
             Me._commandCollection(3).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Email", Global.System.Data.SqlDbType.VarChar, 250, Global.System.Data.ParameterDirection.Input, 0, 0, "Email", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
             Me._commandCollection(4) = New Global.System.Data.SqlClient.SqlCommand()
@@ -34267,10 +34296,10 @@ Namespace ITSPTableAdapters
                 "HERE (CentreID = AdminUsers.CentreID)) AS BetaTesting, CategoryID, CentreAdmin, "& _ 
                 "CentreID, (SELECT CentreName FROM Centres WHERE (CentreID = AdminUsers.CentreID)"& _ 
                 ") AS CentreName, ConfigAdmin, ContentCreator, ContentManager, EITSProfile, Email"& _ 
-                ", FailedLoginCount, Forename, ImportOnly, IsCentreManager, Login, Password, Pass"& _ 
-                "wordReminder, ProfileImage, PublishToAll, SummaryReports, Supervisor, Surname, T"& _ 
-                "rainer, UserAdmin FROM AdminUsers WHERE (Login = @Login) AND (Approved = 1) AND "& _ 
-                "(Active = 1)"
+                ", FailedLoginCount, Forename, ImportOnly, IsCentreManager, IsFrameworkDeveloper,"& _ 
+                " Login, Password, PasswordReminder, ProfileImage, PublishToAll, SummaryReports, "& _ 
+                "Supervisor, Surname, Trainer, UserAdmin FROM AdminUsers WHERE (Login = @Login) A"& _ 
+                "ND (Approved = 1) AND (Active = 1)"
             Me._commandCollection(4).CommandType = Global.System.Data.CommandType.Text
             Me._commandCollection(4).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Login", Global.System.Data.SqlDbType.VarChar, 250, Global.System.Data.ParameterDirection.Input, 0, 0, "Login", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
             Me._commandCollection(5) = New Global.System.Data.SqlClient.SqlCommand()
@@ -34278,13 +34307,14 @@ Namespace ITSPTableAdapters
             Me._commandCollection(5).CommandText = "SELECT Active, AdminID, Approved, CategoryID, CentreAdmin, CentreID, (SELECT Cent"& _ 
                 "reName FROM Centres WHERE (CentreID = AdminUsers.CentreID)) AS CentreName, Confi"& _ 
                 "gAdmin, ContentCreator, ContentManager, EITSProfile, Email, FailedLoginCount, Fo"& _ 
-                "rename, ImportOnly, IsCentreManager, Login, Password, PasswordReminder, ProfileI"& _ 
-                "mage, PublishToAll, SummaryReports, Supervisor, Surname, Trainer, UserAdmin FROM"& _ 
-                " AdminUsers WHERE (Email LIKE '%' + @email + '%') AND ((SELECT CentreName FROM C"& _ 
-                "entres AS Centres_1 WHERE (CentreID = AdminUsers.CentreID)) LIKE '%' + @centre +"& _ 
-                " '%') AND (Active = 1) OR (Email LIKE '%' + @email + '%') AND ((SELECT CentreNam"& _ 
-                "e FROM Centres AS Centres_1 WHERE (CentreID = AdminUsers.CentreID)) LIKE '%' + @"& _ 
-                "centre + '%') AND (@HideInactive = 0) ORDER BY Surname, Forename"
+                "rename, ImportOnly, IsCentreManager, IsFrameworkDeveloper, Login, Password, Pass"& _ 
+                "wordReminder, ProfileImage, PublishToAll, SummaryReports, Supervisor, Surname, T"& _ 
+                "rainer, UserAdmin FROM AdminUsers WHERE (Email LIKE '%' + @email + '%') AND ((SE"& _ 
+                "LECT CentreName FROM Centres AS Centres_1 WHERE (CentreID = AdminUsers.CentreID)"& _ 
+                ") LIKE '%' + @centre + '%') AND (Active = 1) OR (Email LIKE '%' + @email + '%') "& _ 
+                "AND ((SELECT CentreName FROM Centres AS Centres_1 WHERE (CentreID = AdminUsers.C"& _ 
+                "entreID)) LIKE '%' + @centre + '%') AND (@HideInactive = 0) ORDER BY Surname, Fo"& _ 
+                "rename"
             Me._commandCollection(5).CommandType = Global.System.Data.CommandType.Text
             Me._commandCollection(5).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@email", Global.System.Data.SqlDbType.VarChar, 250, Global.System.Data.ParameterDirection.Input, 0, 0, "Email", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
             Me._commandCollection(5).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@centre", Global.System.Data.SqlDbType.VarChar, 1024, Global.System.Data.ParameterDirection.Input, 0, 0, "", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
@@ -34295,9 +34325,10 @@ Namespace ITSPTableAdapters
                 "HERE (CentreID = AdminUsers.CentreID)) AS BetaTesting, CategoryID, CentreAdmin, "& _ 
                 "CentreID, (SELECT CentreName FROM Centres WHERE (CentreID = AdminUsers.CentreID)"& _ 
                 ") AS CentreName, ConfigAdmin, ContentCreator, ContentManager, EITSProfile, Email"& _ 
-                ", FailedLoginCount, Forename, ImportOnly, IsCentreManager, Login, Password, Pass"& _ 
-                "wordReminder, ProfileImage, PublishToAll, SummaryReports, Supervisor, Surname, T"& _ 
-                "rainer, UserAdmin FROM AdminUsers WHERE (AdminID = @AdminID)"
+                ", FailedLoginCount, Forename, ImportOnly, IsCentreManager, IsFrameworkDeveloper,"& _ 
+                " Login, Password, PasswordReminder, ProfileImage, PublishToAll, SummaryReports, "& _ 
+                "Supervisor, Surname, Trainer, UserAdmin FROM AdminUsers WHERE (AdminID = @AdminI"& _ 
+                "D)"
             Me._commandCollection(6).CommandType = Global.System.Data.CommandType.Text
             Me._commandCollection(6).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@AdminID", Global.System.Data.SqlDbType.Int, 4, Global.System.Data.ParameterDirection.Input, 0, 0, "AdminID", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
             Me._commandCollection(7) = New Global.System.Data.SqlClient.SqlCommand()
@@ -34372,7 +34403,7 @@ Namespace ITSPTableAdapters
             Me._commandCollection(14).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@AdminID", Global.System.Data.SqlDbType.Int, 4, Global.System.Data.ParameterDirection.Input, 0, 0, "AdminID", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
             Me._commandCollection(15) = New Global.System.Data.SqlClient.SqlCommand()
             Me._commandCollection(15).Connection = Me.Connection
-            Me._commandCollection(15).CommandText = "dbo.uspUpdateAdminUser"
+            Me._commandCollection(15).CommandText = "dbo.uspUpdateAdminUser_V2"
             Me._commandCollection(15).CommandType = Global.System.Data.CommandType.StoredProcedure
             Me._commandCollection(15).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@RETURN_VALUE", Global.System.Data.SqlDbType.Int, 4, Global.System.Data.ParameterDirection.ReturnValue, 10, 0, Nothing, Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
             Me._commandCollection(15).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Login", Global.System.Data.SqlDbType.NVarChar, 250, Global.System.Data.ParameterDirection.Input, 0, 0, Nothing, Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
@@ -34389,6 +34420,7 @@ Namespace ITSPTableAdapters
             Me._commandCollection(15).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@PublishToAll", Global.System.Data.SqlDbType.Bit, 1, Global.System.Data.ParameterDirection.Input, 1, 0, Nothing, Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
             Me._commandCollection(15).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@ImportOnly", Global.System.Data.SqlDbType.Bit, 1, Global.System.Data.ParameterDirection.Input, 1, 0, Nothing, Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
             Me._commandCollection(15).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@ContentCreator", Global.System.Data.SqlDbType.Bit, 1, Global.System.Data.ParameterDirection.Input, 1, 0, Nothing, Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._commandCollection(15).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IsFrameworkDeveloper", Global.System.Data.SqlDbType.Bit, 1, Global.System.Data.ParameterDirection.Input, 1, 0, Nothing, Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
             Me._commandCollection(15).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_AdminID", Global.System.Data.SqlDbType.Int, 4, Global.System.Data.ParameterDirection.Input, 10, 0, Nothing, Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
         End Sub
         
@@ -34587,7 +34619,8 @@ Namespace ITSPTableAdapters
                     ByVal Supervisor As Boolean,  _
                     ByVal Trainer As Boolean,  _
                     ByVal CategoryID As Integer,  _
-                    ByVal Login As String) As Integer
+                    ByVal Login As String,  _
+                    ByVal IsFrameworkDeveloper As Boolean) As Integer
             If (Password Is Nothing) Then
                 Throw New Global.System.ArgumentNullException("Password")
             Else
@@ -34640,6 +34673,7 @@ Namespace ITSPTableAdapters
             Else
                 Me.Adapter.InsertCommand.Parameters(23).Value = CType(Login,String)
             End If
+            Me.Adapter.InsertCommand.Parameters(24).Value = CType(IsFrameworkDeveloper,Boolean)
             Dim previousConnectionState As Global.System.Data.ConnectionState = Me.Adapter.InsertCommand.Connection.State
             If ((Me.Adapter.InsertCommand.Connection.State And Global.System.Data.ConnectionState.Open)  _
                         <> Global.System.Data.ConnectionState.Open) Then
@@ -34684,6 +34718,7 @@ Namespace ITSPTableAdapters
                     ByVal Trainer As Boolean,  _
                     ByVal CategoryID As Integer,  _
                     ByVal Login As String,  _
+                    ByVal IsFrameworkDeveloper As Boolean,  _
                     ByVal Original_AdminID As Integer) As Integer
             If (Password Is Nothing) Then
                 Throw New Global.System.ArgumentNullException("Password")
@@ -34737,7 +34772,8 @@ Namespace ITSPTableAdapters
             Else
                 Me.Adapter.UpdateCommand.Parameters(23).Value = CType(Login,String)
             End If
-            Me.Adapter.UpdateCommand.Parameters(24).Value = CType(Original_AdminID,Integer)
+            Me.Adapter.UpdateCommand.Parameters(24).Value = CType(IsFrameworkDeveloper,Boolean)
+            Me.Adapter.UpdateCommand.Parameters(25).Value = CType(Original_AdminID,Integer)
             Dim previousConnectionState As Global.System.Data.ConnectionState = Me.Adapter.UpdateCommand.Connection.State
             If ((Me.Adapter.UpdateCommand.Connection.State And Global.System.Data.ConnectionState.Open)  _
                         <> Global.System.Data.ConnectionState.Open) Then
@@ -34815,7 +34851,7 @@ Namespace ITSPTableAdapters
         Public Overloads Overridable Function InsertWithoutProfile(ByVal Login As String, ByVal Password As String, ByVal CentreID As Integer, ByVal CentreAdmin As Boolean, ByVal ConfigAdmin As Boolean, ByVal SummaryReports As Boolean, ByVal UserAdmin As Boolean, ByVal Forename As String, ByVal Surname As String, ByVal Email As String, ByVal IsCentreManager As Boolean, ByVal Approved As Boolean, ByVal PasswordReminder As Boolean) As Integer
             Dim command As Global.System.Data.SqlClient.SqlCommand = Me.CommandCollection(9)
             If (Login Is Nothing) Then
-                Throw New Global.System.ArgumentNullException("Login")
+                command.Parameters(0).Value = Global.System.DBNull.Value
             Else
                 command.Parameters(0).Value = CType(Login,String)
             End If
@@ -35017,7 +35053,23 @@ Namespace ITSPTableAdapters
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0"),  _
          Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
          Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Update, false)>  _
-        Public Overloads Overridable Function UpdateWithoutProfile(ByVal Login As String, ByVal CentreID As Global.System.Nullable(Of Integer), ByVal CentreAdmin As Global.System.Nullable(Of Boolean), ByVal ConfigAdmin As Global.System.Nullable(Of Boolean), ByVal Forename As String, ByVal Surname As String, ByVal Email As String, ByVal IsCentreManager As Global.System.Nullable(Of Boolean), ByVal Approved As Global.System.Nullable(Of Boolean), ByVal Active As Global.System.Nullable(Of Boolean), ByVal ContentManager As Global.System.Nullable(Of Boolean), ByVal PublishToAll As Global.System.Nullable(Of Boolean), ByVal ImportOnly As Global.System.Nullable(Of Boolean), ByVal ContentCreator As Global.System.Nullable(Of Boolean), ByVal Original_AdminID As Global.System.Nullable(Of Integer)) As Integer
+        Public Overloads Overridable Function UpdateWithoutProfile( _
+                    ByVal Login As String,  _
+                    ByVal CentreID As Global.System.Nullable(Of Integer),  _
+                    ByVal CentreAdmin As Global.System.Nullable(Of Boolean),  _
+                    ByVal ConfigAdmin As Global.System.Nullable(Of Boolean),  _
+                    ByVal Forename As String,  _
+                    ByVal Surname As String,  _
+                    ByVal Email As String,  _
+                    ByVal IsCentreManager As Global.System.Nullable(Of Boolean),  _
+                    ByVal Approved As Global.System.Nullable(Of Boolean),  _
+                    ByVal Active As Global.System.Nullable(Of Boolean),  _
+                    ByVal ContentManager As Global.System.Nullable(Of Boolean),  _
+                    ByVal PublishToAll As Global.System.Nullable(Of Boolean),  _
+                    ByVal ImportOnly As Global.System.Nullable(Of Boolean),  _
+                    ByVal ContentCreator As Global.System.Nullable(Of Boolean),  _
+                    ByVal IsFrameworkDeveloper As Global.System.Nullable(Of Boolean),  _
+                    ByVal Original_AdminID As Global.System.Nullable(Of Integer)) As Integer
             Dim command As Global.System.Data.SqlClient.SqlCommand = Me.CommandCollection(15)
             If (Login Is Nothing) Then
                 command.Parameters(1).Value = Global.System.DBNull.Value
@@ -35089,10 +35141,15 @@ Namespace ITSPTableAdapters
             Else
                 command.Parameters(14).Value = Global.System.DBNull.Value
             End If
-            If (Original_AdminID.HasValue = true) Then
-                command.Parameters(15).Value = CType(Original_AdminID.Value,Integer)
+            If (IsFrameworkDeveloper.HasValue = true) Then
+                command.Parameters(15).Value = CType(IsFrameworkDeveloper.Value,Boolean)
             Else
                 command.Parameters(15).Value = Global.System.DBNull.Value
+            End If
+            If (Original_AdminID.HasValue = true) Then
+                command.Parameters(16).Value = CType(Original_AdminID.Value,Integer)
+            Else
+                command.Parameters(16).Value = Global.System.DBNull.Value
             End If
             Dim previousConnectionState As Global.System.Data.ConnectionState = command.Connection.State
             If ((command.Connection.State And Global.System.Data.ConnectionState.Open)  _

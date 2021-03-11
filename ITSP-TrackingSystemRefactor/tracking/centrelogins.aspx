@@ -197,6 +197,12 @@
                         </div>
                     </div>
                     <div class="form-group row">
+                        <asp:Label ID="Label7" AssociatedControlID="cbFrameworkDeveloper" runat="server" CssClass="col col-sm-4 control-label">Framework Developer:</asp:Label>
+                        <div class="col col-sm-8">
+                            <asp:CheckBox ID="cbFrameworkDeveloper" CssClass="checkbox" runat="server" />
+                        </div>
+                    </div>
+                    <div class="form-group row">
                         <asp:Label ID="Label1" AssociatedControlID="ddCategory" runat="server" CssClass="col col-sm-4 control-label">Learning Category:</asp:Label>
                         <div class="col col-sm-8">
                             <asp:DropDownList ID="ddCategory" DataSourceID="dsCategories" DataTextField="CategoryName" DataValueField="CourseCategoryID" CssClass="form-control" runat="server"></asp:DropDownList>
