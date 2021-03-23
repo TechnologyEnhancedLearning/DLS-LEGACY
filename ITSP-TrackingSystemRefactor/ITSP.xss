@@ -13,7 +13,7 @@
     <Shape ID="DesignTable:Sessions" ZOrder="48" X="370" Y="290" Height="319" Width="300" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="168" />
     <Shape ID="DesignTable:SessionHash" ZOrder="85" X="622" Y="71" Height="204" Width="300" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="99" />
     <Shape ID="DesignTable:Centres" ZOrder="6" X="1287" Y="228" Height="381" Width="300" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="254" />
-    <Shape ID="DesignTable:AdminUsers" ZOrder="3" X="723" Y="727" Height="381" Width="300" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="254" />
+    <Shape ID="DesignTable:AdminUsers" ZOrder="1" X="723" Y="727" Height="533" Width="300" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="358" />
     <Shape ID="DesignTable:Regions" ZOrder="67" X="1077" Y="713" Height="135" Width="223" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="76" />
     <Shape ID="DesignTable:CentreTypes" ZOrder="80" X="1472" Y="773" Height="135" Width="255" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="76" />
     <Shape ID="DesignTable:JobGroups" ZOrder="78" X="948" Y="81" Height="158" Width="243" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="76" />
@@ -33,7 +33,7 @@
     <Shape ID="DesignTable:CandidatesAnswer" ZOrder="17" X="1245" Y="28" Height="181" Width="252" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="54" />
     <Shape ID="DesignTable:ValidateCCSerial" ZOrder="12" X="53" Y="734" Height="115" Width="300" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="64" />
     <Shape ID="DesignTable:SearchCandidates" ZOrder="66" X="1586" Y="964" Height="273" Width="300" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="214" />
-    <Shape ID="DesignTable:Customisations" ZOrder="2" X="1494" Y="1530" Height="365" Width="490" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="214" />
+    <Shape ID="DesignTable:Customisations" ZOrder="3" X="1494" Y="1530" Height="365" Width="490" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="214" />
     <Shape ID="DesignTable:Progress" ZOrder="16" X="1044" Y="1668" Height="411" Width="300" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="260" />
     <Shape ID="DesignTable:Log" ZOrder="52" X="397" Y="1631" Height="250" Width="192" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="191" />
     <Shape ID="DesignTable:AssessAttempts" ZOrder="22" X="653" Y="1676" Height="319" Width="300" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="237" />
@@ -47,7 +47,7 @@
     <Shape ID="DesignTable:CentresInfo" ZOrder="7" X="1067" Y="318" Height="305" Width="212" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="254" />
     <Shape ID="DesignTable:AdminUsersList" ZOrder="18" X="82" Y="2453" Height="115" Width="221" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="64" />
     <Shape ID="DesignTable:ContractUsageDash" ZOrder="15" X="1774" Y="1918" Height="305" Width="258" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="254" />
-    <Shape ID="DesignSources:QueriesTableAdapter" ZOrder="1" X="720" Y="404" Height="361" Width="300" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="357" />
+    <Shape ID="DesignSources:QueriesTableAdapter" ZOrder="2" X="720" Y="404" Height="361" Width="300" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="357" />
   </Shapes>
   <Connectors>
     <Connector ID="DesignRelation:FK_Sessions_Candidates" ZOrder="87" LineWidth="11">
@@ -225,12 +225,16 @@
     <Connector ID="DesignRelation:FK_AdminUsers_Centres2" ZOrder="70" LineWidth="11">
       <RoutePoints>
         <Point>
-          <X>755</X>
+          <X>706</X>
           <Y>1168</Y>
         </Point>
         <Point>
-          <X>755</X>
-          <Y>1108</Y>
+          <X>706</X>
+          <Y>1151</Y>
+        </Point>
+        <Point>
+          <X>723</X>
+          <Y>1151</Y>
         </Point>
       </RoutePoints>
     </Connector>
@@ -574,7 +578,7 @@
         </Point>
         <Point>
           <X>1006</X>
-          <Y>1108</Y>
+          <Y>1260</Y>
         </Point>
       </RoutePoints>
     </Connector>

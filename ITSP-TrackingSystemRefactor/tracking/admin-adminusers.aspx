@@ -128,6 +128,7 @@
                     <asp:Parameter Name="ImportOnly" Type="Boolean" />
                     <asp:Parameter Name="ContentCreator" Type="Boolean" />
                     <asp:Parameter Name="Original_AdminID" Type="Int32" />
+                    <asp:Parameter Name="IsFrameworkDeveloper" Type="Boolean" />
                 </UpdateParameters>
             </asp:ObjectDataSource>
 
@@ -221,6 +222,11 @@
                                             </div>
                                             <div class="checkbox">
                                                 <asp:Label ID="Label15" runat="server"><asp:CheckBox ID="PublishToAllCheckBox" runat="server" Checked='<%# Bind("PublishToAll") %>' /> CMS Publish to All Centres</asp:Label>
+                                            </div>
+                                            <div class="checkbox">
+                                                <asp:Label ID="Label1" runat="server">
+                                                   <asp:CheckBox ID="cbFrameworkDeveloper" runat="server" Checked='<%# Bind("IsFrameworkDeveloper") %>' />
+                                                    Framework Developer</asp:Label>
                                             </div>
                                         </asp:Panel>
                                     </div>

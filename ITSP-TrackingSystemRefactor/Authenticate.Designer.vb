@@ -786,6 +786,8 @@ Partial Public Class Authenticate
         
         Private columnSummaryReports As Global.System.Data.DataColumn
         
+        Private columnIsFrameworkDeveloper As Global.System.Data.DataColumn
+        
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
         Public Sub New()
@@ -982,6 +984,14 @@ Partial Public Class Authenticate
         End Property
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public ReadOnly Property IsFrameworkDeveloperColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnIsFrameworkDeveloper
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0"),  _
          Global.System.ComponentModel.Browsable(false)>  _
         Public ReadOnly Property Count() As Integer
@@ -1037,9 +1047,10 @@ Partial Public Class Authenticate
                     ByVal CategoryID As Integer,  _
                     ByVal Supervisor As Boolean,  _
                     ByVal Trainer As Boolean,  _
-                    ByVal SummaryReports As Boolean) As AdminUsersRow
+                    ByVal SummaryReports As Boolean,  _
+                    ByVal IsFrameworkDeveloper As Boolean) As AdminUsersRow
             Dim rowAdminUsersRow As AdminUsersRow = CType(Me.NewRow,AdminUsersRow)
-            Dim columnValuesArray() As Object = New Object() {Nothing, CentreAdmin, Nothing, CentreName, ContentCreator, ContentManager, Email, FailedLoginCount, Forename, ImportOnly, IsCentreManager, Password, PublishToAll, Surname, UserAdmin, EITSProfile, CategoryID, Supervisor, Trainer, SummaryReports}
+            Dim columnValuesArray() As Object = New Object() {Nothing, CentreAdmin, Nothing, CentreName, ContentCreator, ContentManager, Email, FailedLoginCount, Forename, ImportOnly, IsCentreManager, Password, PublishToAll, Surname, UserAdmin, EITSProfile, CategoryID, Supervisor, Trainer, SummaryReports, IsFrameworkDeveloper}
             If (Not (parentCentresRowByFK_AdminUsers_Centres) Is Nothing) Then
                 columnValuesArray(2) = parentCentresRowByFK_AdminUsers_Centres(0)
             End If
@@ -1091,6 +1102,7 @@ Partial Public Class Authenticate
             Me.columnSupervisor = MyBase.Columns("Supervisor")
             Me.columnTrainer = MyBase.Columns("Trainer")
             Me.columnSummaryReports = MyBase.Columns("SummaryReports")
+            Me.columnIsFrameworkDeveloper = MyBase.Columns("IsFrameworkDeveloper")
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -1136,6 +1148,8 @@ Partial Public Class Authenticate
             MyBase.Columns.Add(Me.columnTrainer)
             Me.columnSummaryReports = New Global.System.Data.DataColumn("SummaryReports", GetType(Boolean), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnSummaryReports)
+            Me.columnIsFrameworkDeveloper = New Global.System.Data.DataColumn("IsFrameworkDeveloper", GetType(Boolean), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnIsFrameworkDeveloper)
             Me.Constraints.Add(New Global.System.Data.UniqueConstraint("Constraint1", New Global.System.Data.DataColumn() {Me.columnAdminID}, true))
             Me.columnAdminID.AutoIncrement = true
             Me.columnAdminID.AutoIncrementSeed = -1
@@ -1167,6 +1181,7 @@ Partial Public Class Authenticate
             Me.columnSupervisor.AllowDBNull = false
             Me.columnTrainer.AllowDBNull = false
             Me.columnSummaryReports.AllowDBNull = false
+            Me.columnIsFrameworkDeveloper.AllowDBNull = false
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -2011,6 +2026,17 @@ Partial Public Class Authenticate
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Property IsFrameworkDeveloper() As Boolean
+            Get
+                Return CType(Me(Me.tableAdminUsers.IsFrameworkDeveloperColumn),Boolean)
+            End Get
+            Set
+                Me(Me.tableAdminUsers.IsFrameworkDeveloperColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
         Public Property CentresRow() As CentresRow
             Get
                 Return CType(Me.GetParentRow(Me.Table.ParentRelations("FK_AdminUsers_Centres")),CentresRow)
@@ -2609,6 +2635,7 @@ Namespace AuthenticateTableAdapters
             tableMapping.ColumnMappings.Add("Supervisor", "Supervisor")
             tableMapping.ColumnMappings.Add("Trainer", "Trainer")
             tableMapping.ColumnMappings.Add("SummaryReports", "SummaryReports")
+            tableMapping.ColumnMappings.Add("IsFrameworkDeveloper", "IsFrameworkDeveloper")
             Me._adapter.TableMappings.Add(tableMapping)
         End Sub
         
@@ -2625,18 +2652,17 @@ Namespace AuthenticateTableAdapters
             Me._commandCollection = New Global.System.Data.SqlClient.SqlCommand(0) {}
             Me._commandCollection(0) = New Global.System.Data.SqlClient.SqlCommand()
             Me._commandCollection(0).Connection = Me.Connection
-            Me._commandCollection(0).CommandText = "SELECT        AdminID, CentreAdmin, CentreID,"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                             (SELE"& _ 
-                "CT        CentreName"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                               FROM            Centres"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"  "& _ 
-                "                             WHERE        (CentreID = AdminUsers.CentreID)) AS C"& _ 
-                "entreName, ContentCreator, ContentManager, Email, FailedLoginCount, Forename, Im"& _ 
-                "portOnly, IsCentreManager, Password, PublishToAll, Surname, UserAdmin, EITSProfi"& _ 
-                "le, "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         CategoryID, Supervisor, Trainer, SummaryReports"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)& _ 
-                "FROM            AdminUsers"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"WHERE        (Login = @Username) AND (Approved = 1) "& _ 
-                "AND (Active = 1) AND (CentreID = @CentreID) OR"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         (Approv"& _ 
-                "ed = 1) AND (Active = 1) AND (CentreID = @CentreID) AND (Email = @Username) OR"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)& _ 
-                "                         (Login = @Username) AND (Approved = 1) AND (Active = 1)"& _ 
-                " AND (@CentreID = 0) OR"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         (Approved = 1) AND (Active = 1"& _ 
-                ") AND (Email = @Username) AND (@CentreID = 0)"
+            Me._commandCollection(0).CommandText = "SELECT AdminID, CentreAdmin, CentreID,"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                 (SELECT CentreName"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"    "& _ 
+                "             FROM    Centres"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                 WHERE (CentreID = AdminUsers.Cent"& _ 
+                "reID)) AS CentreName, ContentCreator, ContentManager, Email, FailedLoginCount, F"& _ 
+                "orename, ImportOnly, IsCentreManager, Password, PublishToAll, Surname, UserAdmin"& _ 
+                ", EITSProfile, CategoryID, Supervisor, Trainer, SummaryReports, "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"             I"& _ 
+                "sFrameworkDeveloper"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"FROM   AdminUsers"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"WHERE (Login = @Username) AND (Approved "& _ 
+                "= 1) AND (Active = 1) AND (CentreID = @CentreID) OR"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"             (Approved = 1)"& _ 
+                " AND (Active = 1) AND (CentreID = @CentreID) AND (Email = @Username) OR"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"       "& _ 
+                "      (Login = @Username) AND (Approved = 1) AND (Active = 1) AND (@CentreID = 0"& _ 
+                ") OR"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"             (Approved = 1) AND (Active = 1) AND (Email = @Username) AND ("& _ 
+                "@CentreID = 0)"
             Me._commandCollection(0).CommandType = Global.System.Data.CommandType.Text
             Me._commandCollection(0).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Username", Global.System.Data.SqlDbType.VarChar, 250, Global.System.Data.ParameterDirection.Input, 0, 0, "Login", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
             Me._commandCollection(0).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@CentreID", Global.System.Data.SqlDbType.Int, 4, Global.System.Data.ParameterDirection.Input, 0, 0, "CentreID", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))

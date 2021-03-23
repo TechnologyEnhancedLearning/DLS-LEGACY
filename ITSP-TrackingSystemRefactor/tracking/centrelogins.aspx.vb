@@ -56,6 +56,7 @@
             cbCCLicence.Checked = r.ContentCreator
             cbSupervisor.Checked = r.Supervisor
             cbTrainer.Checked = r.Trainer
+            cbFrameworkDeveloper.Checked = r.IsFrameworkDeveloper
             Dim taContractDash As New ITSPTableAdapters.ContractUsageDashTableAdapter
             Dim tCD As New ITSP.ContractUsageDashDataTable
             tCD = taContractDash.GetData(Session("UserCentreID"))

@@ -289,6 +289,17 @@
             </div>
                                               </div></asp:LinkButton>
                             </asp:Panel>
+                            <asp:Panel ID="pnlFrameworkDeveloper" CssClass="col-md-6" runat="server">
+
+                                <a runat="server" id="lnkFrameworkDeveloper" href="#">
+                                    <div class="card ms-feature card-itsp-green mb-3"><div class="img-hover"></div>
+                                                  <div class="text-center umx-card card-header">
+              <i class="fas fa-th-list fa-4x mb-3"></i>
+              <div class="h6 text-white">Frameworks</div>
+
+            </div>
+                                              </div></a>
+                            </asp:Panel>
                             <asp:Panel ID="pnlWebSite" CssClass="col-md-6" runat="server">
                                 <asp:LinkButton ID="lbtDLSWebSite" PostBackUrl="~/Home" runat="server">
                                               <div class="card ms-feature card-itsp-blue mb-3"><div class="img-hover"></div>
