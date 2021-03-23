@@ -1,4 +1,4 @@
-﻿<%@ Page Title="Find Your Centre" Language="vb" AutoEventWireup="false" MasterPageFile="~/Landing.Master" CodeBehind="findyourcentre.aspx.vb" Inherits="ITSP_TrackingSystemRefactor.findyourcentre" %>
+﻿<%@ Page Title="Find Your Centre" Language="vb" AutoEventWireup="false" CodeBehind="findyourcentre.aspx.vb" Inherits="ITSP_TrackingSystemRefactor.findyourcentre" %>
 
 <%@ Register Assembly="DevExpress.Web.Bootstrap.v19.2, Version=19.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" Namespace="DevExpress.Web.Bootstrap" TagPrefix="dx" %>
 <%@ Register assembly="DevExpress.Web.v19.2, Version=19.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" namespace="DevExpress.Web" tagprefix="dx" %>

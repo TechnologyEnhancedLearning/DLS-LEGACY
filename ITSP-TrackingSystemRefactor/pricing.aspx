@@ -1,4 +1,4 @@
-﻿<%@ Page Title="Pricing" Language="vb" AutoEventWireup="false" MasterPageFile="~/Landing.Master" CodeBehind="pricing.aspx.vb" Inherits="ITSP_TrackingSystemRefactor.pricing" %>
+﻿<%@ Page Title="Pricing" Language="vb" AutoEventWireup="false" CodeBehind="pricing.aspx.vb" Inherits="ITSP_TrackingSystemRefactor.pricing" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
     <asp:ObjectDataSource ID="dsContractTypes" runat="server" OldValuesParameterFormatString="original_{0}" SelectMethod="GetData" TypeName="ITSP_TrackingSystemRefactor.prelogindataTableAdapters.ContractTypesTableAdapter"></asp:ObjectDataSource>
     <div class="container"> 

@@ -557,7 +557,7 @@ Public Class register
             Dim sNameClaim As String = ConfigurationManager.AppSettings("ida:NameClaim")
             Dim fName As String = ""
             Dim lName As String = ""
-            If Not System.Security.Claims.ClaimsPrincipal.Current.FindFirst(sNameClaim).Value Is Nothing Then
+            If Not System.Security.Claims.ClaimsPrincipal.Current.FindFirst(sNameClaim) Is Nothing Then
                 Dim sName As String = System.Security.Claims.ClaimsPrincipal.Current.FindFirst(sNameClaim).Value
 
                 If sName.Contains(", ") And sName.Contains("(") Then

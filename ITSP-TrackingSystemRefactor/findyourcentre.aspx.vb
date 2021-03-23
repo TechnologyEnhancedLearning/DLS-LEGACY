@@ -5,4 +5,11 @@
 
     End Sub
 
+    Private Sub me_PreInit(sender As Object, e As EventArgs) Handles Me.PreInit
+        If Not Page.Request.Item("nonav") Is Nothing Then
+            MasterPageFile = "~/nonav.Master"
+        Else
+            MasterPageFile = "~/Landing.Master"
+        End If
+    End Sub
 End Class

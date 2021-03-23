@@ -1,4 +1,4 @@
-﻿<%@ Page Title="Learning Content" Language="vb" AutoEventWireup="false" MasterPageFile="~/Landing.Master" CodeBehind="learning.aspx.vb" Inherits="ITSP_TrackingSystemRefactor.learning" %>
+﻿<%@ Page Title="Learning Content" Language="vb" AutoEventWireup="false" CodeBehind="learning.aspx.vb" Inherits="ITSP_TrackingSystemRefactor.learning" %>
 
 <%@ Register Src="~/controls/brand.ascx" TagPrefix="uc1" TagName="brand" %>
 
