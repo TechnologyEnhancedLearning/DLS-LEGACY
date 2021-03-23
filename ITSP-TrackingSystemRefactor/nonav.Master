@@ -1,0 +1,165 @@
+﻿<%@ Master Language="VB" AutoEventWireup="false" CodeBehind="nonav.Master.vb" Inherits="ITSP_TrackingSystemRefactor.nonav" %>
+
+<%@ Register Src="~/controls/usermx.ascx" TagPrefix="uc1" TagName="usermx" %>
+<%@ Register Src="~/controls/usermxmodals.ascx" TagPrefix="uc1" TagName="usermxmodals" %>
+
+
+
+<!DOCTYPE html>
+
+<html lang="en">
+<head runat="server">
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title><%: Page.Title %> - Digital Learning Solutions</title>
+    <asp:PlaceHolder runat="server">
+        <%: Scripts.Render("~/bundles/modernizr") %>
+    </asp:PlaceHolder>
+    <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+    <link href="Content/plugins.min.css" rel="stylesheet" />
+    <link href="Content/landing.css" rel="stylesheet" />
+    <link href="Content/preload.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="//use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+        <link href="Content/bootstrap-toggle.min.css" rel="stylesheet" />
+    <style>
+     @media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
+     /* IE11 fix for button positioning issue in modal footer */
+     .modal-footer{
+        display: block !important;
+     }
+}
+     video {
+    margin:0 auto;
+    min-width: 100%;
+    min-height: 100%;
+    width: auto;
+    height: auto;
+    z-index: -100;
+    background-size: cover;
+    transition: 1s opacity;
+}
+         .img-fluid {
+        max-width: 100% !important;
+    }
+          .img-overlay-monitor{
+            position: absolute;
+        width: 100%;
+        top: 0;
+        left: 15px
+        }
+         .ms-hero-material-list {
+        list-style-type: none;
+        padding: 0;
+        margin-top:20px
+         }
+
+        .ms-hero-material-list li {
+            display: table;
+            margin-bottom: 40px;
+            margin-bottom: 4rem
+        }
+
+            .ms-hero-material-list li .ms-list-icon {
+                display: table-cell;
+                vertical-align: middle
+            }
+
+                .ms-hero-material-list li .ms-list-icon .ms-icon {
+                    margin: 0 20px 0 0;
+                    margin: 0 2rem 0 0
+                }
+
+            .ms-hero-material-list li .ms-list-text {
+                display: table-cell;
+                vertical-align: middle;
+                font-size: 18px;
+                font-size: 1.8rem;
+                line-height: 30px;
+                line-height: 3rem
+            }
+                .pad-right-twenty{
+        margin-right:20px;
+    }
+ </style>
+     <noscript>
+         <style>
+             .ms-preload{
+                 display: none !important;
+             }
+         </style>
+     </noscript>
+</head>
+<body>
+    <form id="form1" runat="server">
+        <script src="Scripts/plugins.min.js"></script>
+            <script src="Scripts/bootstrap-toggle.min.js"></script>
+    <script src="Scripts/app.min.js"></script>
+     <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
+        <script src="Scripts/bsasper.js"></script>
+        <script>
+            function BindMasterEvents() {
+
+                $(document).ready(function () {
+                    $("input, textarea, select").bsasper({
+                        placement: "right", createContent: function (errors) {
+                            return '<span class="text-danger">' + errors[0] + '</span>';
+                        }
+                    });
+                    $('.pick-date').datepicker({
+                        format: "dd/mm/yyyy"
+                    });
+                });
+                $('.bs-toggle').bootstrapToggle({
+                    on: 'Subscribed',
+                    off: 'Unsubscribed',
+                    onstyle: 'success',
+                    offstyle: 'danger',
+                    width: '100px'
+                });
+                
+                doPopover()
+
+                function doPopover(s, e) {
+                    $('[data-toggle="popover"]').popover();
+                }
+            };
+            jQuery(function ($) {
+                if (typeof $.fn.datepicker.defaults != 'undefined') {
+                    $.fn.datepicker.defaults.format = "dd/mm/yyyy";
+                    $.fn.datepicker.defaults.autoclose = true;
+                }
+                $('.ticker').jTicker();
+                $('.dropdown-toggle').on('focus', function () {
+                    $(this).click();
+                })
+            });
+
+        </script>
+       
+        <asp:ContentPlaceHolder ID="SkipToContentLink" runat="server">
+
+            </asp:ContentPlaceHolder>
+        <div class="ms-site-container">
+            
+           
+            <main id="maincontent">
+            <asp:ContentPlaceHolder ID="MainContent" runat="server">
+            </asp:ContentPlaceHolder></main>
+            
+            <div class="btn-back-top">
+                <a href="#" data-scroll id="back-top" aria-label="Scroll to top of page" class="btn-circle btn-circle-primary btn-circle-sm btn-circle-raised ">
+                    <i class="fas fa-arrow-up"></i>
+                </a>
+            </div>
+
+        </div>
+     
+         <script>
+            Sys.Application.add_load(BindMasterEvents);
+          
+        </script>
+    </form>
+</body>
+    
+</html>
