@@ -81,9 +81,9 @@
             <asp:Label CssClass="float-right text-muted" ID="EvaluatedLabel" runat="server" Text='<%# Bind("Evaluated", "{0:dd/MM/yyyy}") %>' />
                                             </div>
                                             <div class="list-group-item">
-                                                Archived:
+                                                Remove:
                                                 <asp:Label CssClass="float-right text-muted" ID="Label23" runat="server" Text='<%# Bind("RemovedDate", "{0:dd/MM/yyyy}") %>' />
-                                                <asp:LinkButton ID="lbtArchive" OnCommand="lbtArchive_Command" CssClass="float-right btn btn-sm btn-outline-danger" ToolTip="Archive Enrollment" OnClientClick="return confirm('Are you sure you wish to Archive this enrolment (the course will no longer appear on the delegate's current courses list and their progress will be archived)?');" CommandArgument='<%# Eval("ProgressID") %>' Visible='<%# Eval("RemovedDate").ToString.Length = 0 And Eval("Completed").ToString.Length = 0 %>' runat="server"><i class="fas fa-trash"></i></asp:LinkButton>
+                                                <asp:LinkButton ID="lbtArchive" OnCommand="lbtArchive_Command" CssClass="float-right btn btn-sm btn-outline-danger" ToolTip="Remove enrolment" OnClientClick="return confirm('Are you sure you wish to remove this enrolment (the course will no longer appear on the delegate's current/complete courses list and their progress will be marked as removed)?');" CommandArgument='<%# Eval("ProgressID") %>' Visible='<%# Eval("RemovedDate").ToString.Length = 0 %>' runat="server"><i class="fas fa-trash"></i></asp:LinkButton>
                                             </div>
                                         </div>
                                     </div>
