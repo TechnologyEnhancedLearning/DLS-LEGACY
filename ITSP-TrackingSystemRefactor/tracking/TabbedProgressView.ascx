@@ -145,16 +145,16 @@
                                 <div class="modal-content">
                                     <div class="modal-header">
 
-                                        <h5 class="modal-title">Archive Enrolment?</h5>
+                                        <h5 class="modal-title">Remove Enrolment?</h5>
                                         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                                     </div>
                                     <div class="modal-body">
                                         <asp:HiddenField ID="hfRemoveProgressID" runat="server" />
-                                        <p>Are you sure that you wish to remove this course from the delegate's Current Courses list and archive their progress?</p>
+                                        <p>Are you sure that you wish to remove this course from the delegate's Current/Completed Courses list and archive their progress?</p>
                                     </div>
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-outline-secondary mr-auto float-left" data-dismiss="modal">Cancel</button>
-                                        <asp:LinkButton ID="lbtConfirmRemove" OnCommand="lbtConfirmRemove_Command" ToolTip="Confirm archive" class="btn btn-danger float-right" runat="server">Archive</asp:LinkButton>
+                                        <asp:LinkButton ID="lbtConfirmRemove" OnCommand="lbtConfirmRemove_Command" ToolTip="Confirm remove" class="btn btn-danger float-right" runat="server">Remove</asp:LinkButton>
                                     </div>
                                 </div>
                                 <!-- /.modal-content -->
