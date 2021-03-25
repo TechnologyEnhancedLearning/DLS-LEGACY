@@ -53,14 +53,27 @@ function initMap() {
             }
         ]
     });
-    loadMapMarkers(0);
+    const queryString = window.location.search;
+    const urlParams = new URLSearchParams(queryString);
+    if (urlParams.has('centreid')) {
+        const cid = parseInt(urlParams.get('centreid'))
+        if (isNaN(cid)) {
+            loadMapMarkers(0);
+        }
+        else {
+            loadMapMarkers(cid);
+        }
+    }
+    else {
+        loadMapMarkers(0);
+    }
 }
 function loadMapMarkers(cid) {
     closeInfos();
     clearMarkers();
     map.controls[google.maps.ControlPosition.TOP_CENTER].clear();
     $.ajax({
-        type: "POST", 
+        type: "POST",
         url: "services.asmx/GetMapData",
         data: "{'cid': '" + cid + "'}",
         contentType: "application/json; charset=utf-8",
@@ -106,17 +119,18 @@ function loadMapMarkers(cid) {
             };
             if (parsed.length !== 1) {
 
-             if (navigator.geolocation) {
-                navigator.geolocation.getCurrentPosition(function (position) {
-                    var pos = {
-                        lat: position.coords.latitude,
-                        lng: position.coords.longitude
-                    };
-                    map.setCenter(pos);
-                    map.setZoom(10);
-                 });
-                 
-            }}
+                if (navigator.geolocation) {
+                    navigator.geolocation.getCurrentPosition(function (position) {
+                        var pos = {
+                            lat: position.coords.latitude,
+                            lng: position.coords.longitude
+                        };
+                        map.setCenter(pos);
+                        map.setZoom(10);
+                    });
+
+                }
+            }
             else {
                 var pos = {
                     lat: parsed[0].latitude,
@@ -137,7 +151,7 @@ function loadMapMarkers(cid) {
                 resetControlDiv.index = 1;
                 map.controls[google.maps.ControlPosition.TOP_CENTER].push(resetControlDiv);
             }
-           
+
 
         },
         error: function (XHR, errStatus, errorThrown) {
@@ -208,10 +222,10 @@ function getDescription(props) {
         s = s + '<p title="Contact email"><a href="mailto:' + props.pwEmail + '"><i class="fas fa-envelope mr-2"></i> ' + props.pwEmail + '</a></p>'
     }
     if (props.pwWebURL) {
-       s = s + '<p title="Website"><a href="' + props.pwWebURL +'" target="_blank"><i class="fas fa-globe mr-2"></i> ' + props.pwWebURL + '</a></p>'
+        s = s + '<p title="Website"><a href="' + props.pwWebURL + '" target="_blank"><i class="fas fa-globe mr-2"></i> ' + props.pwWebURL + '</a></p>'
     }
     if (props.pwTrainingLocations) {
-       s = s + '<p title="Training Venues"><i class="fas fa-map-marker-alt mr-2"></i> ' + props.pwTrainingLocations + '</p>'
+        s = s + '<p title="Training Venues"><i class="fas fa-map-marker-alt mr-2"></i> ' + props.pwTrainingLocations + '</p>'
     }
     if (props.pwHours) {
         s = s + '<p title="Opening hours"><i class="fas fa-clock mr-2"></i> ' + props.pwHours + '</p>'
