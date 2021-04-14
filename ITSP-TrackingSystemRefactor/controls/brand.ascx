@@ -185,7 +185,7 @@
                        
                         
                     <button type="button" class="btn btn-info btn-sm btn-block btn-raised mt-2 no-mb" data-toggle="modal" data-target='<%#"#myModal" & Eval("ApplicationID").ToString %>'>
-<i class="fas fa-align-justify"></i> View Course Outline
+<i class="fas fa-align-justify"></i> Course Outline
 </button>
                     
                   </div>
