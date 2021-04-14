@@ -78,7 +78,7 @@ API.LMSCommit = function (param) {
 };
 API.LMSGetLastError = function () { return API.$0.LMSGetLastError(); };
 API.LMSGetErrorString = function (param) { return API.$0.LMSGetErrorString(param); };
-API.LMSGetDiagnostic = function () { return ''; };
+API.LMSGetDiagnostic = function () { return false; };
 SCORM_1_2.ActivityTreeNode.createClass('SCORM_1_2.ActivityTreeNode', null, API_BASE.IActivityTreeNode); SCORM_1_2.ActivityTree.createClass('SCORM_1_2.ActivityTree', SCORM_1_2.ActivityTreeNode, API_BASE.IActivityTree); SCORM_1_2.API_LIB.createClass('SCORM_1_2.API_LIB', null, API_BASE.IAPI); API.createClass('API'); SCORM_1_2.API_LIB.defaulT_LESSON_STATUS = 'not attempted'; API.$0 = null;
 
 //Variable to hold time:
@@ -167,7 +167,7 @@ function ITSPSetValue(e, v) {
 	            type: "POST",
 	            url: trackurl,
 	            data: data,
-	            success: saveSuccess(data),
+				success: window.parent.closeMpe(),
 	            dataType: String
 	        });
         }

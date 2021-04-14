@@ -60,7 +60,7 @@ API.LMSSetValue = function (element, value) {
 API.LMSCommit = function(param) { return API.$0.LMSCommit(param); }
 API.LMSGetLastError = function () { return API.$0.LMSGetLastError(); }
 API.LMSGetErrorString = function (param) { return API.$0.LMSGetErrorString(param); }
-API.LMSGetDiagnostic = function (param) { return API.LMSGetDiagnostic(param); }
+API.LMSGetDiagnostic = function (param) { return false; }
 SCORM_1_2.ActivityTreeNode.createClass('SCORM_1_2.ActivityTreeNode', null, API_BASE.IActivityTreeNode); SCORM_1_2.ActivityTree.createClass('SCORM_1_2.ActivityTree', SCORM_1_2.ActivityTreeNode, API_BASE.IActivityTree); SCORM_1_2.API_LIB.createClass('SCORM_1_2.API_LIB', null, API_BASE.IAPI); API.createClass('API'); SCORM_1_2.API_LIB.defaulT_LESSON_STATUS = 'not attempted'; API.$0 = null;
 
 //Variable to hold time:
