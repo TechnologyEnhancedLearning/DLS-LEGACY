@@ -171,7 +171,7 @@ function ITSPSetValue(e, v) {
 	            dataType: String
 	        });
         }
-        else if (v === "") {
+		else if (vtype !== "pl" && v === "") {
             //Store complete
             window.parent.closeMpe();
         }
