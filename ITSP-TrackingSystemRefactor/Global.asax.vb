@@ -17,6 +17,8 @@ Public Class Global_asax
             Me.Response.Headers("X-FRAME-OPTIONS") = "ALLOWALL"
         Else
             Me.Response.Headers("X-FRAME-OPTIONS") = "ALLOW-FROM https://localhost:44367/"
+            Me.Response.Headers("X-FRAME-OPTIONS") = "ALLOW-FROM https://localhost:44363/"
+            Me.Response.Headers("X-FRAME-OPTIONS") = "ALLOW-FROM https://hee-dls-test.softwire.com/"
         End If
     End Sub
     Private Sub Session_Start(ByVal sender As Object, ByVal e As EventArgs)
