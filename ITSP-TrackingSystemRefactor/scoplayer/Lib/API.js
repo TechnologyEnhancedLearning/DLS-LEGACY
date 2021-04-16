@@ -161,7 +161,7 @@ function ITSPSetValue(e, v) {
 	            dataType: String
 	        });
 	    }
-	    if (vtype === "pl" && s >= 1) {
+	    if (vtype === "pl" && s >= 1 && v !== "") {
 	        var data = { action: "StoreASPAssessNoSession", CandidateID: vcandidate, CustomisationID: vcust, Version: vversion, SectionID: vsection, Score: s }
 	        $.ajax({
 	            type: "POST",
