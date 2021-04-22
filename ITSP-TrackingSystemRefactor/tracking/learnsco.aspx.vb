@@ -1033,10 +1033,13 @@ Public Class learnsco
         Logout()
     End Sub
 
-    Private Sub btnSendReminder_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles btnSendReminder.Click
+    Private Sub btnSendReminder_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles btnSendReminder.Click, lbtReminder.Click
         Dim toAdd As String = tbEmail_u.Text
         If toAdd = "" Then
             toAdd = tbEmail.Text
+        End If
+        If toAdd = "" Then
+            toAdd = tbUserName.Text
         End If
         DoReminder(toAdd)
         Logout()
