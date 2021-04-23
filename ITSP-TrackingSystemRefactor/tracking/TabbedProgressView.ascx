@@ -249,11 +249,14 @@
                                             <div class="col-4 col-sm-4">
                                                 <div class="btn-group btn-group-sm float-right" role="group" aria-label="...">
                                                     <asp:LinkButton ID="lbtSummary" CssClass="btn btn-info" CommandArgument='<%# Eval("ProgressID") %>' CommandName="summary" ToolTip="Generate PDF progress summary for printing / saving / sending"
-                                                        runat="server"><i aria-hidden="true" class="far fa-file-pdf"></i> PDF Summary</asp:LinkButton><asp:LinkButton
+                                                        runat="server"><i aria-hidden="true" class="far fa-file-pdf"></i> PDF Summary</asp:LinkButton>
+                                                    <%--<asp:LinkButton
                                                             Visible='<%# Eval("IsAssessed") And Eval("Completed").ToString.Length > 0 And Eval("Evaluated").ToString.Length > 0 %>'
                                                             ID="lbtCert" runat="server" ToolTip="Click to access certificate of completion"
-                                                            CssClass="btn btn-success" CommandName="finalise" CommandArgument='<%# Eval("ProgressID") %>'><i aria-hidden="true" class="fas fa-trophy"></i> Certificate</asp:LinkButton>
-                                                    <asp:LinkButton
+                                                            CssClass="btn btn-success" CommandName="finalise" CommandArgument='<%# Eval("ProgressID") %>'><i aria-hidden="true" class="fas fa-trophy"></i> Certificate</asp:LinkButton>--%>
+                                                    <asp:HyperLink ID="HyperLink1"
+                                                        ToolTip="Click to access certificate of completion" NavigateUrl='<%# "./finalise?ProgressID=" & Eval("ProgressID") %>' 
+                                                            CssClass="btn btn-success" Visible='<%# Eval("IsAssessed") And Eval("Completed").ToString.Length > 0 And Eval("Evaluated").ToString.Length > 0 %>' runat="server"><i aria-hidden="true" class="fas fa-trophy"></i> Certificate</asp:HyperLink>  <asp:LinkButton
                                                         Visible='<%# Eval("IsAssessed") And Eval("Completed").ToString.Length > 0 And Not Eval("Evaluated").ToString.Length > 0 %>'
                                                         ID="LinkButton1" runat="server" ToolTip="Certificate unavailable evaluation incomplete" Enabled="false"
                                                         CssClass="btn btn-outline-secondary text-muted"><i aria-hidden="true" class="fas fa-trophy"></i> Certificate</asp:LinkButton>
