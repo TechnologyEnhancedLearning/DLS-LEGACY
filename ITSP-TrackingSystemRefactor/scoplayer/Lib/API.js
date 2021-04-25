@@ -123,7 +123,12 @@ function setupTrackingVars() {
 		});	
 	}
 }
-
+function StoredSuccess(v)
+{
+	if (v !== "") {
+		window.parent.closeMpe();
+    }
+}
 function ITSPSetValue(e, v) {
 //	if (e === "cmi.core.session_time") {
 
@@ -161,13 +166,13 @@ function ITSPSetValue(e, v) {
 	            dataType: String
 	        });
 	    }
-	    if (vtype === "pl" && s >= 1 && v !== "") {
+	    if (vtype === "pl" && s >= 1) {
 	        var data = { action: "StoreASPAssessNoSession", CandidateID: vcandidate, CustomisationID: vcust, Version: vversion, SectionID: vsection, Score: s }
 	        $.ajax({
 	            type: "POST",
 	            url: trackurl,
 	            data: data,
-				success: window.parent.closeMpe(),
+				success: StoredSuccess(v),
 	            dataType: String
 	        });
         }
