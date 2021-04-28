@@ -250,7 +250,7 @@
 
 
                                                     <div class="form-signin">
-                                                        <asp:TextBox runat="server" CssClass="form-control" ID="tbUserName" placeholder="User or delegate ID" autofocus />
+                                                        <asp:TextBox runat="server" CssClass="form-control" ID="tbUserName" placeholder="Delegate ID or Email" autofocus />
                                                         <asp:RequiredFieldValidator ID="RequiredFieldValidator3" ValidationGroup="Login" runat="server" ControlToValidate="tbUserName" Display="Dynamic" CssClass="bg-danger" ErrorMessage="This is a required field" />
                                                         <div id="pwdDiv" runat="server">
                                                             <asp:TextBox runat="server" Visible="false" CssClass="form-control" placeholder="Password" ID="tbPassword" TextMode="Password" />
@@ -258,10 +258,7 @@
                                                         <asp:Button ID="btnLogin" ValidationGroup="Login" runat="server" class="btn btn-lg btn-primary btn-block btn-signin" Text="Sign in" type="submit" />
 
 
-                                                        <div class="need-help clearfix">
-                                                            Forgotten your delegate ID? Type your e-mail address into the ID field above and click
-                                    <asp:LinkButton ID="lbtReminder" ValidationGroup="Login" CausesValidation="false" runat="server">Reminder</asp:LinkButton>.
-                                                        </div>
+                                                       
                                                     </div>
                                                 </div>
                                                 <asp:LinkButton ID="lbtRegister" CausesValidation="false" CssClass="text-center new-account btn btn-outline-secondary" runat="server">Register</asp:LinkButton>

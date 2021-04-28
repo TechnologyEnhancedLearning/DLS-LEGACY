@@ -21726,24 +21726,22 @@ Namespace LearnMenuTableAdapters
             Me._commandCollection = New Global.System.Data.SqlClient.SqlCommand(4) {}
             Me._commandCollection(0) = New Global.System.Data.SqlClient.SqlCommand()
             Me._commandCollection(0).Connection = Me.Connection
-            Me._commandCollection(0).CommandText = "SELECT        CandidateID, Active, CentreID, FirstName, LastName, DateRegistered,"& _ 
-                " CandidateNumber, JobGroupID, Answer1, Answer2, Answer3, AliasID, Approved, Emai"& _ 
-                "lAddress, ExternalReg, SelfReg, Password, SkipPW, ResetHash, "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                 "& _ 
-                "        Answer4, Answer5, Answer6"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"FROM            Candidates"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"WHERE        (Act"& _ 
-                "ive = 1) AND (CentreID = @CentreID) AND (CandidateNumber = @CandNum) OR"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"       "& _ 
-                "                  (Active = 1) AND (CentreID = @CentreID) AND (AliasID = @AliasI"& _ 
-                "D)"
+            Me._commandCollection(0).CommandText = "SELECT CandidateID, Active, CentreID, FirstName, LastName, DateRegistered, Candid"& _ 
+                "ateNumber, JobGroupID, Answer1, Answer2, Answer3, AliasID, Approved, EmailAddres"& _ 
+                "s, ExternalReg, SelfReg, Password, SkipPW, ResetHash, Answer4, Answer5, Answer6"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"FROM   Candidates"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"WHERE (Active = 1) AND (CentreID = @CentreID) AND (Candidate"& _ 
+                "Number = @CandNum) OR"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"             (Active = 1) AND (CentreID = @CentreID) AND "& _ 
+                "(AliasID = @AliasID) OR"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"             (Active = 1) AND (CentreID = @CentreID) AN"& _ 
+                "D (EmailAddress = @AliasID)"
             Me._commandCollection(0).CommandType = Global.System.Data.CommandType.Text
             Me._commandCollection(0).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@CentreID", Global.System.Data.SqlDbType.Int, 4, Global.System.Data.ParameterDirection.Input, 0, 0, "CentreID", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
             Me._commandCollection(0).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@CandNum", Global.System.Data.SqlDbType.VarChar, 250, Global.System.Data.ParameterDirection.Input, 0, 0, "CandidateNumber", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
             Me._commandCollection(0).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@AliasID", Global.System.Data.SqlDbType.VarChar, 250, Global.System.Data.ParameterDirection.Input, 0, 0, "AliasID", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
             Me._commandCollection(1) = New Global.System.Data.SqlClient.SqlCommand()
             Me._commandCollection(1).Connection = Me.Connection
-            Me._commandCollection(1).CommandText = "SELECT        Active, AliasID, Answer1, Answer2, Answer3, Answer4, Answer5, Answe"& _ 
-                "r6, Approved, CandidateID, CandidateNumber, CentreID, DateRegistered, EmailAddre"& _ 
-                "ss, ExternalReg, FirstName, JobGroupID, LastName, Password, "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                  "& _ 
-                "       ResetHash, SelfReg, SkipPW"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"FROM            Candidates"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"WHERE        (Act"& _ 
-                "ive = 1) AND (CandidateID = @CandidateID)"
+            Me._commandCollection(1).CommandText = "SELECT Active, AliasID, Answer1, Answer2, Answer3, Answer4, Answer5, Answer6, App"& _ 
+                "roved, CandidateID, CandidateNumber, CentreID, DateRegistered, EmailAddress, Ext"& _ 
+                "ernalReg, FirstName, JobGroupID, LastName, Password, ResetHash, SelfReg, SkipPW "& _ 
+                "FROM Candidates WHERE (Active = 1) AND (CandidateID = @CandidateID)"
             Me._commandCollection(1).CommandType = Global.System.Data.CommandType.Text
             Me._commandCollection(1).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@CandidateID", Global.System.Data.SqlDbType.Int, 4, Global.System.Data.ParameterDirection.Input, 0, 0, "CandidateID", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
             Me._commandCollection(2) = New Global.System.Data.SqlClient.SqlCommand()
