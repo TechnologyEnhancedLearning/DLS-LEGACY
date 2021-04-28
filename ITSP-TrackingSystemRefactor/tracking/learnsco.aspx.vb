@@ -74,7 +74,7 @@ Public Class learnsco
             'End If
             Dim nCentID As Int32 = Session("UserCentreID")
             tDelegate = taDelegate.GetData(Session("UserCentreID"), sTxtUsername, sTxtUsername)
-            If tDelegate.Count() = 1 Then
+            If tDelegate.Count() > 0 Then
                 Session("learnCandidateID") = tDelegate.First.CandidateID
 
                 Session("UserForename") = tDelegate.First.FirstName
@@ -1033,7 +1033,7 @@ Public Class learnsco
         Logout()
     End Sub
 
-    Private Sub btnSendReminder_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles btnSendReminder.Click, lbtReminder.Click
+    Private Sub btnSendReminder_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles btnSendReminder.Click
         Dim toAdd As String = tbEmail_u.Text
         If toAdd = "" Then
             toAdd = tbEmail.Text

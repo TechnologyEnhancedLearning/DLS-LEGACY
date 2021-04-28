@@ -12,7 +12,7 @@ Option Explicit On
 
 
 Partial Public Class learnsco
-    
+
     '''<summary>
     '''LMBody control.
     '''</summary>
@@ -21,7 +21,7 @@ Partial Public Class learnsco
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents LMBody As Global.System.Web.UI.HtmlControls.HtmlGenericControl
-    
+
     '''<summary>
     '''form1 control.
     '''</summary>
@@ -30,7 +30,7 @@ Partial Public Class learnsco
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents form1 As Global.System.Web.UI.HtmlControls.HtmlForm
-    
+
     '''<summary>
     '''hfAssessSrc control.
     '''</summary>
@@ -39,7 +39,7 @@ Partial Public Class learnsco
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents hfAssessSrc As Global.System.Web.UI.WebControls.HiddenField
-    
+
     '''<summary>
     '''hfProg control.
     '''</summary>
@@ -48,7 +48,7 @@ Partial Public Class learnsco
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents hfProg As Global.System.Web.UI.WebControls.HiddenField
-    
+
     '''<summary>
     '''mvOuter control.
     '''</summary>
@@ -57,7 +57,7 @@ Partial Public Class learnsco
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents mvOuter As Global.System.Web.UI.WebControls.MultiView
-    
+
     '''<summary>
     '''vMain control.
     '''</summary>
@@ -66,7 +66,7 @@ Partial Public Class learnsco
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents vMain As Global.System.Web.UI.WebControls.View
-    
+
     '''<summary>
     '''mainlogo control.
     '''</summary>
@@ -75,7 +75,7 @@ Partial Public Class learnsco
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents mainlogo As Global.System.Web.UI.HtmlControls.HtmlGenericControl
-    
+
     '''<summary>
     '''bimgLogo control.
     '''</summary>
@@ -84,7 +84,7 @@ Partial Public Class learnsco
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents bimgLogo As Global.DevExpress.Web.Bootstrap.BootstrapBinaryImage
-    
+
     '''<summary>
     '''divCtreLogo control.
     '''</summary>
@@ -93,7 +93,7 @@ Partial Public Class learnsco
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents divCtreLogo As Global.System.Web.UI.HtmlControls.HtmlGenericControl
-    
+
     '''<summary>
     '''logoImage control.
     '''</summary>
@@ -102,7 +102,7 @@ Partial Public Class learnsco
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents logoImage As Global.System.Web.UI.WebControls.Image
-    
+
     '''<summary>
     '''pnlMenuPanel control.
     '''</summary>
@@ -111,7 +111,7 @@ Partial Public Class learnsco
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents pnlMenuPanel As Global.System.Web.UI.WebControls.Panel
-    
+
     '''<summary>
     '''lblCentreName control.
     '''</summary>
@@ -120,7 +120,7 @@ Partial Public Class learnsco
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lblCentreName As Global.System.Web.UI.WebControls.Label
-    
+
     '''<summary>
     '''lblCourseTitle control.
     '''</summary>
@@ -129,7 +129,7 @@ Partial Public Class learnsco
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lblCourseTitle As Global.System.Web.UI.WebControls.Label
-    
+
     '''<summary>
     '''dsProgSupervisor control.
     '''</summary>
@@ -138,7 +138,7 @@ Partial Public Class learnsco
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents dsProgSupervisor As Global.System.Web.UI.WebControls.ObjectDataSource
-    
+
     '''<summary>
     '''rptProgSupervisor control.
     '''</summary>
@@ -147,7 +147,7 @@ Partial Public Class learnsco
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents rptProgSupervisor As Global.System.Web.UI.WebControls.Repeater
-    
+
     '''<summary>
     '''mvLearnMenu control.
     '''</summary>
@@ -156,7 +156,7 @@ Partial Public Class learnsco
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents mvLearnMenu As Global.System.Web.UI.WebControls.MultiView
-    
+
     '''<summary>
     '''vLogin control.
     '''</summary>
@@ -165,7 +165,7 @@ Partial Public Class learnsco
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents vLogin As Global.System.Web.UI.WebControls.View
-    
+
     '''<summary>
     '''pnlLogin control.
     '''</summary>
@@ -174,7 +174,7 @@ Partial Public Class learnsco
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents pnlLogin As Global.System.Web.UI.WebControls.Panel
-    
+
     '''<summary>
     '''tbUserName control.
     '''</summary>
@@ -183,7 +183,7 @@ Partial Public Class learnsco
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents tbUserName As Global.System.Web.UI.WebControls.TextBox
-    
+
     '''<summary>
     '''RequiredFieldValidator3 control.
     '''</summary>
@@ -192,7 +192,7 @@ Partial Public Class learnsco
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents RequiredFieldValidator3 As Global.System.Web.UI.WebControls.RequiredFieldValidator
-    
+
     '''<summary>
     '''pwdDiv control.
     '''</summary>
@@ -201,7 +201,7 @@ Partial Public Class learnsco
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents pwdDiv As Global.System.Web.UI.HtmlControls.HtmlGenericControl
-    
+
     '''<summary>
     '''tbPassword control.
     '''</summary>
@@ -210,7 +210,7 @@ Partial Public Class learnsco
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents tbPassword As Global.System.Web.UI.WebControls.TextBox
-    
+
     '''<summary>
     '''btnLogin control.
     '''</summary>
@@ -219,16 +219,7 @@ Partial Public Class learnsco
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents btnLogin As Global.System.Web.UI.WebControls.Button
-    
-    '''<summary>
-    '''lbtReminder control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents lbtReminder As Global.System.Web.UI.WebControls.LinkButton
-    
+
     '''<summary>
     '''lbtRegister control.
     '''</summary>
@@ -237,7 +228,7 @@ Partial Public Class learnsco
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lbtRegister As Global.System.Web.UI.WebControls.LinkButton
-    
+
     '''<summary>
     '''pRegHelp control.
     '''</summary>
@@ -246,7 +237,7 @@ Partial Public Class learnsco
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents pRegHelp As Global.System.Web.UI.HtmlControls.HtmlGenericControl
-    
+
     '''<summary>
     '''lblRegHelp control.
     '''</summary>
@@ -255,7 +246,7 @@ Partial Public Class learnsco
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lblRegHelp As Global.System.Web.UI.WebControls.Label
-    
+
     '''<summary>
     '''pnlError control.
     '''</summary>
@@ -264,7 +255,7 @@ Partial Public Class learnsco
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents pnlError As Global.System.Web.UI.WebControls.Panel
-    
+
     '''<summary>
     '''lblError control.
     '''</summary>
@@ -273,7 +264,7 @@ Partial Public Class learnsco
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lblError As Global.System.Web.UI.WebControls.Label
-    
+
     '''<summary>
     '''vSecureYourLogin control.
     '''</summary>
@@ -282,7 +273,7 @@ Partial Public Class learnsco
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents vSecureYourLogin As Global.System.Web.UI.WebControls.View
-    
+
     '''<summary>
     '''pnlSecure control.
     '''</summary>
@@ -291,7 +282,7 @@ Partial Public Class learnsco
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents pnlSecure As Global.System.Web.UI.WebControls.Panel
-    
+
     '''<summary>
     '''lblSetPWTitle control.
     '''</summary>
@@ -300,7 +291,7 @@ Partial Public Class learnsco
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lblSetPWTitle As Global.System.Web.UI.WebControls.Label
-    
+
     '''<summary>
     '''lblSetPWText control.
     '''</summary>
@@ -309,7 +300,7 @@ Partial Public Class learnsco
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lblSetPWText As Global.System.Web.UI.WebControls.Label
-    
+
     '''<summary>
     '''tbSetPassword1 control.
     '''</summary>
@@ -318,7 +309,7 @@ Partial Public Class learnsco
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents tbSetPassword1 As Global.System.Web.UI.WebControls.TextBox
-    
+
     '''<summary>
     '''RequiredFieldValidator2 control.
     '''</summary>
@@ -327,7 +318,7 @@ Partial Public Class learnsco
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents RequiredFieldValidator2 As Global.System.Web.UI.WebControls.RequiredFieldValidator
-    
+
     '''<summary>
     '''Regex4 control.
     '''</summary>
@@ -336,7 +327,7 @@ Partial Public Class learnsco
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents Regex4 As Global.System.Web.UI.WebControls.RegularExpressionValidator
-    
+
     '''<summary>
     '''tbSetPassword2 control.
     '''</summary>
@@ -345,7 +336,7 @@ Partial Public Class learnsco
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents tbSetPassword2 As Global.System.Web.UI.WebControls.TextBox
-    
+
     '''<summary>
     '''cfvSetPW2 control.
     '''</summary>
@@ -354,7 +345,7 @@ Partial Public Class learnsco
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents cfvSetPW2 As Global.System.Web.UI.WebControls.CompareValidator
-    
+
     '''<summary>
     '''btnSetPassword control.
     '''</summary>
@@ -363,7 +354,7 @@ Partial Public Class learnsco
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents btnSetPassword As Global.System.Web.UI.WebControls.Button
-    
+
     '''<summary>
     '''vUserPassword control.
     '''</summary>
@@ -372,7 +363,7 @@ Partial Public Class learnsco
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents vUserPassword As Global.System.Web.UI.WebControls.View
-    
+
     '''<summary>
     '''pnlUserPassword control.
     '''</summary>
@@ -381,7 +372,7 @@ Partial Public Class learnsco
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents pnlUserPassword As Global.System.Web.UI.WebControls.Panel
-    
+
     '''<summary>
     '''tbUserPassword control.
     '''</summary>
@@ -390,7 +381,7 @@ Partial Public Class learnsco
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents tbUserPassword As Global.System.Web.UI.WebControls.TextBox
-    
+
     '''<summary>
     '''RequiredFieldValidator5 control.
     '''</summary>
@@ -399,7 +390,7 @@ Partial Public Class learnsco
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents RequiredFieldValidator5 As Global.System.Web.UI.WebControls.RequiredFieldValidator
-    
+
     '''<summary>
     '''btnSubmitPWord control.
     '''</summary>
@@ -408,7 +399,7 @@ Partial Public Class learnsco
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents btnSubmitPWord As Global.System.Web.UI.WebControls.Button
-    
+
     '''<summary>
     '''lbtResetPW control.
     '''</summary>
@@ -417,7 +408,7 @@ Partial Public Class learnsco
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lbtResetPW As Global.System.Web.UI.WebControls.LinkButton
-    
+
     '''<summary>
     '''pnlErrorPW control.
     '''</summary>
@@ -426,7 +417,7 @@ Partial Public Class learnsco
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents pnlErrorPW As Global.System.Web.UI.WebControls.Panel
-    
+
     '''<summary>
     '''lblErrorPW control.
     '''</summary>
@@ -435,7 +426,7 @@ Partial Public Class learnsco
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lblErrorPW As Global.System.Web.UI.WebControls.Label
-    
+
     '''<summary>
     '''vLearnerReg control.
     '''</summary>
@@ -444,7 +435,7 @@ Partial Public Class learnsco
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents vLearnerReg As Global.System.Web.UI.WebControls.View
-    
+
     '''<summary>
     '''dsJobGroups control.
     '''</summary>
@@ -453,7 +444,7 @@ Partial Public Class learnsco
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents dsJobGroups As Global.System.Web.UI.WebControls.ObjectDataSource
-    
+
     '''<summary>
     '''pnlIPAlert control.
     '''</summary>
@@ -462,7 +453,7 @@ Partial Public Class learnsco
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents pnlIPAlert As Global.System.Web.UI.WebControls.Panel
-    
+
     '''<summary>
     '''lblIPWarning control.
     '''</summary>
@@ -471,7 +462,7 @@ Partial Public Class learnsco
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lblIPWarning As Global.System.Web.UI.WebControls.Label
-    
+
     '''<summary>
     '''Label1 control.
     '''</summary>
@@ -480,7 +471,7 @@ Partial Public Class learnsco
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents Label1 As Global.System.Web.UI.WebControls.Label
-    
+
     '''<summary>
     '''tbFName control.
     '''</summary>
@@ -489,7 +480,7 @@ Partial Public Class learnsco
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents tbFName As Global.System.Web.UI.WebControls.TextBox
-    
+
     '''<summary>
     '''rfFName control.
     '''</summary>
@@ -498,7 +489,7 @@ Partial Public Class learnsco
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents rfFName As Global.System.Web.UI.WebControls.RequiredFieldValidator
-    
+
     '''<summary>
     '''Label2 control.
     '''</summary>
@@ -507,7 +498,7 @@ Partial Public Class learnsco
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents Label2 As Global.System.Web.UI.WebControls.Label
-    
+
     '''<summary>
     '''tbLName control.
     '''</summary>
@@ -516,7 +507,7 @@ Partial Public Class learnsco
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents tbLName As Global.System.Web.UI.WebControls.TextBox
-    
+
     '''<summary>
     '''rfEmail control.
     '''</summary>
@@ -525,7 +516,7 @@ Partial Public Class learnsco
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents rfEmail As Global.System.Web.UI.WebControls.RequiredFieldValidator
-    
+
     '''<summary>
     '''Label3 control.
     '''</summary>
@@ -534,7 +525,7 @@ Partial Public Class learnsco
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents Label3 As Global.System.Web.UI.WebControls.Label
-    
+
     '''<summary>
     '''tbEmail control.
     '''</summary>
@@ -543,7 +534,7 @@ Partial Public Class learnsco
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents tbEmail As Global.System.Web.UI.WebControls.TextBox
-    
+
     '''<summary>
     '''RequiredFieldValidator4 control.
     '''</summary>
@@ -552,7 +543,7 @@ Partial Public Class learnsco
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents RequiredFieldValidator4 As Global.System.Web.UI.WebControls.RequiredFieldValidator
-    
+
     '''<summary>
     '''Label4 control.
     '''</summary>
@@ -561,7 +552,7 @@ Partial Public Class learnsco
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents Label4 As Global.System.Web.UI.WebControls.Label
-    
+
     '''<summary>
     '''ddJobGroup control.
     '''</summary>
@@ -570,7 +561,7 @@ Partial Public Class learnsco
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents ddJobGroup As Global.System.Web.UI.WebControls.DropDownList
-    
+
     '''<summary>
     '''rfvJobGroup control.
     '''</summary>
@@ -579,7 +570,7 @@ Partial Public Class learnsco
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents rfvJobGroup As Global.System.Web.UI.WebControls.RequiredFieldValidator
-    
+
     '''<summary>
     '''trCustField1 control.
     '''</summary>
@@ -588,7 +579,7 @@ Partial Public Class learnsco
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents trCustField1 As Global.System.Web.UI.HtmlControls.HtmlGenericControl
-    
+
     '''<summary>
     '''lblCustField1 control.
     '''</summary>
@@ -597,7 +588,7 @@ Partial Public Class learnsco
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lblCustField1 As Global.System.Web.UI.WebControls.Label
-    
+
     '''<summary>
     '''tbField1 control.
     '''</summary>
@@ -606,7 +597,7 @@ Partial Public Class learnsco
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents tbField1 As Global.System.Web.UI.WebControls.TextBox
-    
+
     '''<summary>
     '''ddField1 control.
     '''</summary>
@@ -615,7 +606,7 @@ Partial Public Class learnsco
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents ddField1 As Global.System.Web.UI.WebControls.DropDownList
-    
+
     '''<summary>
     '''trCustField2 control.
     '''</summary>
@@ -624,7 +615,7 @@ Partial Public Class learnsco
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents trCustField2 As Global.System.Web.UI.HtmlControls.HtmlGenericControl
-    
+
     '''<summary>
     '''lblCustField2 control.
     '''</summary>
@@ -633,7 +624,7 @@ Partial Public Class learnsco
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lblCustField2 As Global.System.Web.UI.WebControls.Label
-    
+
     '''<summary>
     '''tbField2 control.
     '''</summary>
@@ -642,7 +633,7 @@ Partial Public Class learnsco
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents tbField2 As Global.System.Web.UI.WebControls.TextBox
-    
+
     '''<summary>
     '''ddField2 control.
     '''</summary>
@@ -651,7 +642,7 @@ Partial Public Class learnsco
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents ddField2 As Global.System.Web.UI.WebControls.DropDownList
-    
+
     '''<summary>
     '''trCustField3 control.
     '''</summary>
@@ -660,7 +651,7 @@ Partial Public Class learnsco
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents trCustField3 As Global.System.Web.UI.HtmlControls.HtmlGenericControl
-    
+
     '''<summary>
     '''lblCustField3 control.
     '''</summary>
@@ -669,7 +660,7 @@ Partial Public Class learnsco
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lblCustField3 As Global.System.Web.UI.WebControls.Label
-    
+
     '''<summary>
     '''tbField3 control.
     '''</summary>
@@ -678,7 +669,7 @@ Partial Public Class learnsco
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents tbField3 As Global.System.Web.UI.WebControls.TextBox
-    
+
     '''<summary>
     '''ddField3 control.
     '''</summary>
@@ -687,7 +678,7 @@ Partial Public Class learnsco
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents ddField3 As Global.System.Web.UI.WebControls.DropDownList
-    
+
     '''<summary>
     '''trCustField4 control.
     '''</summary>
@@ -696,7 +687,7 @@ Partial Public Class learnsco
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents trCustField4 As Global.System.Web.UI.HtmlControls.HtmlGenericControl
-    
+
     '''<summary>
     '''lblCustField4 control.
     '''</summary>
@@ -705,7 +696,7 @@ Partial Public Class learnsco
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lblCustField4 As Global.System.Web.UI.WebControls.Label
-    
+
     '''<summary>
     '''tbField4 control.
     '''</summary>
@@ -714,7 +705,7 @@ Partial Public Class learnsco
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents tbField4 As Global.System.Web.UI.WebControls.TextBox
-    
+
     '''<summary>
     '''ddField4 control.
     '''</summary>
@@ -723,7 +714,7 @@ Partial Public Class learnsco
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents ddField4 As Global.System.Web.UI.WebControls.DropDownList
-    
+
     '''<summary>
     '''trCustField5 control.
     '''</summary>
@@ -732,7 +723,7 @@ Partial Public Class learnsco
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents trCustField5 As Global.System.Web.UI.HtmlControls.HtmlGenericControl
-    
+
     '''<summary>
     '''lblCustField5 control.
     '''</summary>
@@ -741,7 +732,7 @@ Partial Public Class learnsco
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lblCustField5 As Global.System.Web.UI.WebControls.Label
-    
+
     '''<summary>
     '''tbField5 control.
     '''</summary>
@@ -750,7 +741,7 @@ Partial Public Class learnsco
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents tbField5 As Global.System.Web.UI.WebControls.TextBox
-    
+
     '''<summary>
     '''ddField5 control.
     '''</summary>
@@ -759,7 +750,7 @@ Partial Public Class learnsco
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents ddField5 As Global.System.Web.UI.WebControls.DropDownList
-    
+
     '''<summary>
     '''trCustField6 control.
     '''</summary>
@@ -768,7 +759,7 @@ Partial Public Class learnsco
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents trCustField6 As Global.System.Web.UI.HtmlControls.HtmlGenericControl
-    
+
     '''<summary>
     '''lblCustField6 control.
     '''</summary>
@@ -777,7 +768,7 @@ Partial Public Class learnsco
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lblCustField6 As Global.System.Web.UI.WebControls.Label
-    
+
     '''<summary>
     '''tbField6 control.
     '''</summary>
@@ -786,7 +777,7 @@ Partial Public Class learnsco
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents tbField6 As Global.System.Web.UI.WebControls.TextBox
-    
+
     '''<summary>
     '''ddField6 control.
     '''</summary>
@@ -795,7 +786,7 @@ Partial Public Class learnsco
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents ddField6 As Global.System.Web.UI.WebControls.DropDownList
-    
+
     '''<summary>
     '''pnlRegistrationError control.
     '''</summary>
@@ -804,7 +795,7 @@ Partial Public Class learnsco
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents pnlRegistrationError As Global.System.Web.UI.WebControls.Panel
-    
+
     '''<summary>
     '''lblRegistrationError control.
     '''</summary>
@@ -813,7 +804,7 @@ Partial Public Class learnsco
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lblRegistrationError As Global.System.Web.UI.WebControls.Label
-    
+
     '''<summary>
     '''btnRegister control.
     '''</summary>
@@ -822,7 +813,7 @@ Partial Public Class learnsco
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents btnRegister As Global.System.Web.UI.WebControls.Button
-    
+
     '''<summary>
     '''btnLoginReturn control.
     '''</summary>
@@ -831,7 +822,7 @@ Partial Public Class learnsco
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents btnLoginReturn As Global.System.Web.UI.WebControls.LinkButton
-    
+
     '''<summary>
     '''vUpdateDetails control.
     '''</summary>
@@ -840,7 +831,7 @@ Partial Public Class learnsco
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents vUpdateDetails As Global.System.Web.UI.WebControls.View
-    
+
     '''<summary>
     '''pnlUpdateDetails control.
     '''</summary>
@@ -849,7 +840,7 @@ Partial Public Class learnsco
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents pnlUpdateDetails As Global.System.Web.UI.WebControls.Panel
-    
+
     '''<summary>
     '''hfActive control.
     '''</summary>
@@ -858,7 +849,7 @@ Partial Public Class learnsco
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents hfActive As Global.System.Web.UI.WebControls.HiddenField
-    
+
     '''<summary>
     '''hfApproved control.
     '''</summary>
@@ -867,7 +858,7 @@ Partial Public Class learnsco
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents hfApproved As Global.System.Web.UI.WebControls.HiddenField
-    
+
     '''<summary>
     '''hfAlias control.
     '''</summary>
@@ -876,7 +867,7 @@ Partial Public Class learnsco
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents hfAlias As Global.System.Web.UI.WebControls.HiddenField
-    
+
     '''<summary>
     '''Label5 control.
     '''</summary>
@@ -885,7 +876,7 @@ Partial Public Class learnsco
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents Label5 As Global.System.Web.UI.WebControls.Label
-    
+
     '''<summary>
     '''tbFName_u control.
     '''</summary>
@@ -894,7 +885,7 @@ Partial Public Class learnsco
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents tbFName_u As Global.System.Web.UI.WebControls.TextBox
-    
+
     '''<summary>
     '''rfvFName_u control.
     '''</summary>
@@ -903,7 +894,7 @@ Partial Public Class learnsco
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents rfvFName_u As Global.System.Web.UI.WebControls.RequiredFieldValidator
-    
+
     '''<summary>
     '''Label6 control.
     '''</summary>
@@ -912,7 +903,7 @@ Partial Public Class learnsco
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents Label6 As Global.System.Web.UI.WebControls.Label
-    
+
     '''<summary>
     '''tbLName_u control.
     '''</summary>
@@ -921,7 +912,7 @@ Partial Public Class learnsco
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents tbLName_u As Global.System.Web.UI.WebControls.TextBox
-    
+
     '''<summary>
     '''rfvLName_u control.
     '''</summary>
@@ -930,7 +921,7 @@ Partial Public Class learnsco
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents rfvLName_u As Global.System.Web.UI.WebControls.RequiredFieldValidator
-    
+
     '''<summary>
     '''Label7 control.
     '''</summary>
@@ -939,7 +930,7 @@ Partial Public Class learnsco
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents Label7 As Global.System.Web.UI.WebControls.Label
-    
+
     '''<summary>
     '''tbEmail_u control.
     '''</summary>
@@ -948,7 +939,7 @@ Partial Public Class learnsco
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents tbEmail_u As Global.System.Web.UI.WebControls.TextBox
-    
+
     '''<summary>
     '''rfvEmail_u control.
     '''</summary>
@@ -957,7 +948,7 @@ Partial Public Class learnsco
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents rfvEmail_u As Global.System.Web.UI.WebControls.RequiredFieldValidator
-    
+
     '''<summary>
     '''Label8 control.
     '''</summary>
@@ -966,7 +957,7 @@ Partial Public Class learnsco
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents Label8 As Global.System.Web.UI.WebControls.Label
-    
+
     '''<summary>
     '''ddJobGroup_u control.
     '''</summary>
@@ -975,7 +966,7 @@ Partial Public Class learnsco
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents ddJobGroup_u As Global.System.Web.UI.WebControls.DropDownList
-    
+
     '''<summary>
     '''RequiredFieldValidator1 control.
     '''</summary>
@@ -984,7 +975,7 @@ Partial Public Class learnsco
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents RequiredFieldValidator1 As Global.System.Web.UI.WebControls.RequiredFieldValidator
-    
+
     '''<summary>
     '''pnlField1_u control.
     '''</summary>
@@ -993,7 +984,7 @@ Partial Public Class learnsco
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents pnlField1_u As Global.System.Web.UI.WebControls.Panel
-    
+
     '''<summary>
     '''lblField1_u control.
     '''</summary>
@@ -1002,7 +993,7 @@ Partial Public Class learnsco
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lblField1_u As Global.System.Web.UI.WebControls.Label
-    
+
     '''<summary>
     '''tbField1_u control.
     '''</summary>
@@ -1011,7 +1002,7 @@ Partial Public Class learnsco
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents tbField1_u As Global.System.Web.UI.WebControls.TextBox
-    
+
     '''<summary>
     '''ddField1_u control.
     '''</summary>
@@ -1020,7 +1011,7 @@ Partial Public Class learnsco
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents ddField1_u As Global.System.Web.UI.WebControls.DropDownList
-    
+
     '''<summary>
     '''pnlField2_u control.
     '''</summary>
@@ -1029,7 +1020,7 @@ Partial Public Class learnsco
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents pnlField2_u As Global.System.Web.UI.WebControls.Panel
-    
+
     '''<summary>
     '''lblField2_u control.
     '''</summary>
@@ -1038,7 +1029,7 @@ Partial Public Class learnsco
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lblField2_u As Global.System.Web.UI.WebControls.Label
-    
+
     '''<summary>
     '''tbField2_u control.
     '''</summary>
@@ -1047,7 +1038,7 @@ Partial Public Class learnsco
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents tbField2_u As Global.System.Web.UI.WebControls.TextBox
-    
+
     '''<summary>
     '''ddField2_u control.
     '''</summary>
@@ -1056,7 +1047,7 @@ Partial Public Class learnsco
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents ddField2_u As Global.System.Web.UI.WebControls.DropDownList
-    
+
     '''<summary>
     '''pnlField3_u control.
     '''</summary>
@@ -1065,7 +1056,7 @@ Partial Public Class learnsco
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents pnlField3_u As Global.System.Web.UI.WebControls.Panel
-    
+
     '''<summary>
     '''lblField3_u control.
     '''</summary>
@@ -1074,7 +1065,7 @@ Partial Public Class learnsco
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lblField3_u As Global.System.Web.UI.WebControls.Label
-    
+
     '''<summary>
     '''tbField3_u control.
     '''</summary>
@@ -1083,7 +1074,7 @@ Partial Public Class learnsco
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents tbField3_u As Global.System.Web.UI.WebControls.TextBox
-    
+
     '''<summary>
     '''ddField3_u control.
     '''</summary>
@@ -1092,7 +1083,7 @@ Partial Public Class learnsco
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents ddField3_u As Global.System.Web.UI.WebControls.DropDownList
-    
+
     '''<summary>
     '''pnlField4_u control.
     '''</summary>
@@ -1101,7 +1092,7 @@ Partial Public Class learnsco
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents pnlField4_u As Global.System.Web.UI.WebControls.Panel
-    
+
     '''<summary>
     '''lblField4_u control.
     '''</summary>
@@ -1110,7 +1101,7 @@ Partial Public Class learnsco
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lblField4_u As Global.System.Web.UI.WebControls.Label
-    
+
     '''<summary>
     '''tbField4_u control.
     '''</summary>
@@ -1119,7 +1110,7 @@ Partial Public Class learnsco
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents tbField4_u As Global.System.Web.UI.WebControls.TextBox
-    
+
     '''<summary>
     '''ddField4_u control.
     '''</summary>
@@ -1128,7 +1119,7 @@ Partial Public Class learnsco
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents ddField4_u As Global.System.Web.UI.WebControls.DropDownList
-    
+
     '''<summary>
     '''pnlField5_u control.
     '''</summary>
@@ -1137,7 +1128,7 @@ Partial Public Class learnsco
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents pnlField5_u As Global.System.Web.UI.WebControls.Panel
-    
+
     '''<summary>
     '''lblField5_u control.
     '''</summary>
@@ -1146,7 +1137,7 @@ Partial Public Class learnsco
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lblField5_u As Global.System.Web.UI.WebControls.Label
-    
+
     '''<summary>
     '''tbField5_u control.
     '''</summary>
@@ -1155,7 +1146,7 @@ Partial Public Class learnsco
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents tbField5_u As Global.System.Web.UI.WebControls.TextBox
-    
+
     '''<summary>
     '''ddField5_u control.
     '''</summary>
@@ -1164,7 +1155,7 @@ Partial Public Class learnsco
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents ddField5_u As Global.System.Web.UI.WebControls.DropDownList
-    
+
     '''<summary>
     '''pnlField6_u control.
     '''</summary>
@@ -1173,7 +1164,7 @@ Partial Public Class learnsco
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents pnlField6_u As Global.System.Web.UI.WebControls.Panel
-    
+
     '''<summary>
     '''lblField6_u control.
     '''</summary>
@@ -1182,7 +1173,7 @@ Partial Public Class learnsco
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lblField6_u As Global.System.Web.UI.WebControls.Label
-    
+
     '''<summary>
     '''tbField6_u control.
     '''</summary>
@@ -1191,7 +1182,7 @@ Partial Public Class learnsco
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents tbField6_u As Global.System.Web.UI.WebControls.TextBox
-    
+
     '''<summary>
     '''ddField6_u control.
     '''</summary>
@@ -1200,7 +1191,7 @@ Partial Public Class learnsco
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents ddField6_u As Global.System.Web.UI.WebControls.DropDownList
-    
+
     '''<summary>
     '''btnUpdateDetails control.
     '''</summary>
@@ -1209,7 +1200,7 @@ Partial Public Class learnsco
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents btnUpdateDetails As Global.System.Web.UI.WebControls.LinkButton
-    
+
     '''<summary>
     '''vLearnMenu control.
     '''</summary>
@@ -1218,7 +1209,7 @@ Partial Public Class learnsco
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents vLearnMenu As Global.System.Web.UI.WebControls.View
-    
+
     '''<summary>
     '''lbtDiagVid control.
     '''</summary>
@@ -1227,7 +1218,7 @@ Partial Public Class learnsco
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lbtDiagVid As Global.System.Web.UI.WebControls.LinkButton
-    
+
     '''<summary>
     '''lbtLearnVid control.
     '''</summary>
@@ -1236,7 +1227,7 @@ Partial Public Class learnsco
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lbtLearnVid As Global.System.Web.UI.WebControls.LinkButton
-    
+
     '''<summary>
     '''lbtPLAssess control.
     '''</summary>
@@ -1245,7 +1236,7 @@ Partial Public Class learnsco
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lbtPLAssess As Global.System.Web.UI.WebControls.LinkButton
-    
+
     '''<summary>
     '''btnGroup control.
     '''</summary>
@@ -1254,7 +1245,7 @@ Partial Public Class learnsco
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents btnGroup As Global.System.Web.UI.HtmlControls.HtmlButton
-    
+
     '''<summary>
     '''btnSupervisor control.
     '''</summary>
@@ -1263,7 +1254,7 @@ Partial Public Class learnsco
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents btnSupervisor As Global.System.Web.UI.HtmlControls.HtmlButton
-    
+
     '''<summary>
     '''lbtnlogout control.
     '''</summary>
@@ -1272,7 +1263,7 @@ Partial Public Class learnsco
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lbtnlogout As Global.System.Web.UI.WebControls.LinkButton
-    
+
     '''<summary>
     '''btnPost control.
     '''</summary>
@@ -1281,7 +1272,7 @@ Partial Public Class learnsco
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents btnPost As Global.System.Web.UI.WebControls.LinkButton
-    
+
     '''<summary>
     '''btnSwitchView control.
     '''</summary>
@@ -1290,7 +1281,7 @@ Partial Public Class learnsco
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents btnSwitchView As Global.System.Web.UI.WebControls.LinkButton
-    
+
     '''<summary>
     '''dsLMSections control.
     '''</summary>
@@ -1299,7 +1290,7 @@ Partial Public Class learnsco
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents dsLMSections As Global.System.Web.UI.WebControls.ObjectDataSource
-    
+
     '''<summary>
     '''rptLMSections control.
     '''</summary>
@@ -1308,7 +1299,7 @@ Partial Public Class learnsco
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents rptLMSections As Global.System.Web.UI.WebControls.Repeater
-    
+
     '''<summary>
     '''dsProgressSummary control.
     '''</summary>
@@ -1317,7 +1308,7 @@ Partial Public Class learnsco
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents dsProgressSummary As Global.System.Web.UI.WebControls.ObjectDataSource
-    
+
     '''<summary>
     '''fvProgSummary control.
     '''</summary>
@@ -1326,7 +1317,7 @@ Partial Public Class learnsco
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents fvProgSummary As Global.System.Web.UI.WebControls.FormView
-    
+
     '''<summary>
     '''vNotApproved control.
     '''</summary>
@@ -1335,7 +1326,7 @@ Partial Public Class learnsco
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents vNotApproved As Global.System.Web.UI.WebControls.View
-    
+
     '''<summary>
     '''vShowDelegateID control.
     '''</summary>
@@ -1344,7 +1335,7 @@ Partial Public Class learnsco
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents vShowDelegateID As Global.System.Web.UI.WebControls.View
-    
+
     '''<summary>
     '''card1 control.
     '''</summary>
@@ -1353,7 +1344,7 @@ Partial Public Class learnsco
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents card1 As Global.System.Web.UI.WebControls.Panel
-    
+
     '''<summary>
     '''lblCandidateNumber control.
     '''</summary>
@@ -1362,7 +1353,7 @@ Partial Public Class learnsco
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lblCandidateNumber As Global.System.Web.UI.WebControls.Label
-    
+
     '''<summary>
     '''divRegNotApproved control.
     '''</summary>
@@ -1371,7 +1362,7 @@ Partial Public Class learnsco
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents divRegNotApproved As Global.System.Web.UI.HtmlControls.HtmlGenericControl
-    
+
     '''<summary>
     '''divRegApproved control.
     '''</summary>
@@ -1380,7 +1371,7 @@ Partial Public Class learnsco
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents divRegApproved As Global.System.Web.UI.HtmlControls.HtmlGenericControl
-    
+
     '''<summary>
     '''btnLoginPostReg control.
     '''</summary>
@@ -1389,7 +1380,7 @@ Partial Public Class learnsco
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents btnLoginPostReg As Global.System.Web.UI.WebControls.LinkButton
-    
+
     '''<summary>
     '''vDuplicateEmail control.
     '''</summary>
@@ -1398,7 +1389,7 @@ Partial Public Class learnsco
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents vDuplicateEmail As Global.System.Web.UI.WebControls.View
-    
+
     '''<summary>
     '''card2 control.
     '''</summary>
@@ -1407,7 +1398,7 @@ Partial Public Class learnsco
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents card2 As Global.System.Web.UI.WebControls.Panel
-    
+
     '''<summary>
     '''btnSendReminder control.
     '''</summary>
@@ -1416,7 +1407,7 @@ Partial Public Class learnsco
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents btnSendReminder As Global.System.Web.UI.WebControls.LinkButton
-    
+
     '''<summary>
     '''btnReturn control.
     '''</summary>
@@ -1425,7 +1416,7 @@ Partial Public Class learnsco
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents btnReturn As Global.System.Web.UI.WebControls.LinkButton
-    
+
     '''<summary>
     '''pnlReminderOutcome control.
     '''</summary>
@@ -1434,7 +1425,7 @@ Partial Public Class learnsco
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents pnlReminderOutcome As Global.System.Web.UI.WebControls.Panel
-    
+
     '''<summary>
     '''lblReminderOutcome control.
     '''</summary>
@@ -1443,7 +1434,7 @@ Partial Public Class learnsco
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lblReminderOutcome As Global.System.Web.UI.WebControls.Label
-    
+
     '''<summary>
     '''vPickCentre control.
     '''</summary>
@@ -1452,7 +1443,7 @@ Partial Public Class learnsco
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents vPickCentre As Global.System.Web.UI.WebControls.View
-    
+
     '''<summary>
     '''dsCentres control.
     '''</summary>
@@ -1461,7 +1452,7 @@ Partial Public Class learnsco
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents dsCentres As Global.System.Web.UI.WebControls.ObjectDataSource
-    
+
     '''<summary>
     '''pnlPickCentre control.
     '''</summary>
@@ -1470,7 +1461,7 @@ Partial Public Class learnsco
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents pnlPickCentre As Global.System.Web.UI.WebControls.Panel
-    
+
     '''<summary>
     '''Label11 control.
     '''</summary>
@@ -1479,7 +1470,7 @@ Partial Public Class learnsco
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents Label11 As Global.System.Web.UI.WebControls.Label
-    
+
     '''<summary>
     '''ddCentre control.
     '''</summary>
@@ -1488,7 +1479,7 @@ Partial Public Class learnsco
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents ddCentre As Global.System.Web.UI.WebControls.DropDownList
-    
+
     '''<summary>
     '''btnPickCentre control.
     '''</summary>
@@ -1497,7 +1488,7 @@ Partial Public Class learnsco
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents btnPickCentre As Global.System.Web.UI.WebControls.LinkButton
-    
+
     '''<summary>
     '''vPickCustomisation control.
     '''</summary>
@@ -1506,7 +1497,7 @@ Partial Public Class learnsco
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents vPickCustomisation As Global.System.Web.UI.WebControls.View
-    
+
     '''<summary>
     '''pnlPickCourse control.
     '''</summary>
@@ -1515,7 +1506,7 @@ Partial Public Class learnsco
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents pnlPickCourse As Global.System.Web.UI.WebControls.Panel
-    
+
     '''<summary>
     '''Label17 control.
     '''</summary>
@@ -1524,7 +1515,7 @@ Partial Public Class learnsco
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents Label17 As Global.System.Web.UI.WebControls.Label
-    
+
     '''<summary>
     '''ddCusomisation control.
     '''</summary>
@@ -1533,7 +1524,7 @@ Partial Public Class learnsco
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents ddCusomisation As Global.System.Web.UI.WebControls.DropDownList
-    
+
     '''<summary>
     '''btnSelectCustomisation control.
     '''</summary>
@@ -1542,7 +1533,7 @@ Partial Public Class learnsco
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents btnSelectCustomisation As Global.System.Web.UI.WebControls.LinkButton
-    
+
     '''<summary>
     '''vLearningContent control.
     '''</summary>
@@ -1551,7 +1542,7 @@ Partial Public Class learnsco
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents vLearningContent As Global.System.Web.UI.WebControls.View
-    
+
     '''<summary>
     '''learnDiv control.
     '''</summary>
@@ -1560,7 +1551,7 @@ Partial Public Class learnsco
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents learnDiv As Global.System.Web.UI.HtmlControls.HtmlGenericControl
-    
+
     '''<summary>
     '''learningcontainer control.
     '''</summary>
@@ -1569,7 +1560,7 @@ Partial Public Class learnsco
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents learningcontainer As Global.System.Web.UI.HtmlControls.HtmlGenericControl
-    
+
     '''<summary>
     '''pnlLearnframe control.
     '''</summary>
@@ -1578,7 +1569,7 @@ Partial Public Class learnsco
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents pnlLearnframe As Global.System.Web.UI.WebControls.Panel
-    
+
     '''<summary>
     '''frame1 control.
     '''</summary>
@@ -1587,7 +1578,7 @@ Partial Public Class learnsco
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents frame1 As Global.System.Web.UI.HtmlControls.HtmlIframe
-    
+
     '''<summary>
     '''lbltermsHeading control.
     '''</summary>
@@ -1596,7 +1587,7 @@ Partial Public Class learnsco
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lbltermsHeading As Global.System.Web.UI.WebControls.Label
-    
+
     '''<summary>
     '''litTOUDetail control.
     '''</summary>
@@ -1605,7 +1596,7 @@ Partial Public Class learnsco
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents litTOUDetail As Global.System.Web.UI.WebControls.Literal
-    
+
     '''<summary>
     '''Label10 control.
     '''</summary>
@@ -1614,7 +1605,7 @@ Partial Public Class learnsco
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents Label10 As Global.System.Web.UI.WebControls.Label
-    
+
     '''<summary>
     '''litPrivacy control.
     '''</summary>
@@ -1623,7 +1614,7 @@ Partial Public Class learnsco
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents litPrivacy As Global.System.Web.UI.WebControls.Literal
-    
+
     '''<summary>
     '''Label9 control.
     '''</summary>
@@ -1632,7 +1623,7 @@ Partial Public Class learnsco
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents Label9 As Global.System.Web.UI.WebControls.Label
-    
+
     '''<summary>
     '''litAccess control.
     '''</summary>
@@ -1641,7 +1632,7 @@ Partial Public Class learnsco
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents litAccess As Global.System.Web.UI.WebControls.Literal
-    
+
     '''<summary>
     '''DiagOnlyPoint control.
     '''</summary>
@@ -1650,7 +1641,7 @@ Partial Public Class learnsco
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents DiagOnlyPoint As Global.System.Web.UI.HtmlControls.HtmlGenericControl
-    
+
     '''<summary>
     '''DiagOnly2 control.
     '''</summary>
@@ -1659,7 +1650,7 @@ Partial Public Class learnsco
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents DiagOnly2 As Global.System.Web.UI.HtmlControls.HtmlGenericControl
-    
+
     '''<summary>
     '''DiagSelectForm control.
     '''</summary>
@@ -1668,7 +1659,7 @@ Partial Public Class learnsco
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents DiagSelectForm As Global.System.Web.UI.HtmlControls.HtmlGenericControl
-    
+
     '''<summary>
     '''lblVideoCount control.
     '''</summary>
@@ -1677,7 +1668,7 @@ Partial Public Class learnsco
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lblVideoCount As Global.System.Web.UI.WebControls.Label
-    
+
     '''<summary>
     '''LitIntroVideo control.
     '''</summary>
@@ -1686,7 +1677,7 @@ Partial Public Class learnsco
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents LitIntroVideo As Global.System.Web.UI.WebControls.Literal
-    
+
     '''<summary>
     '''lblVideoRate control.
     '''</summary>
@@ -1695,7 +1686,7 @@ Partial Public Class learnsco
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lblVideoRate As Global.System.Web.UI.WebControls.Label
-    
+
     '''<summary>
     '''ajxVideoRating control.
     '''</summary>
@@ -1704,7 +1695,7 @@ Partial Public Class learnsco
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents ajxVideoRating As Global.AjaxControlToolkit.Rating
-    
+
     '''<summary>
     '''btnRateThis control.
     '''</summary>
@@ -1713,7 +1704,7 @@ Partial Public Class learnsco
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents btnRateThis As Global.System.Web.UI.WebControls.LinkButton
-    
+
     '''<summary>
     '''ajxRateThis control.
     '''</summary>
@@ -1722,7 +1713,7 @@ Partial Public Class learnsco
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents ajxRateThis As Global.AjaxControlToolkit.Rating
-    
+
     '''<summary>
     '''lblThanks control.
     '''</summary>
@@ -1731,7 +1722,7 @@ Partial Public Class learnsco
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lblThanks As Global.System.Web.UI.WebControls.Label
-    
+
     '''<summary>
     '''lblModalTitle control.
     '''</summary>
@@ -1740,7 +1731,7 @@ Partial Public Class learnsco
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lblModalTitle As Global.System.Web.UI.WebControls.Label
-    
+
     '''<summary>
     '''lblModalBody control.
     '''</summary>
@@ -1749,7 +1740,7 @@ Partial Public Class learnsco
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lblModalBody As Global.System.Web.UI.WebControls.Label
-    
+
     '''<summary>
     '''dsSupervisor control.
     '''</summary>
@@ -1758,7 +1749,7 @@ Partial Public Class learnsco
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents dsSupervisor As Global.System.Web.UI.WebControls.ObjectDataSource
-    
+
     '''<summary>
     '''dsCohort control.
     '''</summary>
@@ -1767,7 +1758,7 @@ Partial Public Class learnsco
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents dsCohort As Global.System.Web.UI.WebControls.ObjectDataSource
-    
+
     '''<summary>
     '''rptSupervisor control.
     '''</summary>
@@ -1776,7 +1767,7 @@ Partial Public Class learnsco
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents rptSupervisor As Global.System.Web.UI.WebControls.Repeater
-    
+
     '''<summary>
     '''rptCohort control.
     '''</summary>
