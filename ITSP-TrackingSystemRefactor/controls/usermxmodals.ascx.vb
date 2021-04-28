@@ -634,6 +634,7 @@ Public Class usermxmodals
             Session("IsSupervisor") = False
             Session("IsTrainer") = False
             Session("IsFrameworkDeveloper") = False
+            Session("IsFrameworkContributor") = False
             GetAdminRecord(sUsername, nCentreID, sPassword)
             GetDelegateRecord(sUsername, nCentreID, sPassword)
             If Session("UserAdminID") Is Nothing And Session("learnUserAuthenticated") Then
@@ -657,6 +658,7 @@ Public Class usermxmodals
                     claims.Add(New Claim("IsSupervisor", Session("IsSupervisor")))
                 claims.Add(New Claim("IsTrainer", Session("IsTrainer")))
                 claims.Add(New Claim("IsFrameworkDeveloper", Session("IsFrameworkDeveloper")))
+                claims.Add(New Claim("IsFrameworkContributor", Session("IsFrameworkContributor")))
                 If Not Session("learnCandidateNumber") Is Nothing Then
                         claims.Add(New Claim("learnCandidateNumber", Session("learnCandidateNumber"), ""))
                     End If
@@ -809,6 +811,7 @@ Public Class usermxmodals
                     Session("IsTrainer") = r.Item("Trainer")
                     Session("UserCentreReports") = r.Item("SummaryReports")
                     Session("IsFrameworkDeveloper") = r.Item("IsFrameworkDeveloper")
+                    Session("IsFrameworkContributor") = r.Item("IsFrameworkContributor")
                     CEITSProfile.LoadProfileFromString(r.Item("EITSProfile")).SetProfile(Session)
                     'lbtAccount.Visible = False
                     'lbtAppSelect.Visible = True
@@ -850,6 +853,17 @@ Public Class usermxmodals
                             Session("learnCandidateID") = r.Item("CandidateID")
                             Session("learnCandidateNumber") = r.Item("CandidateNumber")
                             Session("learnUserAuthenticated") = True
+                            Dim taq As New AuthenticateTableAdapters.QueriesTableAdapter
+                            If taq.GetFrameworkCollaboratorCountForEmail(Session("UserEmail").ToString.Trim()) > 0 Then
+                                Try
+                                    Dim nAdminId = taq.InsertAdminAccountFromDelegate(Session("learnCandidateID"), 0, 0, 0, 0, 0, 0)
+                                    If nAdminId > 0 Then
+                                        taq.SetAdminUserIsFrameworkContributor(nAdminId)
+                                    End If
+                                Catch
+
+                                End Try
+                            End If
                             Exit For
                         End If
 
