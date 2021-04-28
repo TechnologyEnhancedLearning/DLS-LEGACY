@@ -74,7 +74,7 @@ Public Class learnsco
             'End If
             Dim nCentID As Int32 = Session("UserCentreID")
             tDelegate = taDelegate.GetData(Session("UserCentreID"), sTxtUsername, sTxtUsername)
-            If tDelegate.Count() = 1 Then
+            If tDelegate.Count() > 0 Then
                 Session("learnCandidateID") = tDelegate.First.CandidateID
 
                 Session("UserForename") = tDelegate.First.FirstName
