@@ -859,6 +859,7 @@ Public Class usermxmodals
                                     Dim nAdminId = taq.InsertAdminAccountFromDelegate(Session("learnCandidateID"), 0, 0, 0, 0, 0, 0)
                                     If nAdminId > 0 Then
                                         taq.SetAdminUserIsFrameworkContributor(nAdminId)
+                                        taq.UpdateFrameworkCollaboratorAdminID(nAdminId, Session("UserEmail"))
                                     End If
                                 Catch
 
