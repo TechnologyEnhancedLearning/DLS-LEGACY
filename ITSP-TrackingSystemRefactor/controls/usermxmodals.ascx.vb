@@ -635,129 +635,88 @@ Public Class usermxmodals
                 GetAdminRecord(Session("UserEmail"), Session("UserCentreID"), sPassword)
             End If
             Session("LearningPortalUrl") = CCommon.GetLPURL(Session("UserAdminID"), Session("UserCentreID"))
-            If Not Session("UserEmail") Is Nothing Then
-                    Dim claims = New List(Of Claim)()
-                    claims.Add(New Claim(ClaimTypes.Email, Session("UserEmail")))
-                    claims.Add(New Claim("UserCentreID", Session("UserCentreID")))
-                    claims.Add(New Claim("UserCentreManager", Session("UserCentreManager")))
-                    claims.Add(New Claim("UserCentreAdmin", Session("UserCentreAdmin")))
-                    claims.Add(New Claim("UserUserAdmin", Session("UserUserAdmin")))
-                    claims.Add(New Claim("UserContentCreator", Session("UserContentCreator")))
-                    claims.Add(New Claim("UserAuthenticatedCM", Session("UserAuthenticatedCM")))
-                    claims.Add(New Claim("UserPublishToAll", Session("UserPublishToAll")))
-                    claims.Add(New Claim("UserCentreReports", Session("UserCentreReports")))
-                    claims.Add(New Claim("learnCandidateID", Session("learnCandidateID")))
-                    claims.Add(New Claim("learnUserAuthenticated", Session("learnUserAuthenticated")))
-                    claims.Add(New Claim("AdminCategoryID", Session("AdminCategoryID")))
-                    claims.Add(New Claim("IsSupervisor", Session("IsSupervisor")))
-                    claims.Add(New Claim("IsTrainer", Session("IsTrainer")))
-                    If Not Session("learnCandidateNumber") Is Nothing Then
-                        claims.Add(New Claim("learnCandidateNumber", Session("learnCandidateNumber"), ""))
-                    End If
-                    If Not Session("UserForename") Is Nothing Then
-                        claims.Add(New Claim("UserForename", Session("UserForename"), ""))
-                        claims.Add(New Claim("UserSurname", Session("UserSurname"), ""))
-                    End If
-                    If Not Session("UserCentreName") Is Nothing Then
-                        claims.Add(New Claim("UserCentreName", Session("UserCentreName"), ""))
-                    End If
-                    If Not Session("UserAdminID") Is Nothing Then
-                        claims.Add(New Claim("UserAdminID", Session("UserAdminID"), ""))
-                    End If
-                    Dim identity = New ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationType)
-
-                    If Request.IsAuthenticated Then
-                        Dim cp As ClaimsPrincipal = HttpContext.Current.User
-                        If Not cp.HasClaim(Function(c) c.Type = "UserCentreID") Then
-                            cp.AddIdentity(identity)
-                        End If
-                    Else
-                        Context.GetOwinContext().Authentication.SignIn(New AuthenticationProperties() With {
-                       .IsPersistent = cbRememberMe.Checked
-                   }, identity)
-                    End If
+            CCommon.LoginFromSession(cbRememberMe.Checked, Session, Request, Context)
+            If Session("UserCentreID") > 0 Then
+                Dim taCentre As New ITSPTableAdapters.CentresTableAdapter
+                Dim tCtre As New ITSP.CentresDataTable
+                tCtre = taCentre.GetByCentreID(CInt(Session("UserCentreID")))
+                If tCtre.First.Active = False Then
+                    Response.Redirect("~/CentreInactive")
                 End If
-                If Session("UserCentreID") > 0 Then
-                    Dim taCentre As New ITSPTableAdapters.CentresTableAdapter
-                    Dim tCtre As New ITSP.CentresDataTable
-                    tCtre = taCentre.GetByCentreID(CInt(Session("UserCentreID")))
-                    If tCtre.First.Active = False Then
-                        Response.Redirect("~/CentreInactive")
+                Session("kbYouTube") = tCtre.First.kbYouTube
+                Session("kbOfficeVersion") = tCtre.First.kbDefaultOfficeVersion
+                Session("BannerText") = tCtre.First.BannerText
+                Dim nHeight As Integer = tCtre.First.LogoHeight
+                If nHeight = 0 Then
+                    Session("logoVisible") = False
+                Else
+                    Dim nWidth As Integer = tCtre.First.LogoWidth
+                    Dim nNewWidth As Integer = nWidth
+                    Dim nNewHeight As Integer = nHeight
+                    If nNewHeight > 96 Then
+                        nNewWidth = CInt((CSng(96) / CSng(nHeight)) * CSng(nWidth))
+                        nNewHeight = 96
                     End If
-                    Session("kbYouTube") = tCtre.First.kbYouTube
-                    Session("kbOfficeVersion") = tCtre.First.kbDefaultOfficeVersion
-                    Session("BannerText") = tCtre.First.BannerText
-                    Dim nHeight As Integer = tCtre.First.LogoHeight
-                    If nHeight = 0 Then
-                        Session("logoVisible") = False
-                    Else
-                        Dim nWidth As Integer = tCtre.First.LogoWidth
-                        Dim nNewWidth As Integer = nWidth
-                        Dim nNewHeight As Integer = nHeight
-                        If nNewHeight > 96 Then
-                            nNewWidth = CInt((CSng(96) / CSng(nHeight)) * CSng(nWidth))
-                            nNewHeight = 96
-                        End If
-                        If nNewWidth > 300 Then
-                            nNewHeight = CInt((CSng(300) / CSng(nNewWidth)) * CSng(nNewHeight))
-                            nNewWidth = 300
-                        End If
-
-                        Session("logoHeight") = nNewHeight
-                        Session("logoWidth") = nNewWidth
-                        Session("logoVisible") = True
+                    If nNewWidth > 300 Then
+                        nNewHeight = CInt((CSng(300) / CSng(nNewWidth)) * CSng(nNewHeight))
+                        nNewWidth = 300
                     End If
-                    If Not Page.Request.Item("returnurl") Is Nothing Then
-                        Dim sURL As String = Page.Request.Item("returnurl") & "&redirected=1"
-                        If sURL.Contains("&redirected=1") And Not sURL.Contains("?") Then
-                            sURL = sURL.Replace("&redirected=1", "?redirected=1")
-                        End If
-                        Page.Response.Redirect(sURL)
-                    ElseIf Not Page.Request.Item("app") Is Nothing Then
-                        Select Case Page.Request.Item("app")
-                            Case "ts"
-                                If Session("IsSupervisor") And Not Session("UserAdminID") Is Nothing Then
-                                    Page.Response.Redirect("~/tracking/supervise")
-                                ElseIf Not Session("UserAdminID") Is Nothing Then
-                                    Page.Response.Redirect("~/tracking/dashboard")
-                                Else
-                                    Page.Response.Redirect("~/home?action=appselect")
-                                End If
-                            Case "lp"
-                                Page.Response.Redirect(Session("LearningPortalUrl"))
-                            Case "cms"
-                                If Session("UserAuthenticatedCM") Then
-                                    Page.Response.Redirect("~/cms/courses")
-                                Else
-                                    Page.Response.Redirect("~/home?action=appselect")
-                                End If
 
-                            Case "learn"
-                                If Not Page.Request.Item("customisationid") Is Nothing Then
+                    Session("logoHeight") = nNewHeight
+                    Session("logoWidth") = nNewWidth
+                    Session("logoVisible") = True
+                End If
+                If Not Page.Request.Item("returnurl") Is Nothing Then
+                    Dim sURL As String = Page.Request.Item("returnurl") & "&redirected=1"
+                    If sURL.Contains("&redirected=1") And Not sURL.Contains("?") Then
+                        sURL = sURL.Replace("&redirected=1", "?redirected=1")
+                    End If
+                    Page.Response.Redirect(sURL)
+                ElseIf Not Page.Request.Item("app") Is Nothing Then
+                    Select Case Page.Request.Item("app")
+                        Case "ts"
+                            If Session("IsSupervisor") And Not Session("UserAdminID") Is Nothing Then
+                                Page.Response.Redirect("~/tracking/supervise")
+                            ElseIf Not Session("UserAdminID") Is Nothing Then
+                                Page.Response.Redirect("~/tracking/dashboard")
+                            Else
+                                Page.Response.Redirect("~/home?action=appselect")
+                            End If
+                        Case "lp"
+                            Page.Response.Redirect(Session("LearningPortalUrl"))
+                        Case "cms"
+                            If Session("UserAuthenticatedCM") Then
+                                Page.Response.Redirect("~/cms/courses")
+                            Else
+                                Page.Response.Redirect("~/home?action=appselect")
+                            End If
+
+                        Case "learn"
+                            If Not Page.Request.Item("customisationid") Is Nothing Then
                                 Page.Response.Redirect(CCommon.GetConfigString("V2AppBaseUrl") & "LearningMenu/" & Page.Request.Item("customisationid"))
                             Else
-                                    Page.Response.Redirect("~/home?action=appselect")
-                                End If
-                            Case Else
                                 Page.Response.Redirect("~/home?action=appselect")
-                        End Select
-                    Else
-                        Page.Response.Redirect("~/home?action=appselect")
-                    End If
-
+                            End If
+                        Case Else
+                            Page.Response.Redirect("~/home?action=appselect")
+                    End Select
                 Else
-                    If Session("delUnapproved") Is Nothing Then
-                        lblConfirmTitle.Text = "Login Failed"
-                        lblConfirmMessage.Text = "There was a problem with your username and / or password. Please use the recover tab to reset your password."
-                        Page.ClientScript.RegisterStartupScript(Me.GetType(), "errorrecover", "<script>$('#pnlAccount').modal('hide');$('#confirmModal').modal('show');</script>")
-                    Else
-                        lblConfirmTitle.Text = "Error: Registration not yet Approved"
-                        lblConfirmMessage.Text = "Your registration has not yet been approved by your centre administrators. You should receive an email notification once approved."
-                        Page.ClientScript.RegisterStartupScript(Me.GetType(), "errorunapproved", "<script>$('#pnlAccount').modal('hide');$('#confirmModal').modal('show');</script>")
-                    End If
+                    Page.Response.Redirect("~/home?action=appselect")
                 End If
 
+            Else
+                If Session("delUnapproved") Is Nothing Then
+                    lblConfirmTitle.Text = "Login Failed"
+                    lblConfirmMessage.Text = "There was a problem with your username and / or password. Please use the recover tab to reset your password."
+                    Page.ClientScript.RegisterStartupScript(Me.GetType(), "errorrecover", "<script>$('#pnlAccount').modal('hide');$('#confirmModal').modal('show');</script>")
+                Else
+                    lblConfirmTitle.Text = "Error: Registration not yet Approved"
+                    lblConfirmMessage.Text = "Your registration has not yet been approved by your centre administrators. You should receive an email notification once approved."
+                    Page.ClientScript.RegisterStartupScript(Me.GetType(), "errorunapproved", "<script>$('#pnlAccount').modal('hide');$('#confirmModal').modal('show');</script>")
+                End If
             End If
+
+        End If
     End Sub
     Private Sub bsbtnLogin_Click(sender As Object, e As EventArgs) Handles bsbtnLogin.Click
         'Get username and password entered:
