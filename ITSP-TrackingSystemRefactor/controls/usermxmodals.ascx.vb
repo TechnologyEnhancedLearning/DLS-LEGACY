@@ -633,6 +633,8 @@ Public Class usermxmodals
             Session("AdminCategoryID") = 0
             Session("IsSupervisor") = False
             Session("IsTrainer") = False
+            Session("IsFrameworkDeveloper") = False
+            Session("IsFrameworkContributor") = False
             GetAdminRecord(sUsername, nCentreID, sPassword)
             GetDelegateRecord(sUsername, nCentreID, sPassword)
             If Session("UserAdminID") Is Nothing And Session("learnUserAuthenticated") Then
