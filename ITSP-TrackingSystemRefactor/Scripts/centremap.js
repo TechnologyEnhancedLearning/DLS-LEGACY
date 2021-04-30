@@ -212,7 +212,12 @@ function ResetControl(controlDiv, map) {
     });
 
 }
-
+function normaliseUrl(url) {
+    if (!url.includes("http")) {
+        url = "https://" + url;
+    }
+    return url;
+}
 function getDescription(props) {
     var s = '<div class="m-2"><h4 class="mb-2">' + props.title + '</h4>';
     if (props.pwTelephone) {
@@ -222,7 +227,7 @@ function getDescription(props) {
         s = s + '<p title="Contact email"><a href="mailto:' + props.pwEmail + '"><i class="fas fa-envelope mr-2"></i> ' + props.pwEmail + '</a></p>'
     }
     if (props.pwWebURL) {
-        s = s + '<p title="Website"><a href="' + props.pwWebURL + '" target="_blank"><i class="fas fa-globe mr-2"></i> ' + props.pwWebURL + '</a></p>'
+        s = s + '<p title="Website"><a href="' + normaliseUrl(props.pwWebURL) + '" target="_blank"><i class="fas fa-globe mr-2"></i> ' + props.pwWebURL + '</a></p>'
     }
     if (props.pwTrainingLocations) {
         s = s + '<p title="Training Venues"><i class="fas fa-map-marker-alt mr-2"></i> ' + props.pwTrainingLocations + '</p>'

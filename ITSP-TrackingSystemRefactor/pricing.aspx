@@ -124,7 +124,7 @@
                
               </ul>
               <div class="pricing-table-footer text-center">
-                <a href="home#contact" class="btn btn-info btn-raised">
+                <a href="home#contact" target='<%# GetTarget() %>' class="btn btn-info btn-raised">
                   <i class="fas fa-envelope"></i> Enquire</a>
               </div>
             </div>

@@ -17,17 +17,6 @@ Public Class register
                     lblRegText.Text = "Register to access Digital Learning Solutions systems as a centre administrator below."
             End Select
         End If
-        'If Not Request.IsAuthenticated And Not Page.RouteData.Values("centre") Is Nothing Then
-        '    Dim taSSO As New AuthenticateTableAdapters.SSOTenantsTableAdapter
-        '    Dim tSSO As Authenticate.SSOTenantsDataTable = taSSO.GetByCentreShortNameOrID(Page.RouteData.Values("centre"))
-        '    If tSSO.Count = 1 Then
-        '        'Startup.SetupOpenIDConnection(tSSO.First)
-        '        Context.GetOwinContext().Authentication.Challenge(New AuthenticationProperties With {
-        '       .RedirectUri = "/"
-        '   }, OpenIdConnectAuthenticationDefaults.AuthenticationType)
-
-        '    End If
-        'End If
         btnRegister.Attributes.Add("onclick", "return validateRegFields();")
         lbtRegisterCustom.Attributes.Add("onclick", "return validateCustomFields();")
     End Sub
@@ -337,6 +326,7 @@ Public Class register
                     Exit For
                 Next
             End If
+            CCommon.LoginFromSession(False, Session, Request, Context)
         End If
         Dim taDelegate As New LearnMenuTableAdapters.CandidatesTableAdapter
         Dim tDelegate As New LearnMenu.CandidatesDataTable
@@ -577,9 +567,9 @@ Public Class register
                 End If
             End If
             tbFNameReg.Text = CultureInfo.CurrentCulture.TextInfo.ToTitleCase(fName.ToLower)
-                tbLNameReg.Text = CultureInfo.CurrentCulture.TextInfo.ToTitleCase(lName.ToLower)
-                pnlPassword.Visible = False
-            End If
+            tbLNameReg.Text = CultureInfo.CurrentCulture.TextInfo.ToTitleCase(lName.ToLower)
+            pnlPassword.Visible = False
+        End If
     End Sub
 
     Private Sub lbtRegisterCustom_Click(sender As Object, e As EventArgs) Handles lbtRegisterCustom.Click
@@ -612,10 +602,13 @@ Public Class register
             Session("UserContentCreator") = False
             Session("UserAuthenticatedCM") = False
             Session("UserPublishToAll") = False
-            Session("IsSupervisor") = False
             Session("UserImportOnly") = False
+            Session("UserCentreReports") = False
             Session("learnCandidateID") = 0
             Session("learnUserAuthenticated") = False
+            Session("AdminCategoryID") = 0
+            Session("IsSupervisor") = False
+            Session("IsTrainer") = False
             If ddAccountType.SelectedValue = 2 Or ddAccountType.SelectedValue = 3 Then
                 'Register as an administrator
                 RegisterAdmin(True, False)
@@ -624,6 +617,7 @@ Public Class register
             ElseIf ddAccountType.SelectedValue = 1 Then
                 CheckForCustomFields()
             End If
+
         End If
     End Sub
 End Class
