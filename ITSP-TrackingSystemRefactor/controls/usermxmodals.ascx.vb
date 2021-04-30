@@ -29,7 +29,11 @@ Public Class usermxmodals
                     CCommon.AdminUserLogout()
                     Page.Response.Redirect("~/home")
                 Case "appselect"
-                    Page.ClientScript.RegisterStartupScript(Me.GetType(), "ShowAppSelect", "<script>$('#pnlAppSelect').modal('show');</script>")
+                    If Request.IsAuthenticated Then
+                        Page.ClientScript.RegisterStartupScript(Me.GetType(), "ShowAppSelect", "<script>$('#pnlAppSelect').modal('show');</script>")
+                    Else
+                        Page.ClientScript.RegisterStartupScript(Me.GetType(), "ShowModalAccount", "<script>$('#pnlAccount').modal('show');</script>")
+                    End If
                 Case "mxdelegate"
                     PopulateDelegateDetails()
                     rptDelNotifications.DataBind()
