@@ -6,6 +6,7 @@ Imports HiQPdf
 Imports Microsoft.Owin.Security.OpenIdConnect
 Imports Microsoft.Owin.Security.Cookies
 Imports System.Security.Claims
+Imports Microsoft.Owin.Security
 
 Public Class CCommon
 #Region "HTMLSetup"
@@ -1534,5 +1535,54 @@ Public Class CCommon
             End If
         End If
     End Function
+#End Region
+#Region "Login"
+    Public Shared Sub LoginFromSession(ByVal bRememberMe As Boolean, ByRef Session As HttpSessionState, ByRef Request As HttpRequest, ByRef Context As HttpContext)
+        If Not Session("UserEmail") Is Nothing Then
+            Dim claims = New List(Of Claim)()
+            claims.Add(New Claim(ClaimTypes.Email, Session("UserEmail")))
+            claims.Add(New Claim("UserCentreID", Session("UserCentreID")))
+            claims.Add(New Claim("UserCentreManager", Session("UserCentreManager")))
+            claims.Add(New Claim("UserCentreAdmin", Session("UserCentreAdmin")))
+            claims.Add(New Claim("UserUserAdmin", Session("UserUserAdmin")))
+            claims.Add(New Claim("UserContentCreator", Session("UserContentCreator")))
+            claims.Add(New Claim("UserAuthenticatedCM", Session("UserAuthenticatedCM")))
+            claims.Add(New Claim("UserPublishToAll", Session("UserPublishToAll")))
+            claims.Add(New Claim("UserCentreReports", Session("UserCentreReports")))
+            claims.Add(New Claim("learnCandidateID", Session("learnCandidateID")))
+            claims.Add(New Claim("learnUserAuthenticated", Session("learnUserAuthenticated")))
+            claims.Add(New Claim("AdminCategoryID", Session("AdminCategoryID")))
+            claims.Add(New Claim("IsSupervisor", Session("IsSupervisor")))
+            claims.Add(New Claim("IsTrainer", Session("IsTrainer")))
+            claims.Add(New Claim("IsFrameworkDeveloper", Session("IsFrameworkDeveloper")))
+            claims.Add(New Claim("IsFrameworkContributor", Session("IsFrameworkContributor")))
+            If Not Session("learnCandidateNumber") Is Nothing Then
+                claims.Add(New Claim("learnCandidateNumber", Session("learnCandidateNumber"), ""))
+            End If
+            If Not Session("UserForename") Is Nothing Then
+                claims.Add(New Claim("UserForename", Session("UserForename"), ""))
+                claims.Add(New Claim("UserSurname", Session("UserSurname"), ""))
+            End If
+            If Not Session("UserCentreName") Is Nothing Then
+                claims.Add(New Claim("UserCentreName", Session("UserCentreName"), ""))
+            End If
+            If Not Session("UserAdminID") Is Nothing Then
+                claims.Add(New Claim("UserAdminID", Session("UserAdminID"), ""))
+            End If
+            Dim identity = New ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationType)
+
+            If Request.IsAuthenticated Then
+                Dim cp As ClaimsPrincipal = HttpContext.Current.User
+                If Not cp.HasClaim(Function(c) c.Type = "UserCentreID") Then
+                    cp.AddIdentity(identity)
+                End If
+            Else
+                Context.GetOwinContext().Authentication.SignIn(New AuthenticationProperties() With {
+               .IsPersistent = bRememberMe
+           }, identity)
+            End If
+        End If
+    End Sub
+
 #End Region
 End Class
