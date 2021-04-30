@@ -13,4 +13,11 @@
     Protected Function NiceBytes(ByVal nBytes As Long) As String
         Return CCommon.BytesToString(nBytes)
     End Function
+    Public Function GetTarget() As String
+        If MasterPageFile = "/nonav.Master" Then
+            Return "_blank"
+        Else
+            Return "_self"
+        End If
+    End Function
 End Class
