@@ -705,12 +705,10 @@ Public Class ManageContent
             If sOldPath.Contains("Course" & Page.Request.Item("courseid").ToString() & "/") Then
 
                 Try
-                    If Not sOldPath.StartsWith("~/") Then
-                        sOldPath = "~/" & sOldPath
-                    End If
-                    sOldPath = Server.MapPath(sOldPath)
-                    'there is old content, should we delete it?
                     If sOldPath <> sNewPath Then
+                        sOldPath = sOldPath.Replace(My.Settings.MyURL, "~/")
+                        sOldPath = Server.MapPath(sOldPath)
+                        'there is old content, should we delete it?
                         'it's different so yes:
                         If sOldPath.Contains("Diagnostic") Or sOldPath.Contains("PLAssess") Or sOldPath.Contains("Tutorials") Then
                             'we need to delete the containing folder:
