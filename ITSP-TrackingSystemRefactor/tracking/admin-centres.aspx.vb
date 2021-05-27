@@ -1,8 +1,9 @@
-﻿Imports DevExpress.Web.Bootstrap
+﻿Imports System.IO
+Imports DevExpress.Web.Bootstrap
 
 Public Class admin_centres
     Inherits System.Web.UI.Page
-
+    Public Property fPathBase As String = Server.MapPath("~/cms/CMSContent/")
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
 
     End Sub
@@ -146,5 +147,100 @@ Public Class admin_centres
     Protected Sub lbtUpdateSpaceUsage_Command(sender As Object, e As CommandEventArgs)
         CCommon.GetCentreServerSpaceUsage(e.CommandArgument, Server.MapPath("~/cms/CMSContent/"))
         bsgvCentres.DataBind()
+    End Sub
+
+    Protected Sub lbtPurgeCentreSpace_Command(sender As Object, e As CommandEventArgs)
+        Dim taAppSecs As New itspdbTableAdapters.CentreApplicationsSectionsTableAdapter
+        Dim tAppSecs As New itspdb.CentreApplicationsSectionsDataTable
+        Dim taQs As New itspdbTableAdapters.QueriesTableAdapter
+        tAppSecs = taAppSecs.GetData(e.CommandArgument)
+        Dim appList = New List(Of Integer)
+        For Each r As itspdb.CentreApplicationsSectionsRow In tAppSecs.Rows
+            Dim sPath As String = $"~/cms/cmscontent/course{r.ApplicationID}/section{r.SectionID}/"
+            Dim sMappedPath As String = Server.MapPath(sPath)
+            If Directory.Exists(sMappedPath) Then
+                Dim tutsPath As String = $"{sMappedPath}Tutorials"
+                If Directory.Exists(tutsPath) Then
+                    Dim dirs As String() = Directory.GetDirectories(tutsPath)
+                    For Each di As String In dirs
+                        Dim folderName As String = di.Substring(di.LastIndexOf("\") + 1, di.Length - (di.LastIndexOf("\") + 1))
+                        If taQs.GetTutPathUsageCountInSection(r.SectionID, folderName) = 0 Then
+                            If Not appList.Contains(r.ApplicationID) Then
+                                appList.Add(r.ApplicationID)
+                            End If
+                            RemoveFileAttributes(di)
+                            My.Computer.FileSystem.DeleteDirectory(di, FileIO.UIOption.AllDialogs, FileIO.RecycleOption.SendToRecycleBin)
+                            'Directory.Delete(di, True)
+                        End If
+                    Next
+                End If
+                Dim vidsPath As String = $"{sMappedPath}\Videos"
+                If Directory.Exists(vidsPath) Then
+                    Dim dirs As String() = Directory.GetDirectories(vidsPath)
+                    For Each di As String In dirs
+                        Dim folderName As String = di.Substring(di.LastIndexOf("\") + 1, di.Length - (di.LastIndexOf("\") + 1))
+                        If taQs.GetVideoPathUsageBySection(r.SectionID, folderName) = 0 Then
+                            If Not appList.Contains(r.ApplicationID) Then
+                                appList.Add(r.ApplicationID)
+                            End If
+                            RemoveFileAttributes(di)
+                            My.Computer.FileSystem.DeleteDirectory(di, FileIO.UIOption.AllDialogs, FileIO.RecycleOption.SendToRecycleBin)
+                        End If
+                    Next
+                End If
+                Dim diagsPath As String = $"{sMappedPath}\Diagnostic"
+                If Directory.Exists(diagsPath) Then
+                    Dim dirs As String() = Directory.GetDirectories(diagsPath)
+                    For Each di As String In dirs
+                        Dim folderName As String = di.Substring(di.LastIndexOf("\") + 1, di.Length - (di.LastIndexOf("\") + 1))
+                        If taQs.GetDiagUsageByAppId(folderName, r.ApplicationID) = 0 Then
+                            If Not appList.Contains(r.ApplicationID) Then
+                                appList.Add(r.ApplicationID)
+                            End If
+                            RemoveFileAttributes(di)
+                            My.Computer.FileSystem.DeleteDirectory(di, FileIO.UIOption.AllDialogs, FileIO.RecycleOption.SendToRecycleBin)
+                        End If
+                    Next
+                End If
+                Dim plaPath As String = $"{sMappedPath}\PLAssess"
+                If Directory.Exists(plaPath) Then
+                    Dim dirs As String() = Directory.GetDirectories(plaPath)
+                    For Each di As String In dirs
+                        Dim folderName As String = di.Substring(di.LastIndexOf("\") + 1, di.Length - (di.LastIndexOf("\") + 1))
+                        If taQs.GetPLAssessUsageByAppId(folderName, r.ApplicationID) = 0 Then
+                            If Not appList.Contains(r.ApplicationID) Then
+                                appList.Add(r.ApplicationID)
+                            End If
+                            RemoveFileAttributes(di)
+                            My.Computer.FileSystem.DeleteDirectory(di, FileIO.UIOption.AllDialogs, FileIO.RecycleOption.SendToRecycleBin)
+                        End If
+                    Next
+                End If
+                Dim consPath As String = $"{sMappedPath}\Consolidation"
+                If Directory.Exists(consPath) Then
+                    Dim dirs As String() = Directory.GetDirectories(consPath)
+                    For Each di As String In dirs
+                        Dim folderName As String = di.Substring(di.LastIndexOf("\") + 1, di.Length - (di.LastIndexOf("\") + 1))
+                        If taQs.GetConsolidationUsageByAppId(folderName, r.ApplicationID) = 0 Then
+                            If Not appList.Contains(r.ApplicationID) Then
+                                appList.Add(r.ApplicationID)
+                            End If
+                            RemoveFileAttributes(di)
+                            My.Computer.FileSystem.DeleteDirectory(di, FileIO.UIOption.AllDialogs, FileIO.RecycleOption.SendToRecycleBin)
+                        End If
+                    Next
+                End If
+            End If
+
+        Next
+        For Each appId As Integer In appList
+            CCommon.GetCourseServerSpaceUsage(appId, e.CommandArgument, fPathBase)
+        Next
+    End Sub
+    Public Shared Sub RemoveFileAttributes(ByVal target_dir As String)
+        Dim files As String() = Directory.GetFiles(target_dir)
+        For Each sFile In files
+            File.SetAttributes(sFile, FileAttributes.Normal)
+        Next
     End Sub
 End Class
