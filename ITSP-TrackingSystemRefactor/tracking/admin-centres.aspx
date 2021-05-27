@@ -133,6 +133,7 @@
                                 <DataItemTemplate>
                                     <%#NiceBytes(Eval("ServerSpaceUsed")) %>
                                     <asp:LinkButton ID="lbtUpdateSpaceUsage" EnableViewState="false" CommandArgument='<%#Eval("CentreID") %>' OnCommand="lbtUpdateSpaceUsage_Command" runat="server"><i class="fas fa-refresh"></i></asp:LinkButton>
+                                    <asp:LinkButton ID="lbtPurgeCentreSpace" EnableViewState="false" Tooltip="REMOVE ALL UNUSED CONTENT FROM SERVER" CommandArgument='<%#Eval("CentreID") %>' OnCommand="lbtPurgeCentreSpace_Command" runat="server"><i class="fas fa-warning"></i></asp:LinkButton>
                                 </DataItemTemplate>
                             </dx:BootstrapGridViewTextColumn>
                         </Columns>
