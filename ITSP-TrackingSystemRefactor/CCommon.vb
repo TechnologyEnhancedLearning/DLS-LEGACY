@@ -1474,7 +1474,7 @@ Public Class CCommon
     End Function
 
     Public Shared Function BytesToString(ByVal byteCount As Long) As String
-        Dim suf As String() = {"B", "KB", "MB", "GB", "TB", "PB", "EB"}
+        Dim suf As String() = {"B", "KiB", "MiB", "GiB", "TiB", "PiB", "EiB"}
         If byteCount = 0 Then Return "0" & suf(0)
         Dim bytes As Long = Math.Abs(byteCount)
         Dim place As Long = Convert.ToInt32(Math.Floor(Math.Log(bytes, 1024)))
