@@ -17616,11 +17616,10 @@ Namespace prelogindataTableAdapters
             Me._commandCollection = New Global.System.Data.SqlClient.SqlCommand(0) {}
             Me._commandCollection(0) = New Global.System.Data.SqlClient.SqlCommand()
             Me._commandCollection(0).Connection = Me.Connection
-            Me._commandCollection(0).CommandText = "SELECT        CentreID AS id, CentreName AS title, Lat AS latitude, Long AS longi"& _ 
-                "tude, pwTelephone, pwEmail, pwWebURL, pwHours, pwTrustsCovered, pwTrainingLocati"& _ 
-                "ons, pwGeneralInfo"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"FROM            Centres"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"WHERE        (Active = 1) AND (NOT "& _ 
-                "(Lat IS NULL)) AND (CentreID = @CentreID OR"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         @CentreID "& _ 
-                "= 0)"
+            Me._commandCollection(0).CommandText = "SELECT CentreID AS id, CentreName AS title, Lat AS latitude, Long AS longitude, p"& _ 
+                "wTelephone, pwEmail, pwWebURL, pwHours, pwTrustsCovered, pwTrainingLocations, pw"& _ 
+                "GeneralInfo"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"FROM   Centres"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"WHERE (Active = 1) AND (NOT (Lat IS NULL)) AND (Cen"& _ 
+                "treID = @CentreID OR"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"             @CentreID = 0) AND (ShowOnMap = 1)"
             Me._commandCollection(0).CommandType = Global.System.Data.CommandType.Text
             Me._commandCollection(0).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@CentreID", Global.System.Data.SqlDbType.Int, 4, Global.System.Data.ParameterDirection.Input, 0, 0, "id", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
         End Sub
@@ -17785,12 +17784,11 @@ Namespace prelogindataTableAdapters
             Me._commandCollection = New Global.System.Data.SqlClient.SqlCommand(0) {}
             Me._commandCollection(0) = New Global.System.Data.SqlClient.SqlCommand()
             Me._commandCollection(0).Connection = Me.Connection
-            Me._commandCollection(0).CommandText = "SELECT        CentreID, REPLACE(STR(CentreID, 3), SPACE(1), '0') AS CentreNumber,"& _ 
-                " CentreName,"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                             (SELECT        RegionName"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"          "& _ 
-                "                     FROM            Regions"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                               WHE"& _ 
-                "RE        (RegionID = c.RegionID)) AS Region"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"FROM            Centres AS c"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"WHER"& _ 
-                "E        (Active = 1) AND (NOT (Lat IS NULL)) AND (NOT (Long IS NULL))"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"ORDER BY"& _ 
-                " CentreName"
+            Me._commandCollection(0).CommandText = "SELECT CentreID, REPLACE(STR(CentreID, 3), SPACE(1), '0') AS CentreNumber, Centre"& _ 
+                "Name,"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                 (SELECT RegionName"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                 FROM    Regions"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"  "& _ 
+                "               WHERE (RegionID = c.RegionID)) AS Region"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"FROM   Centres AS c"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"WH"& _ 
+                "ERE (Active = 1) AND (NOT (Lat IS NULL)) AND (NOT (Long IS NULL)) AND (ShowOnMap"& _ 
+                " = 1)"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"ORDER BY CentreName"
             Me._commandCollection(0).CommandType = Global.System.Data.CommandType.Text
         End Sub
         
