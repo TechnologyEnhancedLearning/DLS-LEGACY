@@ -62,29 +62,35 @@ Public Class usermxmodals
         If Session("UserAdminID") Is Nothing And Session("learnUserAuthenticated") Is Nothing Then
             If Request.IsAuthenticated Then
                 Dim sEmailClaim As String = ConfigurationManager.AppSettings("ida:EmailClaim")
-                If Not System.Security.Claims.ClaimsPrincipal.Current.FindFirst(sEmailClaim) Is Nothing Then
+                If Not ClaimsPrincipal.Current.FindFirst(sEmailClaim) Is Nothing Then
                     Dim sEmail As String = System.Security.Claims.ClaimsPrincipal.Current.FindFirst(sEmailClaim).Value
                     If sEmail.Contains("@") Then
                         Dim taq As New AuthenticateTableAdapters.QueriesTableAdapter
-                        Dim nCentreID As Integer = taq.GetCentreIDForEmail(sEmail)
-                        If nCentreID = 0 Then
-                            If Session("PromptReg") Is Nothing Then
-
-                                'user isn't currently registered to DLS - offer to register:
-
-                                Session("PromptReg") = True
-                                Dim sNameClaim As String = ConfigurationManager.AppSettings("ida:NameClaim")
-                                If Not ClaimsPrincipal.Current.FindFirst(sNameClaim) Is Nothing Then
-                                    Dim sName As String = ClaimsPrincipal.Current.FindFirst(sNameClaim).Value
-                                    lblCompleteMSReg.Text = "<p>Welcome <b>" & sName & "</b>.</p><p>You are not currently registered at a Digital Learning Solutions centre. Would you like to register now?"
-                                    Page.ClientScript.RegisterStartupScript(Me.GetType(), "ShowRegModal", "<script>$('#registerMSUserModal').modal('show');</script>")
-                                End If
-                            End If
+                        Dim nCentreID As Integer = 0
+                        If ClaimsPrincipal.Current.FindFirst("UserCentreID") IsNot Nothing Then
+                            nCentreID = CInt(ClaimsPrincipal.Current.FindFirst("UserCentreID").Value)
                         Else
-                            LogIn(sEmail, nCentreID, "")
+                            nCentreID = taq.GetCentreIDForEmail(sEmail)
+                        End If
+
+                        If nCentreID = 0 Then
+                                If Session("PromptReg") Is Nothing Then
+
+                                    'user isn't currently registered to DLS - offer to register:
+
+                                    Session("PromptReg") = True
+                                    Dim sNameClaim As String = ConfigurationManager.AppSettings("ida:NameClaim")
+                                    If Not ClaimsPrincipal.Current.FindFirst(sNameClaim) Is Nothing Then
+                                        Dim sName As String = ClaimsPrincipal.Current.FindFirst(sNameClaim).Value
+                                        lblCompleteMSReg.Text = "<p>Welcome <b>" & sName & "</b>.</p><p>You are not currently registered at a Digital Learning Solutions centre. Would you like to register now?"
+                                        Page.ClientScript.RegisterStartupScript(Me.GetType(), "ShowRegModal", "<script>$('#registerMSUserModal').modal('show');</script>")
+                                    End If
+                                End If
+                            Else
+                                LogIn(sEmail, nCentreID, "")
+                            End If
                         End If
                     End If
-                End If
             End If
         End If
     End Sub
