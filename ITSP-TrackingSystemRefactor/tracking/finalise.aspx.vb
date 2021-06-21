@@ -10,17 +10,20 @@ Partial Public Class CFinalise
             End If
 
             Try
-                    '
-                    ' Learning materials will open finalise.aspx with parameter being the SessionID, CustomisationID and CandidateID. 
-                    '
-                    If Session("UserCentreID") Is Nothing Then
-                        Session("UserCentreID") = CInt(Page.Request.Item("UserCentreID"))
-                    End If
-                    If Not Page.Request.Item("Preview") Is Nothing Then
-                        Dim nCentreID As Integer = Session("UserCentreID")
-                        SetupPreview(nCentreID)
-                    Else
-                        Dim nProgressID As Integer = 0
+                '
+                ' Learning materials will open finalise.aspx with parameter being the SessionID, CustomisationID and CandidateID. 
+                '
+                If (Session("UserCentreID") Is Nothing Or Session("UserCentreID") = 0) And Request.IsAuthenticated Then
+                    CCommon.GenerateSessionFromClaims(Session, Request, Context)
+                End If
+                If Session("UserCentreID") Is Nothing Then
+                    Session("UserCentreID") = CInt(Page.Request.Item("UserCentreID"))
+                End If
+                If Not Page.Request.Item("Preview") Is Nothing Then
+                    Dim nCentreID As Integer = Session("UserCentreID")
+                    SetupPreview(nCentreID)
+                Else
+                    Dim nProgressID As Integer = 0
                     If Not Page.Request.Item("ProgressID") Is Nothing Then
                         nProgressID = CInt(Page.Request.Item("ProgressID"))
                     End If
@@ -35,60 +38,60 @@ Partial Public Class CFinalise
                     End If
 
 
-                        Dim bCentreManager As Boolean = False
+                    Dim bCentreManager As Boolean = False
 
 
 
-                        Dim bIsPDF As Boolean
-                        If Page.Request.Item("pdfexport") Is Nothing OrElse Page.Request.Item("pdfexport") = String.Empty Then
-                            bIsPDF = False
-                        Else
-                            bIsPDF = True
-                        End If
-                        '
-                        ' If no session ID then check if centre manager logged in
-                        '
-                        Dim taq As New ITSPTableAdapters.QueriesTableAdapter
-                        If bIsPDF Then
-                            Session("UserCentreID") = CInt(Page.Request.Item("UserCentreID"))
-                            pnlToolbar.Visible = False
-                            Me.Page.Header.Controls.Add(New LiteralControl("<style type=""text/css"">   .style2 {padding-bottom:8px; }  .style3  {padding-bottom:8px; }  .style4  {padding-bottom:8px; } </style>"))
-                        End If
-                        If nProgressID = 0 Then
-                            If Session("UserName") Is Nothing Then
-                                If Not bIsPDF Then
-                                    '							Throw New ApplicationException("Invalid parameters")
-                                End If
-
+                    Dim bIsPDF As Boolean
+                    If Page.Request.Item("pdfexport") Is Nothing OrElse Page.Request.Item("pdfexport") = String.Empty Then
+                        bIsPDF = False
+                    Else
+                        bIsPDF = True
+                    End If
+                    '
+                    ' If no session ID then check if centre manager logged in
+                    '
+                    Dim taq As New ITSPTableAdapters.QueriesTableAdapter
+                    If bIsPDF Then
+                        Session("UserCentreID") = CInt(Page.Request.Item("UserCentreID"))
+                        pnlToolbar.Visible = False
+                        Me.Page.Header.Controls.Add(New LiteralControl("<style type=""text/css"">   .style2 {padding-bottom:8px; }  .style3  {padding-bottom:8px; }  .style4  {padding-bottom:8px; } </style>"))
+                    End If
+                    If nProgressID = 0 Then
+                        If Session("UserName") Is Nothing Then
+                            If Not bIsPDF Then
+                                '							Throw New ApplicationException("Invalid parameters")
                             End If
-                            If Page.Request.Item("ProgressKey") Is Nothing Then
-                                bCentreManager = True
-                            End If
-                            nProgressID = 1                          ' provide something for code to chew on. It's ignored if centre manager logged in.
+
                         End If
-
-
-                        '
-                        ' Check if the user information is valid, and if the course is assessed then
-                        '
-                        Dim bImg As System.Byte() = taq.GetLogoForProgressID(nProgressID)
-                        If Not bImg Is Nothing Then
-                            bimgLogo.Value = bImg
-                        Else
-                            bimgLogo.Visible = False
+                        If Page.Request.Item("ProgressKey") Is Nothing Then
+                            bCentreManager = True
                         End If
-                        Dim progressAdapter As New ITSPTableAdapters.ProgressTableAdapter()
-                        Dim tblProgress As ITSP.ProgressDataTable
-                        'Dim nSessionID As Integer = CInt(sSessionID)
-
-                        If bCentreManager Then
-                            tblProgress = progressAdapter.GetForCertificate(nProgressID)
-                        ElseIf Not Page.Request.Item("ProgressKey") Is Nothing Then
+                        nProgressID = 1                          ' provide something for code to chew on. It's ignored if centre manager logged in.
+                    End If
 
 
-                            tblProgress = progressAdapter.GetForCertificate(nProgressID)
-                            nProgressID = tblProgress.First.ProgressID
-                            Dim idLPGUID As Guid = New Guid(Page.Request.Item("ProgressKey"))
+                    '
+                    ' Check if the user information is valid, and if the course is assessed then
+                    '
+                    Dim bImg As System.Byte() = taq.GetLogoForProgressID(nProgressID)
+                    If Not bImg Is Nothing Then
+                        bimgLogo.Value = bImg
+                    Else
+                        bimgLogo.Visible = False
+                    End If
+                    Dim progressAdapter As New ITSPTableAdapters.ProgressTableAdapter()
+                    Dim tblProgress As ITSP.ProgressDataTable
+                    'Dim nSessionID As Integer = CInt(sSessionID)
+
+                    If bCentreManager Then
+                        tblProgress = progressAdapter.GetForCertificate(nProgressID)
+                    ElseIf Not Page.Request.Item("ProgressKey") Is Nothing Then
+
+
+                        tblProgress = progressAdapter.GetForCertificate(nProgressID)
+                        nProgressID = tblProgress.First.ProgressID
+                        Dim idLPGUID As Guid = New Guid(Page.Request.Item("ProgressKey"))
                         If bSessionVerified = False And (Session("ProgressKeyChecked") Is Nothing Or Not Session("ProgressKeyChecked") = Page.Request.Item("ProgressKey")) Then
                             If Not Page.Request.Item("ProgressKey") = "Enroll" Then
                                 If taq.CheckProgressKeyExistsAndRemove(idLPGUID, nProgressID) = 0 Then
@@ -99,39 +102,39 @@ Partial Public Class CFinalise
                             End If
                         End If
                     Else
-                            tblProgress = progressAdapter.GetForCertificate(nProgressID)
-                        End If
-                        If tblProgress.Count = 0 Then
-                            Throw New ApplicationException("No progress")
-                        End If
+                        tblProgress = progressAdapter.GetForCertificate(nProgressID)
+                    End If
+                    If tblProgress.Count = 0 Then
+                        Throw New ApplicationException("No progress")
+                    End If
+                    '
+                    ' Get the Evaluated and Completed date/time as a string. A little complex
+                    ' because DateTime is not nullable.
+                    '
+                    Dim bCompleted As Boolean = True
+                    Dim bEvaluated As Boolean = True
+                    Dim sCompleted As String = ""
+                    Try
+                        sCompleted = tblProgress.First.Completed.ToString("dd MMM yyyy")
+                    Catch ex As System.Data.StrongTypingException
                         '
-                        ' Get the Evaluated and Completed date/time as a string. A little complex
-                        ' because DateTime is not nullable.
+                        ' The Completed value must be DBNull but there's no way of testing it
+                        ' so just depend on this exception!
                         '
-                        Dim bCompleted As Boolean = True
-                        Dim bEvaluated As Boolean = True
-                        Dim sCompleted As String = ""
-                        Try
-                            sCompleted = tblProgress.First.Completed.ToString("dd MMM yyyy")
-                        Catch ex As System.Data.StrongTypingException
-                            '
-                            ' The Completed value must be DBNull but there's no way of testing it
-                            ' so just depend on this exception!
-                            '
-                            bCompleted = False
-                        End Try
-                        Dim sEvaluated As String = ""
-                        Try
-                            sEvaluated = tblProgress.First.Evaluated.ToString("dd/MM/yyyy")
-                        Catch ex As System.Data.StrongTypingException
-                            bEvaluated = False
-                        End Try
-                        '
-                        ' If the course is not completed then we don't do anything
-                        '
-                        If Not bCompleted Then
-                            Throw New ApplicationException("Not completed")
-                        End If
+                        bCompleted = False
+                    End Try
+                    Dim sEvaluated As String = ""
+                    Try
+                        sEvaluated = tblProgress.First.Evaluated.ToString("dd/MM/yyyy")
+                    Catch ex As System.Data.StrongTypingException
+                        bEvaluated = False
+                    End Try
+                    '
+                    ' If the course is not completed then we don't do anything
+                    '
+                    If Not bCompleted Then
+                        Throw New ApplicationException("Not completed")
+                    End If
                     '
                     ' If it's already evaluated, show the certificate.
                     ' Also, if Centre Manager is logged in then we must be getting a duplicate certificate so just show it.
@@ -141,11 +144,11 @@ Partial Public Class CFinalise
                             hfHistory.Value = -1
                         End If
                         SetupCertificate(nProgressID)
-                        Else
-                            '
-                            ' Otherwise show the evaluation page
-                            '
-                            Me.MultiView.ActiveViewIndex = Me.MultiView.Views.IndexOf(Me.EvaluationView)
+                    Else
+                        '
+                        ' Otherwise show the evaluation page
+                        '
+                        Me.MultiView.ActiveViewIndex = Me.MultiView.Views.IndexOf(Me.EvaluationView)
                         If Not Session("lmProgressID") Is Nothing Or Not Session("UserAdminID") Is Nothing Then
                             hfHistory.Value = -2
                         End If
@@ -153,15 +156,15 @@ Partial Public Class CFinalise
 
                 End If
 
-                Catch ex As Exception
-                    '
-                    ' There was a problem with the information passed in.
-                    ' Show an error page.
-                    '
-                    Me.MultiView.ActiveViewIndex = Me.MultiView.Views.IndexOf(Me.ErrorView)
-                    Me.ErrorText.Text = ex.ToString()
-                End Try
-            End If
+            Catch ex As Exception
+                '
+                ' There was a problem with the information passed in.
+                ' Show an error page.
+                '
+                Me.MultiView.ActiveViewIndex = Me.MultiView.Views.IndexOf(Me.ErrorView)
+                Me.ErrorText.Text = ex.ToString()
+            End Try
+        End If
     End Sub
     Sub SetupPreview(ByVal nCentreNumber As Integer)
         '

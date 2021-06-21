@@ -1583,6 +1583,35 @@ Public Class CCommon
             End If
         End If
     End Sub
+    Public Shared Sub GenerateSessionFromClaims(ByRef Session As HttpSessionState, ByRef Request As HttpRequest, ByRef Context As HttpContext)
+        Dim sEmailClaim As String = ConfigurationManager.AppSettings("ida:EmailClaim")
+        If Not ClaimsPrincipal.Current.FindFirst(sEmailClaim) Is Nothing Then
+            Dim sEmail As String = ClaimsPrincipal.Current.FindFirst(sEmailClaim).Value
+            Session("UserForename") = ClaimsPrincipal.Current.FindFirst("UserForename").Value
+            Session("UserSurname") = ClaimsPrincipal.Current.FindFirst("UserSurname").Value
+            Session("UserEmail") = sEmail
+            Session("UserCentreID") = ClaimsPrincipal.Current.FindFirst("UserCentreID").Value
+            Session("UserCentreName") = ClaimsPrincipal.Current.FindFirst("UserCentreName").Value
+            Session("learnCandidateID") = ClaimsPrincipal.Current.FindFirst("learnCandidateID").Value
+            Session("learnCandidateNumber") = ClaimsPrincipal.Current.FindFirst("learnCandidateNumber").Value
+            Session("learnUserAuthenticated") = ClaimsPrincipal.Current.FindFirst("learnUserAuthenticated").Value
+            Session("UserCentreManager") = ClaimsPrincipal.Current.FindFirst("UserCentreManager").Value
+            Session("UserCentreAdmin") = ClaimsPrincipal.Current.FindFirst("UserCentreAdmin").Value
+            Session("UserUserAdmin") = ClaimsPrincipal.Current.FindFirst("UserUserAdmin").Value
+            Session("UserAdminID") = ClaimsPrincipal.Current.FindFirst("UserAdminID").Value
+            Session("UserContentCreator") = ClaimsPrincipal.Current.FindFirst("UserContentCreator").Value
+            Session("UserAuthenticatedCM") = ClaimsPrincipal.Current.FindFirst("UserAuthenticatedCM").Value
+            Session("UserPublishToAll") = ClaimsPrincipal.Current.FindFirst("UserPublishToAll").Value
+            Session("UserImportOnly") = ClaimsPrincipal.Current.FindFirst("UserImportOnly").Value
+            Session("UserAdminSessionID") = CCommon.CreateAdminUserSession(Session("UserAdminID"))
+            Session("AdminCategoryID") = ClaimsPrincipal.Current.FindFirst("AdminCategoryID").Value
+            Session("IsSupervisor") = ClaimsPrincipal.Current.FindFirst("IsSupervisor").Value
+            Session("IsTrainer") = ClaimsPrincipal.Current.FindFirst("IsTrainer").Value
+            Session("UserCentreReports") = ClaimsPrincipal.Current.FindFirst("UserCentreReports").Value
+            Session("IsFrameworkDeveloper") = ClaimsPrincipal.Current.FindFirst("IsFrameworkDeveloper").Value
+            Session("IsFrameworkContributor") = ClaimsPrincipal.Current.FindFirst("IsFrameworkContributor").Value
+        End If
 
+    End Sub
 #End Region
 End Class
