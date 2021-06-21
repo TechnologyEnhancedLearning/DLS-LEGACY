@@ -3,14 +3,14 @@
   <PropertyGroup>
     <UseIISExpress>true</UseIISExpress>
     <IISExpressSSLPort>44367</IISExpressSSLPort>
-    <NameOfLastUsedPublishProfile>itsp-tracking-dev-preview</NameOfLastUsedPublishProfile>
+    <NameOfLastUsedPublishProfile>C:\Repos\DLS-LEGACY\ITSP-TrackingSystemRefactor\My Project\PublishProfiles\itsp-tracking-dev-preview.pubxml</NameOfLastUsedPublishProfile>
     <ProjectView>ShowAllFiles</ProjectView>
     <Use64BitIISExpress />
     <IISExpressAnonymousAuthentication />
     <IISExpressWindowsAuthentication />
     <IISExpressUseClassicPipelineMode />
     <UseGlobalApplicationHostFile />
-    <LastActiveSolutionConfig>Debug|Any CPU</LastActiveSolutionConfig>
+    <LastActiveSolutionConfig>Release|Any CPU</LastActiveSolutionConfig>
   </PropertyGroup>
   <ProjectExtensions>
     <VisualStudio>
