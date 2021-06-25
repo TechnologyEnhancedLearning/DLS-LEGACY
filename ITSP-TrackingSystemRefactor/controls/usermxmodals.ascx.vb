@@ -74,23 +74,23 @@ Public Class usermxmodals
                         End If
 
                         If nCentreID = 0 Then
-                                If Session("PromptReg") Is Nothing Then
+                            If Session("PromptReg") Is Nothing Then
 
-                                    'user isn't currently registered to DLS - offer to register:
+                                'user isn't currently registered to DLS - offer to register:
 
-                                    Session("PromptReg") = True
-                                    Dim sNameClaim As String = ConfigurationManager.AppSettings("ida:NameClaim")
-                                    If Not ClaimsPrincipal.Current.FindFirst(sNameClaim) Is Nothing Then
-                                        Dim sName As String = ClaimsPrincipal.Current.FindFirst(sNameClaim).Value
-                                        lblCompleteMSReg.Text = "<p>Welcome <b>" & sName & "</b>.</p><p>You are not currently registered at a Digital Learning Solutions centre. Would you like to register now?"
-                                        Page.ClientScript.RegisterStartupScript(Me.GetType(), "ShowRegModal", "<script>$('#registerMSUserModal').modal('show');</script>")
-                                    End If
+                                Session("PromptReg") = True
+                                Dim sNameClaim As String = ConfigurationManager.AppSettings("ida:NameClaim")
+                                If Not ClaimsPrincipal.Current.FindFirst(sNameClaim) Is Nothing Then
+                                    Dim sName As String = ClaimsPrincipal.Current.FindFirst(sNameClaim).Value
+                                    lblCompleteMSReg.Text = "<p>Welcome <b>" & sName & "</b>.</p><p>You are not currently registered at a Digital Learning Solutions centre. Would you like to register now?"
+                                    Page.ClientScript.RegisterStartupScript(Me.GetType(), "ShowRegModal", "<script>$('#registerMSUserModal').modal('show');</script>")
                                 End If
-                            Else
-                                LogIn(sEmail, nCentreID, "")
                             End If
+                        Else
+                            LogIn(sEmail, nCentreID, "")
                         End If
                     End If
+                End If
             End If
         End If
     End Sub
@@ -273,10 +273,13 @@ Public Class usermxmodals
             If cbxJobGroup.SelectedIndex < 0 Then
                 cbxJobGroup.Value = Nothing
             End If
+            If Not tCandidate.First.ProfileImage Is Nothing Then
+                bsimgDelProfileImage.Value = tCandidate.First.ProfileImage
+            End If
+            bsimgDelProfileImage.Width = 150
+            bsimgDelProfileImage.Height = 150
         End If
-        bsimgDelProfileImage.Value = tCandidate.First.ProfileImage
-        bsimgDelProfileImage.Width = 150
-        bsimgDelProfileImage.Height = 150
+
         Dim taCentre As New LearnerPortalTableAdapters.CentresTableAdapter()
         Dim tCtre As New LearnerPortal.CentresDataTable
         tCtre = taCentre.GetByCentreID(CInt(Session("UserCentreID")))
