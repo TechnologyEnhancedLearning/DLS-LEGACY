@@ -1741,7 +1741,7 @@ Partial Public Class LearnerPortal
             Me.columnkbYouTube.AllowDBNull = false
             Me.columnkbDefaultOfficeVersion.AllowDBNull = false
             Me.columnNotifyEmail.MaxLength = 250
-            Me.columnIPPrefix.MaxLength = 20
+            Me.columnIPPrefix.MaxLength = 100
             Me.columnF4Name.ReadOnly = true
             Me.columnF4Name.MaxLength = 100
             Me.columnF4Mandatory.AllowDBNull = false
@@ -8726,11 +8726,11 @@ Partial Public Class LearnerPortal
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
         Public Property F4Name() As String
             Get
-                Try 
+                If Me.IsF4NameNull Then
+                    Return String.Empty
+                Else
                     Return CType(Me(Me.tableCentres.F4NameColumn),String)
-                Catch e As Global.System.InvalidCastException
-                    Throw New Global.System.Data.StrongTypingException("The value for column 'F4Name' in table 'Centres' is DBNull.", e)
-                End Try
+                End If
             End Get
             Set
                 Me(Me.tableCentres.F4NameColumn) = value
@@ -8767,11 +8767,11 @@ Partial Public Class LearnerPortal
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
         Public Property F5Name() As String
             Get
-                Try 
+                If Me.IsF5NameNull Then
+                    Return String.Empty
+                Else
                     Return CType(Me(Me.tableCentres.F5NameColumn),String)
-                Catch e As Global.System.InvalidCastException
-                    Throw New Global.System.Data.StrongTypingException("The value for column 'F5Name' in table 'Centres' is DBNull.", e)
-                End Try
+                End If
             End Get
             Set
                 Me(Me.tableCentres.F5NameColumn) = value
@@ -8808,11 +8808,11 @@ Partial Public Class LearnerPortal
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
         Public Property F6Name() As String
             Get
-                Try 
+                If Me.IsF6NameNull Then
+                    Return String.Empty
+                Else
                     Return CType(Me(Me.tableCentres.F6NameColumn),String)
-                Catch e As Global.System.InvalidCastException
-                    Throw New Global.System.Data.StrongTypingException("The value for column 'F6Name' in table 'Centres' is DBNull.", e)
-                End Try
+                End If
             End Get
             Set
                 Me(Me.tableCentres.F6NameColumn) = value
@@ -13337,58 +13337,49 @@ Namespace LearnerPortalTableAdapters
             Me._commandCollection(0).CommandType = Global.System.Data.CommandType.Text
             Me._commandCollection(1) = New Global.System.Data.SqlClient.SqlCommand()
             Me._commandCollection(1).Connection = Me.Connection
-            Me._commandCollection(1).CommandText = "SELECT        CentreID, Active, RegionID, CentreName, ContactForename, ContactSur"& _ 
-                "name, ContactEmail, ContactTelephone, PriorCandidates, AutoRegistered, BannerTex"& _ 
-                "t, "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         COALESCE((SELECT CustomPrompt FROM CustomPrompts W"& _ 
-                "HERE CustomPromptID = c.CustomField1PromptID), '') AS F1Name, F1Mandatory, F1Opt"& _ 
-                "ions, COALESCE((SELECT CustomPrompt FROM CustomPrompts WHERE CustomPromptID = c."& _ 
-                "CustomField2PromptID), '') AS F2Name, F2Mandatory, F2Options, COALESCE((SELECT C"& _ 
-                "ustomPrompt FROM CustomPrompts WHERE CustomPromptID = c.CustomField3PromptID), '"& _ 
-                "') AS F3Name, F3Mandatory, F3Options,  COALESCE((SELECT CustomPrompt FROM Custom"& _ 
-                "Prompts WHERE CustomPromptID = c.CustomField4PromptID), '') AS F4Name, F4Mandato"& _ 
-                "ry, F4Options,  COALESCE((SELECT CustomPrompt FROM CustomPrompts WHERE CustomPro"& _ 
-                "mptID = c.CustomField5PromptID), '') AS F5Name, F5Mandatory, F5Options,  COALESC"& _ 
-                "E((SELECT CustomPrompt FROM CustomPrompts WHERE CustomPromptID = c.CustomField6P"& _ 
-                "romptID), '') AS F6Name, F6Mandatory, F6Options, AutoRegisterManagerEmail,"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"    "& _ 
-                "                         (SELECT        RegionName"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                            "& _ 
-                "   FROM            Regions"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                               WHERE        (RegionI"& _ 
-                "D = c.RegionID)) AS RegionName, SignatureMimeType, SignatureImage, SignatureWidt"& _ 
-                "h, SignatureHeight, CentreLogo, LogoWidth, "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         LogoHeight"& _ 
-                ", LogoMimeType, BetaTesting, CentreTypeID, kbPassword, kbLoginPrompt, kbSelfRegi"& _ 
-                "ster, kbContact, kbYouTube, kbDefaultOfficeVersion, NotifyEmail, "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"             "& _ 
-                "            IPPrefix FROM Centres AS c WHERE (CentreID = @CentreID)"
+            Me._commandCollection(1).CommandText = "SELECT Active, AutoRegisterManagerEmail, AutoRegistered, BannerText, BetaTesting,"& _ 
+                " CentreID, CentreLogo, CentreName, CentreTypeID, ContactEmail, ContactForename, "& _ 
+                "ContactSurname, ContactTelephone, F1Mandatory, COALESCE ((SELECT CustomPrompt FR"& _ 
+                "OM CustomPrompts WHERE (CustomPromptID = c.CustomField1PromptID)), '') AS F1Name"& _ 
+                ", F1Options, F2Mandatory, COALESCE ((SELECT CustomPrompt FROM CustomPrompts AS C"& _ 
+                "ustomPrompts_5 WHERE (CustomPromptID = c.CustomField2PromptID)), '') AS F2Name, "& _ 
+                "F2Options, F3Mandatory, COALESCE ((SELECT CustomPrompt FROM CustomPrompts AS Cus"& _ 
+                "tomPrompts_4 WHERE (CustomPromptID = c.CustomField3PromptID)), '') AS F3Name, F3"& _ 
+                "Options, F4Mandatory, COALESCE ((SELECT CustomPrompt FROM CustomPrompts AS Custo"& _ 
+                "mPrompts_3 WHERE (CustomPromptID = c.CustomField4PromptID)), '') AS F4Name, F4Op"& _ 
+                "tions, F5Mandatory, COALESCE ((SELECT CustomPrompt FROM CustomPrompts AS CustomP"& _ 
+                "rompts_2 WHERE (CustomPromptID = c.CustomField5PromptID)), '') AS F5Name, F5Opti"& _ 
+                "ons, F6Mandatory, COALESCE ((SELECT CustomPrompt FROM CustomPrompts AS CustomPro"& _ 
+                "mpts_1 WHERE (CustomPromptID = c.CustomField6PromptID)), '') AS F6Name, F6Option"& _ 
+                "s, IPPrefix, LogoHeight, LogoMimeType, LogoWidth, NotifyEmail, PriorCandidates, "& _ 
+                "RegionID, (SELECT RegionName FROM Regions WHERE (RegionID = c.RegionID)) AS Regi"& _ 
+                "onName, SignatureHeight, SignatureImage, SignatureMimeType, SignatureWidth, kbCo"& _ 
+                "ntact, kbDefaultOfficeVersion, kbLoginPrompt, kbPassword, kbSelfRegister, kbYouT"& _ 
+                "ube FROM Centres AS c WHERE (CentreID = @CentreID)"
             Me._commandCollection(1).CommandType = Global.System.Data.CommandType.Text
             Me._commandCollection(1).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@CentreID", Global.System.Data.SqlDbType.Int, 4, Global.System.Data.ParameterDirection.Input, 0, 0, "CentreID", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
             Me._commandCollection(2) = New Global.System.Data.SqlClient.SqlCommand()
             Me._commandCollection(2).Connection = Me.Connection
-            Me._commandCollection(2).CommandText = "SELECT        COALESCE"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                             ((SELECT        CustomPrompt"& _ 
-                ""&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                                 FROM            CustomPrompts"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"              "& _ 
-                "                   WHERE        (CustomPromptID = c.CustomField1PromptID)), '') "& _ 
-                "AS F1Name,"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                             (SELECT        RegionName"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"            "& _ 
-                "                   FROM            Regions"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                               WHERE"& _ 
-                "        (RegionID = c.RegionID)) AS RegionName, c.Active, c.AutoRegisterManagerE"& _ 
-                "mail, c.AutoRegistered, c.BannerText, c.BetaTesting, c.CentreID, c.CentreLogo, c"& _ 
-                ".CentreName, c.CentreTypeID, c.ContactEmail, "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         c.Contac"& _ 
-                "tForename, c.ContactSurname, c.ContactTelephone, c.F1Mandatory, c.F1Options, c.F"& _ 
-                "2Mandatory, c.F2Options, c.F3Mandatory, c.F3Options, c.F4Mandatory, c.F4Options,"& _ 
-                " c.F5Mandatory, c.F5Options, c.F6Mandatory, "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         c.F6Optio"& _ 
-                "ns, COALESCE"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                             ((SELECT        CustomPrompt"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"       "& _ 
-                "                          FROM            CustomPrompts AS CustomPrompts_3"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"    "& _ 
-                "                             WHERE        (CustomPromptID = c.CustomField4Prompt"& _ 
-                "ID)), '') AS F4Name, COALESCE"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                             ((SELECT        Cust"& _ 
-                "omPrompt"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                                 FROM            CustomPrompts AS Cust"& _ 
-                "omPrompts_2"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                                 WHERE        (CustomPromptID = c.C"& _ 
-                "ustomField5PromptID)), '') AS F5Name, COALESCE"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                             ((S"& _ 
-                "ELECT        CustomPrompt"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                                 FROM            Cust"& _ 
-                "omPrompts AS CustomPrompts_1"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                                 WHERE        (Cus"& _ 
-                "tomPromptID = c.CustomField6PromptID)), '') AS F6Name, c.IPPrefix, c.LogoHeight,"& _ 
-                " c.LogoMimeType, c.LogoWidth, c.NotifyEmail, c.PriorCandidates, c.RegionID, c.Si"& _ 
-                "gnatureHeight, c.SignatureImage, "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         c.SignatureMimeType,"& _ 
-                " c.SignatureWidth, c.kbContact, c.kbDefaultOfficeVersion, c.kbLoginPrompt, c.kbP"& _ 
-                "assword, c.kbSelfRegister, c.kbYouTube"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"FROM            Centres AS c INNER JOIN"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         Customisations AS cu ON c.CentreID = cu.CentreID INNER"& _ 
-                " JOIN"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         Sessions AS s ON cu.CustomisationID = s.Customis"& _ 
-                "ationID"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"WHERE        (c.CentreID = @CentreID) AND (cu.CustomisationID = @Custom"& _ 
-                "isationID) AND (s.SessionID = @SessionID) AND (s.Active = 1)"
+            Me._commandCollection(2).CommandText = "SELECT COALESCE ((SELECT CustomPrompt FROM CustomPrompts WHERE (CustomPromptID = "& _ 
+                "c.CustomField1PromptID)), '') AS F1Name, COALESCE ((SELECT CustomPrompt FROM Cus"& _ 
+                "tomPrompts AS CustomPrompts_3 WHERE (CustomPromptID = c.CustomField4PromptID)), "& _ 
+                "'') AS F4Name, COALESCE ((SELECT CustomPrompt FROM CustomPrompts AS CustomPrompt"& _ 
+                "s_2 WHERE (CustomPromptID = c.CustomField5PromptID)), '') AS F5Name, COALESCE (("& _ 
+                "SELECT CustomPrompt FROM CustomPrompts AS CustomPrompts_1 WHERE (CustomPromptID "& _ 
+                "= c.CustomField6PromptID)), '') AS F6Name, (SELECT RegionName FROM Regions WHERE"& _ 
+                " (RegionID = c.RegionID)) AS RegionName, c.Active, c.AutoRegisterManagerEmail, c"& _ 
+                ".AutoRegistered, c.BannerText, c.BetaTesting, c.CentreID, c.CentreLogo, c.Centre"& _ 
+                "Name, c.CentreTypeID, c.ContactEmail, c.ContactForename, c.ContactSurname, c.Con"& _ 
+                "tactTelephone, c.F1Mandatory, c.F1Options, c.F2Mandatory, c.F2Options, c.F3Manda"& _ 
+                "tory, c.F3Options, c.F4Mandatory, c.F4Options, c.F5Mandatory, c.F5Options, c.F6M"& _ 
+                "andatory, c.F6Options, c.IPPrefix, c.LogoHeight, c.LogoMimeType, c.LogoWidth, c."& _ 
+                "NotifyEmail, c.PriorCandidates, c.RegionID, c.SignatureHeight, c.SignatureImage,"& _ 
+                " c.SignatureMimeType, c.SignatureWidth, c.kbContact, c.kbDefaultOfficeVersion, c"& _ 
+                ".kbLoginPrompt, c.kbPassword, c.kbSelfRegister, c.kbYouTube FROM Centres AS c IN"& _ 
+                "NER JOIN Customisations AS cu ON c.CentreID = cu.CentreID INNER JOIN Sessions AS"& _ 
+                " s ON cu.CustomisationID = s.CustomisationID WHERE (c.CentreID = @CentreID) AND "& _ 
+                "(cu.CustomisationID = @CustomisationID) AND (s.SessionID = @SessionID) AND (s.Ac"& _ 
+                "tive = 1)"
             Me._commandCollection(2).CommandType = Global.System.Data.CommandType.Text
             Me._commandCollection(2).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@CentreID", Global.System.Data.SqlDbType.Int, 4, Global.System.Data.ParameterDirection.Input, 0, 0, "CentreID", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
             Me._commandCollection(2).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@CustomisationID", Global.System.Data.SqlDbType.Int, 4, Global.System.Data.ParameterDirection.Input, 0, 0, "CustomisationID", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
