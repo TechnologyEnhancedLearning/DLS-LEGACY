@@ -242,7 +242,9 @@ function getDescription(props) {
     if (props.pwGeneralInfo) {
         s = s + '<p title="General info"><i class="fas fa-info-circle mr-2"></i> ' + props.pwGeneralInfo + '</p>'
     }
-    s = s + "<p><a title='Register as a learner at this centre' href='register?app=lp&centreid=" + props.id + "' class='btn-primary float-right p-2'>Register</a></p>";
+    if (props.kbSelfRegister) {
+        s = s + "<p><a title='Register as a learner at this centre' href='register?app=lp&centreid=" + props.id + "' class='btn-primary float-right p-2'>Register</a></p>";
+    }
     s = s + "</div>";
     return s;
 }
