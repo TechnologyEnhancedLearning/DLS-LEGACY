@@ -22,7 +22,7 @@
     <Shape ID="DesignTable:pl_ProductsList" ZOrder="22" X="1623" Y="775" Height="115" Width="219" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="64" />
     <Shape ID="DesignTable:Sections" ZOrder="11" X="90" Y="818" Height="115" Width="193" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="64" />
     <Shape ID="DesignTable:Tutorials" ZOrder="10" X="315" Y="818" Height="134" Width="195" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="83" />
-    <Shape ID="DesignTable:Centres" ZOrder="1" X="-2" Y="84" Height="398" Width="258" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="331" />
+    <Shape ID="DesignTable:Centres" ZOrder="1" X="-2" Y="84" Height="425" Width="258" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="358" />
     <Shape ID="DesignTable:CentresList" ZOrder="8" X="631" Y="886" Height="209" Width="288" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="142" />
     <Shape ID="DesignTable:ContractTypes" ZOrder="3" X="964" Y="843" Height="324" Width="243" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="254" />
     <Shape ID="DesignTable:pwBulletins" ZOrder="5" X="1676" Y="54" Height="191" Width="212" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="140" />
