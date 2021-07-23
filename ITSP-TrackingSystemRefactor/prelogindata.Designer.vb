@@ -6454,6 +6454,8 @@ Partial Public Class prelogindata
         
         Private columnpwGeneralInfo As Global.System.Data.DataColumn
         
+        Private columnkbSelfRegister As Global.System.Data.DataColumn
+        
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
         Public Sub New()
@@ -6578,6 +6580,14 @@ Partial Public Class prelogindata
         End Property
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public ReadOnly Property kbSelfRegisterColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnkbSelfRegister
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0"),  _
          Global.System.ComponentModel.Browsable(false)>  _
         Public ReadOnly Property Count() As Integer
@@ -6614,9 +6624,9 @@ Partial Public Class prelogindata
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
-        Public Overloads Function AddCentresRow(ByVal title As String, ByVal latitude As Double, ByVal longitude As Double, ByVal pwTelephone As String, ByVal pwEmail As String, ByVal pwWebURL As String, ByVal pwHours As String, ByVal pwTrustsCovered As String, ByVal pwTrainingLocations As String, ByVal pwGeneralInfo As String) As CentresRow
+        Public Overloads Function AddCentresRow(ByVal title As String, ByVal latitude As Double, ByVal longitude As Double, ByVal pwTelephone As String, ByVal pwEmail As String, ByVal pwWebURL As String, ByVal pwHours As String, ByVal pwTrustsCovered As String, ByVal pwTrainingLocations As String, ByVal pwGeneralInfo As String, ByVal kbSelfRegister As Boolean) As CentresRow
             Dim rowCentresRow As CentresRow = CType(Me.NewRow,CentresRow)
-            Dim columnValuesArray() As Object = New Object() {Nothing, title, latitude, longitude, pwTelephone, pwEmail, pwWebURL, pwHours, pwTrustsCovered, pwTrainingLocations, pwGeneralInfo}
+            Dim columnValuesArray() As Object = New Object() {Nothing, title, latitude, longitude, pwTelephone, pwEmail, pwWebURL, pwHours, pwTrustsCovered, pwTrainingLocations, pwGeneralInfo, kbSelfRegister}
             rowCentresRow.ItemArray = columnValuesArray
             Me.Rows.Add(rowCentresRow)
             Return rowCentresRow
@@ -6656,6 +6666,7 @@ Partial Public Class prelogindata
             Me.columnpwTrustsCovered = MyBase.Columns("pwTrustsCovered")
             Me.columnpwTrainingLocations = MyBase.Columns("pwTrainingLocations")
             Me.columnpwGeneralInfo = MyBase.Columns("pwGeneralInfo")
+            Me.columnkbSelfRegister = MyBase.Columns("kbSelfRegister")
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -6683,6 +6694,8 @@ Partial Public Class prelogindata
             MyBase.Columns.Add(Me.columnpwTrainingLocations)
             Me.columnpwGeneralInfo = New Global.System.Data.DataColumn("pwGeneralInfo", GetType(String), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnpwGeneralInfo)
+            Me.columnkbSelfRegister = New Global.System.Data.DataColumn("kbSelfRegister", GetType(Boolean), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnkbSelfRegister)
             Me.Constraints.Add(New Global.System.Data.UniqueConstraint("Constraint1", New Global.System.Data.DataColumn() {Me.columnid}, true))
             Me.columnid.AutoIncrement = true
             Me.columnid.AutoIncrementSeed = -1
@@ -6699,6 +6712,7 @@ Partial Public Class prelogindata
             Me.columnpwTrustsCovered.MaxLength = 2147483647
             Me.columnpwTrainingLocations.MaxLength = 2147483647
             Me.columnpwGeneralInfo.MaxLength = 2147483647
+            Me.columnkbSelfRegister.AllowDBNull = false
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -11033,6 +11047,17 @@ Partial Public Class prelogindata
             End Get
             Set
                 Me(Me.tableCentres.pwGeneralInfoColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Property kbSelfRegister() As Boolean
+            Get
+                Return CType(Me(Me.tableCentres.kbSelfRegisterColumn),Boolean)
+            End Get
+            Set
+                Me(Me.tableCentres.kbSelfRegisterColumn) = value
             End Set
         End Property
         
@@ -17600,6 +17625,7 @@ Namespace prelogindataTableAdapters
             tableMapping.ColumnMappings.Add("pwTrustsCovered", "pwTrustsCovered")
             tableMapping.ColumnMappings.Add("pwTrainingLocations", "pwTrainingLocations")
             tableMapping.ColumnMappings.Add("pwGeneralInfo", "pwGeneralInfo")
+            tableMapping.ColumnMappings.Add("kbSelfRegister", "kbSelfRegister")
             Me._adapter.TableMappings.Add(tableMapping)
         End Sub
         
@@ -17616,11 +17642,10 @@ Namespace prelogindataTableAdapters
             Me._commandCollection = New Global.System.Data.SqlClient.SqlCommand(0) {}
             Me._commandCollection(0) = New Global.System.Data.SqlClient.SqlCommand()
             Me._commandCollection(0).Connection = Me.Connection
-            Me._commandCollection(0).CommandText = "SELECT        CentreID AS id, CentreName AS title, Lat AS latitude, Long AS longi"& _ 
-                "tude, pwTelephone, pwEmail, pwWebURL, pwHours, pwTrustsCovered, pwTrainingLocati"& _ 
-                "ons, pwGeneralInfo"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"FROM            Centres"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"WHERE        (Active = 1) AND (NOT "& _ 
-                "(Lat IS NULL)) AND (CentreID = @CentreID OR"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         @CentreID "& _ 
-                "= 0)"
+            Me._commandCollection(0).CommandText = "SELECT CentreID AS id, CentreName AS title, Lat AS latitude, Long AS longitude, p"& _ 
+                "wTelephone, pwEmail, pwWebURL, pwHours, pwTrustsCovered, pwTrainingLocations, pw"& _ 
+                "GeneralInfo, kbSelfRegister"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"FROM   Centres"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"WHERE (Active = 1) AND (NOT (Lat IS"& _ 
+                " NULL)) AND (CentreID = @CentreID OR"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"             @CentreID = 0)"
             Me._commandCollection(0).CommandType = Global.System.Data.CommandType.Text
             Me._commandCollection(0).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@CentreID", Global.System.Data.SqlDbType.Int, 4, Global.System.Data.ParameterDirection.Input, 0, 0, "id", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
         End Sub
