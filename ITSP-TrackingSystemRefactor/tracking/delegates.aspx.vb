@@ -68,6 +68,7 @@ Public Class delegates
             Session("dvCandidateID") = nCandidateID
             dsCandidate.SelectParameters("CandidateID").DefaultValue = nCandidateID
             fvDelegateDetails.ChangeMode(FormViewMode.Edit)
+            fvDelegateDetails.DataBind()
             Page.ClientScript.RegisterStartupScript(Me.GetType(), "ShowModalEditDel", "<script>$('#DelegateDetailModal').modal('show');</script>")
             '  Response.Redirect(_GetPageAndTab() & "&CID=" & nCandidateID.ToString())
         End If
