@@ -1554,34 +1554,37 @@ Public Class CCommon
             claims.Add(New Claim("AdminCategoryID", Session("AdminCategoryID")))
             claims.Add(New Claim("IsSupervisor", Session("IsSupervisor")))
             claims.Add(New Claim("IsTrainer", Session("IsTrainer")))
-            claims.Add(New Claim("IsFrameworkDeveloper", Session("IsFrameworkDeveloper")))
-            claims.Add(New Claim("IsFrameworkContributor", Session("IsFrameworkContributor")))
-            If Not Session("learnCandidateNumber") Is Nothing Then
-                claims.Add(New Claim("learnCandidateNumber", Session("learnCandidateNumber"), ""))
+            If Not Session("IsFrameworkDeveloper") Is Nothing Then
+                claims.Add(New Claim("IsFrameworkDeveloper", Session("IsFrameworkDeveloper")))
+                claims.Add(New Claim("IsFrameworkContributor", Session("IsFrameworkContributor")))
             End If
-            If Not Session("UserForename") Is Nothing Then
-                claims.Add(New Claim("UserForename", Session("UserForename"), ""))
-                claims.Add(New Claim("UserSurname", Session("UserSurname"), ""))
-            End If
-            If Not Session("UserCentreName") Is Nothing Then
-                claims.Add(New Claim("UserCentreName", Session("UserCentreName"), ""))
-            End If
-            If Not Session("UserAdminID") Is Nothing Then
-                claims.Add(New Claim("UserAdminID", Session("UserAdminID"), ""))
-            End If
-            Dim identity = New ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationType)
 
-            If Request.IsAuthenticated Then
-                Dim cp As ClaimsPrincipal = HttpContext.Current.User
-                If Not cp.HasClaim(Function(c) c.Type = "UserCentreID") Then
-                    cp.AddIdentity(identity)
+            If Not Session("learnCandidateNumber") Is Nothing Then
+                    claims.Add(New Claim("learnCandidateNumber", Session("learnCandidateNumber"), ""))
                 End If
-            Else
-                Context.GetOwinContext().Authentication.SignIn(New AuthenticationProperties() With {
+                If Not Session("UserForename") Is Nothing Then
+                    claims.Add(New Claim("UserForename", Session("UserForename"), ""))
+                    claims.Add(New Claim("UserSurname", Session("UserSurname"), ""))
+                End If
+                If Not Session("UserCentreName") Is Nothing Then
+                    claims.Add(New Claim("UserCentreName", Session("UserCentreName"), ""))
+                End If
+                If Not Session("UserAdminID") Is Nothing Then
+                    claims.Add(New Claim("UserAdminID", Session("UserAdminID"), ""))
+                End If
+                Dim identity = New ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationType)
+
+                If Request.IsAuthenticated Then
+                    Dim cp As ClaimsPrincipal = HttpContext.Current.User
+                    If Not cp.HasClaim(Function(c) c.Type = "UserCentreID") Then
+                        cp.AddIdentity(identity)
+                    End If
+                Else
+                    Context.GetOwinContext().Authentication.SignIn(New AuthenticationProperties() With {
                .IsPersistent = bRememberMe
            }, identity)
+                End If
             End If
-        End If
     End Sub
 
 #End Region
