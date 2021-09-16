@@ -152,7 +152,7 @@
                     <dx:BootstrapGridViewToolbarItem Command="ClearSorting" IconCssClass="fas fa-sort" />
                     <dx:BootstrapGridViewToolbarItem Command="ClearFilter" />
                     <dx:BootstrapGridViewToolbarItem Command="ShowCustomizationDialog" Text="Customise Grid" />
-                    <dx:BootstrapGridViewToolbarItem Command="Custom" Name="ExcelExport" Text="Excel Export" IconCssClass="fas fa-file-export" />
+                    <dx:BootstrapGridViewToolbarItem Command="Custom" Name="ExcelExport" ToolTip="Export to .XLSX (or .CSV if > 50,000 rows)" Text="Excel Export" IconCssClass="fas fa-file-export" />
                 </Items>
             </dx:BootstrapGridViewToolbar>
         </Toolbars>
