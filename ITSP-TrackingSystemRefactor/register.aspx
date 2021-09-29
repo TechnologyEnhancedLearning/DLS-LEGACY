@@ -48,6 +48,8 @@
                                          <asp:RequiredFieldValidator ID="RequiredFieldValidator2" ControlToValidate="tbLNameReg" ErrorMessage="Required" CssClass="alert alert-danger small" Display="Dynamic" ValidationGroup="vgRegister" runat="server"></asp:RequiredFieldValidator>
                                     </div>
                                 </div>
+                                </div>
+                            <div class="row">
                                 <div class="col-md-6 form-group label-floating">
                                     <div class="input-group">
                                         <span class="input-group-addon">
@@ -72,9 +74,9 @@
                                         <div id="centrevalidate" class="text-danger small d-none">Required</div>
                                         <asp:CompareValidator ID="CompareValidator1"  runat="server" ErrorMessage="Required" CssClass="alert alert-danger small" Display="Dynamic" ValidationGroup="vgRegister" ControlToValidate="ddCentre" ValueToCompare="0" Operator="GreaterThan"></asp:CompareValidator>
                                     </div>
-                                </div>
-                                <asp:Panel ID="pnlPassword" CssClass="col-md-12" runat="server">
-                                <div class="col-md-6 form-group label-floating">
+                                </div></div>
+                                <asp:Panel ID="pnlPassword" class="row" runat="server">
+                                <div class="col-6 form-group label-floating">
                                     <div class="input-group">
                                         <span class="input-group-addon">
                                             <i class="fas fa-lock"></i>
@@ -87,7 +89,7 @@
                                     </div>
                                 </div>
 
-                                <div class="col-md-6 form-group label-floating">
+                                <div class="col-6 form-group label-floating">
                                     <div class="input-group">
                                         <span class="input-group-addon">
                                             <i class="fas fa-lock"></i>
@@ -100,18 +102,7 @@
                                     </div>
                                 </div>
                                 </asp:Panel>
-                                <div class="col-md-6 form-group label-floating">
-                                    <div class="input-group">
-                                        <asp:Label ID="Label2" CssClass="control-label" AssociatedControlID="ddAccountType" runat="server" Text="Account Type"></asp:Label>
-                                        <asp:DropDownList ID="ddAccountType" CssClass="form-control" runat="server">
-                                            <asp:ListItem Text="Delegate (learner)" Value="1" Selected="True"></asp:ListItem>
-                                            <asp:ListItem Text="Centre Administrator" Value="2"></asp:ListItem>
-                                            <asp:ListItem Text="Centre Administrator AND Delegate" Value="3"></asp:ListItem>
-                                            <asp:ListItem Text="Supervisor" Value="4"></asp:ListItem>
-                                            <asp:ListItem Text="Supervisor AND Delegate" Value="5"></asp:ListItem>
-                                        </asp:DropDownList>
-                                    </div>
-                                </div>
+                            <div class="row">
                                 <div class="col-md-6 form-group label-floating">
                                     <div class="input-group">
                                         <asp:Label ID="Label3" CssClass="control-label" AssociatedControlID="ddJobGroup" runat="server" Text="Job Group"></asp:Label>
@@ -123,6 +114,8 @@
                                    <asp:RequiredFieldValidator ID="RequiredFieldValidator6" ControlToValidate="ddJobGroup" ErrorMessage="Required" CssClass="alert alert-danger small" Display="Dynamic" ValidationGroup="vgRegister2" runat="server" InitialValue="0"></asp:RequiredFieldValidator>
                                     </div>
                                 </div>
+                                </div>
+                            <div class="row">
                                 <div class="col-md-6 form-group text-center">
                                     <asp:CheckBox ID="cbTerms" ClientIDMode="Static" CssClass="form-check-input" runat="server" />
                                     <asp:Label ID="Label6" runat="server" AssociatedControlID="cbTerms" Text="&nbsp;&nbsp; I have read, understood and agree to abide by the<br/> Digital Learning Solutions <a data-toggle='modal' class='text-primary' href='#' data-target='#termsMessage'>Terms and Conditions</a>."></asp:Label>

@@ -9,11 +9,8 @@ Public Class register
         If Not Page.Request.Item("app") Is Nothing Then
             Select Case Page.Request.Item("app")
                 Case "lp", "learn"
-                    ddAccountType.SelectedValue = 1
-                    ddAccountType.Enabled = False
                     lblRegText.Text = "Register to access Digital Learning Solutions learning content below."
                 Case "ts", "cms"
-                    ddAccountType.SelectedValue = 2
                     lblRegText.Text = "Register to access Digital Learning Solutions systems as a centre administrator below."
             End Select
         End If
@@ -236,8 +233,6 @@ Public Class register
         Return True
     End Function
     Protected Sub RegisterDelegate()
-
-
         Dim strAnswer1 As String = ""
         Dim strAnswer2 As String = ""
         Dim strAnswer3 As String = ""
@@ -309,15 +304,11 @@ Public Class register
             If tCandidates.Count > 0 Then
                 'go through each and look for matches:
                 For Each r As DataRow In tCandidates.Rows
-                    'Check that the password matches or an admin user at the same centre has already authenticated:
-
-                    If Session("UserCentreID") = 0 Then
-                        'Populate name, e-mail etc beccause it wasn't populated from admin user:
-                        Session("UserForename") = r.Item("FirstName")
-                        Session("UserSurname") = r.Item("LastName")
-                        Session("UserEmail") = r.Item("EmailAddress")
-                        Session("UserCentreID") = r.Item("CentreID")
-                    End If
+                    'Populate name, e-mail etc beccause it wasn't populated from admin user:
+                    Session("UserForename") = r.Item("FirstName")
+                    Session("UserSurname") = r.Item("LastName")
+                    Session("UserEmail") = r.Item("EmailAddress")
+                    Session("UserCentreID") = r.Item("CentreID")
                     Session("learnCandidateID") = r.Item("CandidateID")
                     Session("learnCandidateNumber") = r.Item("CandidateNumber")
                     Session("learnUserAuthenticated") = True
@@ -345,126 +336,6 @@ Public Class register
             'Page.ClientScript.RegisterStartupScript(Me.GetType(), "ShowDelegateModal", "<script>$('#delegateRegisteredModal').modal('show');</script>")
         End If
     End Sub
-    Protected Sub RegisterAdmin(ByVal bCA As Boolean, ByVal bSV As Boolean)
-        Me.lblAdminRegText.Text = String.Empty
-        Dim sTxtForename As String = tbFNameReg.Text.Trim
-        Dim sTxtSurname As String = tbLNameReg.Text.Trim
-        Dim sTxtEmail As String = tbEmailReg.Text.Trim
-        Dim sTxtPassword1 As String = tbPasswordReg.Text.Trim
-        Dim sTxtPassword2 As String = tbPasswordConfirm.Text.Trim
-        Dim nCentreID As Integer = ddCentre.SelectedValue
-
-        '
-        ' Validate the input
-        '
-
-        '
-        ' Use a stored procedure for handling the registration.
-        '
-        Dim taq As New AuthenticateTableAdapters.QueriesTableAdapter
-        Dim nResult As Integer = taq.uspStoreRegistration(sTxtForename, sTxtSurname, sTxtEmail, Crypto.HashPassword(sTxtPassword1), nCentreID, bCA, bSV)
-        '
-        ' Show the result as appropriate
-        '
-        Select Case nResult
-            Case 0
-                lblAdminRegTitle.Text = "Registration succeeded"
-                Me.lblAdminRegText.Text = "Your email address matched details stored with the Centre, so your account has been marked as Centre Manager. You may continue to login."
-                Dim taAdminUsers As New AuthenticateTableAdapters.AdminUsersTableAdapter
-                Dim tAdminUsers As Authenticate.AdminUsersDataTable = taAdminUsers.GetData(sTxtEmail, nCentreID)
-                If tAdminUsers.Count > 0 Then
-                    'go through each record looking for a match:
-                    Dim r As Authenticate.AdminUsersRow = tAdminUsers.First
-                    Session("UserForename") = r.Forename
-                    Session("UserSurname") = r.Surname
-                    Session("UserEmail") = r.Email
-                    Session("UserCentreID") = r.CentreID
-                    Session("UserCentreName") = r.CentreName
-                    Session("UserCentreManager") = r.IsCentreManager
-                    Session("UserCentreAdmin") = r.CentreAdmin
-                    Session("UserUserAdmin") = r.UserAdmin
-                    Session("UserAdminID") = r.AdminID
-                    Session("UserContentCreator") = r.ContentCreator
-                    Session("UserAuthenticatedCM") = r.ContentManager
-                    Session("UserPublishToAll") = r.PublishToAll
-                    Session("UserImportOnly") = r.ImportOnly
-                    Session("IsSupervisor") = r.Supervisor
-                    Session("UserAdminSessionID") = CCommon.CreateAdminUserSession(Session("UserAdminID"))
-                End If
-            Case 1
-                lblAdminRegTitle.Text = "Registration succeeded"
-                lblAdminRegText.Text = "Your email address did not match details stored with the Centre and there are no prior accounts associated with the Centre. Therefore your account will have to be enabled by the site administrators. Please contact them at dls@hee.nhs.uk with your details."
-
-            Case 2
-                Dim taNU As New NotificationsTableAdapters.UsersForNotificationTableAdapter
-                Dim tNU As New Notifications.UsersForNotificationDataTable
-                tNU = taNU.GetByCentre(2, nCentreID)
-                If tNU.Count > 0 Then
-                    Dim SbBody As New StringBuilder
-                    SbBody.Append("<body style=""font-family: Calibri; font-size: small;"">")
-                    SbBody.Append("<p>An administrator, " & sTxtForename & " " & sTxtSurname & ", has registered against your Digital Learning Solutions centre and requires approval before they can access the Tracking System.</p>")
-
-                    SbBody.Append("<p>To approve or reject their registration please, click <a href=""https://www.dls.nhs.uk/tracking/centrelogins"">here</a>.</p>")
-                    SbBody.Append("<p>Please contact them to let them know when you have processed this request. <a href='mailto:" & sTxtEmail & "'>Click here</a> to contact them by e-mail.</p>")
-
-                    SbBody.Append("</body>")
-
-                    'Now send to any subscribed admin users at centre:
-                    For Each r As DataRow In tNU.Rows
-                        CCommon.SendEmail(r.Item("Email"), "Digital Learning Solutions Administrator Registration Requires Approval - " & sTxtForename & " " & sTxtSurname, SbBody.ToString(), True)
-                    Next
-                    lblAdminRegTitle.Text = "Registration succeeded"
-                    lblAdminRegText.Text = "Your Centre Manager should have received an e-mail requesting their approval of your registration."
-                Else
-                    lblAdminRegTitle.Text = "Registration succeeded"
-                    lblAdminRegText.Text = "Please contact your Centre Manager to have your account enabled."
-                End If
-
-
-
-
-            Case 102
-                lblAdminRegTitle.Text = "Registration failed"
-                lblAdminRegText.Text = "<p>The email address you entered is already in use.</p><p>If you need a reminder of your password please use the account recovery facility.</p>"
-
-            Case Else
-                lblAdminRegTitle.Text = "Registration failed"
-                lblAdminRegText.Text = "There was an unexpected problem. Please contact the site administrators at dls@hee.nhs.uk with your details."
-
-        End Select
-        If ddAccountType.SelectedValue = 3 Or ddAccountType.SelectedValue = 5 Then
-            lbtAdminRegOK.Text = "Continue to Register as Delegate"
-        End If
-        If lblAdminRegText.Text.Length > 0 Then
-            ScriptManager.RegisterStartupScript(Me, Me.GetType(), "ShowModalRegistered", "<script>$('#adminRegModal').modal('show');</script>", False)
-        End If
-    End Sub
-
-    Private Sub lbtAdminRegOK_Click(sender As Object, e As EventArgs) Handles lbtAdminRegOK.Click
-        If ddAccountType.SelectedValue = 3 Or ddAccountType.SelectedValue = 5 Then
-            CheckForCustomFields()
-        Else
-            If Not Page.Request.Item("app") Is Nothing And Not Session("UserAdminSessionID") Is Nothing Then
-                Select Case Page.Request.Item("app")
-                    Case "ts"
-                        If ddAccountType.SelectedValue = 4 Then
-                            Page.Response.Redirect("~/tracking/supervise")
-                        Else
-                            Page.Response.Redirect("~/tracking/dashboard")
-                        End If
-                    Case "cms"
-                        Page.Response.Redirect("~/cms/courses")
-                    Case Else
-                        Page.Response.Redirect("~/home?action=appselect")
-                End Select
-            ElseIf Not Session("UserAdminSessionID") Is Nothing Then
-                Page.Response.Redirect("~/home?action=appselect")
-            Else
-                Page.Response.Redirect("~/home")
-            End If
-        End If
-    End Sub
-
     Private Sub btnContinue_Click(sender As Object, e As EventArgs) Handles btnContinue.Click
         If Not Page.Request.Item("returnurl") Is Nothing Then
             Page.Response.Redirect(Page.Request.Item("returnurl") & "&redirected=1")
@@ -609,15 +480,7 @@ Public Class register
             Session("AdminCategoryID") = 0
             Session("IsSupervisor") = False
             Session("IsTrainer") = False
-            If ddAccountType.SelectedValue = 2 Or ddAccountType.SelectedValue = 3 Then
-                'Register as an administrator
-                RegisterAdmin(True, False)
-            ElseIf ddAccountType.SelectedValue = 4 Or ddAccountType.SelectedValue = 5 Then
-                RegisterAdmin(False, True)
-            ElseIf ddAccountType.SelectedValue = 1 Then
-                CheckForCustomFields()
-            End If
-
+            CheckForCustomFields()
         End If
     End Sub
 End Class

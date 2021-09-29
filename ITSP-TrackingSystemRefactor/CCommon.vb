@@ -1554,8 +1554,16 @@ Public Class CCommon
             claims.Add(New Claim("AdminCategoryID", Session("AdminCategoryID")))
             claims.Add(New Claim("IsSupervisor", Session("IsSupervisor")))
             claims.Add(New Claim("IsTrainer", Session("IsTrainer")))
-            claims.Add(New Claim("IsFrameworkDeveloper", Session("IsFrameworkDeveloper")))
-            claims.Add(New Claim("IsFrameworkContributor", Session("IsFrameworkContributor")))
+            If Not Session("IsFrameworkDeveloper") Is Nothing Then
+                claims.Add(New Claim("IsFrameworkDeveloper", Session("IsFrameworkDeveloper")))
+            Else
+                claims.Add(New Claim("IsFrameworkDeveloper", False))
+            End If
+            If Not Session("IsFrameworkContributor") Is Nothing Then
+                claims.Add(New Claim("IsFrameworkContributor", Session("IsFrameworkContributor")))
+            Else
+                claims.Add(New Claim("IsFrameworkContributor", False))
+            End If
             If Not Session("learnCandidateNumber") Is Nothing Then
                 claims.Add(New Claim("learnCandidateNumber", Session("learnCandidateNumber"), ""))
             End If
