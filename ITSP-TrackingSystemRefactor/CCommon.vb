@@ -999,12 +999,12 @@ Public Class CCommon
         '
         Try
             Dim sHost = HttpContext.Current.Request.Url.Host
-            If sHost = "localhost" Then
+            'If sHost = "localhost" Then
+            '    IsDelivered = True
+            'Else
+            client.Send(Msg)
                 IsDelivered = True
-            Else
-                client.Send(Msg)
-                IsDelivered = True
-            End If
+            'End If
         Catch ex As Exception
             '
             ' Don't retry as probably it won't work, and we don't want to hold up the application too much
