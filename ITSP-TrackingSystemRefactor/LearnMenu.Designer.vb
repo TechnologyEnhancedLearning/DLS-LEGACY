@@ -28932,11 +28932,13 @@ Namespace LearnMenuTableAdapters
             CType(Me._commandCollection(32),Global.System.Data.SqlClient.SqlCommand).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@CandidateID", Global.System.Data.SqlDbType.Int, 4, Global.System.Data.ParameterDirection.Input, 0, 0, "CandidateID", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
             Me._commandCollection(33) = New Global.System.Data.SqlClient.SqlCommand()
             CType(Me._commandCollection(33),Global.System.Data.SqlClient.SqlCommand).Connection = New Global.System.Data.SqlClient.SqlConnection(Global.ITSP_TrackingSystemRefactor.My.MySettings.Default.csITSPDB)
-            CType(Me._commandCollection(33),Global.System.Data.SqlClient.SqlCommand).CommandText = "SELECT TOP(1) Q1.Email FROM ("&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"SELECT TOP(1) au.Email"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"FROM     AdminUsers AS au "& _ 
-                "INNER JOIN"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                  Progress AS p ON au.AdminID = p.EnrolledByAdminID "& _ 
-                "INNER JOIN"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                  NotificationUsers AS nu ON au.AdminID = nu.AdminUs"& _ 
-                "erID"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"WHERE  (nu.NotificationID = 6) AND (p.ProgressID = @ProgressID)"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"UNION"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"SE"& _ 
-                "LECT '' AS Email"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&") AS Q1"
+            CType(Me._commandCollection(33),Global.System.Data.SqlClient.SqlCommand).CommandText = "SELECT        COALESCE"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                             ((SELECT        TOP (1) au.E"& _ 
+                "mail"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                                 FROM            AdminUsers AS au INNER JO"& _ 
+                "IN"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                                                          Progress AS p ON a"& _ 
+                "u.AdminID = p.EnrolledByAdminID INNER JOIN"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                                    "& _ 
+                "                      NotificationUsers AS nu ON au.AdminID = nu.AdminUserID"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"  "& _ 
+                "                               WHERE        (nu.NotificationID = 6) AND (p.Progr"& _ 
+                "essID = @ProgressID)), '') AS Email"
             CType(Me._commandCollection(33),Global.System.Data.SqlClient.SqlCommand).CommandType = Global.System.Data.CommandType.Text
             CType(Me._commandCollection(33),Global.System.Data.SqlClient.SqlCommand).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@ProgressID", Global.System.Data.SqlDbType.Int, 4, Global.System.Data.ParameterDirection.Input, 0, 0, "", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
             Me._commandCollection(34) = New Global.System.Data.SqlClient.SqlCommand()
