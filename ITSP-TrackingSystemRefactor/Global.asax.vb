@@ -13,10 +13,14 @@ Public Class Global_asax
     Sub Application_BeginRequest(sender As Object, e As EventArgs)
         Dim uriObject As String = HttpContext.Current.Request.Url.OriginalString
         'app.Context.Request.Url.OriginalString
-        If uriObject.ToString.Contains("/learnsco") Or uriObject.ToString.Contains("/sco") Or uriObject.ToString.Contains("/CMSContent") Or uriObject.ToString.Contains("/eitslm") Or uriObject.ToString.Contains("/finalise") Or uriObject.ToString.Contains("/errorAccess") Then
+        If uriObject.ToString.Contains("/learnsco") Or uriObject.ToString.Contains("/sco") Or uriObject.ToString.Contains("/CMSContent") Or uriObject.ToString.Contains("/eitslm") Or uriObject.ToString.Contains("/finalise") Or uriObject.ToString.Contains("/errorAccess") Or uriObject.ToString.Contains("/pricing") Or uriObject.ToString.Contains("/findyourcentre") Or uriObject.ToString.Contains("/Learning") Then
             Me.Response.Headers("X-FRAME-OPTIONS") = "ALLOWALL"
         Else
-            Me.Response.Headers("X-FRAME-OPTIONS") = "ALLOW-FROM https://localhost:44367/"
+            'Me.Response.Headers("X-FRAME-OPTIONS") = "SAMEORIGIN"
+            Me.Response.Headers.Add("X-FRAME-OPTIONS", "ALLOW-FROM https://localhost:44367/")
+            Me.Response.Headers.Add("X-FRAME-OPTIONS", "ALLOW-FROM https://localhost:44363/")
+            Me.Response.Headers.Add("X-FRAME-OPTIONS", "ALLOW-FROM https://hee-dls-test.softwire.com/")
+            Me.Response.Headers.Add("X-FRAME-OPTIONS", "ALLOW-FROM https://www.dls.nhs.uk/")
         End If
     End Sub
     Private Sub Session_Start(ByVal sender As Object, ByVal e As EventArgs)

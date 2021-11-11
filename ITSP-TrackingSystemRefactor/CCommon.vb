@@ -1474,7 +1474,7 @@ Public Class CCommon
     End Function
 
     Public Shared Function BytesToString(ByVal byteCount As Long) As String
-        Dim suf As String() = {"B", "KB", "MB", "GB", "TB", "PB", "EB"}
+        Dim suf As String() = {"B", "KiB", "MiB", "GiB", "TiB", "PiB", "EiB"}
         If byteCount = 0 Then Return "0" & suf(0)
         Dim bytes As Long = Math.Abs(byteCount)
         Dim place As Long = Convert.ToInt32(Math.Floor(Math.Log(bytes, 1024)))
@@ -1556,7 +1556,20 @@ Public Class CCommon
             claims.Add(New Claim("IsTrainer", Session("IsTrainer")))
             If Not Session("IsFrameworkDeveloper") Is Nothing Then
                 claims.Add(New Claim("IsFrameworkDeveloper", Session("IsFrameworkDeveloper")))
+            Else
+                claims.Add(New Claim("IsFrameworkDeveloper", False))
+            End If
+            If Not Session("IsFrameworkContributor") Is Nothing Then
                 claims.Add(New Claim("IsFrameworkContributor", Session("IsFrameworkContributor")))
+            Else
+                claims.Add(New Claim("IsFrameworkContributor", False))
+            End If
+            If Not Session("learnCandidateNumber") Is Nothing Then
+                claims.Add(New Claim("learnCandidateNumber", Session("learnCandidateNumber"), ""))
+            End If
+            If Not Session("UserForename") Is Nothing Then
+                claims.Add(New Claim("UserForename", Session("UserForename"), ""))
+                claims.Add(New Claim("UserSurname", Session("UserSurname"), ""))
             End If
 
             If Not Session("learnCandidateNumber") Is Nothing Then
@@ -1586,6 +1599,76 @@ Public Class CCommon
                 End If
             End If
     End Sub
+    Public Shared Sub GenerateSessionFromClaims(ByRef Session As HttpSessionState, ByRef Request As HttpRequest, ByRef Context As HttpContext)
+        Dim sEmailClaim As String = ConfigurationManager.AppSettings("ida:EmailClaim")
+        If Not ClaimsPrincipal.Current.FindFirst(sEmailClaim) Is Nothing Then
+            Dim sEmail As String = ClaimsPrincipal.Current.FindFirst(sEmailClaim).Value
+            Session("UserEmail") = sEmail
+        End If
+        If Not ClaimsPrincipal.Current.FindFirst("UserForename") Is Nothing Then
+            Session("UserForename") = ClaimsPrincipal.Current.FindFirst("UserForename").Value
+        End If
+        If Not ClaimsPrincipal.Current.FindFirst("UserSurname") Is Nothing Then
+            Session("UserSurname") = ClaimsPrincipal.Current.FindFirst("UserSurname").Value
+        End If
+        If Not ClaimsPrincipal.Current.FindFirst("IsFrameworkContributor") Is Nothing Then
+            Session("IsFrameworkContributor") = ClaimsPrincipal.Current.FindFirst("IsFrameworkContributor").Value
+        End If
+        If Not ClaimsPrincipal.Current.FindFirst("UserCentreID") Is Nothing Then
+            Session("UserCentreID") = ClaimsPrincipal.Current.FindFirst("UserCentreID").Value
+        End If
+        If Not ClaimsPrincipal.Current.FindFirst("UserCentreName") Is Nothing Then
+            Session("UserCentreName") = ClaimsPrincipal.Current.FindFirst("UserCentreName").Value
+        End If
+        If Not ClaimsPrincipal.Current.FindFirst("learnCandidateID") Is Nothing Then
+            Session("learnCandidateID") = ClaimsPrincipal.Current.FindFirst("learnCandidateID").Value
+        End If
+        If Not ClaimsPrincipal.Current.FindFirst("learnCandidateNumber") Is Nothing Then
+            Session("learnCandidateNumber") = ClaimsPrincipal.Current.FindFirst("learnCandidateNumber").Value
+        End If
+        If Not ClaimsPrincipal.Current.FindFirst("learnUserAuthenticated") Is Nothing Then
+            Session("learnUserAuthenticated") = ClaimsPrincipal.Current.FindFirst("learnUserAuthenticated").Value
+        End If
+        If Not ClaimsPrincipal.Current.FindFirst("UserCentreManager") Is Nothing Then
+            Session("UserCentreManager") = ClaimsPrincipal.Current.FindFirst("UserCentreManager").Value
+        End If
+        If Not ClaimsPrincipal.Current.FindFirst("UserCentreAdmin") Is Nothing Then
+            Session("UserCentreAdmin") = ClaimsPrincipal.Current.FindFirst("UserCentreAdmin").Value
+        End If
+        If Not ClaimsPrincipal.Current.FindFirst("UserUserAdmin") Is Nothing Then
+            Session("UserUserAdmin") = ClaimsPrincipal.Current.FindFirst("UserUserAdmin").Value
+        End If
+        If Not ClaimsPrincipal.Current.FindFirst("UserAdminID") Is Nothing Then
+            Session("UserAdminID") = ClaimsPrincipal.Current.FindFirst("UserAdminID").Value
+        End If
+        If Not ClaimsPrincipal.Current.FindFirst("UserContentCreator") Is Nothing Then
+            Session("UserContentCreator") = ClaimsPrincipal.Current.FindFirst("UserContentCreator").Value
+        End If
+        If Not ClaimsPrincipal.Current.FindFirst("UserAuthenticatedCM") Is Nothing Then
+            Session("UserAuthenticatedCM") = ClaimsPrincipal.Current.FindFirst("UserAuthenticatedCM").Value
+        End If
+        If Not ClaimsPrincipal.Current.FindFirst("UserPublishToAll") Is Nothing Then
+            Session("UserPublishToAll") = ClaimsPrincipal.Current.FindFirst("UserPublishToAll").Value
+        End If
+        If Not ClaimsPrincipal.Current.FindFirst("UserImportOnly") Is Nothing Then
+            Session("UserImportOnly") = ClaimsPrincipal.Current.FindFirst("UserImportOnly").Value
+        End If
+        If Not ClaimsPrincipal.Current.FindFirst("AdminCategoryID") Is Nothing Then
+            Session("AdminCategoryID") = ClaimsPrincipal.Current.FindFirst("AdminCategoryID").Value
+        End If
+        If Not ClaimsPrincipal.Current.FindFirst("IsSupervisor") Is Nothing Then
+            Session("IsSupervisor") = ClaimsPrincipal.Current.FindFirst("IsSupervisor").Value
+        End If
+        If Not ClaimsPrincipal.Current.FindFirst("IsTrainer") Is Nothing Then
+            Session("IsTrainer") = ClaimsPrincipal.Current.FindFirst("IsTrainer").Value
+        End If
+        If Not ClaimsPrincipal.Current.FindFirst("UserCentreReports") Is Nothing Then
+            Session("UserCentreReports") = ClaimsPrincipal.Current.FindFirst("UserCentreReports").Value
+        End If
+        If Not ClaimsPrincipal.Current.FindFirst("IsFrameworkDeveloper") Is Nothing Then
+            Session("IsFrameworkDeveloper") = ClaimsPrincipal.Current.FindFirst("IsFrameworkDeveloper").Value
+        End If
 
+    End Sub
 #End Region
 End Class
