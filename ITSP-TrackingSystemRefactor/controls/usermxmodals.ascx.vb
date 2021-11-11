@@ -277,10 +277,13 @@ Public Class usermxmodals
             If cbxJobGroup.SelectedIndex < 0 Then
                 cbxJobGroup.Value = Nothing
             End If
+            If Not tCandidate.First.ProfileImage Is Nothing Then
+                bsimgDelProfileImage.Value = tCandidate.First.ProfileImage
+            End If
+            bsimgDelProfileImage.Width = 150
+            bsimgDelProfileImage.Height = 150
         End If
-        bsimgDelProfileImage.Value = tCandidate.First.ProfileImage
-        bsimgDelProfileImage.Width = 150
-        bsimgDelProfileImage.Height = 150
+
         Dim taCentre As New LearnerPortalTableAdapters.CentresTableAdapter()
         Dim tCtre As New LearnerPortal.CentresDataTable
         tCtre = taCentre.GetByCentreID(CInt(Session("UserCentreID")))
