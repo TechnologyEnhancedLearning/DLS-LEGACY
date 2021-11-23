@@ -151,7 +151,8 @@
         <asp:ContentPlaceHolder ID="SkipToContentLink" runat="server">
         </asp:ContentPlaceHolder>
         <div class="ms-site-container">
-
+            <asp:ContentPlaceHolder ID="breadtray" Visible="false" runat="server">
+                </asp:ContentPlaceHolder>
 
             <main id="maincontent">
                 <asp:ContentPlaceHolder ID="MainContent" runat="server">

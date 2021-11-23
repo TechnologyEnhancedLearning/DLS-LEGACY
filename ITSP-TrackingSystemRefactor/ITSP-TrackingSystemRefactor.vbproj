@@ -1635,6 +1635,7 @@
     <Content Include="SuperviseData.xss">
       <DependentUpon>SuperviseData.xsd</DependentUpon>
     </Content>
+    <Content Include="tracking\trackingnonav.Master" />
     <None Include="Web References\ts.services\Reference.map">
       <Generator>MSDiscoCodeGenerator</Generator>
       <LastGenOutput>Reference.vb</LastGenOutput>
@@ -2475,6 +2476,13 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <Compile Include="tracking\trackingnonav.Master.designer.vb">
+      <DependentUpon>trackingnonav.Master</DependentUpon>
+    </Compile>
+    <Compile Include="tracking\trackingnonav.Master.vb">
+      <DependentUpon>trackingnonav.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="tracking\noncompletesurvey.aspx.designer.vb">
       <DependentUpon>noncompletesurvey.aspx</DependentUpon>
