@@ -11,9 +11,9 @@
     <Shape ID="DesignTable:ProgressExists" ZOrder="7" X="501" Y="442" Height="135" Width="300" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="76" />
     <Shape ID="DesignTable:Customisations" ZOrder="6" X="135" Y="588" Height="181" Width="228" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="122" />
     <Shape ID="DesignTable:Progress" ZOrder="5" X="1286" Y="323" Height="533" Width="252" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="465" />
-    <Shape ID="DesignTable:DelegatesForCustomisation" ZOrder="3" X="846" Y="61" Height="324" Width="300" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="254" />
-    <Shape ID="DesignTable:ProgCustFieldAnswers" ZOrder="2" X="839" Y="584" Height="305" Width="274" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="254" />
-    <Shape ID="DesignSources:QueriesTableAdapter" ZOrder="1" X="1219" Y="128" Height="48" Width="300" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="44" />
+    <Shape ID="DesignTable:DelegatesForCustomisation" ZOrder="1" X="846" Y="61" Height="452" Width="300" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="358" />
+    <Shape ID="DesignTable:ProgCustFieldAnswers" ZOrder="3" X="839" Y="584" Height="305" Width="274" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="254" />
+    <Shape ID="DesignSources:QueriesTableAdapter" ZOrder="2" X="1219" Y="128" Height="48" Width="300" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="44" />
   </Shapes>
   <Connectors>
     <Connector ID="DesignRelation:FK_Sessions_Candidates" ZOrder="8" LineWidth="11">
