@@ -122,7 +122,6 @@ Public Class coursedelegates
             bsgvDelegatesForCustomisation.Columns("CourseAnswer1").Visible = False
             bsgvDelegatesForCustomisation.Columns("CourseAnswer2").Visible = False
             bsgvDelegatesForCustomisation.Columns("CourseAnswer3").Visible = False
-            bsgvDelegatesForCustomisation.Columns("Edit").Visible = False
             bsgvDelegatesForCustomisation.GroupBy(bsgvDelegatesForCustomisation.Columns("CourseName"))
         Else
             bsgvDelegatesForCustomisation.Columns("CourseName").Visible = False

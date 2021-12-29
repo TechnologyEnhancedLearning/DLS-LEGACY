@@ -1,0 +1,196 @@
+﻿<%@ Master Language="VB" AutoEventWireup="false" CodeBehind="trackingnonav.Master.vb" Inherits="ITSP_TrackingSystemRefactor.trackingnonav" %>
+
+<%@ Register Src="~/controls/usermx.ascx" TagPrefix="uc1" TagName="usermx" %>
+<%@ Register Src="~/controls/usermxmodals.ascx" TagPrefix="uc1" TagName="usermxmodals" %>
+
+
+
+<!DOCTYPE html>
+
+<html lang="en">
+<head runat="server">
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title><%: Page.Title %> - Digital Learning Solutions Tracking System</title>
+    <style>
+        .help-btn {
+            margin-right: 10px;
+            margin-top: 5px;
+        }
+
+        .help-q {
+            font-weight: bolder;
+        }
+    </style>
+    <asp:PlaceHolder runat="server">
+        <%: Scripts.Render("~/bundles/modernizr") %>
+    </asp:PlaceHolder>
+    <%--<link href="../Content/bootstrap.min.css" rel="stylesheet" />--%>
+    <link href="../Content/plugins.min.css" rel="stylesheet" />
+    <link href="../Content/master.css" rel="stylesheet" />
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.4/css/bootstrap-datepicker3.min.css">
+    <link href="../Content/dashboard.css" rel="stylesheet" />
+    <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+    <link href="../Content/bootstrap-toggle.min.css" rel="stylesheet" />
+    <script src="../Scripts/plugins.min.js"></script>
+    <script src="../Scripts/bootstrap-toggle.min.js"></script>
+    <script src="../Scripts/app.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.4/js/bootstrap-datepicker.min.js"></script>
+    <style>
+        @media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
+            /* IE11 fix for button positioning issue in modal footer */
+            .modal-footer{
+        display: block !important;
+     }
+}
+     video {
+    margin:0 auto;
+    min-width: 100%;
+    min-height: 100%;
+    width: auto;
+    height: auto;
+    z-index: -100;
+    background-size: cover;
+    transition: 1s opacity;
+}
+         .img-fluid {
+        max-width: 100% !important;
+    }
+          .img-overlay-monitor{
+            position: absolute;
+        width: 100%;
+        top: 0;
+        left: 15px
+        }
+         .ms-hero-material-list {
+        list-style-type: none;
+        padding: 0;
+        margin-top:20px
+         }
+
+        .ms-hero-material-list li {
+            display: table;
+            margin-bottom: 40px;
+            margin-bottom: 4rem
+        }
+
+            .ms-hero-material-list li .ms-list-icon {
+                display: table-cell;
+                vertical-align: middle
+            }
+
+                .ms-hero-material-list li .ms-list-icon .ms-icon {
+                    margin: 0 20px 0 0;
+                    margin: 0 2rem 0 0
+                }
+
+            .ms-hero-material-list li .ms-list-text {
+                display: table-cell;
+                vertical-align: middle;
+                font-size: 18px;
+                font-size: 1.8rem;
+                line-height: 30px;
+                line-height: 3rem
+            }
+                .pad-right-twenty{
+        margin-right:20px;
+    }
+    </style>
+</head>
+<body>
+    <form id="form1" runat="server">
+        <asp:ScriptManager runat="server">
+
+            <Scripts>
+                <%--To learn more about bundling scripts in ScriptManager see http://go.microsoft.com/fwlink/?LinkID=301884 --%>
+                <%--Framework Scripts--%>
+                <asp:ScriptReference Name="MsAjaxBundle" />
+                <asp:ScriptReference Name="respond" />
+                <asp:ScriptReference Name="WebForms.js" Assembly="System.Web" Path="~/Scripts/WebForms/WebForms.js" />
+                <asp:ScriptReference Name="WebUIValidation.js" Assembly="System.Web" Path="~/Scripts/WebForms/WebUIValidation.js" />
+                <asp:ScriptReference Name="MenuStandards.js" Assembly="System.Web" Path="~/Scripts/WebForms/MenuStandards.js" />
+                <asp:ScriptReference Name="GridView.js" Assembly="System.Web" Path="~/Scripts/WebForms/GridView.js" />
+                <asp:ScriptReference Name="DetailsView.js" Assembly="System.Web" Path="~/Scripts/WebForms/DetailsView.js" />
+                <asp:ScriptReference Name="TreeView.js" Assembly="System.Web" Path="~/Scripts/WebForms/TreeView.js" />
+                <asp:ScriptReference Name="WebParts.js" Assembly="System.Web" Path="~/Scripts/WebForms/WebParts.js" />
+                <asp:ScriptReference Name="Focus.js" Assembly="System.Web" Path="~/Scripts/WebForms/Focus.js" />
+                <asp:ScriptReference Name="WebFormsBundle" />
+                <%--Site Scripts--%>
+            </Scripts>
+        </asp:ScriptManager>
+        <script src="../Scripts/bs.pagination.js"></script>
+        <script src="../Scripts/itsphelpers.js"></script>
+
+        <%--<script src="Scripts/bootstrap.js"></script>--%>
+        <script src="../Scripts/bootstrap-hover-dropdown.min.js"></script>
+        <script src="../Scripts/bsasper.js"></script>
+        <script src="../Scripts/app.min.js"></script>
+        <script>
+            function BindMasterEvents() {
+
+                $(document).ready(function () {
+                    $("input, textarea, select").bsasper({
+                        placement: "right", createContent: function (errors) {
+                            return '<span class="text-danger">' + errors[0] + '</span>';
+                        }
+                    });
+                    $('.pick-date').datepicker({
+                        format: "dd/mm/yyyy"
+                    });
+                    if (navigator.userAgent.indexOf('Trident') >= 0) {
+                        $(".hide-ie").css("display", "none");
+                    }
+                });
+                $('.bs-toggle').bootstrapToggle({
+                    on: 'Subscribed',
+                    off: 'Unsubscribed',
+                    onstyle: 'success',
+                    offstyle: 'danger',
+                    width: '100px'
+                });
+
+                doPopover()
+
+                function doPopover(s, e) {
+                    $('[data-toggle="popover"]').popover();
+                }
+            };
+            jQuery(function ($) {
+                if (typeof $.fn.datepicker.defaults != 'undefined') {
+                    $.fn.datepicker.defaults.format = "dd/mm/yyyy";
+                    $.fn.datepicker.defaults.autoclose = true;
+                }
+                $('.ticker').jTicker();
+            });
+
+        </script>
+
+        <asp:ContentPlaceHolder ID="SkipToContentLink" runat="server">
+        </asp:ContentPlaceHolder>
+        <div class="ms-site-container">
+            <asp:ContentPlaceHolder ID="breadtray" Visible="false" runat="server">
+                </asp:ContentPlaceHolder>
+
+            <main id="maincontent">
+                <asp:ContentPlaceHolder ID="MainContent" runat="server">
+                </asp:ContentPlaceHolder>
+            </main>
+
+            <div class="btn-back-top">
+                <a href="#" data-scroll id="back-top" aria-label="Scroll to top of page" class="btn-circle btn-circle-primary btn-circle-sm btn-circle-raised ">
+                    <i class="fas fa-arrow-up"></i>
+                </a>
+            </div>
+
+        </div>
+
+        <script>
+            Sys.Application.add_load(BindMasterEvents);
+
+        </script>
+    </form>
+</body>
+
+</html>

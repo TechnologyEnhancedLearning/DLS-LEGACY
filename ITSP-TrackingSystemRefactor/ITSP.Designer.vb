@@ -38592,54 +38592,51 @@ Namespace ITSPTableAdapters
             Me._commandCollection = New Global.System.Data.SqlClient.SqlCommand(0) {}
             Me._commandCollection(0) = New Global.System.Data.SqlClient.SqlCommand()
             Me._commandCollection(0).Connection = Me.Connection
-            Me._commandCollection(0).CommandText = "SELECT        CentreID, RegionID, Active, CentreName, ContactForename, ContactSur"& _ 
-                "name, ContactEmail, ContactTelephone, BannerText,"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                             "& _ 
-                "(SELECT        RegionName"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                               FROM            Region"& _ 
-                "s"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                               WHERE        (RegionID = C.RegionID)) AS Regio"& _ 
-                "nName,"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                             (SELECT        COUNT(*) AS Expr1"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"         "& _ 
-                "                      FROM            Candidates"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                              "& _ 
-                " WHERE        (CentreID = @CentreID) AND (Active = 1)) AS CentreDelegates,"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"    "& _ 
-                "                         (SELECT        COUNT(*) AS nCourses"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                  "& _ 
-                "             FROM            Customisations AS cu INNER JOIN Applications as ap "& _ 
-                "on cu.ApplicationID = ap.ApplicationID"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                               WHERE    "& _ 
-                "    (cu.CentreID = @CentreID) AND (cu.Active = 1) AND ((ap.CourseCategoryID = @A"& _ 
-                "dminCategoryID) OR (@AdminCategoryID=0))) AS CentreCourses,"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"COALESCE((SELECT Ca"& _ 
-                "tegoryName FROM CourseCategories WHERE CourseCategoryID = @AdminCategoryID), N'A"& _ 
-                "ll') As CategoryName,"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                             (SELECT        COUNT(*) AS n"& _ 
-                "Admins"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                               FROM            AdminUsers"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"             "& _ 
-                "                  WHERE        (CentreID = @CentreID) AND (Approved = 1) AND (Ac"& _ 
-                "tive = 1)) AS CentreAdmins,"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                             (SELECT        COUNT(*"& _ 
-                ") AS nTickets"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                               FROM            Tickets INNER JOIN"& _ 
-                ""&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                                                         AdminUsers AS AdminUs"& _ 
-                "ers_1 ON Tickets.AdminUserID = AdminUsers_1.AdminID"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                           "& _ 
-                "    WHERE        (Tickets.TStatusID < 4) AND (Tickets.ArchivedDate IS NULL) AND "& _ 
-                "(AdminUsers_1.CentreID = @CentreID)) AS OpenTickets,"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                          "& _ 
-                "   (SELECT        COUNT(*) AS Expr1"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                               FROM        "& _ 
-                "    Candidates AS Candidates_1"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                               WHERE        (Cen"& _ 
-                "treID = C.CentreID) AND (Active = 1) AND (Approved = 0)) AS AwaitingApproval,"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&" "& _ 
-                "                            (SELECT        c.ContactForename + ' ' + c.ContactSu"& _ 
-                "rname AS Expr1) AS Contact, F1Mandatory, F1Options, F2Mandatory, F2Options, F3Ma"& _ 
-                "ndatory, F3Options, LastChecked, pwTelephone, pwEmail, pwPostCode, pwHours, "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"  "& _ 
-                "                       pwWebURL, pwTrustsCovered, pwTrainingLocations, pwGeneral"& _ 
-                "Info, Long AS Longitude, Lat, NotifyEmail, IPPrefix, CustomField1PromptID, Custo"& _ 
-                "mField2PromptID, CustomField3PromptID, CustomField4PromptID, F4Options, "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"      "& _ 
-                "                   F4Mandatory, CustomField5PromptID, F5Options, F5Mandatory, Cu"& _ 
-                "stomField6PromptID, F6Options, F6Mandatory, (SELECT ContractType FROM ContractTy"& _ 
-                "pes WHERE ContractTypeID = C.ContractTypeID) AS ContractType"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"FROM            Ce"& _ 
-                "ntres AS C"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"WHERE        (CentreID = @CentreID)"
+            Me._commandCollection(0).CommandText = "SELECT CentreID, RegionID, Active, CentreName, ContactForename, ContactSurname, C"& _ 
+                "ontactEmail, ContactTelephone, BannerText,"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                 (SELECT RegionName"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                 FROM    Regions"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                 WHERE (RegionID = C.RegionID"& _ 
+                ")) AS RegionName,"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                 (SELECT COUNT(*) AS Expr1"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                 "& _ 
+                "FROM    Candidates"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                 WHERE (CentreID = @CentreID) AND (Active = "& _ 
+                "1)) AS CentreDelegates,"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                 (SELECT COUNT(*) AS nCourses"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"        "& _ 
+                "         FROM    Customisations AS cu INNER JOIN"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                              "& _ 
+                "Applications AS ap ON cu.ApplicationID = ap.ApplicationID"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                 WHER"& _ 
+                "E (C.Active = 1) AND (C.CentreID = @centreId) AND (ap.CourseCategoryID = @adminC"& _ 
+                "ategoryId) AND (ap.ArchivedDate IS NULL) OR"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                              (C.Ac"& _ 
+                "tive = 1) AND (C.CentreID = @centreId) AND (ap.ArchivedDate IS NULL) AND (@admin"& _ 
+                "CategoryId IS NULL)) AS CentreCourses, COALESCE"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                 ((SELECT Categ"& _ 
+                "oryName"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                  FROM    CourseCategories"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                  WHERE (Co"& _ 
+                "urseCategoryID = @AdminCategoryID)), N'All') AS CategoryName,"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                 "& _ 
+                "(SELECT COUNT(*) AS nAdmins"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                 FROM    AdminUsers"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"              "& _ 
+                "   WHERE (CentreID = @CentreID) AND (Approved = 1) AND (Active = 1)) AS CentreAd"& _ 
+                "mins,"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                 (SELECT COUNT(*) AS nTickets"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                 FROM    T"& _ 
+                "ickets INNER JOIN"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                              AdminUsers AS AdminUsers_1 ON T"& _ 
+                "ickets.AdminUserID = AdminUsers_1.AdminID"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                 WHERE (Tickets.TStat"& _ 
+                "usID < 4) AND (Tickets.ArchivedDate IS NULL) AND (AdminUsers_1.CentreID = @Centr"& _ 
+                "eID)) AS OpenTickets,"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                 (SELECT COUNT(*) AS Expr1"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"             "& _ 
+                "    FROM    Candidates AS Candidates_1"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                 WHERE (CentreID = C.Cen"& _ 
+                "treID) AND (Active = 1) AND (Approved = 0)) AS AwaitingApproval,"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"              "& _ 
+                "   (SELECT c.ContactForename + ' ' + c.ContactSurname AS Expr1) AS Contact, F1Ma"& _ 
+                "ndatory, F1Options, F2Mandatory, F2Options, F3Mandatory, F3Options, LastChecked,"& _ 
+                " pwTelephone, pwEmail, pwPostCode, pwHours, pwWebURL, pwTrustsCovered, pwTrainin"& _ 
+                "gLocations, "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"             pwGeneralInfo, Long AS Longitude, Lat, NotifyEmail, I"& _ 
+                "PPrefix, CustomField1PromptID, CustomField2PromptID, CustomField3PromptID, Custo"& _ 
+                "mField4PromptID, F4Options, F4Mandatory, CustomField5PromptID, F5Options, F5Mand"& _ 
+                "atory, CustomField6PromptID, F6Options, "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"             F6Mandatory,"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"           "& _ 
+                "      (SELECT ContractType"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                 FROM    ContractTypes"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"            "& _ 
+                "     WHERE (ContractTypeID = C.ContractTypeID)) AS ContractType"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"FROM   Centres "& _ 
+                "AS C"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"WHERE (CentreID = @CentreID)"
             Me._commandCollection(0).CommandType = Global.System.Data.CommandType.Text
             Me._commandCollection(0).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@CentreID", Global.System.Data.SqlDbType.Int, 4, Global.System.Data.ParameterDirection.Input, 0, 0, "CentreID", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._commandCollection(0).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@AdminCategoryID", Global.System.Data.SqlDbType.Int, 4, Global.System.Data.ParameterDirection.Input, 0, 0, "", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._commandCollection(0).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@adminCategoryId", Global.System.Data.SqlDbType.Int, 4, Global.System.Data.ParameterDirection.Input, 0, 0, "", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0"),  _
          Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
          Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Fill, true)>  _
-        Public Overloads Overridable Function Fill(ByVal dataTable As ITSP.CentresDashboardDataTable, ByVal CentreID As Integer, ByVal AdminCategoryID As Integer) As Integer
+        Public Overloads Overridable Function Fill(ByVal dataTable As ITSP.CentresDashboardDataTable, ByVal CentreID As Integer, ByVal adminCategoryId As Integer) As Integer
             Me.Adapter.SelectCommand = Me.CommandCollection(0)
             Me.Adapter.SelectCommand.Parameters(0).Value = CType(CentreID,Integer)
-            Me.Adapter.SelectCommand.Parameters(1).Value = CType(AdminCategoryID,Integer)
+            Me.Adapter.SelectCommand.Parameters(1).Value = CType(adminCategoryId,Integer)
             If (Me.ClearBeforeFill = true) Then
                 dataTable.Clear
             End If
@@ -38651,10 +38648,10 @@ Namespace ITSPTableAdapters
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0"),  _
          Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
          Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.[Select], true)>  _
-        Public Overloads Overridable Function GetData(ByVal CentreID As Integer, ByVal AdminCategoryID As Integer) As ITSP.CentresDashboardDataTable
+        Public Overloads Overridable Function GetData(ByVal CentreID As Integer, ByVal adminCategoryId As Integer) As ITSP.CentresDashboardDataTable
             Me.Adapter.SelectCommand = Me.CommandCollection(0)
             Me.Adapter.SelectCommand.Parameters(0).Value = CType(CentreID,Integer)
-            Me.Adapter.SelectCommand.Parameters(1).Value = CType(AdminCategoryID,Integer)
+            Me.Adapter.SelectCommand.Parameters(1).Value = CType(adminCategoryId,Integer)
             Dim dataTable As ITSP.CentresDashboardDataTable = New ITSP.CentresDashboardDataTable()
             Me.Adapter.Fill(dataTable)
             Return dataTable

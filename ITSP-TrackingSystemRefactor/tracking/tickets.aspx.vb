@@ -2,7 +2,13 @@
 
 Public Class tickets
     Inherits System.Web.UI.Page
-
+    Private Sub me_PreInit(sender As Object, e As EventArgs) Handles Me.PreInit
+        If Not Page.Request.Item("nonav") Is Nothing Then
+            MasterPageFile = "~/tracking/trackingnonav.Master"
+        Else
+            MasterPageFile = "~/tracking/Site.Master"
+        End If
+    End Sub
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
         If Not Session("UserUserAdmin") Then
             bsgvTickets.SettingsCookies.Version = "2.2"
@@ -152,6 +158,9 @@ Public Class tickets
     Private Sub lbtCloseTicket_Click(sender As Object, e As EventArgs) Handles lbtCancelNewTicket.Click, lbtCloseTicket.Click
         Dim sUri As Uri = New Uri(Request.Url.AbsoluteUri)
         Dim sURL = sUri.Scheme & Uri.SchemeDelimiter & sUri.Authority & sUri.AbsolutePath
+        If Request.QueryString("nonav") IsNot Nothing Then
+            sURL = sURL & "?nonav=true"
+        End If
         Response.Redirect(sURL)
     End Sub
     Public Function RemoveHTMLTags(ByVal HTMLCode As String) As String

@@ -130,12 +130,12 @@
             </dx:BootstrapGridViewTextColumn>
             <dx:BootstrapGridViewTextColumn FieldName="CourseAnswer3" ShowInCustomizationDialog="false" VisibleIndex="25">
             </dx:BootstrapGridViewTextColumn>
-            <dx:BootstrapGridViewTextColumn ReadOnly="True" ShowInCustomizationDialog="false" Name="Edit" VisibleIndex="26">
+            <dx:BootstrapGridViewTextColumn ReadOnly="True" Name="Edit" Caption="Edit admin fields" VisibleIndex="26">
                 <Settings AllowHeaderFilter="False" />
                 <SettingsEditForm Visible="False" />
 
                 <DataItemTemplate>
-                    <asp:LinkButton ID="EditCustFields" EnableViewState="false" ToolTip="Edit custom admin field values" CommandArgument='<%# Eval("ProgressID") %>' CssClass="btn btn-outline-secondary btn-sm" runat="server" OnCommand="EditCustFields_Command"><i aria-hidden="true" class="fas fa-pencil-alt"></i></asp:LinkButton>
+                    <asp:LinkButton ID="EditCustFields" Visible='<%# Eval("CourseField1PromptID") > 0 %>' EnableViewState="false" ToolTip="Edit custom admin field values" CommandArgument='<%# Eval("ProgressID") %>' CssClass="btn btn-outline-secondary btn-sm" runat="server" OnCommand="EditCustFields_Command"><i aria-hidden="true" class="fas fa-pencil-alt"></i></asp:LinkButton>
                 </DataItemTemplate>
             </dx:BootstrapGridViewTextColumn>
         </Columns>
