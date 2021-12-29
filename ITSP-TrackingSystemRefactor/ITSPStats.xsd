@@ -712,52 +712,65 @@ ORDER BY ca.LastName, ca.FirstName</CommandText>
                  WHERE (CandidateId = ca.CandidateID) AND (CompletedDate IS NOT NULL)) AS [Learning Completed],
                  (SELECT AVG(sar.Result) AS AvgConfidence
                  FROM    SelfAssessmentResults AS sar INNER JOIN
-                              Competencies AS co ON sar.CompetencyID = co.ID
-                 WHERE (sar.AssessmentQuestionID = 1) AND (co.CompetencyGroupID = 1) AND (sar.CandidateID = ca.CandidateID)) AS [Data, information and content - Confidence],
+                              Competencies AS co ON sar.CompetencyID = co.ID INNER JOIN
+                              SelfAssessmentStructure AS sas ON co.ID = sas.CompetencyID
+
+                 WHERE (sar.AssessmentQuestionID = 1) AND (sas.CompetencyGroupID = 1) AND (sar.CandidateID = ca.CandidateID)) AS [Data, information and content - Confidence],
                  (SELECT AVG(sar.Result) AS AvgConfidence
                  FROM    SelfAssessmentResults AS sar INNER JOIN
-                              Competencies AS co ON sar.CompetencyID = co.ID
-                 WHERE (sar.AssessmentQuestionID = 2) AND (co.CompetencyGroupID = 1) AND (sar.CandidateID = ca.CandidateID)) AS [Data, information and content - Relevance],
+                              Competencies AS co ON sar.CompetencyID = co.ID INNER JOIN
+                              SelfAssessmentStructure AS sas ON co.ID = sas.CompetencyID
+                 WHERE (sar.AssessmentQuestionID = 2) AND (sas.CompetencyGroupID = 1) AND (sar.CandidateID = ca.CandidateID)) AS [Data, information and content - Relevance],
                  (SELECT AVG(sar.Result) AS AvgConfidence
                  FROM    SelfAssessmentResults AS sar INNER JOIN
-                              Competencies AS co ON sar.CompetencyID = co.ID
-                 WHERE (sar.AssessmentQuestionID = 1) AND (co.CompetencyGroupID = 2) AND (sar.CandidateID = ca.CandidateID)) AS [Teaching, learning and self-development - Confidence],
+                              Competencies AS co ON sar.CompetencyID = co.ID INNER JOIN
+                              SelfAssessmentStructure AS sas ON co.ID = sas.CompetencyID
+                 WHERE (sar.AssessmentQuestionID = 1) AND (sas.CompetencyGroupID = 2) AND (sar.CandidateID = ca.CandidateID)) AS [Teaching, learning and self-development - Confidence],
                  (SELECT AVG(sar.Result) AS AvgConfidence
                  FROM    SelfAssessmentResults AS sar INNER JOIN
-                              Competencies AS co ON sar.CompetencyID = co.ID
-                 WHERE (sar.AssessmentQuestionID = 2) AND (co.CompetencyGroupID = 2) AND (sar.CandidateID = ca.CandidateID)) AS [Teaching, learning and self-development - Relevance],
+                              Competencies AS co ON sar.CompetencyID = co.ID INNER JOIN
+                              SelfAssessmentStructure AS sas ON co.ID = sas.CompetencyID
+                 WHERE (sar.AssessmentQuestionID = 2) AND (sas.CompetencyGroupID = 2) AND (sar.CandidateID = ca.CandidateID)) AS [Teaching, learning and self-development - Relevance],
                  (SELECT AVG(sar.Result) AS AvgConfidence
                  FROM    SelfAssessmentResults AS sar INNER JOIN
-                              Competencies AS co ON sar.CompetencyID = co.ID
-                 WHERE (sar.AssessmentQuestionID = 1) AND (co.CompetencyGroupID = 3) AND (sar.CandidateID = ca.CandidateID)) AS [Communication, collaboration and participation - Confidence],
+                              Competencies AS co ON sar.CompetencyID = co.ID INNER JOIN
+                              SelfAssessmentStructure AS sas ON co.ID = sas.CompetencyID
+                 WHERE (sar.AssessmentQuestionID = 1) AND (sas.CompetencyGroupID = 3) AND (sar.CandidateID = ca.CandidateID)) AS [Communication, collaboration and participation - Confidence],
                  (SELECT AVG(sar.Result) AS AvgConfidence
                  FROM    SelfAssessmentResults AS sar INNER JOIN
-                              Competencies AS co ON sar.CompetencyID = co.ID
-                 WHERE (sar.AssessmentQuestionID = 2) AND (co.CompetencyGroupID = 3) AND (sar.CandidateID = ca.CandidateID)) AS [Communication, collaboration and participation - Relevance],
+                              Competencies AS co ON sar.CompetencyID = co.ID INNER JOIN
+                              SelfAssessmentStructure AS sas ON co.ID = sas.CompetencyID
+                 WHERE (sar.AssessmentQuestionID = 2) AND (sas.CompetencyGroupID = 3) AND (sar.CandidateID = ca.CandidateID)) AS [Communication, collaboration and participation - Relevance],
                  (SELECT AVG(sar.Result) AS AvgConfidence
                  FROM    SelfAssessmentResults AS sar INNER JOIN
-                              Competencies AS co ON sar.CompetencyID = co.ID
-                 WHERE (sar.AssessmentQuestionID = 1) AND (co.CompetencyGroupID = 4) AND (sar.CandidateID = ca.CandidateID)) AS [Technical proficiency - Confidence],
+                              Competencies AS co ON sar.CompetencyID = co.ID INNER JOIN
+                              SelfAssessmentStructure AS sas ON co.ID = sas.CompetencyID
+                 WHERE (sar.AssessmentQuestionID = 1) AND (sas.CompetencyGroupID = 4) AND (sar.CandidateID = ca.CandidateID)) AS [Technical proficiency - Confidence],
                  (SELECT AVG(sar.Result) AS AvgConfidence
                  FROM    SelfAssessmentResults AS sar INNER JOIN
-                              Competencies AS co ON sar.CompetencyID = co.ID
-                 WHERE (sar.AssessmentQuestionID = 2) AND (co.CompetencyGroupID = 4) AND (sar.CandidateID = ca.CandidateID)) AS [Technical proficiency - Relevance],
+                              Competencies AS co ON sar.CompetencyID = co.ID INNER JOIN
+                              SelfAssessmentStructure AS sas ON co.ID = sas.CompetencyID
+                 WHERE (sar.AssessmentQuestionID = 2) AND (sas.CompetencyGroupID = 4) AND (sar.CandidateID = ca.CandidateID)) AS [Technical proficiency - Relevance],
                  (SELECT AVG(sar.Result) AS AvgConfidence
                  FROM    SelfAssessmentResults AS sar INNER JOIN
-                              Competencies AS co ON sar.CompetencyID = co.ID
-                 WHERE (sar.AssessmentQuestionID = 1) AND (co.CompetencyGroupID = 5) AND (sar.CandidateID = ca.CandidateID)) AS [Creation, innovation and research - Confidence],
+                              Competencies AS co ON sar.CompetencyID = co.ID INNER JOIN
+                              SelfAssessmentStructure AS sas ON co.ID = sas.CompetencyID
+                 WHERE (sar.AssessmentQuestionID = 1) AND (sas.CompetencyGroupID = 5) AND (sar.CandidateID = ca.CandidateID)) AS [Creation, innovation and research - Confidence],
                  (SELECT AVG(sar.Result) AS AvgConfidence
                  FROM    SelfAssessmentResults AS sar INNER JOIN
-                              Competencies AS co ON sar.CompetencyID = co.ID
-                 WHERE (sar.AssessmentQuestionID = 2) AND (co.CompetencyGroupID = 5) AND (sar.CandidateID = ca.CandidateID)) AS [Creation, innovation and research - Relevance],
+                              Competencies AS co ON sar.CompetencyID = co.ID INNER JOIN
+                              SelfAssessmentStructure AS sas ON co.ID = sas.CompetencyID
+                 WHERE (sar.AssessmentQuestionID = 2) AND (sas.CompetencyGroupID = 5) AND (sar.CandidateID = ca.CandidateID)) AS [Creation, innovation and research - Relevance],
                  (SELECT AVG(sar.Result) AS AvgConfidence
                  FROM    SelfAssessmentResults AS sar INNER JOIN
-                              Competencies AS co ON sar.CompetencyID = co.ID
-                 WHERE (sar.AssessmentQuestionID = 1) AND (co.CompetencyGroupID = 6) AND (sar.CandidateID = ca.CandidateID)) AS [Digital identity, wellbeing, safety and security - Confidence],
+                              Competencies AS co ON sar.CompetencyID = co.ID INNER JOIN
+                              SelfAssessmentStructure AS sas ON co.ID = sas.CompetencyID
+                 WHERE (sar.AssessmentQuestionID = 1) AND (sas.CompetencyGroupID = 6) AND (sar.CandidateID = ca.CandidateID)) AS [Digital identity, wellbeing, safety and security - Confidence],
                  (SELECT AVG(sar.Result) AS AvgConfidence
                  FROM    SelfAssessmentResults AS sar INNER JOIN
-                              Competencies AS co ON sar.CompetencyID = co.ID
-                 WHERE (sar.AssessmentQuestionID = 2) AND (co.CompetencyGroupID = 6) AND (sar.CandidateID = ca.CandidateID)) AS [Digital identity, wellbeing, safety and security - Relevance]
+                              Competencies AS co ON sar.CompetencyID = co.ID INNER JOIN
+                              SelfAssessmentStructure AS sas ON co.ID = sas.CompetencyID
+                 WHERE (sar.AssessmentQuestionID = 2) AND (sas.CompetencyGroupID = 6) AND (sar.CandidateID = ca.CandidateID)) AS [Digital identity, wellbeing, safety and security - Relevance]
 FROM   Candidates AS ca INNER JOIN
              CandidateAssessments AS caa ON ca.CandidateID = caa.CandidateID INNER JOIN
              JobGroups AS jg ON ca.JobGroupID = jg.JobGroupID
@@ -808,52 +821,64 @@ ORDER BY [Job Group], [Centre Field 1], [Centre Field 2], [Centre Field 3], Stat
                  WHERE (CandidateId = ca.CandidateID) AND (CompletedDate IS NOT NULL)) AS [Learning Completed],
                  (SELECT AVG(sar.Result) AS AvgConfidence
                  FROM    SelfAssessmentResults AS sar INNER JOIN
-                              Competencies AS co ON sar.CompetencyID = co.ID
-                 WHERE (sar.AssessmentQuestionID = 1) AND (co.CompetencyGroupID = 1) AND (sar.CandidateID = ca.CandidateID)) AS [Data, information and content - Confidence],
+                              Competencies AS co ON sar.CompetencyID = co.ID INNER JOIN
+                              SelfAssessmentStructure AS sas ON co.ID = sas.CompetencyID
+                 WHERE (sar.AssessmentQuestionID = 1) AND (sas.CompetencyGroupID = 1) AND (sar.CandidateID = ca.CandidateID)) AS [Data, information and content - Confidence],
                  (SELECT AVG(sar.Result) AS AvgConfidence
                  FROM    SelfAssessmentResults AS sar INNER JOIN
-                              Competencies AS co ON sar.CompetencyID = co.ID
-                 WHERE (sar.AssessmentQuestionID = 2) AND (co.CompetencyGroupID = 1) AND (sar.CandidateID = ca.CandidateID)) AS [Data, information and content - Relevance],
+                              Competencies AS co ON sar.CompetencyID = co.ID INNER JOIN
+                              SelfAssessmentStructure AS sas ON co.ID = sas.CompetencyID
+                 WHERE (sar.AssessmentQuestionID = 2) AND (sas.CompetencyGroupID = 1) AND (sar.CandidateID = ca.CandidateID)) AS [Data, information and content - Relevance],
                  (SELECT AVG(sar.Result) AS AvgConfidence
                  FROM    SelfAssessmentResults AS sar INNER JOIN
-                              Competencies AS co ON sar.CompetencyID = co.ID
-                 WHERE (sar.AssessmentQuestionID = 1) AND (co.CompetencyGroupID = 2) AND (sar.CandidateID = ca.CandidateID)) AS [Teaching, learning and self-development - Confidence],
+                              Competencies AS co ON sar.CompetencyID = co.ID INNER JOIN
+                              SelfAssessmentStructure AS sas ON co.ID = sas.CompetencyID
+                 WHERE (sar.AssessmentQuestionID = 1) AND (sas.CompetencyGroupID = 2) AND (sar.CandidateID = ca.CandidateID)) AS [Teaching, learning and self-development - Confidence],
                  (SELECT AVG(sar.Result) AS AvgConfidence
                  FROM    SelfAssessmentResults AS sar INNER JOIN
-                              Competencies AS co ON sar.CompetencyID = co.ID
-                 WHERE (sar.AssessmentQuestionID = 2) AND (co.CompetencyGroupID = 2) AND (sar.CandidateID = ca.CandidateID)) AS [Teaching, learning and self-development - Relevance],
+                              Competencies AS co ON sar.CompetencyID = co.ID INNER JOIN
+                              SelfAssessmentStructure AS sas ON co.ID = sas.CompetencyID
+                 WHERE (sar.AssessmentQuestionID = 2) AND (sas.CompetencyGroupID = 2) AND (sar.CandidateID = ca.CandidateID)) AS [Teaching, learning and self-development - Relevance],
                  (SELECT AVG(sar.Result) AS AvgConfidence
                  FROM    SelfAssessmentResults AS sar INNER JOIN
-                              Competencies AS co ON sar.CompetencyID = co.ID
-                 WHERE (sar.AssessmentQuestionID = 1) AND (co.CompetencyGroupID = 3) AND (sar.CandidateID = ca.CandidateID)) AS [Communication, collaboration and participation - Confidence],
+                              Competencies AS co ON sar.CompetencyID = co.ID INNER JOIN
+                              SelfAssessmentStructure AS sas ON co.ID = sas.CompetencyID
+                 WHERE (sar.AssessmentQuestionID = 1) AND (sas.CompetencyGroupID = 3) AND (sar.CandidateID = ca.CandidateID)) AS [Communication, collaboration and participation - Confidence],
                  (SELECT AVG(sar.Result) AS AvgConfidence
                  FROM    SelfAssessmentResults AS sar INNER JOIN
-                              Competencies AS co ON sar.CompetencyID = co.ID
-                 WHERE (sar.AssessmentQuestionID = 2) AND (co.CompetencyGroupID = 3) AND (sar.CandidateID = ca.CandidateID)) AS [Communication, collaboration and participation - Relevance],
+                              Competencies AS co ON sar.CompetencyID = co.ID INNER JOIN
+                              SelfAssessmentStructure AS sas ON co.ID = sas.CompetencyID
+                 WHERE (sar.AssessmentQuestionID = 2) AND (sas.CompetencyGroupID = 3) AND (sar.CandidateID = ca.CandidateID)) AS [Communication, collaboration and participation - Relevance],
                  (SELECT AVG(sar.Result) AS AvgConfidence
                  FROM    SelfAssessmentResults AS sar INNER JOIN
-                              Competencies AS co ON sar.CompetencyID = co.ID
-                 WHERE (sar.AssessmentQuestionID = 1) AND (co.CompetencyGroupID = 4) AND (sar.CandidateID = ca.CandidateID)) AS [Technical proficiency - Confidence],
+                              Competencies AS co ON sar.CompetencyID = co.ID INNER JOIN
+                              SelfAssessmentStructure AS sas ON co.ID = sas.CompetencyID
+                 WHERE (sar.AssessmentQuestionID = 1) AND (sas.CompetencyGroupID = 4) AND (sar.CandidateID = ca.CandidateID)) AS [Technical proficiency - Confidence],
                  (SELECT AVG(sar.Result) AS AvgConfidence
                  FROM    SelfAssessmentResults AS sar INNER JOIN
-                              Competencies AS co ON sar.CompetencyID = co.ID
-                 WHERE (sar.AssessmentQuestionID = 2) AND (co.CompetencyGroupID = 4) AND (sar.CandidateID = ca.CandidateID)) AS [Technical proficiency - Relevance],
+                              Competencies AS co ON sar.CompetencyID = co.ID INNER JOIN
+                              SelfAssessmentStructure AS sas ON co.ID = sas.CompetencyID
+                 WHERE (sar.AssessmentQuestionID = 2) AND (sas.CompetencyGroupID = 4) AND (sar.CandidateID = ca.CandidateID)) AS [Technical proficiency - Relevance],
                  (SELECT AVG(sar.Result) AS AvgConfidence
                  FROM    SelfAssessmentResults AS sar INNER JOIN
-                              Competencies AS co ON sar.CompetencyID = co.ID
-                 WHERE (sar.AssessmentQuestionID = 1) AND (co.CompetencyGroupID = 5) AND (sar.CandidateID = ca.CandidateID)) AS [Creation, innovation and research - Confidence],
+                              Competencies AS co ON sar.CompetencyID = co.ID INNER JOIN
+                              SelfAssessmentStructure AS sas ON co.ID = sas.CompetencyID
+                 WHERE (sar.AssessmentQuestionID = 1) AND (sas.CompetencyGroupID = 5) AND (sar.CandidateID = ca.CandidateID)) AS [Creation, innovation and research - Confidence],
                  (SELECT AVG(sar.Result) AS AvgConfidence
                  FROM    SelfAssessmentResults AS sar INNER JOIN
-                              Competencies AS co ON sar.CompetencyID = co.ID
-                 WHERE (sar.AssessmentQuestionID = 2) AND (co.CompetencyGroupID = 5) AND (sar.CandidateID = ca.CandidateID)) AS [Creation, innovation and research - Relevance],
+                              Competencies AS co ON sar.CompetencyID = co.ID INNER JOIN
+                              SelfAssessmentStructure AS sas ON co.ID = sas.CompetencyID
+                 WHERE (sar.AssessmentQuestionID = 2) AND (sas.CompetencyGroupID = 5) AND (sar.CandidateID = ca.CandidateID)) AS [Creation, innovation and research - Relevance],
                  (SELECT AVG(sar.Result) AS AvgConfidence
                  FROM    SelfAssessmentResults AS sar INNER JOIN
-                              Competencies AS co ON sar.CompetencyID = co.ID
-                 WHERE (sar.AssessmentQuestionID = 1) AND (co.CompetencyGroupID = 6) AND (sar.CandidateID = ca.CandidateID)) AS [Digital identity, wellbeing, safety and security - Confidence],
+                              Competencies AS co ON sar.CompetencyID = co.ID INNER JOIN
+                              SelfAssessmentStructure AS sas ON co.ID = sas.CompetencyID
+                 WHERE (sar.AssessmentQuestionID = 1) AND (sas.CompetencyGroupID = 6) AND (sar.CandidateID = ca.CandidateID)) AS [Digital identity, wellbeing, safety and security - Confidence],
                  (SELECT AVG(sar.Result) AS AvgConfidence
                  FROM    SelfAssessmentResults AS sar INNER JOIN
-                              Competencies AS co ON sar.CompetencyID = co.ID
-                 WHERE (sar.AssessmentQuestionID = 2) AND (co.CompetencyGroupID = 6) AND (sar.CandidateID = ca.CandidateID)) AS [Digital identity, wellbeing, safety and security - Relevance]
+                              Competencies AS co ON sar.CompetencyID = co.ID INNER JOIN
+                              SelfAssessmentStructure AS sas ON co.ID = sas.CompetencyID
+                 WHERE (sar.AssessmentQuestionID = 2) AND (sas.CompetencyGroupID = 6) AND (sar.CandidateID = ca.CandidateID)) AS [Digital identity, wellbeing, safety and security - Relevance]
 FROM   Candidates AS ca INNER JOIN
              CandidateAssessments AS caa ON ca.CandidateID = caa.CandidateID INNER JOIN
              JobGroups AS jg ON ca.JobGroupID = jg.JobGroupID INNER JOIN
@@ -976,7 +1001,7 @@ WHERE        (cu.Active = 1) AND (t.ContentTypeID = 4) AND (p.RemovedDate IS NUL
   <xs:element name="ITSPStats" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="ITSPStats" msprop:Generator_UserDSName="ITSPStats">
     <xs:complexType>
       <xs:choice minOccurs="0" maxOccurs="unbounded">
-        <xs:element name="OverviewStats" msprop:Generator_TableClassName="OverviewStatsDataTable" msprop:Generator_TableVarName="tableOverviewStats" msprop:Generator_RowChangedName="OverviewStatsRowChanged" msprop:Generator_TablePropName="OverviewStats" msprop:Generator_RowDeletingName="OverviewStatsRowDeleting" msprop:Generator_RowChangingName="OverviewStatsRowChanging" msprop:Generator_RowEvHandlerName="OverviewStatsRowChangeEventHandler" msprop:Generator_RowDeletedName="OverviewStatsRowDeleted" msprop:Generator_RowClassName="OverviewStatsRow" msprop:Generator_UserTableName="OverviewStats" msprop:Generator_RowEvArgName="OverviewStatsRowChangeEvent">
+        <xs:element name="OverviewStats" msprop:Generator_TableClassName="OverviewStatsDataTable" msprop:Generator_TableVarName="tableOverviewStats" msprop:Generator_TablePropName="OverviewStats" msprop:Generator_RowDeletingName="OverviewStatsRowDeleting" msprop:Generator_RowChangingName="OverviewStatsRowChanging" msprop:Generator_RowEvHandlerName="OverviewStatsRowChangeEventHandler" msprop:Generator_RowDeletedName="OverviewStatsRowDeleted" msprop:Generator_UserTableName="OverviewStats" msprop:Generator_RowChangedName="OverviewStatsRowChanged" msprop:Generator_RowEvArgName="OverviewStatsRowChangeEvent" msprop:Generator_RowClassName="OverviewStatsRow">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="Regions" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnRegions" msprop:Generator_ColumnPropNameInRow="Regions" msprop:Generator_ColumnPropNameInTable="RegionsColumn" msprop:Generator_UserColumnName="Regions" type="xs:int" minOccurs="0" />
@@ -990,7 +1015,7 @@ WHERE        (cu.Active = 1) AND (t.ContentTypeID = 4) AND (p.RemovedDate IS NUL
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="CompsByGroup" msprop:Generator_TableClassName="CompsByGroupDataTable" msprop:Generator_TableVarName="tableCompsByGroup" msprop:Generator_TablePropName="CompsByGroup" msprop:Generator_RowDeletingName="CompsByGroupRowDeleting" msprop:Generator_RowChangingName="CompsByGroupRowChanging" msprop:Generator_RowEvHandlerName="CompsByGroupRowChangeEventHandler" msprop:Generator_RowDeletedName="CompsByGroupRowDeleted" msprop:Generator_UserTableName="CompsByGroup" msprop:Generator_RowChangedName="CompsByGroupRowChanged" msprop:Generator_RowEvArgName="CompsByGroupRowChangeEvent" msprop:Generator_RowClassName="CompsByGroupRow">
+        <xs:element name="CompsByGroup" msprop:Generator_TableClassName="CompsByGroupDataTable" msprop:Generator_TableVarName="tableCompsByGroup" msprop:Generator_RowChangedName="CompsByGroupRowChanged" msprop:Generator_TablePropName="CompsByGroup" msprop:Generator_RowDeletingName="CompsByGroupRowDeleting" msprop:Generator_RowChangingName="CompsByGroupRowChanging" msprop:Generator_RowEvHandlerName="CompsByGroupRowChangeEventHandler" msprop:Generator_RowDeletedName="CompsByGroupRowDeleted" msprop:Generator_RowClassName="CompsByGroupRow" msprop:Generator_UserTableName="CompsByGroup" msprop:Generator_RowEvArgName="CompsByGroupRowChangeEvent">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="appgroup" msprop:Generator_ColumnVarNameInTable="columnappgroup" msprop:Generator_ColumnPropNameInRow="appgroup" msprop:Generator_ColumnPropNameInTable="appgroupColumn" msprop:Generator_UserColumnName="appgroup">
@@ -1005,7 +1030,7 @@ WHERE        (cu.Active = 1) AND (t.ContentTypeID = 4) AND (p.RemovedDate IS NUL
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="uspGetRegCompNew" msprop:Generator_TableClassName="uspGetRegCompNewDataTable" msprop:Generator_TableVarName="tableuspGetRegCompNew" msprop:Generator_TablePropName="uspGetRegCompNew" msprop:Generator_RowDeletingName="uspGetRegCompNewRowDeleting" msprop:Generator_RowChangingName="uspGetRegCompNewRowChanging" msprop:Generator_RowEvHandlerName="uspGetRegCompNewRowChangeEventHandler" msprop:Generator_RowDeletedName="uspGetRegCompNewRowDeleted" msprop:Generator_UserTableName="uspGetRegCompNew" msprop:Generator_RowChangedName="uspGetRegCompNewRowChanged" msprop:Generator_RowEvArgName="uspGetRegCompNewRowChangeEvent" msprop:Generator_RowClassName="uspGetRegCompNewRow">
+        <xs:element name="uspGetRegCompNew" msprop:Generator_TableClassName="uspGetRegCompNewDataTable" msprop:Generator_TableVarName="tableuspGetRegCompNew" msprop:Generator_RowChangedName="uspGetRegCompNewRowChanged" msprop:Generator_TablePropName="uspGetRegCompNew" msprop:Generator_RowDeletingName="uspGetRegCompNewRowDeleting" msprop:Generator_RowChangingName="uspGetRegCompNewRowChanging" msprop:Generator_RowEvHandlerName="uspGetRegCompNewRowChangeEventHandler" msprop:Generator_RowDeletedName="uspGetRegCompNewRowDeleted" msprop:Generator_RowClassName="uspGetRegCompNewRow" msprop:Generator_UserTableName="uspGetRegCompNew" msprop:Generator_RowEvArgName="uspGetRegCompNewRowChangeEvent">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="period" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnperiod" msprop:Generator_ColumnPropNameInRow="period" msprop:Generator_ColumnPropNameInTable="periodColumn" msprop:Generator_UserColumnName="period" minOccurs="0">
@@ -1025,7 +1050,7 @@ WHERE        (cu.Active = 1) AND (t.ContentTypeID = 4) AND (p.RemovedDate IS NUL
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="HelpdeskStats" msprop:Generator_TableClassName="HelpdeskStatsDataTable" msprop:Generator_TableVarName="tableHelpdeskStats" msprop:Generator_TablePropName="HelpdeskStats" msprop:Generator_RowDeletingName="HelpdeskStatsRowDeleting" msprop:Generator_RowChangingName="HelpdeskStatsRowChanging" msprop:Generator_RowEvHandlerName="HelpdeskStatsRowChangeEventHandler" msprop:Generator_RowDeletedName="HelpdeskStatsRowDeleted" msprop:Generator_UserTableName="HelpdeskStats" msprop:Generator_RowChangedName="HelpdeskStatsRowChanged" msprop:Generator_RowEvArgName="HelpdeskStatsRowChangeEvent" msprop:Generator_RowClassName="HelpdeskStatsRow">
+        <xs:element name="HelpdeskStats" msprop:Generator_TableClassName="HelpdeskStatsDataTable" msprop:Generator_TableVarName="tableHelpdeskStats" msprop:Generator_RowChangedName="HelpdeskStatsRowChanged" msprop:Generator_TablePropName="HelpdeskStats" msprop:Generator_RowDeletingName="HelpdeskStatsRowDeleting" msprop:Generator_RowChangingName="HelpdeskStatsRowChanging" msprop:Generator_RowEvHandlerName="HelpdeskStatsRowChangeEventHandler" msprop:Generator_RowDeletedName="HelpdeskStatsRowDeleted" msprop:Generator_RowClassName="HelpdeskStatsRow" msprop:Generator_UserTableName="HelpdeskStats" msprop:Generator_RowEvArgName="HelpdeskStatsRowChangeEvent">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="period" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnperiod" msprop:Generator_ColumnPropNameInRow="period" msprop:Generator_ColumnPropNameInTable="periodColumn" msprop:Generator_UserColumnName="period" minOccurs="0">
@@ -1042,7 +1067,7 @@ WHERE        (cu.Active = 1) AND (t.ContentTypeID = 4) AND (p.RemovedDate IS NUL
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="uspGetCentreRank" msprop:Generator_TableClassName="uspGetCentreRankDataTable" msprop:Generator_TableVarName="tableuspGetCentreRank" msprop:Generator_TablePropName="uspGetCentreRank" msprop:Generator_RowDeletingName="uspGetCentreRankRowDeleting" msprop:Generator_RowChangingName="uspGetCentreRankRowChanging" msprop:Generator_RowEvHandlerName="uspGetCentreRankRowChangeEventHandler" msprop:Generator_RowDeletedName="uspGetCentreRankRowDeleted" msprop:Generator_UserTableName="uspGetCentreRank" msprop:Generator_RowChangedName="uspGetCentreRankRowChanged" msprop:Generator_RowEvArgName="uspGetCentreRankRowChangeEvent" msprop:Generator_RowClassName="uspGetCentreRankRow">
+        <xs:element name="uspGetCentreRank" msprop:Generator_TableClassName="uspGetCentreRankDataTable" msprop:Generator_TableVarName="tableuspGetCentreRank" msprop:Generator_RowChangedName="uspGetCentreRankRowChanged" msprop:Generator_TablePropName="uspGetCentreRank" msprop:Generator_RowDeletingName="uspGetCentreRankRowDeleting" msprop:Generator_RowChangingName="uspGetCentreRankRowChanging" msprop:Generator_RowEvHandlerName="uspGetCentreRankRowChangeEventHandler" msprop:Generator_RowDeletedName="uspGetCentreRankRowDeleted" msprop:Generator_RowClassName="uspGetCentreRankRow" msprop:Generator_UserTableName="uspGetCentreRank" msprop:Generator_RowEvArgName="uspGetCentreRankRowChangeEvent">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="Rank" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnRank" msprop:Generator_ColumnPropNameInRow="Rank" msprop:Generator_ColumnPropNameInTable="RankColumn" msprop:Generator_UserColumnName="Rank" type="xs:long" minOccurs="0" />
@@ -1050,7 +1075,7 @@ WHERE        (cu.Active = 1) AND (t.ContentTypeID = 4) AND (p.RemovedDate IS NUL
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="adminDelegates" msprop:Generator_TableClassName="adminDelegatesDataTable" msprop:Generator_TableVarName="tableadminDelegates" msprop:Generator_TablePropName="adminDelegates" msprop:Generator_RowDeletingName="adminDelegatesRowDeleting" msprop:Generator_RowChangingName="adminDelegatesRowChanging" msprop:Generator_RowEvHandlerName="adminDelegatesRowChangeEventHandler" msprop:Generator_RowDeletedName="adminDelegatesRowDeleted" msprop:Generator_UserTableName="adminDelegates" msprop:Generator_RowChangedName="adminDelegatesRowChanged" msprop:Generator_RowEvArgName="adminDelegatesRowChangeEvent" msprop:Generator_RowClassName="adminDelegatesRow">
+        <xs:element name="adminDelegates" msprop:Generator_TableClassName="adminDelegatesDataTable" msprop:Generator_TableVarName="tableadminDelegates" msprop:Generator_RowChangedName="adminDelegatesRowChanged" msprop:Generator_TablePropName="adminDelegates" msprop:Generator_RowDeletingName="adminDelegatesRowDeleting" msprop:Generator_RowChangingName="adminDelegatesRowChanging" msprop:Generator_RowEvHandlerName="adminDelegatesRowChangeEventHandler" msprop:Generator_RowDeletedName="adminDelegatesRowDeleted" msprop:Generator_RowClassName="adminDelegatesRow" msprop:Generator_UserTableName="adminDelegates" msprop:Generator_RowEvArgName="adminDelegatesRowChangeEvent">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="CandidateID" msdata:ReadOnly="true" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnVarNameInTable="columnCandidateID" msprop:Generator_ColumnPropNameInRow="CandidateID" msprop:Generator_ColumnPropNameInTable="CandidateIDColumn" msprop:Generator_UserColumnName="CandidateID" type="xs:int" />
@@ -1106,7 +1131,7 @@ WHERE        (cu.Active = 1) AND (t.ContentTypeID = 4) AND (p.RemovedDate IS NUL
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="uspEvaluationSummaryDateRangeV4" msprop:Generator_TableClassName="uspEvaluationSummaryDateRangeV4DataTable" msprop:Generator_TableVarName="tableuspEvaluationSummaryDateRangeV4" msprop:Generator_RowChangedName="uspEvaluationSummaryDateRangeV4RowChanged" msprop:Generator_TablePropName="uspEvaluationSummaryDateRangeV4" msprop:Generator_RowDeletingName="uspEvaluationSummaryDateRangeV4RowDeleting" msprop:Generator_RowChangingName="uspEvaluationSummaryDateRangeV4RowChanging" msprop:Generator_RowEvHandlerName="uspEvaluationSummaryDateRangeV4RowChangeEventHandler" msprop:Generator_RowDeletedName="uspEvaluationSummaryDateRangeV4RowDeleted" msprop:Generator_RowClassName="uspEvaluationSummaryDateRangeV4Row" msprop:Generator_UserTableName="uspEvaluationSummaryDateRangeV4" msprop:Generator_RowEvArgName="uspEvaluationSummaryDateRangeV4RowChangeEvent">
+        <xs:element name="uspEvaluationSummaryDateRangeV4" msprop:Generator_TableClassName="uspEvaluationSummaryDateRangeV4DataTable" msprop:Generator_TableVarName="tableuspEvaluationSummaryDateRangeV4" msprop:Generator_TablePropName="uspEvaluationSummaryDateRangeV4" msprop:Generator_RowDeletingName="uspEvaluationSummaryDateRangeV4RowDeleting" msprop:Generator_RowChangingName="uspEvaluationSummaryDateRangeV4RowChanging" msprop:Generator_RowEvHandlerName="uspEvaluationSummaryDateRangeV4RowChangeEventHandler" msprop:Generator_RowDeletedName="uspEvaluationSummaryDateRangeV4RowDeleted" msprop:Generator_UserTableName="uspEvaluationSummaryDateRangeV4" msprop:Generator_RowChangedName="uspEvaluationSummaryDateRangeV4RowChanged" msprop:Generator_RowEvArgName="uspEvaluationSummaryDateRangeV4RowChangeEvent" msprop:Generator_RowClassName="uspEvaluationSummaryDateRangeV4Row">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="TotalResponses" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnTotalResponses" msprop:Generator_ColumnPropNameInRow="TotalResponses" msprop:Generator_ColumnPropNameInTable="TotalResponsesColumn" msprop:Generator_UserColumnName="TotalResponses" type="xs:int" minOccurs="0" />
@@ -1140,7 +1165,7 @@ WHERE        (cu.Active = 1) AND (t.ContentTypeID = 4) AND (p.RemovedDate IS NUL
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="SAReport" msprop:Generator_TableClassName="SAReportDataTable" msprop:Generator_TableVarName="tableSAReport" msprop:Generator_TablePropName="SAReport" msprop:Generator_RowDeletingName="SAReportRowDeleting" msprop:Generator_RowChangingName="SAReportRowChanging" msprop:Generator_RowEvHandlerName="SAReportRowChangeEventHandler" msprop:Generator_RowDeletedName="SAReportRowDeleted" msprop:Generator_UserTableName="SAReport" msprop:Generator_RowChangedName="SAReportRowChanged" msprop:Generator_RowEvArgName="SAReportRowChangeEvent" msprop:Generator_RowClassName="SAReportRow">
+        <xs:element name="SAReport" msprop:Generator_TableClassName="SAReportDataTable" msprop:Generator_TableVarName="tableSAReport" msprop:Generator_RowChangedName="SAReportRowChanged" msprop:Generator_TablePropName="SAReport" msprop:Generator_RowDeletingName="SAReportRowDeleting" msprop:Generator_RowChangingName="SAReportRowChanging" msprop:Generator_RowEvHandlerName="SAReportRowChangeEventHandler" msprop:Generator_RowDeletedName="SAReportRowDeleted" msprop:Generator_RowClassName="SAReportRow" msprop:Generator_UserTableName="SAReport" msprop:Generator_RowEvArgName="SAReportRowChangeEvent">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="aspProgressID" msdata:ReadOnly="true" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnVarNameInTable="columnaspProgressID" msprop:Generator_ColumnPropNameInRow="aspProgressID" msprop:Generator_ColumnPropNameInTable="aspProgressIDColumn" msprop:Generator_UserColumnName="aspProgressID" type="xs:int" />
@@ -1223,7 +1248,7 @@ WHERE        (cu.Active = 1) AND (t.ContentTypeID = 4) AND (p.RemovedDate IS NUL
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="tvfGetSelfAssessmentDashboardData" msprop:Generator_TableClassName="tvfGetSelfAssessmentDashboardDataDataTable" msprop:Generator_TableVarName="tabletvfGetSelfAssessmentDashboardData" msprop:Generator_RowChangedName="tvfGetSelfAssessmentDashboardDataRowChanged" msprop:Generator_TablePropName="tvfGetSelfAssessmentDashboardData" msprop:Generator_RowDeletingName="tvfGetSelfAssessmentDashboardDataRowDeleting" msprop:Generator_RowChangingName="tvfGetSelfAssessmentDashboardDataRowChanging" msprop:Generator_RowEvHandlerName="tvfGetSelfAssessmentDashboardDataRowChangeEventHandler" msprop:Generator_RowDeletedName="tvfGetSelfAssessmentDashboardDataRowDeleted" msprop:Generator_RowClassName="tvfGetSelfAssessmentDashboardDataRow" msprop:Generator_UserTableName="tvfGetSelfAssessmentDashboardData" msprop:Generator_RowEvArgName="tvfGetSelfAssessmentDashboardDataRowChangeEvent">
+        <xs:element name="tvfGetSelfAssessmentDashboardData" msprop:Generator_TableClassName="tvfGetSelfAssessmentDashboardDataDataTable" msprop:Generator_TableVarName="tabletvfGetSelfAssessmentDashboardData" msprop:Generator_TablePropName="tvfGetSelfAssessmentDashboardData" msprop:Generator_RowDeletingName="tvfGetSelfAssessmentDashboardDataRowDeleting" msprop:Generator_RowChangingName="tvfGetSelfAssessmentDashboardDataRowChanging" msprop:Generator_RowEvHandlerName="tvfGetSelfAssessmentDashboardDataRowChangeEventHandler" msprop:Generator_RowDeletedName="tvfGetSelfAssessmentDashboardDataRowDeleted" msprop:Generator_UserTableName="tvfGetSelfAssessmentDashboardData" msprop:Generator_RowChangedName="tvfGetSelfAssessmentDashboardDataRowChanged" msprop:Generator_RowEvArgName="tvfGetSelfAssessmentDashboardDataRowChangeEvent" msprop:Generator_RowClassName="tvfGetSelfAssessmentDashboardDataRow">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="Skill" msprop:Generator_ColumnVarNameInTable="columnSkill" msprop:Generator_ColumnPropNameInRow="Skill" msprop:Generator_ColumnPropNameInTable="SkillColumn" msprop:Generator_UserColumnName="Skill">
@@ -1236,7 +1261,7 @@ WHERE        (cu.Active = 1) AND (t.ContentTypeID = 4) AND (p.RemovedDate IS NUL
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="BrandsForCentre" msprop:Generator_TableClassName="BrandsForCentreDataTable" msprop:Generator_TableVarName="tableBrandsForCentre" msprop:Generator_TablePropName="BrandsForCentre" msprop:Generator_RowDeletingName="BrandsForCentreRowDeleting" msprop:Generator_RowChangingName="BrandsForCentreRowChanging" msprop:Generator_RowEvHandlerName="BrandsForCentreRowChangeEventHandler" msprop:Generator_RowDeletedName="BrandsForCentreRowDeleted" msprop:Generator_UserTableName="BrandsForCentre" msprop:Generator_RowChangedName="BrandsForCentreRowChanged" msprop:Generator_RowEvArgName="BrandsForCentreRowChangeEvent" msprop:Generator_RowClassName="BrandsForCentreRow">
+        <xs:element name="BrandsForCentre" msprop:Generator_TableClassName="BrandsForCentreDataTable" msprop:Generator_TableVarName="tableBrandsForCentre" msprop:Generator_RowChangedName="BrandsForCentreRowChanged" msprop:Generator_TablePropName="BrandsForCentre" msprop:Generator_RowDeletingName="BrandsForCentreRowDeleting" msprop:Generator_RowChangingName="BrandsForCentreRowChanging" msprop:Generator_RowEvHandlerName="BrandsForCentreRowChangeEventHandler" msprop:Generator_RowDeletedName="BrandsForCentreRowDeleted" msprop:Generator_RowClassName="BrandsForCentreRow" msprop:Generator_UserTableName="BrandsForCentre" msprop:Generator_RowEvArgName="BrandsForCentreRowChangeEvent">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="BrandID" msdata:ReadOnly="true" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnVarNameInTable="columnBrandID" msprop:Generator_ColumnPropNameInRow="BrandID" msprop:Generator_ColumnPropNameInTable="BrandIDColumn" msprop:Generator_UserColumnName="BrandID" type="xs:int" />
@@ -1250,7 +1275,7 @@ WHERE        (cu.Active = 1) AND (t.ContentTypeID = 4) AND (p.RemovedDate IS NUL
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="CourseCategoriesForCentre" msprop:Generator_TableClassName="CourseCategoriesForCentreDataTable" msprop:Generator_TableVarName="tableCourseCategoriesForCentre" msprop:Generator_TablePropName="CourseCategoriesForCentre" msprop:Generator_RowDeletingName="CourseCategoriesForCentreRowDeleting" msprop:Generator_RowChangingName="CourseCategoriesForCentreRowChanging" msprop:Generator_RowEvHandlerName="CourseCategoriesForCentreRowChangeEventHandler" msprop:Generator_RowDeletedName="CourseCategoriesForCentreRowDeleted" msprop:Generator_UserTableName="CourseCategoriesForCentre" msprop:Generator_RowChangedName="CourseCategoriesForCentreRowChanged" msprop:Generator_RowEvArgName="CourseCategoriesForCentreRowChangeEvent" msprop:Generator_RowClassName="CourseCategoriesForCentreRow">
+        <xs:element name="CourseCategoriesForCentre" msprop:Generator_TableClassName="CourseCategoriesForCentreDataTable" msprop:Generator_TableVarName="tableCourseCategoriesForCentre" msprop:Generator_RowChangedName="CourseCategoriesForCentreRowChanged" msprop:Generator_TablePropName="CourseCategoriesForCentre" msprop:Generator_RowDeletingName="CourseCategoriesForCentreRowDeleting" msprop:Generator_RowChangingName="CourseCategoriesForCentreRowChanging" msprop:Generator_RowEvHandlerName="CourseCategoriesForCentreRowChangeEventHandler" msprop:Generator_RowDeletedName="CourseCategoriesForCentreRowDeleted" msprop:Generator_RowClassName="CourseCategoriesForCentreRow" msprop:Generator_UserTableName="CourseCategoriesForCentre" msprop:Generator_RowEvArgName="CourseCategoriesForCentreRowChangeEvent">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="CourseCategoryID" msdata:ReadOnly="true" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnVarNameInTable="columnCourseCategoryID" msprop:Generator_ColumnPropNameInRow="CourseCategoryID" msprop:Generator_ColumnPropNameInTable="CourseCategoryIDColumn" msprop:Generator_UserColumnName="CourseCategoryID" type="xs:int" />
@@ -1264,7 +1289,7 @@ WHERE        (cu.Active = 1) AND (t.ContentTypeID = 4) AND (p.RemovedDate IS NUL
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="CourseTopicsForCentre" msprop:Generator_TableClassName="CourseTopicsForCentreDataTable" msprop:Generator_TableVarName="tableCourseTopicsForCentre" msprop:Generator_TablePropName="CourseTopicsForCentre" msprop:Generator_RowDeletingName="CourseTopicsForCentreRowDeleting" msprop:Generator_RowChangingName="CourseTopicsForCentreRowChanging" msprop:Generator_RowEvHandlerName="CourseTopicsForCentreRowChangeEventHandler" msprop:Generator_RowDeletedName="CourseTopicsForCentreRowDeleted" msprop:Generator_UserTableName="CourseTopicsForCentre" msprop:Generator_RowChangedName="CourseTopicsForCentreRowChanged" msprop:Generator_RowEvArgName="CourseTopicsForCentreRowChangeEvent" msprop:Generator_RowClassName="CourseTopicsForCentreRow">
+        <xs:element name="CourseTopicsForCentre" msprop:Generator_TableClassName="CourseTopicsForCentreDataTable" msprop:Generator_TableVarName="tableCourseTopicsForCentre" msprop:Generator_RowChangedName="CourseTopicsForCentreRowChanged" msprop:Generator_TablePropName="CourseTopicsForCentre" msprop:Generator_RowDeletingName="CourseTopicsForCentreRowDeleting" msprop:Generator_RowChangingName="CourseTopicsForCentreRowChanging" msprop:Generator_RowEvHandlerName="CourseTopicsForCentreRowChangeEventHandler" msprop:Generator_RowDeletedName="CourseTopicsForCentreRowDeleted" msprop:Generator_RowClassName="CourseTopicsForCentreRow" msprop:Generator_UserTableName="CourseTopicsForCentre" msprop:Generator_RowEvArgName="CourseTopicsForCentreRowChangeEvent">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="CourseTopicID" msdata:ReadOnly="true" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnVarNameInTable="columnCourseTopicID" msprop:Generator_ColumnPropNameInRow="CourseTopicID" msprop:Generator_ColumnPropNameInTable="CourseTopicIDColumn" msprop:Generator_UserColumnName="CourseTopicID" type="xs:int" />
@@ -1278,7 +1303,7 @@ WHERE        (cu.Active = 1) AND (t.ContentTypeID = 4) AND (p.RemovedDate IS NUL
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="ApplicationsForCentre" msprop:Generator_TableClassName="ApplicationsForCentreDataTable" msprop:Generator_TableVarName="tableApplicationsForCentre" msprop:Generator_TablePropName="ApplicationsForCentre" msprop:Generator_RowDeletingName="ApplicationsForCentreRowDeleting" msprop:Generator_RowChangingName="ApplicationsForCentreRowChanging" msprop:Generator_RowEvHandlerName="ApplicationsForCentreRowChangeEventHandler" msprop:Generator_RowDeletedName="ApplicationsForCentreRowDeleted" msprop:Generator_UserTableName="ApplicationsForCentre" msprop:Generator_RowChangedName="ApplicationsForCentreRowChanged" msprop:Generator_RowEvArgName="ApplicationsForCentreRowChangeEvent" msprop:Generator_RowClassName="ApplicationsForCentreRow">
+        <xs:element name="ApplicationsForCentre" msprop:Generator_TableClassName="ApplicationsForCentreDataTable" msprop:Generator_TableVarName="tableApplicationsForCentre" msprop:Generator_RowChangedName="ApplicationsForCentreRowChanged" msprop:Generator_TablePropName="ApplicationsForCentre" msprop:Generator_RowDeletingName="ApplicationsForCentreRowDeleting" msprop:Generator_RowChangingName="ApplicationsForCentreRowChanging" msprop:Generator_RowEvHandlerName="ApplicationsForCentreRowChangeEventHandler" msprop:Generator_RowDeletedName="ApplicationsForCentreRowDeleted" msprop:Generator_RowClassName="ApplicationsForCentreRow" msprop:Generator_UserTableName="ApplicationsForCentre" msprop:Generator_RowEvArgName="ApplicationsForCentreRowChangeEvent">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="ApplicationID" msdata:ReadOnly="true" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnVarNameInTable="columnApplicationID" msprop:Generator_ColumnPropNameInRow="ApplicationID" msprop:Generator_ColumnPropNameInTable="ApplicationIDColumn" msprop:Generator_UserColumnName="ApplicationID" type="xs:int" />
@@ -1292,7 +1317,7 @@ WHERE        (cu.Active = 1) AND (t.ContentTypeID = 4) AND (p.RemovedDate IS NUL
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="SectionsForCentre" msprop:Generator_TableClassName="SectionsForCentreDataTable" msprop:Generator_TableVarName="tableSectionsForCentre" msprop:Generator_TablePropName="SectionsForCentre" msprop:Generator_RowDeletingName="SectionsForCentreRowDeleting" msprop:Generator_RowChangingName="SectionsForCentreRowChanging" msprop:Generator_RowEvHandlerName="SectionsForCentreRowChangeEventHandler" msprop:Generator_RowDeletedName="SectionsForCentreRowDeleted" msprop:Generator_UserTableName="SectionsForCentre" msprop:Generator_RowChangedName="SectionsForCentreRowChanged" msprop:Generator_RowEvArgName="SectionsForCentreRowChangeEvent" msprop:Generator_RowClassName="SectionsForCentreRow">
+        <xs:element name="SectionsForCentre" msprop:Generator_TableClassName="SectionsForCentreDataTable" msprop:Generator_TableVarName="tableSectionsForCentre" msprop:Generator_RowChangedName="SectionsForCentreRowChanged" msprop:Generator_TablePropName="SectionsForCentre" msprop:Generator_RowDeletingName="SectionsForCentreRowDeleting" msprop:Generator_RowChangingName="SectionsForCentreRowChanging" msprop:Generator_RowEvHandlerName="SectionsForCentreRowChangeEventHandler" msprop:Generator_RowDeletedName="SectionsForCentreRowDeleted" msprop:Generator_RowClassName="SectionsForCentreRow" msprop:Generator_UserTableName="SectionsForCentre" msprop:Generator_RowEvArgName="SectionsForCentreRowChangeEvent">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="SectionName" msprop:nullValue="_empty" msprop:Generator_ColumnPropNameInRow="SectionName" msprop:Generator_ColumnVarNameInTable="columnSectionName" msprop:Generator_ColumnPropNameInTable="SectionNameColumn" msprop:Generator_UserColumnName="SectionName">
@@ -1305,7 +1330,7 @@ WHERE        (cu.Active = 1) AND (t.ContentTypeID = 4) AND (p.RemovedDate IS NUL
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="TutorialsForCentre" msprop:Generator_TableClassName="TutorialsForCentreDataTable" msprop:Generator_TableVarName="tableTutorialsForCentre" msprop:Generator_TablePropName="TutorialsForCentre" msprop:Generator_RowDeletingName="TutorialsForCentreRowDeleting" msprop:Generator_RowChangingName="TutorialsForCentreRowChanging" msprop:Generator_RowEvHandlerName="TutorialsForCentreRowChangeEventHandler" msprop:Generator_RowDeletedName="TutorialsForCentreRowDeleted" msprop:Generator_UserTableName="TutorialsForCentre" msprop:Generator_RowChangedName="TutorialsForCentreRowChanged" msprop:Generator_RowEvArgName="TutorialsForCentreRowChangeEvent" msprop:Generator_RowClassName="TutorialsForCentreRow">
+        <xs:element name="TutorialsForCentre" msprop:Generator_TableClassName="TutorialsForCentreDataTable" msprop:Generator_TableVarName="tableTutorialsForCentre" msprop:Generator_RowChangedName="TutorialsForCentreRowChanged" msprop:Generator_TablePropName="TutorialsForCentre" msprop:Generator_RowDeletingName="TutorialsForCentreRowDeleting" msprop:Generator_RowChangingName="TutorialsForCentreRowChanging" msprop:Generator_RowEvHandlerName="TutorialsForCentreRowChangeEventHandler" msprop:Generator_RowDeletedName="TutorialsForCentreRowDeleted" msprop:Generator_RowClassName="TutorialsForCentreRow" msprop:Generator_UserTableName="TutorialsForCentre" msprop:Generator_RowEvArgName="TutorialsForCentreRowChangeEvent">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="TutorialName" msprop:nullValue="_empty" msprop:Generator_ColumnPropNameInRow="TutorialName" msprop:Generator_ColumnVarNameInTable="columnTutorialName" msprop:Generator_ColumnPropNameInTable="TutorialNameColumn" msprop:Generator_UserColumnName="TutorialName">
@@ -1318,7 +1343,7 @@ WHERE        (cu.Active = 1) AND (t.ContentTypeID = 4) AND (p.RemovedDate IS NUL
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="JobGroupsForCentre" msprop:Generator_TableClassName="JobGroupsForCentreDataTable" msprop:Generator_TableVarName="tableJobGroupsForCentre" msprop:Generator_RowChangedName="JobGroupsForCentreRowChanged" msprop:Generator_TablePropName="JobGroupsForCentre" msprop:Generator_RowDeletingName="JobGroupsForCentreRowDeleting" msprop:Generator_RowChangingName="JobGroupsForCentreRowChanging" msprop:Generator_RowEvHandlerName="JobGroupsForCentreRowChangeEventHandler" msprop:Generator_RowDeletedName="JobGroupsForCentreRowDeleted" msprop:Generator_RowClassName="JobGroupsForCentreRow" msprop:Generator_UserTableName="JobGroupsForCentre" msprop:Generator_RowEvArgName="JobGroupsForCentreRowChangeEvent">
+        <xs:element name="JobGroupsForCentre" msprop:Generator_TableClassName="JobGroupsForCentreDataTable" msprop:Generator_TableVarName="tableJobGroupsForCentre" msprop:Generator_TablePropName="JobGroupsForCentre" msprop:Generator_RowDeletingName="JobGroupsForCentreRowDeleting" msprop:Generator_RowChangingName="JobGroupsForCentreRowChanging" msprop:Generator_RowEvHandlerName="JobGroupsForCentreRowChangeEventHandler" msprop:Generator_RowDeletedName="JobGroupsForCentreRowDeleted" msprop:Generator_UserTableName="JobGroupsForCentre" msprop:Generator_RowChangedName="JobGroupsForCentreRowChanged" msprop:Generator_RowEvArgName="JobGroupsForCentreRowChangeEvent" msprop:Generator_RowClassName="JobGroupsForCentreRow">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="JobGroupID" msdata:ReadOnly="true" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnVarNameInTable="columnJobGroupID" msprop:Generator_ColumnPropNameInRow="JobGroupID" msprop:Generator_ColumnPropNameInTable="JobGroupIDColumn" msprop:Generator_UserColumnName="JobGroupID" type="xs:int" />
@@ -1332,7 +1357,7 @@ WHERE        (cu.Active = 1) AND (t.ContentTypeID = 4) AND (p.RemovedDate IS NUL
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="CustomFieldResponses" msprop:Generator_TableClassName="CustomFieldResponsesDataTable" msprop:Generator_TableVarName="tableCustomFieldResponses" msprop:Generator_RowChangedName="CustomFieldResponsesRowChanged" msprop:Generator_TablePropName="CustomFieldResponses" msprop:Generator_RowDeletingName="CustomFieldResponsesRowDeleting" msprop:Generator_RowChangingName="CustomFieldResponsesRowChanging" msprop:Generator_RowEvHandlerName="CustomFieldResponsesRowChangeEventHandler" msprop:Generator_RowDeletedName="CustomFieldResponsesRowDeleted" msprop:Generator_RowClassName="CustomFieldResponsesRow" msprop:Generator_UserTableName="CustomFieldResponses" msprop:Generator_RowEvArgName="CustomFieldResponsesRowChangeEvent">
+        <xs:element name="CustomFieldResponses" msprop:Generator_TableClassName="CustomFieldResponsesDataTable" msprop:Generator_TableVarName="tableCustomFieldResponses" msprop:Generator_TablePropName="CustomFieldResponses" msprop:Generator_RowDeletingName="CustomFieldResponsesRowDeleting" msprop:Generator_RowChangingName="CustomFieldResponsesRowChanging" msprop:Generator_RowEvHandlerName="CustomFieldResponsesRowChangeEventHandler" msprop:Generator_RowDeletedName="CustomFieldResponsesRowDeleted" msprop:Generator_UserTableName="CustomFieldResponses" msprop:Generator_RowChangedName="CustomFieldResponsesRowChanged" msprop:Generator_RowEvArgName="CustomFieldResponsesRowChangeEvent" msprop:Generator_RowClassName="CustomFieldResponsesRow">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="Response" msprop:Generator_ColumnVarNameInTable="columnResponse" msprop:Generator_ColumnPropNameInRow="Response" msprop:Generator_ColumnPropNameInTable="ResponseColumn" msprop:Generator_UserColumnName="Response" minOccurs="0">
@@ -1346,7 +1371,7 @@ WHERE        (cu.Active = 1) AND (t.ContentTypeID = 4) AND (p.RemovedDate IS NUL
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="GetSelfAssessmentDashboardDataFull" msprop:Generator_TableClassName="GetSelfAssessmentDashboardDataFullDataTable" msprop:Generator_TableVarName="tableGetSelfAssessmentDashboardDataFull" msprop:Generator_RowChangedName="GetSelfAssessmentDashboardDataFullRowChanged" msprop:Generator_TablePropName="GetSelfAssessmentDashboardDataFull" msprop:Generator_RowDeletingName="GetSelfAssessmentDashboardDataFullRowDeleting" msprop:Generator_RowChangingName="GetSelfAssessmentDashboardDataFullRowChanging" msprop:Generator_RowEvHandlerName="GetSelfAssessmentDashboardDataFullRowChangeEventHandler" msprop:Generator_RowDeletedName="GetSelfAssessmentDashboardDataFullRowDeleted" msprop:Generator_RowClassName="GetSelfAssessmentDashboardDataFullRow" msprop:Generator_UserTableName="GetSelfAssessmentDashboardDataFull" msprop:Generator_RowEvArgName="GetSelfAssessmentDashboardDataFullRowChangeEvent">
+        <xs:element name="GetSelfAssessmentDashboardDataFull" msprop:Generator_TableClassName="GetSelfAssessmentDashboardDataFullDataTable" msprop:Generator_TableVarName="tableGetSelfAssessmentDashboardDataFull" msprop:Generator_TablePropName="GetSelfAssessmentDashboardDataFull" msprop:Generator_RowDeletingName="GetSelfAssessmentDashboardDataFullRowDeleting" msprop:Generator_RowChangingName="GetSelfAssessmentDashboardDataFullRowChanging" msprop:Generator_RowEvHandlerName="GetSelfAssessmentDashboardDataFullRowChangeEventHandler" msprop:Generator_RowDeletedName="GetSelfAssessmentDashboardDataFullRowDeleted" msprop:Generator_UserTableName="GetSelfAssessmentDashboardDataFull" msprop:Generator_RowChangedName="GetSelfAssessmentDashboardDataFullRowChanged" msprop:Generator_RowEvArgName="GetSelfAssessmentDashboardDataFullRowChangeEvent" msprop:Generator_RowClassName="GetSelfAssessmentDashboardDataFullRow">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="BrandName" msprop:Generator_ColumnVarNameInTable="columnBrandName" msprop:Generator_ColumnPropNameInRow="BrandName" msprop:Generator_ColumnPropNameInTable="BrandNameColumn" msprop:Generator_UserColumnName="BrandName">
@@ -1445,7 +1470,7 @@ WHERE        (cu.Active = 1) AND (t.ContentTypeID = 4) AND (p.RemovedDate IS NUL
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="DigitalCapabilitySummary" msprop:Generator_TableClassName="DigitalCapabilitySummaryDataTable" msprop:Generator_TableVarName="tableDigitalCapabilitySummary" msprop:Generator_RowChangedName="DigitalCapabilitySummaryRowChanged" msprop:Generator_TablePropName="DigitalCapabilitySummary" msprop:Generator_RowDeletingName="DigitalCapabilitySummaryRowDeleting" msprop:Generator_RowChangingName="DigitalCapabilitySummaryRowChanging" msprop:Generator_RowEvHandlerName="DigitalCapabilitySummaryRowChangeEventHandler" msprop:Generator_RowDeletedName="DigitalCapabilitySummaryRowDeleted" msprop:Generator_RowClassName="DigitalCapabilitySummaryRow" msprop:Generator_UserTableName="DigitalCapabilitySummary" msprop:Generator_RowEvArgName="DigitalCapabilitySummaryRowChangeEvent">
+        <xs:element name="DigitalCapabilitySummary" msprop:Generator_TableClassName="DigitalCapabilitySummaryDataTable" msprop:Generator_TableVarName="tableDigitalCapabilitySummary" msprop:Generator_TablePropName="DigitalCapabilitySummary" msprop:Generator_RowDeletingName="DigitalCapabilitySummaryRowDeleting" msprop:Generator_RowChangingName="DigitalCapabilitySummaryRowChanging" msprop:Generator_RowEvHandlerName="DigitalCapabilitySummaryRowChangeEventHandler" msprop:Generator_RowDeletedName="DigitalCapabilitySummaryRowDeleted" msprop:Generator_UserTableName="DigitalCapabilitySummary" msprop:Generator_RowChangedName="DigitalCapabilitySummaryRowChanged" msprop:Generator_RowEvArgName="DigitalCapabilitySummaryRowChangeEvent" msprop:Generator_RowClassName="DigitalCapabilitySummaryRow">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="Submitted" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnSubmitted" msprop:Generator_ColumnPropNameInRow="Submitted" msprop:Generator_ColumnPropNameInTable="SubmittedColumn" msprop:Generator_UserColumnName="Submitted" type="xs:int" minOccurs="0" />
@@ -1454,7 +1479,7 @@ WHERE        (cu.Active = 1) AND (t.ContentTypeID = 4) AND (p.RemovedDate IS NUL
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="CentreDigitalCapabilityLearnerStatus" msprop:Generator_TableClassName="CentreDigitalCapabilityLearnerStatusDataTable" msprop:Generator_TableVarName="tableCentreDigitalCapabilityLearnerStatus" msprop:Generator_RowChangedName="CentreDigitalCapabilityLearnerStatusRowChanged" msprop:Generator_TablePropName="CentreDigitalCapabilityLearnerStatus" msprop:Generator_RowDeletingName="CentreDigitalCapabilityLearnerStatusRowDeleting" msprop:Generator_RowChangingName="CentreDigitalCapabilityLearnerStatusRowChanging" msprop:Generator_RowEvHandlerName="CentreDigitalCapabilityLearnerStatusRowChangeEventHandler" msprop:Generator_RowDeletedName="CentreDigitalCapabilityLearnerStatusRowDeleted" msprop:Generator_RowClassName="CentreDigitalCapabilityLearnerStatusRow" msprop:Generator_UserTableName="CentreDigitalCapabilityLearnerStatus" msprop:Generator_RowEvArgName="CentreDigitalCapabilityLearnerStatusRowChangeEvent">
+        <xs:element name="CentreDigitalCapabilityLearnerStatus" msprop:Generator_TableClassName="CentreDigitalCapabilityLearnerStatusDataTable" msprop:Generator_TableVarName="tableCentreDigitalCapabilityLearnerStatus" msprop:Generator_TablePropName="CentreDigitalCapabilityLearnerStatus" msprop:Generator_RowDeletingName="CentreDigitalCapabilityLearnerStatusRowDeleting" msprop:Generator_RowChangingName="CentreDigitalCapabilityLearnerStatusRowChanging" msprop:Generator_RowEvHandlerName="CentreDigitalCapabilityLearnerStatusRowChangeEventHandler" msprop:Generator_RowDeletedName="CentreDigitalCapabilityLearnerStatusRowDeleted" msprop:Generator_UserTableName="CentreDigitalCapabilityLearnerStatus" msprop:Generator_RowChangedName="CentreDigitalCapabilityLearnerStatusRowChanged" msprop:Generator_RowEvArgName="CentreDigitalCapabilityLearnerStatusRowChangeEvent" msprop:Generator_RowClassName="CentreDigitalCapabilityLearnerStatusRow">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="FirstName" msprop:Generator_ColumnVarNameInTable="columnFirstName" msprop:Generator_ColumnPropNameInRow="FirstName" msprop:Generator_ColumnPropNameInTable="FirstNameColumn" msprop:Generator_UserColumnName="FirstName" minOccurs="0">
@@ -1509,7 +1534,7 @@ WHERE        (cu.Active = 1) AND (t.ContentTypeID = 4) AND (p.RemovedDate IS NUL
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="CentreDigitalCapabilitySA" msprop:Generator_TableClassName="CentreDigitalCapabilitySADataTable" msprop:Generator_TableVarName="tableCentreDigitalCapabilitySA" msprop:Generator_RowChangedName="CentreDigitalCapabilitySARowChanged" msprop:Generator_TablePropName="CentreDigitalCapabilitySA" msprop:Generator_RowDeletingName="CentreDigitalCapabilitySARowDeleting" msprop:Generator_RowChangingName="CentreDigitalCapabilitySARowChanging" msprop:Generator_RowEvHandlerName="CentreDigitalCapabilitySARowChangeEventHandler" msprop:Generator_RowDeletedName="CentreDigitalCapabilitySARowDeleted" msprop:Generator_RowClassName="CentreDigitalCapabilitySARow" msprop:Generator_UserTableName="CentreDigitalCapabilitySA" msprop:Generator_RowEvArgName="CentreDigitalCapabilitySARowChangeEvent">
+        <xs:element name="CentreDigitalCapabilitySA" msprop:Generator_TableClassName="CentreDigitalCapabilitySADataTable" msprop:Generator_TableVarName="tableCentreDigitalCapabilitySA" msprop:Generator_TablePropName="CentreDigitalCapabilitySA" msprop:Generator_RowDeletingName="CentreDigitalCapabilitySARowDeleting" msprop:Generator_RowChangingName="CentreDigitalCapabilitySARowChanging" msprop:Generator_RowEvHandlerName="CentreDigitalCapabilitySARowChangeEventHandler" msprop:Generator_RowDeletedName="CentreDigitalCapabilitySARowDeleted" msprop:Generator_UserTableName="CentreDigitalCapabilitySA" msprop:Generator_RowChangedName="CentreDigitalCapabilitySARowChanged" msprop:Generator_RowEvArgName="CentreDigitalCapabilitySARowChangeEvent" msprop:Generator_RowClassName="CentreDigitalCapabilitySARow">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="Job_x0020_Group" msprop:Generator_ColumnVarNameInTable="columnJob_Group" msprop:Generator_ColumnPropNameInRow="Job_Group" msprop:Generator_ColumnPropNameInTable="Job_GroupColumn" msprop:Generator_UserColumnName="Job Group">
@@ -1564,7 +1589,7 @@ WHERE        (cu.Active = 1) AND (t.ContentTypeID = 4) AND (p.RemovedDate IS NUL
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="DigitalCapabilitySA" msprop:Generator_TableClassName="DigitalCapabilitySADataTable" msprop:Generator_TableVarName="tableDigitalCapabilitySA" msprop:Generator_RowChangedName="DigitalCapabilitySARowChanged" msprop:Generator_TablePropName="DigitalCapabilitySA" msprop:Generator_RowDeletingName="DigitalCapabilitySARowDeleting" msprop:Generator_RowChangingName="DigitalCapabilitySARowChanging" msprop:Generator_RowEvHandlerName="DigitalCapabilitySARowChangeEventHandler" msprop:Generator_RowDeletedName="DigitalCapabilitySARowDeleted" msprop:Generator_RowClassName="DigitalCapabilitySARow" msprop:Generator_UserTableName="DigitalCapabilitySA" msprop:Generator_RowEvArgName="DigitalCapabilitySARowChangeEvent">
+        <xs:element name="DigitalCapabilitySA" msprop:Generator_TableClassName="DigitalCapabilitySADataTable" msprop:Generator_TableVarName="tableDigitalCapabilitySA" msprop:Generator_TablePropName="DigitalCapabilitySA" msprop:Generator_RowDeletingName="DigitalCapabilitySARowDeleting" msprop:Generator_RowChangingName="DigitalCapabilitySARowChanging" msprop:Generator_RowEvHandlerName="DigitalCapabilitySARowChangeEventHandler" msprop:Generator_RowDeletedName="DigitalCapabilitySARowDeleted" msprop:Generator_UserTableName="DigitalCapabilitySA" msprop:Generator_RowChangedName="DigitalCapabilitySARowChanged" msprop:Generator_RowEvArgName="DigitalCapabilitySARowChangeEvent" msprop:Generator_RowClassName="DigitalCapabilitySARow">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="Region" msprop:Generator_ColumnVarNameInTable="columnRegion" msprop:Generator_ColumnPropNameInRow="_Region" msprop:Generator_ColumnPropNameInTable="RegionColumn" msprop:Generator_UserColumnName="Region">

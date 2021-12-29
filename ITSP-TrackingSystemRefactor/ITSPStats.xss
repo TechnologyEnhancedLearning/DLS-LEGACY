@@ -24,11 +24,11 @@
     <Shape ID="DesignTable:JobGroupsForCentre" ZOrder="13" X="1289" Y="107" Height="115" Width="264" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="64" />
     <Shape ID="DesignTable:CustomFieldResponses" ZOrder="7" X="0" Y="0" Height="115" Width="277" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="64" />
     <Shape ID="DesignTable:GetSelfAssessmentDashboardDataFull" ZOrder="5" X="1093" Y="496" Height="305" Width="300" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="254" />
-    <Shape ID="DesignSources:QueriesTableAdapter" ZOrder="14" X="1544" Y="224" Height="86" Width="300" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="75" />
     <Shape ID="DesignTable:DigitalCapabilitySummary" ZOrder="4" X="2078" Y="1038" Height="182" Width="292" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="115" />
     <Shape ID="DesignTable:CentreDigitalCapabilityLearnerStatus" ZOrder="3" X="1895" Y="1241" Height="290" Width="300" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="223" />
     <Shape ID="DesignTable:CentreDigitalCapabilitySA" ZOrder="2" X="1262" Y="1123" Height="425" Width="300" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="358" />
     <Shape ID="DesignTable:DigitalCapabilitySA" ZOrder="1" X="529" Y="1121" Height="425" Width="300" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="358" />
+    <Shape ID="DesignSources:QueriesTableAdapter" ZOrder="14" X="1544" Y="224" Height="86" Width="300" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="75" />
   </Shapes>
   <Connectors />
 </DiagramLayout>

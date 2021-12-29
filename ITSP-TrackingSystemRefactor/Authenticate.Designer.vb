@@ -786,6 +786,10 @@ Partial Public Class Authenticate
         
         Private columnSummaryReports As Global.System.Data.DataColumn
         
+        Private columnIsFrameworkDeveloper As Global.System.Data.DataColumn
+        
+        Private columnIsFrameworkContributor As Global.System.Data.DataColumn
+        
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
         Public Sub New()
@@ -982,6 +986,22 @@ Partial Public Class Authenticate
         End Property
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public ReadOnly Property IsFrameworkDeveloperColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnIsFrameworkDeveloper
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public ReadOnly Property IsFrameworkContributorColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnIsFrameworkContributor
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0"),  _
          Global.System.ComponentModel.Browsable(false)>  _
         Public ReadOnly Property Count() As Integer
@@ -1037,9 +1057,11 @@ Partial Public Class Authenticate
                     ByVal CategoryID As Integer,  _
                     ByVal Supervisor As Boolean,  _
                     ByVal Trainer As Boolean,  _
-                    ByVal SummaryReports As Boolean) As AdminUsersRow
+                    ByVal SummaryReports As Boolean,  _
+                    ByVal IsFrameworkDeveloper As Boolean,  _
+                    ByVal IsFrameworkContributor As Boolean) As AdminUsersRow
             Dim rowAdminUsersRow As AdminUsersRow = CType(Me.NewRow,AdminUsersRow)
-            Dim columnValuesArray() As Object = New Object() {Nothing, CentreAdmin, Nothing, CentreName, ContentCreator, ContentManager, Email, FailedLoginCount, Forename, ImportOnly, IsCentreManager, Password, PublishToAll, Surname, UserAdmin, EITSProfile, CategoryID, Supervisor, Trainer, SummaryReports}
+            Dim columnValuesArray() As Object = New Object() {Nothing, CentreAdmin, Nothing, CentreName, ContentCreator, ContentManager, Email, FailedLoginCount, Forename, ImportOnly, IsCentreManager, Password, PublishToAll, Surname, UserAdmin, EITSProfile, CategoryID, Supervisor, Trainer, SummaryReports, IsFrameworkDeveloper, IsFrameworkContributor}
             If (Not (parentCentresRowByFK_AdminUsers_Centres) Is Nothing) Then
                 columnValuesArray(2) = parentCentresRowByFK_AdminUsers_Centres(0)
             End If
@@ -1091,6 +1113,8 @@ Partial Public Class Authenticate
             Me.columnSupervisor = MyBase.Columns("Supervisor")
             Me.columnTrainer = MyBase.Columns("Trainer")
             Me.columnSummaryReports = MyBase.Columns("SummaryReports")
+            Me.columnIsFrameworkDeveloper = MyBase.Columns("IsFrameworkDeveloper")
+            Me.columnIsFrameworkContributor = MyBase.Columns("IsFrameworkContributor")
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -1136,6 +1160,10 @@ Partial Public Class Authenticate
             MyBase.Columns.Add(Me.columnTrainer)
             Me.columnSummaryReports = New Global.System.Data.DataColumn("SummaryReports", GetType(Boolean), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnSummaryReports)
+            Me.columnIsFrameworkDeveloper = New Global.System.Data.DataColumn("IsFrameworkDeveloper", GetType(Boolean), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnIsFrameworkDeveloper)
+            Me.columnIsFrameworkContributor = New Global.System.Data.DataColumn("IsFrameworkContributor", GetType(Boolean), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnIsFrameworkContributor)
             Me.Constraints.Add(New Global.System.Data.UniqueConstraint("Constraint1", New Global.System.Data.DataColumn() {Me.columnAdminID}, true))
             Me.columnAdminID.AutoIncrement = true
             Me.columnAdminID.AutoIncrementSeed = -1
@@ -1167,6 +1195,8 @@ Partial Public Class Authenticate
             Me.columnSupervisor.AllowDBNull = false
             Me.columnTrainer.AllowDBNull = false
             Me.columnSummaryReports.AllowDBNull = false
+            Me.columnIsFrameworkDeveloper.AllowDBNull = false
+            Me.columnIsFrameworkContributor.AllowDBNull = false
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -2011,6 +2041,28 @@ Partial Public Class Authenticate
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Property IsFrameworkDeveloper() As Boolean
+            Get
+                Return CType(Me(Me.tableAdminUsers.IsFrameworkDeveloperColumn),Boolean)
+            End Get
+            Set
+                Me(Me.tableAdminUsers.IsFrameworkDeveloperColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Property IsFrameworkContributor() As Boolean
+            Get
+                Return CType(Me(Me.tableAdminUsers.IsFrameworkContributorColumn),Boolean)
+            End Get
+            Set
+                Me(Me.tableAdminUsers.IsFrameworkContributorColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
         Public Property CentresRow() As CentresRow
             Get
                 Return CType(Me.GetParentRow(Me.Table.ParentRelations("FK_AdminUsers_Centres")),CentresRow)
@@ -2609,6 +2661,8 @@ Namespace AuthenticateTableAdapters
             tableMapping.ColumnMappings.Add("Supervisor", "Supervisor")
             tableMapping.ColumnMappings.Add("Trainer", "Trainer")
             tableMapping.ColumnMappings.Add("SummaryReports", "SummaryReports")
+            tableMapping.ColumnMappings.Add("IsFrameworkDeveloper", "IsFrameworkDeveloper")
+            tableMapping.ColumnMappings.Add("IsFrameworkContributor", "IsFrameworkContributor")
             Me._adapter.TableMappings.Add(tableMapping)
         End Sub
         
@@ -2625,18 +2679,17 @@ Namespace AuthenticateTableAdapters
             Me._commandCollection = New Global.System.Data.SqlClient.SqlCommand(0) {}
             Me._commandCollection(0) = New Global.System.Data.SqlClient.SqlCommand()
             Me._commandCollection(0).Connection = Me.Connection
-            Me._commandCollection(0).CommandText = "SELECT        AdminID, CentreAdmin, CentreID,"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                             (SELE"& _ 
-                "CT        CentreName"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                               FROM            Centres"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"  "& _ 
-                "                             WHERE        (CentreID = AdminUsers.CentreID)) AS C"& _ 
-                "entreName, ContentCreator, ContentManager, Email, FailedLoginCount, Forename, Im"& _ 
-                "portOnly, IsCentreManager, Password, PublishToAll, Surname, UserAdmin, EITSProfi"& _ 
-                "le, "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         CategoryID, Supervisor, Trainer, SummaryReports"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)& _ 
-                "FROM            AdminUsers"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"WHERE        (Login = @Username) AND (Approved = 1) "& _ 
-                "AND (Active = 1) AND (CentreID = @CentreID) OR"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         (Approv"& _ 
-                "ed = 1) AND (Active = 1) AND (CentreID = @CentreID) AND (Email = @Username) OR"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)& _ 
-                "                         (Login = @Username) AND (Approved = 1) AND (Active = 1)"& _ 
-                " AND (@CentreID = 0) OR"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         (Approved = 1) AND (Active = 1"& _ 
-                ") AND (Email = @Username) AND (@CentreID = 0)"
+            Me._commandCollection(0).CommandText = "SELECT AdminID, CentreAdmin, CentreID,"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                 (SELECT CentreName"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"    "& _ 
+                "             FROM    Centres"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                 WHERE (CentreID = AdminUsers.Cent"& _ 
+                "reID)) AS CentreName, ContentCreator, ContentManager, Email, FailedLoginCount, F"& _ 
+                "orename, ImportOnly, IsCentreManager, Password, PublishToAll, Surname, UserAdmin"& _ 
+                ", EITSProfile, CategoryID, Supervisor, Trainer, SummaryReports, "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"             I"& _ 
+                "sFrameworkDeveloper, IsFrameworkContributor"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"FROM   AdminUsers"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"WHERE (Login = @"& _ 
+                "Username) AND (Approved = 1) AND (Active = 1) AND (CentreID = @CentreID) OR"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"   "& _ 
+                "          (Approved = 1) AND (Active = 1) AND (CentreID = @CentreID) AND (Email "& _ 
+                "= @Username) OR"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"             (Login = @Username) AND (Approved = 1) AND (Active"& _ 
+                " = 1) AND (@CentreID = 0) OR"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"             (Approved = 1) AND (Active = 1) AND ("& _ 
+                "Email = @Username) AND (@CentreID = 0)"
             Me._commandCollection(0).CommandType = Global.System.Data.CommandType.Text
             Me._commandCollection(0).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Username", Global.System.Data.SqlDbType.VarChar, 250, Global.System.Data.ParameterDirection.Input, 0, 0, "Login", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
             Me._commandCollection(0).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@CentreID", Global.System.Data.SqlDbType.Int, 4, Global.System.Data.ParameterDirection.Input, 0, 0, "CentreID", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
@@ -2866,7 +2919,7 @@ Namespace AuthenticateTableAdapters
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
         Private Sub InitCommandCollection()
-            Me._commandCollection = New Global.System.Data.IDbCommand(5) {}
+            Me._commandCollection = New Global.System.Data.IDbCommand(8) {}
             Me._commandCollection(0) = New Global.System.Data.SqlClient.SqlCommand()
             CType(Me._commandCollection(0),Global.System.Data.SqlClient.SqlCommand).Connection = New Global.System.Data.SqlClient.SqlConnection(Global.ITSP_TrackingSystemRefactor.My.MySettings.Default.csITSPDB)
             CType(Me._commandCollection(0),Global.System.Data.SqlClient.SqlCommand).CommandText = "dbo.uspStoreRegistration_V3"
@@ -2925,6 +2978,25 @@ Namespace AuthenticateTableAdapters
                 "ity) AS Q1"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"ORDER BY Priority, LoginTime DESC"
             CType(Me._commandCollection(5),Global.System.Data.SqlClient.SqlCommand).CommandType = Global.System.Data.CommandType.Text
             CType(Me._commandCollection(5),Global.System.Data.SqlClient.SqlCommand).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Email", Global.System.Data.SqlDbType.VarChar, 250, Global.System.Data.ParameterDirection.Input, 0, 0, "", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._commandCollection(6) = New Global.System.Data.SqlClient.SqlCommand()
+            CType(Me._commandCollection(6),Global.System.Data.SqlClient.SqlCommand).Connection = New Global.System.Data.SqlClient.SqlConnection(Global.ITSP_TrackingSystemRefactor.My.MySettings.Default.csITSPDB)
+            CType(Me._commandCollection(6),Global.System.Data.SqlClient.SqlCommand).CommandText = "SELECT COUNT(*) FROM FrameworkCollaborators WHERE UserEmail = @email AND AdminID "& _ 
+                "IS NULL"
+            CType(Me._commandCollection(6),Global.System.Data.SqlClient.SqlCommand).CommandType = Global.System.Data.CommandType.Text
+            CType(Me._commandCollection(6),Global.System.Data.SqlClient.SqlCommand).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@email", Global.System.Data.SqlDbType.NVarChar, 255, Global.System.Data.ParameterDirection.Input, 0, 0, "UserEmail", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._commandCollection(7) = New Global.System.Data.SqlClient.SqlCommand()
+            CType(Me._commandCollection(7),Global.System.Data.SqlClient.SqlCommand).Connection = New Global.System.Data.SqlClient.SqlConnection(Global.ITSP_TrackingSystemRefactor.My.MySettings.Default.csITSPDB)
+            CType(Me._commandCollection(7),Global.System.Data.SqlClient.SqlCommand).CommandText = "UPDATE AdminUsers"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"SET       IsFrameworkContributor = 1"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"WHERE (AdminID = @adminI"& _ 
+                "d)"
+            CType(Me._commandCollection(7),Global.System.Data.SqlClient.SqlCommand).CommandType = Global.System.Data.CommandType.Text
+            CType(Me._commandCollection(7),Global.System.Data.SqlClient.SqlCommand).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@adminId", Global.System.Data.SqlDbType.Int, 4, Global.System.Data.ParameterDirection.Input, 0, 0, "AdminID", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
+            Me._commandCollection(8) = New Global.System.Data.SqlClient.SqlCommand()
+            CType(Me._commandCollection(8),Global.System.Data.SqlClient.SqlCommand).Connection = New Global.System.Data.SqlClient.SqlConnection(Global.ITSP_TrackingSystemRefactor.My.MySettings.Default.csITSPDB)
+            CType(Me._commandCollection(8),Global.System.Data.SqlClient.SqlCommand).CommandText = "UPDATE FrameworkCollaborators"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"SET       AdminID = @adminId"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"WHERE (UserEmail = @"& _ 
+                "email) AND (AdminID IS NULL)"
+            CType(Me._commandCollection(8),Global.System.Data.SqlClient.SqlCommand).CommandType = Global.System.Data.CommandType.Text
+            CType(Me._commandCollection(8),Global.System.Data.SqlClient.SqlCommand).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@adminId", Global.System.Data.SqlDbType.Int, 4, Global.System.Data.ParameterDirection.Input, 0, 0, "AdminID", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            CType(Me._commandCollection(8),Global.System.Data.SqlClient.SqlCommand).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@email", Global.System.Data.SqlDbType.NVarChar, 255, Global.System.Data.ParameterDirection.Input, 0, 0, "UserEmail", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -3169,6 +3241,92 @@ Namespace AuthenticateTableAdapters
             Else
                 Return CType(returnValue,Object)
             End If
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0"),  _
+         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")>  _
+        Public Overloads Overridable Function GetFrameworkCollaboratorCountForEmail(ByVal email As String) As Global.System.Nullable(Of Integer)
+            Dim command As Global.System.Data.SqlClient.SqlCommand = CType(Me.CommandCollection(6),Global.System.Data.SqlClient.SqlCommand)
+            If (email Is Nothing) Then
+                Throw New Global.System.ArgumentNullException("email")
+            Else
+                command.Parameters(0).Value = CType(email,String)
+            End If
+            Dim previousConnectionState As Global.System.Data.ConnectionState = command.Connection.State
+            If ((command.Connection.State And Global.System.Data.ConnectionState.Open)  _
+                        <> Global.System.Data.ConnectionState.Open) Then
+                command.Connection.Open
+            End If
+            Dim returnValue As Object
+            Try 
+                returnValue = command.ExecuteScalar
+            Finally
+                If (previousConnectionState = Global.System.Data.ConnectionState.Closed) Then
+                    command.Connection.Close
+                End If
+            End Try
+            If ((returnValue Is Nothing)  _
+                        OrElse (returnValue.GetType Is GetType(Global.System.DBNull))) Then
+                Return New Global.System.Nullable(Of Integer)()
+            Else
+                Return New Global.System.Nullable(Of Integer)(CType(returnValue,Integer))
+            End If
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0"),  _
+         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
+         Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Update, false)>  _
+        Public Overloads Overridable Function SetAdminUserIsFrameworkContributor(ByVal adminId As Integer) As Integer
+            Dim command As Global.System.Data.SqlClient.SqlCommand = CType(Me.CommandCollection(7),Global.System.Data.SqlClient.SqlCommand)
+            command.Parameters(0).Value = CType(adminId,Integer)
+            Dim previousConnectionState As Global.System.Data.ConnectionState = command.Connection.State
+            If ((command.Connection.State And Global.System.Data.ConnectionState.Open)  _
+                        <> Global.System.Data.ConnectionState.Open) Then
+                command.Connection.Open
+            End If
+            Dim returnValue As Integer
+            Try 
+                returnValue = command.ExecuteNonQuery
+            Finally
+                If (previousConnectionState = Global.System.Data.ConnectionState.Closed) Then
+                    command.Connection.Close
+                End If
+            End Try
+            Return returnValue
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0"),  _
+         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
+         Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Update, false)>  _
+        Public Overloads Overridable Function UpdateFrameworkCollaboratorAdminID(ByVal adminId As Global.System.Nullable(Of Integer), ByVal email As String) As Integer
+            Dim command As Global.System.Data.SqlClient.SqlCommand = CType(Me.CommandCollection(8),Global.System.Data.SqlClient.SqlCommand)
+            If (adminId.HasValue = true) Then
+                command.Parameters(0).Value = CType(adminId.Value,Integer)
+            Else
+                command.Parameters(0).Value = Global.System.DBNull.Value
+            End If
+            If (email Is Nothing) Then
+                Throw New Global.System.ArgumentNullException("email")
+            Else
+                command.Parameters(1).Value = CType(email,String)
+            End If
+            Dim previousConnectionState As Global.System.Data.ConnectionState = command.Connection.State
+            If ((command.Connection.State And Global.System.Data.ConnectionState.Open)  _
+                        <> Global.System.Data.ConnectionState.Open) Then
+                command.Connection.Open
+            End If
+            Dim returnValue As Integer
+            Try 
+                returnValue = command.ExecuteNonQuery
+            Finally
+                If (previousConnectionState = Global.System.Data.ConnectionState.Closed) Then
+                    command.Connection.Close
+                End If
+            End Try
+            Return returnValue
         End Function
     End Class
     

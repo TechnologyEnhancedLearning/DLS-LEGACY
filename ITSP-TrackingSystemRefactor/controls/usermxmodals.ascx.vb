@@ -74,23 +74,23 @@ Public Class usermxmodals
                         End If
 
                         If nCentreID = 0 Then
-                            If Session("PromptReg") Is Nothing Then
+                                If Session("PromptReg") Is Nothing Then
 
-                                'user isn't currently registered to DLS - offer to register:
+                                    'user isn't currently registered to DLS - offer to register:
 
-                                Session("PromptReg") = True
-                                Dim sNameClaim As String = ConfigurationManager.AppSettings("ida:NameClaim")
-                                If Not ClaimsPrincipal.Current.FindFirst(sNameClaim) Is Nothing Then
-                                    Dim sName As String = ClaimsPrincipal.Current.FindFirst(sNameClaim).Value
-                                    lblCompleteMSReg.Text = "<p>Welcome <b>" & sName & "</b>.</p><p>You are not currently registered at a Digital Learning Solutions centre. Would you like to register now?"
-                                    Page.ClientScript.RegisterStartupScript(Me.GetType(), "ShowRegModal", "<script>$('#registerMSUserModal').modal('show');</script>")
+                                    Session("PromptReg") = True
+                                    Dim sNameClaim As String = ConfigurationManager.AppSettings("ida:NameClaim")
+                                    If Not ClaimsPrincipal.Current.FindFirst(sNameClaim) Is Nothing Then
+                                        Dim sName As String = ClaimsPrincipal.Current.FindFirst(sNameClaim).Value
+                                        lblCompleteMSReg.Text = "<p>Welcome <b>" & sName & "</b>.</p><p>You are not currently registered at a Digital Learning Solutions centre. Would you like to register now?"
+                                        Page.ClientScript.RegisterStartupScript(Me.GetType(), "ShowRegModal", "<script>$('#registerMSUserModal').modal('show');</script>")
+                                    End If
                                 End If
+                            Else
+                                LogIn(sEmail, nCentreID, "")
                             End If
-                        Else
-                            LogIn(sEmail, nCentreID, "")
                         End If
                     End If
-                End If
             End If
         End If
     End Sub
@@ -124,6 +124,10 @@ Public Class usermxmodals
             End If
             pnlCMS.Visible = Session("UserAuthenticatedCM")
             pnlCC.Visible = Session("UserCentreManager")
+            pnlFrameworkDeveloper.Visible = Session("IsFrameworkDeveloper") Or Session("IsFrameworkContributor")
+            If Session("IsFrameworkDeveloper") Or Session("IsFrameworkContributor") Then
+                lnkFrameworkDeveloper.HRef = CCommon.GetConfigString("V2AppBaseUrl") & "Frameworks"
+            End If
         End If
 
     End Sub
@@ -650,6 +654,7 @@ Public Class usermxmodals
                 GetAdminRecord(Session("UserEmail"), Session("UserCentreID"), sPassword)
             End If
             Session("LearningPortalUrl") = CCommon.GetLPURL(Session("UserAdminID"), Session("UserCentreID"))
+
             CCommon.LoginFromSession(cbRememberMe.Checked, Session, Request, Context)
             If Session("UserCentreID") > 0 Then
                 Dim taCentre As New ITSPTableAdapters.CentresTableAdapter
@@ -776,6 +781,8 @@ Public Class usermxmodals
                     Session("IsSupervisor") = r.Item("Supervisor")
                     Session("IsTrainer") = r.Item("Trainer")
                     Session("UserCentreReports") = r.Item("SummaryReports")
+                    Session("IsFrameworkDeveloper") = r.Item("IsFrameworkDeveloper")
+                    Session("IsFrameworkContributor") = r.Item("IsFrameworkContributor")
                     CEITSProfile.LoadProfileFromString(r.Item("EITSProfile")).SetProfile(Session)
                     'lbtAccount.Visible = False
                     'lbtAppSelect.Visible = True
@@ -817,6 +824,18 @@ Public Class usermxmodals
                             Session("learnCandidateID") = r.Item("CandidateID")
                             Session("learnCandidateNumber") = r.Item("CandidateNumber")
                             Session("learnUserAuthenticated") = True
+                            Dim taq As New AuthenticateTableAdapters.QueriesTableAdapter
+                            If taq.GetFrameworkCollaboratorCountForEmail(Session("UserEmail").ToString.Trim()) > 0 Then
+                                Try
+                                    Dim nAdminId = taq.InsertAdminAccountFromDelegate(Session("learnCandidateID"), 0, 0, 0, 0, 0, 0)
+                                    If nAdminId > 0 Then
+                                        taq.SetAdminUserIsFrameworkContributor(nAdminId)
+                                        taq.UpdateFrameworkCollaboratorAdminID(nAdminId, Session("UserEmail"))
+                                    End If
+                                Catch
+
+                                End Try
+                            End If
                             Exit For
                         End If
 

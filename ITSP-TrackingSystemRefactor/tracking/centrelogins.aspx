@@ -203,6 +203,12 @@
                         </div>
                     </div>
                     <div class="form-group row">
+                        <asp:Label ID="Label7" AssociatedControlID="cbFrameworkDeveloper" runat="server" CssClass="col col-sm-4 control-label">Framework Developer:</asp:Label>
+                        <div class="col col-sm-8">
+                            <asp:CheckBox ID="cbFrameworkDeveloper" Enabled="false" CssClass="checkbox" runat="server" />
+                        </div>
+                    </div>
+                    <div class="form-group row">
                         <asp:Label ID="Label2" AssociatedControlID="ddCMSRole" runat="server" CssClass="col col-sm-4 control-label">CMS Roles:</asp:Label>
                         <div class="col col-sm-8">
                             <asp:DropDownList ID="ddCMSRole" CssClass="form-control" runat="server">

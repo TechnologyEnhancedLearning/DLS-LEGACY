@@ -92,7 +92,21 @@ Public Class coursedelegates
     End Sub
     Protected Sub GridViewCustomToolbar_ToolbarItemClick(sender As Object, e As BootstrapGridViewToolbarItemClickEventArgs)
         If e.Item.Name = "ExcelExport" Then
-            DelegateGridViewExporter.WriteXlsxToResponse()
+            Dim grouping = bsgvDelegatesForCustomisation.GetGroupedColumns()
+            For Each c In grouping
+                bsgvDelegatesForCustomisation.UnGroup(c)
+            Next
+            If bsgvDelegatesForCustomisation.VisibleRowCount > 50000 Then
+                DelegateGridViewExporter.WriteCsvToResponse()
+                For Each c In grouping
+                    bsgvDelegatesForCustomisation.GroupBy(c)
+                Next
+            Else
+                For Each c In grouping
+                    bsgvDelegatesForCustomisation.GroupBy(c)
+                Next
+                DelegateGridViewExporter.WriteXlsxToResponse()
+            End If
         End If
     End Sub
 
@@ -108,7 +122,6 @@ Public Class coursedelegates
             bsgvDelegatesForCustomisation.Columns("CourseAnswer1").Visible = False
             bsgvDelegatesForCustomisation.Columns("CourseAnswer2").Visible = False
             bsgvDelegatesForCustomisation.Columns("CourseAnswer3").Visible = False
-            bsgvDelegatesForCustomisation.Columns("Edit").Visible = False
             bsgvDelegatesForCustomisation.GroupBy(bsgvDelegatesForCustomisation.Columns("CourseName"))
         Else
             bsgvDelegatesForCustomisation.Columns("CourseName").Visible = False

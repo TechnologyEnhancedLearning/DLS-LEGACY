@@ -14,7 +14,7 @@
         Return CCommon.BytesToString(nBytes)
     End Function
     Public Function GetTarget() As String
-        If MasterPageFile = "/nonav.Master" Then
+        If MasterPageFile.Contains("nonav.Master") Then
             Return "_blank"
         Else
             Return "_self"
