@@ -38599,10 +38599,10 @@ Namespace ITSPTableAdapters
                 "1)) AS CentreDelegates,"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                 (SELECT COUNT(*) AS nCourses"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"        "& _ 
                 "         FROM    Customisations AS cu INNER JOIN"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                              "& _ 
                 "Applications AS ap ON cu.ApplicationID = ap.ApplicationID"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                 WHER"& _ 
-                "E (C.Active = 1) AND (C.CentreID = @centreId) AND (ap.CourseCategoryID = @adminC"& _ 
-                "ategoryId) AND (ap.ArchivedDate IS NULL) OR"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                              (C.Ac"& _ 
-                "tive = 1) AND (C.CentreID = @centreId) AND (ap.ArchivedDate IS NULL) AND (@admin"& _ 
-                "CategoryId IS NULL)) AS CentreCourses, COALESCE"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                 ((SELECT Categ"& _ 
+                "E (ap.CourseCategoryID = @adminCategoryId) AND (ap.ArchivedDate IS NULL) AND (cu"& _ 
+                ".Active = 1) AND (cu.CentreID = @centreId) OR"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                              (ap"& _ 
+                ".ArchivedDate IS NULL) AND (cu.Active = 1) AND (cu.CentreID = @centreId) AND (@a"& _ 
+                "dminCategoryId = 0)) AS CentreCourses, COALESCE"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                 ((SELECT Categ"& _ 
                 "oryName"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                  FROM    CourseCategories"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                  WHERE (Co"& _ 
                 "urseCategoryID = @AdminCategoryID)), N'All') AS CategoryName,"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                 "& _ 
                 "(SELECT COUNT(*) AS nAdmins"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                 FROM    AdminUsers"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"              "& _ 
