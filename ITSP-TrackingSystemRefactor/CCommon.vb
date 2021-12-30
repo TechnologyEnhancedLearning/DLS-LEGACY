@@ -1458,18 +1458,20 @@ Public Class CCommon
 #End Region
 #Region "File functions"
     Public Shared Function GetFolderSize(ByVal s As String) As Long
-
-        Dim fileNames As String() = Directory.GetFiles(s, "*.*")
         Dim size As Long = 0
+        Try
+            Dim fileNames As String() = Directory.GetFiles(s, "*.*")
+            For Each name As String In fileNames
+                Dim details As FileInfo = New FileInfo(name)
+                size += details.Length
+            Next
+            Dim d As DirectoryInfo = New DirectoryInfo(s)
+            For Each c As DirectoryInfo In d.GetDirectories()
+                size += GetFolderSize(c.FullName)
+            Next
+        Catch
 
-        For Each name As String In fileNames
-            Dim details As FileInfo = New FileInfo(name)
-            size += details.Length
-        Next
-        Dim d As DirectoryInfo = New DirectoryInfo(s)
-        For Each c As DirectoryInfo In d.GetDirectories()
-            size += GetFolderSize(c.FullName)
-        Next
+        End Try
         Return size
     End Function
 
