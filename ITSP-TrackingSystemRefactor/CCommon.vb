@@ -1505,18 +1505,21 @@ Public Class CCommon
     End Function
     Public Shared Function GetCourseServerSpaceUsage(ByVal nApplicationID As Integer, ByVal nCentreID As Integer, ByVal sPath As String) As Long
 
-        Dim nTotalBytes As Long
+        Dim nTotalBytes As Long = 0
+        Try
+            Dim sCPath As String = ""
 
-        Dim sCPath As String = ""
+            sCPath = sPath & "Course" & nApplicationID.ToString() & "\"
+            sCPath = sCPath.Replace("cms-dev-prev", "cms")
+            If System.IO.Directory.Exists(sCPath) Then
+                nTotalBytes = nTotalBytes + CCommon.GetFolderSize(sCPath)
+            End If
+            Dim taq As New itspdbTableAdapters.QueriesTableAdapter
+            taq.UpdateApplicationServerSpace(nTotalBytes, nApplicationID)
+            taq.UpdateServerSpaceUsedForCentreID(nCentreID)
+        Catch
+        End Try
 
-        sCPath = sPath & "Course" & nApplicationID.ToString() & "\"
-        sCPath = sCPath.Replace("cms-dev-prev", "cms")
-        If System.IO.Directory.Exists(sCPath) Then
-            nTotalBytes = nTotalBytes + CCommon.GetFolderSize(sCPath)
-        End If
-        Dim taq As New itspdbTableAdapters.QueriesTableAdapter
-        taq.UpdateApplicationServerSpace(nTotalBytes, nApplicationID)
-        taq.UpdateServerSpaceUsedForCentreID(nCentreID)
         Return nTotalBytes
     End Function
 #End Region
