@@ -1589,16 +1589,21 @@ Public Class CCommon
                 End If
                 Dim identity = New ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationType)
 
-                If Request.IsAuthenticated Then
-                    Dim cp As ClaimsPrincipal = HttpContext.Current.User
-                    If Not cp.HasClaim(Function(c) c.Type = "UserCentreID") Then
-                        cp.AddIdentity(identity)
-                    End If
-                Else
-                    Context.GetOwinContext().Authentication.SignIn(New AuthenticationProperties() With {
-               .IsPersistent = bRememberMe
-           }, identity)
+            If Request.IsAuthenticated Then
+                Dim cp As ClaimsPrincipal = HttpContext.Current.User
+                If Not cp.HasClaim(Function(c) c.Type = "UserCentreID") Then
+                    cp.AddIdentity(identity)
                 End If
+            ElseIf bRememberMe Then
+                Context.GetOwinContext().Authentication.SignIn(New AuthenticationProperties() With {
+                              .IsPersistent = True
+                          }, identity)
+            Else
+                Context.GetOwinContext().Authentication.SignIn(New AuthenticationProperties() With {
+              .ExpiresUtc = DateTime.UtcNow.AddHours(8)
+          }, identity)
+
+            End If
             End If
     End Sub
     Public Shared Sub GenerateSessionFromClaims(ByRef Session As HttpSessionState, ByRef Request As HttpRequest, ByRef Context As HttpContext)
