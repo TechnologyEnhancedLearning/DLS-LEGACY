@@ -3,7 +3,7 @@
   <PropertyGroup>
     <UseIISExpress>true</UseIISExpress>
     <IISExpressSSLPort>44367</IISExpressSSLPort>
-    <NameOfLastUsedPublishProfile>C:\Repos\DLS-LEGACY\ITSP-TrackingSystemRefactor\My Project\PublishProfiles\itsp-tracking-dev-preview.pubxml</NameOfLastUsedPublishProfile>
+    <NameOfLastUsedPublishProfile>C:\Repos\DLS-LEGACY\ITSP-TrackingSystemRefactor\My Project\PublishProfiles\DLS-Release.pubxml</NameOfLastUsedPublishProfile>
     <ProjectView>ShowAllFiles</ProjectView>
     <Use64BitIISExpress />
     <IISExpressAnonymousAuthentication />

@@ -167,6 +167,15 @@ Partial Public Class usermxmodals
     Protected WithEvents pnlAppSelect As Global.System.Web.UI.WebControls.Panel
 
     '''<summary>
+    '''pnlAliasWarning control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents pnlAliasWarning As Global.System.Web.UI.WebControls.Panel
+
+    '''<summary>
     '''pnlLP control.
     '''</summary>
     '''<remarks>

@@ -30,6 +30,7 @@ Public Class usermxmodals
                     Page.Response.Redirect("~/home")
                 Case "appselect"
                     If Request.IsAuthenticated Then
+                        pnlAliasWarning.Visible = Session("bAliasLogin")
                         Page.ClientScript.RegisterStartupScript(Me.GetType(), "ShowAppSelect", "<script>$('#pnlAppSelect').modal('show');</script>")
                     Else
                         Page.ClientScript.RegisterStartupScript(Me.GetType(), "ShowModalAccount", "<script>$('#pnlAccount').modal('show');</script>")
@@ -631,7 +632,7 @@ Public Class usermxmodals
     Private Sub LogIn(ByVal sUsername As String, ByVal nCentreID As Integer, ByVal sPassword As String)
         'Setup variables requiring defaults:
         If sUsername.Length > 0 Then
-
+            Session("bAliasLogin") = False
             Session("UserCentreID") = 0
             Session("UserCentreManager") = False
             Session("UserCentreAdmin") = False
@@ -815,31 +816,34 @@ Public Class usermxmodals
                         Exit For
                     ElseIf Not IsDBNull(r.Item("Password")) Then
                         If Crypto.VerifyHashedPassword(CStr(r.Item("Password")), sPassword) Or Request.IsAuthenticated Then
+                            If r.Item("EmailAddress").ToString.ToLower() <> sUsername.ToLower() And r.Item("CandidateNumber").ToString.ToLower() <> sUsername.ToLower() Then
+                                Session("bAliasLogin") = True
+                            End If
                             'Populate name, e-mail etc beccause it wasn't populated from admin user:
                             Session("UserForename") = r.Item("FirstName")
-                            Session("UserSurname") = r.Item("LastName")
-                            Session("UserEmail") = r.Item("EmailAddress")
-                            Session("UserCentreID") = r.Item("CentreID")
-                            Session("UserCentreName") = r.Item("CentreName")
-                            Session("learnCandidateID") = r.Item("CandidateID")
-                            Session("learnCandidateNumber") = r.Item("CandidateNumber")
-                            Session("learnUserAuthenticated") = True
-                            Dim taq As New AuthenticateTableAdapters.QueriesTableAdapter
-                            If taq.GetFrameworkCollaboratorCountForEmail(Session("UserEmail").ToString.Trim()) > 0 Then
-                                Try
-                                    Dim nAdminId = taq.InsertAdminAccountFromDelegate(Session("learnCandidateID"), 0, 0, 0, 0, 0, 0)
-                                    If nAdminId > 0 Then
-                                        taq.SetAdminUserIsFrameworkContributor(nAdminId)
-                                        taq.UpdateFrameworkCollaboratorAdminID(nAdminId, Session("UserEmail"))
-                                    End If
-                                Catch
+                                Session("UserSurname") = r.Item("LastName")
+                                Session("UserEmail") = r.Item("EmailAddress")
+                                Session("UserCentreID") = r.Item("CentreID")
+                                Session("UserCentreName") = r.Item("CentreName")
+                                Session("learnCandidateID") = r.Item("CandidateID")
+                                Session("learnCandidateNumber") = r.Item("CandidateNumber")
+                                Session("learnUserAuthenticated") = True
+                                Dim taq As New AuthenticateTableAdapters.QueriesTableAdapter
+                                If taq.GetFrameworkCollaboratorCountForEmail(Session("UserEmail").ToString.Trim()) > 0 Then
+                                    Try
+                                        Dim nAdminId = taq.InsertAdminAccountFromDelegate(Session("learnCandidateID"), 0, 0, 0, 0, 0, 0)
+                                        If nAdminId > 0 Then
+                                            taq.SetAdminUserIsFrameworkContributor(nAdminId)
+                                            taq.UpdateFrameworkCollaboratorAdminID(nAdminId, Session("UserEmail"))
+                                        End If
+                                    Catch
 
-                                End Try
+                                    End Try
+                                End If
+                                Exit For
                             End If
-                            Exit For
-                        End If
 
-                    End If
+                        End If
                 Else
                     Session("delUnapproved") = True
                 End If

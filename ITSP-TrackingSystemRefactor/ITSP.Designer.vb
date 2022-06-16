@@ -43619,32 +43619,33 @@ Namespace ITSPTableAdapters
             Me._commandCollection = New Global.System.Data.SqlClient.SqlCommand(0) {}
             Me._commandCollection(0) = New Global.System.Data.SqlClient.SqlCommand()
             Me._commandCollection(0).Connection = Me.Connection
-            Me._commandCollection(0).CommandText = "SELECT        c.CustomisationID, a.ApplicationName + ' - ' + c.CustomisationName "& _ 
-                "AS CustomisationName, c.Active, c.ApplicationID,"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                             ("& _ 
-                "SELECT        COUNT(CustomisationID) AS Expr1"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                               FR"& _ 
-                "OM            Progress AS p1"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                               WHERE        (Custo"& _ 
-                "misationID = c.CustomisationID) AND (Completed IS NULL)) AS CandidateCountInProg"& _ 
-                "ress,"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                             (SELECT        COUNT(CustomisationID) AS Exp"& _ 
-                "r1"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                               FROM            Progress AS p2"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"             "& _ 
-                "                  WHERE        (CustomisationID = c.CustomisationID)) AS Candida"& _ 
-                "teCountAll, COALESCE (c.Password, dbo.svfGetCustomisationPassword(c.Customisatio"& _ 
-                "nText)) AS Password,"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                             (SELECT        ASPMenu"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"     "& _ 
-                "                          FROM            Applications"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                        "& _ 
-                "       WHERE        (ApplicationID = c.ApplicationID)) AS ASPMenu, c.LearningTim"& _ 
-                "eMins AS LearnMins, CAST(CASE WHEN c.HideInLearnerPortal = 1 THEN 0 ELSE 1 END A"& _ 
-                "S BiT) AS LearningPortal,"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                             (SELECT        CategoryN"& _ 
-                "ame"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                               FROM            CourseCategories"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"          "& _ 
-                "                     WHERE        (CourseCategoryID = a.CourseCategoryID)) AS Ca"& _ 
-                "tegory,"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                             (SELECT        CourseTopic"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"              "& _ 
-                "                 FROM            CourseTopics"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                               WH"& _ 
-                "ERE        (CourseTopicID = a.CourseTopicID)) AS Topic"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"FROM            Customis"& _ 
-                "ations AS c INNER JOIN"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         Applications AS a ON c.Applicat"& _ 
-                "ionID = a.ApplicationID RIGHT OUTER JOIN"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         CentreApplica"& _ 
-                "tions ON c.CentreID = CentreApplications.CentreID AND a.ApplicationID = CentreAp"& _ 
-                "plications.ApplicationID"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"WHERE        (c.CentreID = @CentreID) AND (a.ASPMenu ="& _ 
-                " 1) AND (a.CourseCategoryID = @AdminCategoryID) AND (a.ArchivedDate IS NULL) OR"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         (c.CentreID = @CentreID) AND (a.ASPMenu = 1) AND (CAST"& _ 
-                "(@AdminCategoryID AS Int) = 0) AND (a.ArchivedDate IS NULL)"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"ORDER BY Customisat"& _ 
-                "ionName"
+            Me._commandCollection(0).CommandText = "SELECT DISTINCT c.CustomisationID, a.ApplicationName + ' - ' + c.CustomisationNam"& _ 
+                "e AS CustomisationName, c.Active, c.ApplicationID,"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                            "& _ 
+                " (SELECT        COUNT(CustomisationID) AS Expr1"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                               "& _ 
+                "FROM            Progress AS p1"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                               WHERE        (Cus"& _ 
+                "tomisationID = c.CustomisationID) AND (Completed IS NULL)) AS CandidateCountInPr"& _ 
+                "ogress,"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                             (SELECT        COUNT(CustomisationID) AS E"& _ 
+                "xpr1"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                               FROM            Progress AS p2"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"           "& _ 
+                "                    WHERE        (CustomisationID = c.CustomisationID)) AS Candi"& _ 
+                "dateCountAll, COALESCE (c.Password, dbo.svfGetCustomisationPassword(c.Customisat"& _ 
+                "ionText)) AS Password,"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                             (SELECT        ASPMenu"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"   "& _ 
+                "                            FROM            Applications"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                      "& _ 
+                "         WHERE        (ApplicationID = c.ApplicationID)) AS ASPMenu, c.LearningT"& _ 
+                "imeMins AS LearnMins, CAST(CASE WHEN c.HideInLearnerPortal = 1 THEN 0 ELSE 1 END"& _ 
+                " AS BiT) AS LearningPortal,"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                             (SELECT        Categor"& _ 
+                "yName"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                               FROM            CourseCategories"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"        "& _ 
+                "                       WHERE        (CourseCategoryID = a.CourseCategoryID)) AS "& _ 
+                "Category,"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                             (SELECT        CourseTopic"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"            "& _ 
+                "                   FROM            CourseTopics"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                               "& _ 
+                "WHERE        (CourseTopicID = a.CourseTopicID)) AS Topic"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"FROM            Custom"& _ 
+                "isations AS c INNER JOIN"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         Applications AS a ON c.Applic"& _ 
+                "ationID = a.ApplicationID RIGHT OUTER JOIN"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         CentreAppli"& _ 
+                "cations ON c.CentreID = CentreApplications.CentreID AND a.ApplicationID = Centre"& _ 
+                "Applications.ApplicationID"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"WHERE        (c.CentreID = @CentreID) AND (a.ASPMenu"& _ 
+                " = 1) AND (a.CourseCategoryID = @AdminCategoryID) AND (a.ArchivedDate IS NULL) O"& _ 
+                "R"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         (c.CentreID = @CentreID) AND (a.ASPMenu = 1) AND (a."& _ 
+                "ArchivedDate IS NULL) AND (CAST(@AdminCategoryID AS Int) = 0)"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"ORDER BY Customis"& _ 
+                "ationName"
             Me._commandCollection(0).CommandType = Global.System.Data.CommandType.Text
             Me._commandCollection(0).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@CentreID", Global.System.Data.SqlDbType.Int, 4, Global.System.Data.ParameterDirection.Input, 0, 0, "CentreID", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
             Me._commandCollection(0).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@AdminCategoryID", Global.System.Data.SqlDbType.Int, 4, Global.System.Data.ParameterDirection.Input, 0, 0, "CourseCategoryID", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))

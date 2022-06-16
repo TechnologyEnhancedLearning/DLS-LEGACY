@@ -7858,18 +7858,18 @@ Namespace customiseTableAdapters
             Me._commandCollection = New Global.System.Data.SqlClient.SqlCommand(0) {}
             Me._commandCollection(0) = New Global.System.Data.SqlClient.SqlCommand()
             Me._commandCollection(0).Connection = Me.Connection
-            Me._commandCollection(0).CommandText = "SELECT        A.ApplicationID, A.ApplicationName, A.CourseCategoryID"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"FROM       "& _ 
-                "     Applications AS A INNER JOIN"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         CentreApplications A"& _ 
-                "S CA ON A.ApplicationID = CA.ApplicationID"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"WHERE        (CA.CentreID = @CentreI"& _ 
-                "D) AND (A.ASPMenu = 1) AND (A.ArchivedDate IS NULL) AND (A.CourseTopicID = @Cour"& _ 
-                "seTopicID) AND (A.CourseCategoryID = @AdminCategoryID) OR"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                     "& _ 
-                "    (CA.CentreID = @CentreID) AND (A.ASPMenu = 1) AND (A.ArchivedDate IS NULL) A"& _ 
-                "ND (A.CourseTopicID = @CourseTopicID) AND (@AdminCategoryID = 0) OR"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"           "& _ 
-                "              (CA.CentreID = @CentreID) AND (A.ASPMenu = 1) AND (A.ArchivedDate "& _ 
-                "IS NULL) AND (@CourseTopicID = 0) AND (A.CourseCategoryID = @AdminCategoryID) OR"& _ 
-                ""&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         (CA.CentreID = @CentreID) AND (A.ASPMenu = 1) AND (A."& _ 
-                "ArchivedDate IS NULL) AND (@CourseTopicID = 0) AND (@AdminCategoryID = 0)"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"ORDER"& _ 
-                " BY A.ApplicationName"
+            Me._commandCollection(0).CommandText = "SELECT        DISTINCT A.ApplicationID, A.ApplicationName, A.CourseCategoryID"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"FR"& _ 
+                "OM            Applications AS A INNER JOIN"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         CentreAppli"& _ 
+                "cations AS CA ON A.ApplicationID = CA.ApplicationID"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"WHERE        (CA.CentreID ="& _ 
+                " @CentreID) AND (A.ASPMenu = 1) AND (A.ArchivedDate IS NULL) AND (A.CourseTopicI"& _ 
+                "D = @CourseTopicID) AND (A.CourseCategoryID = @AdminCategoryID) OR"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"            "& _ 
+                "             (CA.CentreID = @CentreID) AND (A.ASPMenu = 1) AND (A.ArchivedDate I"& _ 
+                "S NULL) AND (A.CourseTopicID = @CourseTopicID) AND (@AdminCategoryID = 0) OR"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"  "& _ 
+                "                       (CA.CentreID = @CentreID) AND (A.ASPMenu = 1) AND (A.Arch"& _ 
+                "ivedDate IS NULL) AND (@CourseTopicID = 0) AND (A.CourseCategoryID = @AdminCateg"& _ 
+                "oryID) OR"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         (CA.CentreID = @CentreID) AND (A.ASPMenu = 1"& _ 
+                ") AND (A.ArchivedDate IS NULL) AND (@CourseTopicID = 0) AND (@AdminCategoryID = "& _ 
+                "0)"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"ORDER BY A.ApplicationName"
             Me._commandCollection(0).CommandType = Global.System.Data.CommandType.Text
             Me._commandCollection(0).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@CentreID", Global.System.Data.SqlDbType.Int, 4, Global.System.Data.ParameterDirection.Input, 0, 0, "CentreID", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
             Me._commandCollection(0).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@CourseTopicID", Global.System.Data.SqlDbType.Int, 4, Global.System.Data.ParameterDirection.Input, 0, 0, "CourseTopicID", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))

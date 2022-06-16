@@ -38,7 +38,7 @@
     <Shape ID="DesignTable:Log" ZOrder="52" X="397" Y="1631" Height="250" Width="192" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="191" />
     <Shape ID="DesignTable:AssessAttempts" ZOrder="23" X="653" Y="1676" Height="319" Width="300" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="237" />
     <Shape ID="DesignTable:Sections" ZOrder="47" X="30" Y="1626" Height="227" Width="300" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="145" />
-    <Shape ID="DesignTable:CustomisationsSummary" ZOrder="11" X="36" Y="2026" Height="305" Width="288" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="254" />
+    <Shape ID="DesignTable:CustomisationsSummary" ZOrder="11" X="36" Y="2026" Height="425" Width="300" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="358" />
     <Shape ID="DesignTable:OfficeApplications" ZOrder="39" X="474" Y="2108" Height="135" Width="299" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="76" />
     <Shape ID="DesignTable:CentresKB" ZOrder="38" X="1441" Y="2078" Height="273" Width="300" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="191" />
     <Shape ID="DesignTable:CertificateInfo" ZOrder="33" X="912" Y="2132" Height="414" Width="300" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="306" />
@@ -509,7 +509,7 @@
     <Connector ID="DesignRelation:FK_Progress_Customisations1" ZOrder="42" LineWidth="11">
       <RoutePoints>
         <Point>
-          <X>324</X>
+          <X>336</X>
           <Y>2069</Y>
         </Point>
         <Point>
@@ -545,7 +545,7 @@
           <Y>2043</Y>
         </Point>
         <Point>
-          <X>324</X>
+          <X>336</X>
           <Y>2043</Y>
         </Point>
       </RoutePoints>

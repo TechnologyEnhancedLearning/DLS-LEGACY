@@ -230,7 +230,7 @@
                 </div>
             </div>
             <div class="modal-body">
-                
+                <asp:Panel ID="pnlAliasWarning" CssClass="alert alert-warning" role="alert" runat="server"><strong>WARNING:</strong> From September 2022 all users will need to login to the DLS platform using their email address or delegate ID. You logged in using a centre specific identifier which will no longer be valid from September 2022. Your delegate ID is <strong><%= Session("learnCandidateNumber") %></strong>.</asp:Panel>
                 <div class="row">
                     <div class="col-8">
                         <div class="row">
