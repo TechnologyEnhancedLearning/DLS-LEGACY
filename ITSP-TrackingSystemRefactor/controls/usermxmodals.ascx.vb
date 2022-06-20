@@ -8,6 +8,9 @@ Public Class usermxmodals
     Inherits System.Web.UI.UserControl
     Private Sub usermxmodals_Load(sender As Object, e As EventArgs) Handles Me.Load
         lbtSignIn.Visible = My.Settings.AllowAzureSSO
+        If Not Session("bAliasLogin") Is Nothing Then
+            pnlAliasWarning.Visible = Session("bAliasLogin")
+        End If
         If Not Session("LearningPortalUrl") Is Nothing Then
             lnkLearningPortal.HRef = Session("LearningPortalUrl")
         End If
@@ -30,7 +33,6 @@ Public Class usermxmodals
                     Page.Response.Redirect("~/home")
                 Case "appselect"
                     If Request.IsAuthenticated Then
-                        pnlAliasWarning.Visible = Session("bAliasLogin")
                         Page.ClientScript.RegisterStartupScript(Me.GetType(), "ShowAppSelect", "<script>$('#pnlAppSelect').modal('show');</script>")
                     Else
                         Page.ClientScript.RegisterStartupScript(Me.GetType(), "ShowModalAccount", "<script>$('#pnlAccount').modal('show');</script>")
