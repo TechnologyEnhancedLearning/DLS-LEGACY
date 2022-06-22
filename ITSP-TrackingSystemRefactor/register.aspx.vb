@@ -6,6 +6,13 @@ Imports Microsoft.Owin.Security.OpenIdConnect
 Public Class register
     Inherits System.Web.UI.Page
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
+        If Not Request.IsAuthenticated Then
+            Dim RegisterURL As String = My.Settings.RefactoredAppBaseURL + "Register"
+            If Not Page.Request.Item("centreid") Is Nothing Then
+                RegisterURL += "?centreid=" + Page.Request.Item("centreid").ToString()
+            End If
+            Response.Redirect(RegisterURL)
+        End If
         If Not Page.Request.Item("app") Is Nothing Then
             Select Case Page.Request.Item("app")
                 Case "lp", "learn"
