@@ -12,22 +12,22 @@ Option Explicit On
 
 
 Partial Public Class usermx
-    
+
     '''<summary>
-    '''lbtAccount control.
+    '''hlAccount control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents lbtAccount As Global.System.Web.UI.WebControls.LinkButton
-    
+    Protected WithEvents hlAccount As Global.System.Web.UI.WebControls.HyperLink
+
     '''<summary>
-    '''lbtAppSelect control.
+    '''hlAppSelect control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents lbtAppSelect As Global.System.Web.UI.WebControls.LinkButton
+    Protected WithEvents hlAppSelect As Global.System.Web.UI.WebControls.HyperLink
 End Class

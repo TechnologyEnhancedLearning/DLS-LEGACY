@@ -35,7 +35,10 @@
       <Value Profile="(Default)">True</Value>
     </Setting>
     <Setting Name="LearningPortalURL" Type="System.String" Scope="Application">
-      <Value Profile="(Default)">https://www.dls.nhs.uk/dev-my-learning-portal/LearningPortal/Current</Value>
+      <Value Profile="(Default)">https://localhost:44363/LearningPortal/Current</Value>
+    </Setting>
+    <Setting Name="RefactoredAppBaseURL" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">https://localhost:44363/</Value>
     </Setting>
   </Settings>
 </SettingsFile>

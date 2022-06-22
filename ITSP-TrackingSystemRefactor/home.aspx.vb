@@ -2,6 +2,13 @@
     Inherits System.Web.UI.Page
 
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
+        'Redirect to V2 login page:
+
+        If Not Request.IsAuthenticated Then
+            Dim LoginURL As String = My.Settings.RefactoredAppBaseURL + "Home/Welcome"
+            Response.Redirect(LoginURL)
+        End If
+
         If Not Page.IsPostBack Then
             Dim taHL As New prelogindataTableAdapters.HeadlineFiguresTableAdapter
             Dim tHL As New prelogindata.HeadlineFiguresDataTable
@@ -18,6 +25,8 @@
             If Session("UserCentreID") > 0 Then
                 pnlLogin.Visible = False
                 pnlAppSelect.Visible = True
+                Dim appSelectorURL As String = My.Settings.RefactoredAppBaseURL + "ApplicationSelector"
+                Response.Redirect(appSelectorURL)
             End If
         End If
     End Sub
