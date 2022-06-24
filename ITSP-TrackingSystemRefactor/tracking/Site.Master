@@ -252,13 +252,7 @@
                                 </ul>
                             </li>
                             <li id="liCourseSetup" class="nav-item" runat="server"><a href="coursesetup">Course Setup</a></li>
-                            <li id="liSupervisor" class="nav-item dropdown" runat="server">
-                                <a href="supervise" class="nav-link dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" aria-haspopup="true" aria-expanded="false">Supervise <i class="fas fa-angle-down"></i></a>
-                                <ul class="dropdown-menu ddmain">
-                                    <li><a href="supervise" class="dropdown-item">Supervise Delegates</a></li>
-                                    <li><a href="sv-schedule" class="dropdown-item">Schedule</a></li>
-                                </ul>
-                            </li>
+                            <li id="liSupervisor" class="nav-item" runat="server"><a href="supervise">Supervise</a></li>
                             <li id="liSupport" runat="server" class="nav-item dropdown">
                                 <a href="support" data-hover="dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link dropdown-toggle">Support <i class="fas fa-angle-down"></i></a>
                                 <ul class="dropdown-menu ddmain">
