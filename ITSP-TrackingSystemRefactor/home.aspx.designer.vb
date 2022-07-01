@@ -176,6 +176,15 @@ Partial Public Class home
     Protected WithEvents btnSubmit As Global.System.Web.UI.WebControls.LinkButton
 
     '''<summary>
+    '''hlSupportEmail control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents hlSupportEmail As Global.System.Web.UI.WebControls.HyperLink
+
+    '''<summary>
     '''lblHmConfirmTitle control.
     '''</summary>
     '''<remarks>

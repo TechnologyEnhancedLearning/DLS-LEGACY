@@ -239,7 +239,7 @@ Public Class tickets
         sbBody.Append("To see the ticket, follow this link : " & sTicketLink & vbCrLf)
         sbBody.Append(vbCrLf)
         sbBody.Append("This email as it has been automatically generated, please don't reply." & vbCrLf)
-        CCommon.SendEmail("dls@hee.nhs.uk", sSubject, sbBody.ToString(), False)
+        CCommon.SendEmail(CCommon.GetConfigString("SupportEmail"), sSubject, sbBody.ToString(), False)
     End Sub
     Protected Sub _SendHoldingEmailToTicketRaiser(ByVal nTicketID As Integer)
         Dim taTickets As New supportdataTableAdapters.TicketDetailTableAdapter
@@ -372,7 +372,7 @@ Public Class tickets
         '
         ' And try to send the email, don't bother about 
         '
-        CCommon.SendEmail(tblTickets.First.Email, sSubject, sbBody.ToString(), False, , "dls@hee.nhs.uk",, 5, tblTickets.First.AdminUserID)
+        CCommon.SendEmail(tblTickets.First.Email, sSubject, sbBody.ToString(), False, , ,, 5, tblTickets.First.AdminUserID)
     End Sub
     Protected Sub _SendEmailTicketResponseAdmin(ByVal nTicketID As Integer)
         Dim taTickets As New supportdataTableAdapters.TicketDetailTableAdapter
@@ -396,9 +396,7 @@ Public Class tickets
         Dim sCC As String = ""
         Dim sTo As String = tblTickets.First.AssignedToEmail.ToString
         If sTo.Length = 0 Then
-            sTo = "dls@hee.nhs.uk"
-        Else
-            sCC = "dls@hee.nhs.uk"
+            Exit Sub
         End If
 
         Dim sbBody As New StringBuilder
@@ -411,7 +409,7 @@ Public Class tickets
         sbBody.Append("To see the comment, follow this link : " & sTicketLink & vbCrLf)
         sbBody.Append(vbCrLf)
         sbBody.Append("Please don't reply to this email as it has been automatically generated." & vbCrLf)
-        CCommon.SendEmail(sTo, sSubject, sbBody.ToString(), False,, "dls@hee.nhs.uk")
+        CCommon.SendEmail(sTo, sSubject, sbBody.ToString(), False)
     End Sub
 
     Private Sub lbtUnarchive_Click(sender As Object, e As EventArgs) Handles lbtUnarchive.Click
