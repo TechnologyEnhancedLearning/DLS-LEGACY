@@ -1,10 +1,5 @@
 ﻿<%@ Master Language="VB" AutoEventWireup="false" CodeBehind="trackingnonav.Master.vb" Inherits="ITSP_TrackingSystemRefactor.trackingnonav" %>
 
-<%@ Register Src="~/controls/usermx.ascx" TagPrefix="uc1" TagName="usermx" %>
-<%@ Register Src="~/controls/usermxmodals.ascx" TagPrefix="uc1" TagName="usermxmodals" %>
-
-
-
 <!DOCTYPE html>
 
 <html lang="en">
