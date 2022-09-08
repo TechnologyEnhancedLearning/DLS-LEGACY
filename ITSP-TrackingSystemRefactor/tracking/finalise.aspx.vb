@@ -3,6 +3,9 @@ Partial Public Class CFinalise
     Inherits System.Web.UI.Page
 
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
+        Dim supportEmail As String = CCommon.GetConfigString("SupportEmail")
+        hlSupportEmail.NavigateUrl = "mailto:" + supportEmail
+        hlSupportEmail.Text = supportEmail
         If Not Page.IsPostBack Then
             If Not Page.Request.Item("lp") Is Nothing Then
                 lbtClose.OnClientClick = ""

@@ -181,7 +181,7 @@
             <br />
             <br />
             
-            <p>If you wish to make any other comments / give any other feedback on this course, please e-mail <a href="mailto:dls@hee.nhs.uk">dls@hee.nhs.uk</a></p>
+            <p>If you wish to make any other comments / give any other feedback on this course, please e-mail <asp:HyperLink ID="hlSupportEmail" runat="server"></asp:HyperLink></p>
             </div>
             
           </div>

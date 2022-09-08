@@ -449,7 +449,7 @@
             Me.lblModalMessage.Text = "An email has been sent to you giving details of how to reset your password."
         Else
 
-            Me.lblModalMessage.Text = "There was a problem sending you an email. Please contact the site administrators at dls@hee.nhs.uk to ask about your password reset."
+            Me.lblModalMessage.Text = "There was a problem sending you an email. Please contact the site administrators at " + CCommon.GetConfigString("SupportEmail") + " to ask about your password reset."
         End If
         Page.ClientScript.RegisterStartupScript(Me.GetType(), "ShowModalPWChanged", "<script>$('#messageModal').modal('show');</script>")
     End Sub

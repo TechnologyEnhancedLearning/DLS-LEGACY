@@ -255,7 +255,8 @@ Stewart House<br />
 London<br />
 WC1B 5DN
             </p>
-            <p><a href="mailto:dls@hee.nhs.uk">dls@hee.nhs.uk</a></p>
+            <p>
+                <asp:HyperLink ID="hlSupportEmail" runat="server"></asp:HyperLink></p>
                                     </div>
                                 </div>
                                             

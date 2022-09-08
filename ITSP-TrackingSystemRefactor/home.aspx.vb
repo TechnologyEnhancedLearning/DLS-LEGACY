@@ -3,7 +3,9 @@
 
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
         'Redirect to V2 login page:
-
+        Dim supportEmail As String = CCommon.GetConfigString("SupportEmail")
+        hlSupportEmail.NavigateUrl = "mailto:" + supportEmail
+        hlSupportEmail.Text = supportEmail
         If Not Request.IsAuthenticated Then
             Dim LoginURL As String = My.Settings.RefactoredAppBaseURL + "Home/Welcome"
             Response.Redirect(LoginURL)
@@ -33,10 +35,10 @@
     Private Sub btnSubmit_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles btnSubmit.Click
         If Page.IsValid Then
             Try
-                CCommon.SendEmail("dls@hee.nhs.uk", tbSubject.Text, tbMessage.Text, False,,,,,, tbEmail.Text)
+                CCommon.SendEmail(CCommon.GetConfigString("SupportEmail"), tbSubject.Text, tbMessage.Text, False,,,,,, tbEmail.Text)
             Catch ex As Exception
                 lblHmConfirmTitle.Text = "Error Sending Message"
-                lblHmConfirmMessage.Text = "<p>There was a problem sending your message. Please try emailing it to <a href='mailto:dls@hee.nhs.uk'>dls@hee.nhs.uk</a>.</p>"
+                lblHmConfirmMessage.Text = "<p>There was a problem sending your message. Please try emailing it to <a href='mailto:" + CCommon.GetConfigString("SupportEmail") + "'>" + CCommon.GetConfigString("SupportEmail") + "</a>.</p>"
             Finally
                 lblHmConfirmTitle.Text = "Thank you for your Message"
                 lblHmConfirmMessage.Text = "<p>Your message was successfully sent. We will aim to respond within 2 working days.</p><p>If you are a learner, we will be unable to respond to your request; it should be directed to your IT Training centre or Learning and Development department instead.</p>"

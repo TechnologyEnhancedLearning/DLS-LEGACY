@@ -164,7 +164,7 @@ Public Class usermxmodals
         '
         If AdminUserTable.Count() <> 1 Then
             lblConfirmTitle.Text = "Failed to Save Changes"
-            lblConfirmMessage.Text = "There is a problem with your account. Please contact dls@hee.nhs.uk with your details."
+            lblConfirmMessage.Text = "There is a problem with your account. Please contact " + CCommon.GetConfigString("SupportEmail") + " with your details."
             bspAdminDetails.ShowOnPageLoad = False
             Page.ClientScript.RegisterStartupScript(Me.GetType(), "HideModalUpdateDetails", "<script>$('#confirmModal').modal('show');</script>")
             Exit Sub
@@ -928,7 +928,7 @@ Public Class usermxmodals
 
             AdminUserTable = AdminUserAdapter.GetByAdminID(nResult)
             If AdminUserTable.Count() <> 1 Then
-                sMsg = "There was a problem generating your password reset email. Please contact the site administrators at dls@hee.nhs.uk"
+                sMsg = "There was a problem generating your password reset email. Please contact the site administrators at " + CCommon.GetConfigString("SupportEmail")
                 Me.lblConfirmMessage.Text = sMsg
                 Page.ClientScript.RegisterStartupScript(Me.GetType(), "ShowModalResetError", "<script>$('#pnlAccount').modal('hide');$('#confirmModal').modal('show');</script>")
                 Exit Sub
@@ -958,7 +958,7 @@ Public Class usermxmodals
                 Me.lblConfirmMessage.Text = "An email has been sent to you giving details of how to reset your password."
             Else
 
-                Me.lblConfirmMessage.Text = "There was a problem sending you an email. Please contact your centre administrators at dls@hee.nhs.uk to ask about your password reset."
+                Me.lblConfirmMessage.Text = "There was a problem sending you an email. Please contact your centre administrators at " + CCommon.GetConfigString("SupportEmail") + " to ask about your password reset."
             End If
         Else
             Dim taCand As New AuthenticateTableAdapters.CandidatesTableAdapter
