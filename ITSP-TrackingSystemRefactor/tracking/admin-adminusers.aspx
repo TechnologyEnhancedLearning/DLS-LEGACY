@@ -11,9 +11,6 @@
     </ol>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
-   
-    <asp:MultiView ID="mvAdminUsers" ActiveViewIndex="0" runat="server">
-        <asp:View ID="vAdminUserList" runat="server">
             <asp:ObjectDataSource ID="AdminUsersDataSource" runat="server"
                 OldValuesParameterFormatString="original_{0}" SelectMethod="GetData"
                 TypeName="ITSP_TrackingSystemRefactor.ITSPTableAdapters.AdminUsersTableAdapter">
@@ -31,13 +28,6 @@
                         <SettingsPager PageSize="15">
                         </SettingsPager>
                         <Columns>
-                            <dx:BootstrapGridViewTextColumn ShowInCustomizationDialog="false" Name="Edit" ReadOnly="True" VisibleIndex="0">
-                                <Settings AllowHeaderFilter="False" />
-                                <SettingsEditForm Visible="False" />
-                                <DataItemTemplate>
-                                     <asp:LinkButton EnableViewState="false" ID="lbtEditAdminUser" CssClass="btn btn-outline-secondary btn-sm" ToolTip="Edit User" OnCommand="EditUser_Click" CommandArgument='<%# Eval("AdminID") %>' runat="server"><i aria-hidden="true" class="fas fa-pencil-alt"></i></asp:LinkButton>
-                                </DataItemTemplate>
-                            </dx:BootstrapGridViewTextColumn>
                             <dx:BootstrapGridViewTextColumn Caption="Forename" FieldName="Forename" VisibleIndex="1">
                                 <Settings AllowHeaderFilter="False" />
                             </dx:BootstrapGridViewTextColumn>
@@ -62,16 +52,7 @@
                             <dx:BootstrapGridViewCheckColumn FieldName="Active" VisibleIndex="12">
                             </dx:BootstrapGridViewCheckColumn> 
                              <dx:BootstrapGridViewTextColumn HorizontalAlign="Left" Caption="Locked" FieldName="FailedLoginCount" Name="Locked" VisibleIndex="13">
-                <DataItemTemplate>
-                    <asp:LinkButton ID="lbtUnlock" ToolTip="Click to unlock" OnCommand="Unlock_Click" CommandArgument='<%#  Eval("AdminID")%>' Visible='<%#  Eval("FailedLoginCount") >= 5 %>' EnableViewState="false" CssClass="btn btn-primary" runat="server"><i aria-hidden="true" class="fas fa-unlock-alt"></i></asp:LinkButton>
-                </DataItemTemplate>
-            </dx:BootstrapGridViewTextColumn>                       
-                            <dx:BootstrapGridViewTextColumn Name="Inactivate" ShowInCustomizationDialog="false" VisibleIndex="14">
-                                <Settings AllowHeaderFilter="False" />
-                                <DataItemTemplate>
-                                      <asp:LinkButton EnableViewState="false" ID="lbtInactivateUser" Visible='<%# Eval("Active") %>' OnClientClick="return confirm('Are you sure that you wish to Inactivate / Delete this admin user?');" CssClass="btn btn-danger btn-sm" ToolTip="Inactivate / Delete User" OnCommand="InactivateUser_Click" CommandArgument='<%# Eval("AdminID") %>' runat="server"><i aria-hidden="true" class="fas fa-times"></i></asp:LinkButton>
-                                </DataItemTemplate>
-                            </dx:BootstrapGridViewTextColumn>
+            </dx:BootstrapGridViewTextColumn>     
                             <dx:BootstrapGridViewTextColumn FieldName="ContentManager" Visible="False" VisibleIndex="9" HorizontalAlign="Center">
                                 <DataItemTemplate>
                                     <%#IIf(Eval("ContentManager") And Not Eval("ImportOnly"), "<span class='dxbs-icon dxbs-icon-check'></span>", "") %>
@@ -99,155 +80,6 @@
                     <dx:ASPxGridViewExporter ID="AdminUsersGridViewExporter" FileName="ITSP Admin Users Export" GridViewID="bsgvAdminUsers" runat="server"></dx:ASPxGridViewExporter>
                     </div>
             <%--</div>--%>
-        </asp:View>
-        <asp:View ID="vEditAdminUser" runat="server">
-            <asp:HiddenField ID="hfEditUserID" runat="server" />
-            <asp:ObjectDataSource ID="dsEditUser" runat="server" OldValuesParameterFormatString="original_{0}" SelectMethod="GetForEdit" TypeName="ITSP_TrackingSystemRefactor.ITSPTableAdapters.AdminUsersTableAdapter" UpdateMethod="UpdateWithoutProfile" DeleteMethod="Delete" InsertMethod="Insert">
-                
-                <DeleteParameters>
-                    <asp:Parameter Name="Original_AdminID" Type="Int32" />
-                </DeleteParameters>
-               
-                
-                <SelectParameters>
-                    <asp:ControlParameter ControlID="hfEditUserID" DefaultValue="0" Name="AdminID" PropertyName="Value" Type="Int32" />
-                </SelectParameters>
-                <UpdateParameters>
-                    <asp:Parameter Name="Login" Type="String" />
-                    <asp:Parameter Name="CentreID" Type="Int32" />
-                    <asp:Parameter Name="CentreAdmin" Type="Boolean" />
-                    <asp:Parameter Name="ConfigAdmin" Type="Boolean" />
-                    <asp:Parameter Name="Forename" Type="String" />
-                    <asp:Parameter Name="Surname" Type="String" />
-                    <asp:Parameter Name="Email" Type="String" />
-                    <asp:Parameter Name="IsCentreManager" Type="Boolean" />
-                    <asp:Parameter Name="Approved" Type="Boolean" />
-                    <asp:Parameter Name="Active" Type="Boolean" />
-                    <asp:Parameter Name="ContentManager" Type="Boolean" />
-                    <asp:Parameter Name="PublishToAll" Type="Boolean" />
-                    <asp:Parameter Name="ImportOnly" Type="Boolean" />
-                    <asp:Parameter Name="ContentCreator" Type="Boolean" />
-                    <asp:Parameter Name="Original_AdminID" Type="Int32" />
-                    <asp:Parameter Name="IsFrameworkDeveloper" Type="Boolean" />
-                </UpdateParameters>
-            </asp:ObjectDataSource>
-
-
-            <asp:FormView ID="fvEditUser" DefaultMode="Edit" runat="server" RenderOuterTable="False" DataKeyNames="AdminID" DataSourceID="dsEditUser">
-                <EditItemTemplate>
-                    <div class="card card-primary">
-                        <div class="card-header">
-                            <h3>Edit Admin User</h3>
-                        </div>
-                        <div class="card-body">
-                            <div class="m-3">
-                                <%--<div class="form-group row">
-                                    <asp:Label ID="Label3" AssociatedControlID="LoginTextBox" runat="server" CssClass="col col-sm-4 col-md-3 col-lg-2 control-label">User name:</asp:Label>
-                                    <div class="col col-sm-8 col-md-9 col-lg-10">
-                                        <asp:TextBox ID="LoginTextBox" CssClass="form-control" runat="server" Text='<%# Bind("Login") %>' />
-                                    </div>
-                                </div>--%>
-                                <asp:HiddenField ID="hfLogin" Value='<%# Bind("Login") %>' runat="server" />
-                                <div class="form-group row">
-                                    <asp:Label ID="Label4" AssociatedControlID="ForenameTextBox" runat="server" CssClass="col col-sm-4 col-md-3 col-lg-2 control-label">First name:</asp:Label>
-                                    <div class="col col-sm-8 col-md-9 col-lg-10">
-                                        <asp:TextBox ID="ForenameTextBox" CssClass="form-control" runat="server" Text='<%# Bind("Forename") %>' />
-                                    </div>
-                                </div>
-                                <div class="form-group row">
-                                    <asp:Label ID="Label5" AssociatedControlID="SurnameTextBox" runat="server" CssClass="col col-sm-4 col-md-3 col-lg-2 control-label">Last name:</asp:Label>
-                                    <div class="col col-sm-8 col-md-9 col-lg-10">
-                                        <asp:TextBox ID="SurnameTextBox" CssClass="form-control" runat="server" Text='<%# Bind("Surname") %>' />
-                                    </div>
-                                </div>
-                                <div class="form-group row">
-                                    <asp:Label ID="Label8" AssociatedControlID="EmailTextBox" runat="server" CssClass="col col-sm-4 col-md-3 col-lg-2 control-label">E-mail:</asp:Label>
-                                    <div class="col col-sm-8 col-md-9 col-lg-10">
-                                        <asp:TextBox ID="EmailTextBox" CssClass="form-control" runat="server" Text='<%# Bind("Email") %>' />
-                                    </div>
-                                </div>
-                                
-                                <div class="form-group row">
-                                    <asp:Label ID="Label6" AssociatedControlID="ddUserCentre" runat="server" CssClass="col col-sm-4 col-md-3 col-lg-2 control-label">Centre:</asp:Label>
-                                    <div class="col col-sm-8 col-md-9 col-lg-10">
-                                        <asp:DropDownList ID="ddUserCentre" CssClass="form-control" runat="server" SelectedValue='<%# Bind("CentreID") %>' DataSourceID="CentresSortedByNameDataSource" DataTextField="CentreName" DataValueField="CentreID"></asp:DropDownList>
-                                    </div>
-                                </div>
-                                <div class="form-group row">
-                                    <asp:Label ID="Label17" AssociatedControlID="pnlStatus" runat="server" CssClass="col col-sm-4 col-md-3 col-lg-2 control-label">Status:</asp:Label>
-                                    <div class="col col-sm-8 col-md-9 col-lg-10">
-                                        <asp:Panel ID="pnlStatus" CssClass="cb-panel" runat="server">
-                                            <div class="checkbox">
-                                                <asp:Label ID="Label18" runat="server"><asp:CheckBox ID="ActiveCheckBox" runat="server" Checked='<%# Bind("Active") %>' /> Active</asp:Label>
-                                            </div>
-                                            <div class="checkbox">
-                                                <asp:Label ID="Label19" runat="server"><asp:CheckBox ID="ApprovedCheckBox" runat="server" Checked='<%# Bind("Approved") %>' /> Approved</asp:Label>
-                                            </div>
-                                        </asp:Panel>
-                                         </div>
-                                </div>
-                                <div class="form-group row">
-                                    <asp:Label ID="Label7" AssociatedControlID="pnlPerms" runat="server" CssClass="col col-sm-4 col-md-3 col-lg-2 control-label">Permissions:</asp:Label>
-                                    <div class="col col-sm-8 col-md-9 col-lg-10">
-                                        <asp:Panel ID="pnlPerms" CssClass="cb-panel" runat="server">
-                                            <div class="checkbox">
-                                                <asp:Label ID="Label9" runat="server">
-                                                    <asp:CheckBox ID="CentreAdminCheckBox" runat="server" Checked='<%# Bind("CentreAdmin") %>' />
-                                                    Centre Administrator</asp:Label>
-                                            </div>
-                                            <div class="checkbox">
-                                                <asp:Label ID="Label10" runat="server">
-                                                    <asp:CheckBox ID="IsCentreManagerCheckBox" runat="server" Checked='<%# Bind("IsCentreManager") %>' />
-                                                    Centre Manager</asp:Label>
-                                            </div>
-                                            <div class="checkbox">
-                                                <asp:Label ID="Label11" runat="server">
-                                                    <asp:CheckBox ID="ConfigAdminCheckBox" runat="server" Checked='<%# Bind("ConfigAdmin") %>' />
-                                                    Super Administrator</asp:Label>
-                                            </div>
-                                            <div class="checkbox">
-                                                <asp:Label ID="Label12" runat="server">
-                                                    <asp:CheckBox ID="ImportOnlyCheckBox" runat="server" Checked='<%# Bind("ImportOnly") %>' />
-                                                    Content Editor</asp:Label>
-                                            </div>
-                                            <div class="checkbox">
-                                                <asp:Label ID="Label13" runat="server">
-                                                    <asp:CheckBox ID="ContentManagerCheckBox" runat="server" Checked='<%# Bind("ContentManager") %>' />
-                                                    Content Manager</asp:Label>
-                                            </div>
-                                            <div class="checkbox">
-                                                <asp:Label ID="Label14" runat="server">
-                                                   <asp:CheckBox ID="ContentCreatorCheckBox" runat="server" Checked='<%# Bind("ContentCreator") %>' />
-                                                    Content Creator</asp:Label>
-                                            </div>
-                                            <div class="checkbox">
-                                                <asp:Label ID="Label15" runat="server"><asp:CheckBox ID="PublishToAllCheckBox" runat="server" Checked='<%# Bind("PublishToAll") %>' /> CMS Publish to All Centres</asp:Label>
-                                            </div>
-                                            <div class="checkbox">
-                                                <asp:Label ID="Label1" runat="server">
-                                                   <asp:CheckBox ID="cbFrameworkDeveloper" runat="server" Checked='<%# Bind("IsFrameworkDeveloper") %>' />
-                                                    Framework Developer</asp:Label>
-                                            </div>
-                                        </asp:Panel>
-                                    </div>
-                                </div>
-                                
-                            </div>
-                        </div>
-                        <div class="card-footer clearfix">
-                            <asp:LinkButton ID="UpdateCancelButton" CssClass="btn btn-outline-secondary mr-auto" runat="server" CausesValidation="False" CommandName="Cancel" Text="Cancel" />
-                            <asp:LinkButton ID="UpdateButton" runat="server" CssClass="btn btn-primary float-right" CausesValidation="True" CommandName="Update" Text="Update" />
-                            
-                        </div>
-                    </div>
-                   <%-- <asp:HiddenField ID="HiddenField1" runat="server" Value='<%# Bind("SummaryReports") %>' />
-                    <asp:HiddenField ID="HiddenField2" runat="server" Value='<%# Bind("UserAdmin") %>' />
-                    <asp:HiddenField ID="HiddenField4" runat="server" Value='<%# Bind("PasswordReminder") %>' />      --%>
-                </EditItemTemplate>
-
-            </asp:FormView>
-        </asp:View>
-    </asp:MultiView>
 
     <%-- Modal Message Window --%>
  <!-- Modal -->
