@@ -12,7 +12,25 @@ Option Explicit On
 
 
 Partial Public Class admin_adminusers
-
+    
+    '''<summary>
+    '''mvAdminUsers control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents mvAdminUsers As Global.System.Web.UI.WebControls.MultiView
+    
+    '''<summary>
+    '''vAdminUserList control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents vAdminUserList As Global.System.Web.UI.WebControls.View
+    
     '''<summary>
     '''AdminUsersDataSource control.
     '''</summary>
@@ -21,7 +39,7 @@ Partial Public Class admin_adminusers
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents AdminUsersDataSource As Global.System.Web.UI.WebControls.ObjectDataSource
-
+    
     '''<summary>
     '''CentresSortedByNameDataSource control.
     '''</summary>
@@ -30,7 +48,7 @@ Partial Public Class admin_adminusers
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents CentresSortedByNameDataSource As Global.System.Web.UI.WebControls.ObjectDataSource
-
+    
     '''<summary>
     '''bsgvAdminUsers control.
     '''</summary>
@@ -39,7 +57,7 @@ Partial Public Class admin_adminusers
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents bsgvAdminUsers As Global.DevExpress.Web.Bootstrap.BootstrapGridView
-
+    
     '''<summary>
     '''AdminUsersGridViewExporter control.
     '''</summary>
@@ -48,7 +66,43 @@ Partial Public Class admin_adminusers
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents AdminUsersGridViewExporter As Global.DevExpress.Web.ASPxGridViewExporter
-
+    
+    '''<summary>
+    '''vEditAdminUser control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents vEditAdminUser As Global.System.Web.UI.WebControls.View
+    
+    '''<summary>
+    '''hfEditUserID control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents hfEditUserID As Global.System.Web.UI.WebControls.HiddenField
+    
+    '''<summary>
+    '''dsEditUser control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents dsEditUser As Global.System.Web.UI.WebControls.ObjectDataSource
+    
+    '''<summary>
+    '''fvEditUser control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents fvEditUser As Global.System.Web.UI.WebControls.FormView
+    
     '''<summary>
     '''lblModalHeading control.
     '''</summary>
@@ -57,7 +111,7 @@ Partial Public Class admin_adminusers
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lblModalHeading As Global.System.Web.UI.WebControls.Label
-
+    
     '''<summary>
     '''lblModalMessage control.
     '''</summary>
