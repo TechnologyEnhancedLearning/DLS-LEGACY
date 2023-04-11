@@ -95,11 +95,6 @@
         <SettingsPager PageSize="15">
         </SettingsPager>
         <Columns>
-            <dx:BootstrapGridViewTextColumn Caption=" " Name="Edit" VisibleIndex="0">
-                <DataItemTemplate>
-                    <asp:LinkButton ToolTip="Edit User / Roles" EnableViewState="false" ID="lbtEditRoles" CommandArgument='<%#Eval("AdminID") %>' OnCommand="lbtEditRoles_Command" CssClass="btn btn-sm btn-primary" runat="server"><i class="fas fa-pencil-alt"></i></asp:LinkButton>
-                </DataItemTemplate>
-            </dx:BootstrapGridViewTextColumn>
             <dx:BootstrapGridViewTextColumn FieldName="Forename" VisibleIndex="1">
             </dx:BootstrapGridViewTextColumn>
             <dx:BootstrapGridViewTextColumn FieldName="Surname" VisibleIndex="2">
@@ -137,22 +132,8 @@
                 </PropertiesComboBox>
 
             </dx:BootstrapGridViewComboBoxColumn>
-            <dx:BootstrapGridViewTextColumn Name="Approved" Caption="Approved" VisibleIndex="6" FieldName="Approved">
-                <DataItemTemplate>
-                    <asp:LinkButton EnableViewState="false" ID="lbtToggle" ToolTip="Click to toggle approval status" CssClass='<%# IIf(Eval("Approved"), "btn btn-success", "btn btn-warning")%>' OnCommand="btnToggle_Click" CommandArgument='<%#  Eval("AdminID")%>' runat="server"><i aria-hidden="true" class='<%# IIf(Eval("Approved"), "far fa-check-square", "far fa-square")%>'></i></asp:LinkButton>
-                </DataItemTemplate>
-            </dx:BootstrapGridViewTextColumn>
-            <dx:BootstrapGridViewTextColumn HorizontalAlign="Left" Caption="Locked" FieldName="FailedLoginCount" Name="Locked" VisibleIndex="7">
-                <DataItemTemplate>
-                    <asp:LinkButton ID="lbtUnlock" ToolTip="Click to unlock" OnCommand="Unlock_Click" CommandArgument='<%#  Eval("AdminID")%>' Visible='<%#  Eval("FailedLoginCount") >= 5 %>' EnableViewState="false" CssClass="btn btn-primary" runat="server"><i aria-hidden="true" class="fas fa-unlock-alt"></i></asp:LinkButton>
-                </DataItemTemplate>
-            </dx:BootstrapGridViewTextColumn>
-            <dx:BootstrapGridViewTextColumn Name="Inactivate" VisibleIndex="8">
-                <Settings AllowHeaderFilter="False" />
-                <DataItemTemplate>
-                    <asp:LinkButton EnableViewState="false" ID="lbtInactivateUser" Visible='<%# Eval("Active") %>' OnClientClick="return confirm('Are you sure that you wish to Inactivate / Delete this admin account? If the user has never logged in, their account will be deleted. If they have, it will be inactivated.');" CssClass="btn btn-danger btn-sm" ToolTip="Inactivate / Delete Admin Account" OnCommand="InactivateUser_Click" CommandArgument='<%# Eval("AdminID") %>' runat="server"><i aria-hidden="true" class="fas fa-times"></i></asp:LinkButton>
-                </DataItemTemplate>
-            </dx:BootstrapGridViewTextColumn>
+            <dx:BootstrapGridViewCheckColumn FieldName="Approved" VisibleIndex="6">
+                </dx:BootstrapGridViewCheckColumn>
 
         </Columns>
         <SettingsSearchPanel Visible="True" AllowTextInputTimer="false" />
@@ -161,82 +142,7 @@
         
     </asp:UpdatePanel>--%>
     <!-- Modal -->
-    <div class="modal fade" id="editUserModal" tabindex="-1" role="dialog" aria-labelledby="editUserModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="editUserModalLabel">Edit Administrator Roles</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <div class="form-group row">
-                        <asp:Label ID="lblAdminEmail" AssociatedControlID="tbAdminUser" runat="server" CssClass="col col-sm-4 control-label">AdminUser:</asp:Label>
-                        <div class="col col-sm-8">
-                            <asp:HiddenField ID="hfAdminID" runat="server" />
-                            <asp:TextBox ID="tbAdminUser" Enabled="false" CssClass="form-control" runat="server" />
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <asp:Label ID="Label6" AssociatedControlID="cbCentreAdmin" runat="server" CssClass="col col-sm-4 control-label">Centre Admin:</asp:Label>
-                        <div class="col col-sm-8">
-                            <asp:CheckBox ID="cbCentreAdmin" CssClass="checkbox" runat="server" />
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <asp:Label ID="Label4" AssociatedControlID="cbSupervisor" runat="server" CssClass="col col-sm-4 control-label">Supervisor:</asp:Label>
-                        <div class="col col-sm-8">
-                            <asp:CheckBox ID="cbSupervisor" CssClass="checkbox" runat="server" />
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <asp:Label ID="Label5" AssociatedControlID="cbTrainer" runat="server" CssClass="col col-sm-4 control-label">Trainer:</asp:Label>
-                        <div class="col col-sm-8">
-                            <asp:CheckBox ID="cbTrainer" CssClass="checkbox" runat="server" />
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <asp:Label ID="Label1" AssociatedControlID="ddCategory" runat="server" CssClass="col col-sm-4 control-label">Learning Category:</asp:Label>
-                        <div class="col col-sm-8">
-                            <asp:DropDownList ID="ddCategory" DataSourceID="dsCategories" DataTextField="CategoryName" DataValueField="CourseCategoryID" CssClass="form-control" runat="server"></asp:DropDownList>
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <asp:Label ID="Label7" AssociatedControlID="cbFrameworkDeveloper" runat="server" CssClass="col col-sm-4 control-label">Framework Developer:</asp:Label>
-                        <div class="col col-sm-8">
-                            <asp:CheckBox ID="cbFrameworkDeveloper" Enabled="false" CssClass="checkbox" runat="server" />
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <asp:Label ID="Label2" AssociatedControlID="ddCMSRole" runat="server" CssClass="col col-sm-4 control-label">CMS Roles:</asp:Label>
-                        <div class="col col-sm-8">
-                            <asp:DropDownList ID="ddCMSRole" CssClass="form-control" runat="server">
-                                <asp:ListItem Text="None" Value="0">
-                                </asp:ListItem>
-                                <asp:ListItem Text="Administrator" Value="1">
-                                </asp:ListItem>
-                                <asp:ListItem Text="Manager" Value="2">
-                                </asp:ListItem>
-                            </asp:DropDownList>
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <asp:Label ID="Label3" AssociatedControlID="cbCCLicence" runat="server" CssClass="col col-sm-4 control-label">Content Creator Licence:</asp:Label>
-                        <div class="col col-sm-8">
-                            <asp:CheckBox ID="cbCCLicence" CssClass="checkbox" runat="server" />
-                        </div>
-                    </div>
-                    
-
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary mr-auto float-left" data-dismiss="modal">Close</button>
-                    <asp:LinkButton ID="lbtAdminEditSubmit" CssClass="btn btn-primary float-right" runat="server">Submit</asp:LinkButton>
-                </div>
-            </div>
-        </div>
-    </div>
+    
      <%-- Modal Message Window --%>
  <!-- Modal -->
     <div class="modal fade" id="messageModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
