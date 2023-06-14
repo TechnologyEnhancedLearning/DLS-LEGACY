@@ -604,7 +604,9 @@ Public Class CCommon
                     sbBody.Append("<p><b>Note:</b> This message has been copied to the administrator(s) managing this activity, for their information.</p>")
                 End If
                 sbBody.Append("</body>")
-                CCommon.SendEmail(tDelegate.First.EmailAddress, "Digital Learning Solutions Activity Complete", sbBody.ToString(), True,, sCC,, 11, nCandidateID)
+                If Not CCommon.SendEmail(tDelegate.First.EmailAddress, "Digital Learning Solutions Activity Complete", sbBody.ToString(), True,, sCC,, 11, nCandidateID) And sCC.Length > 1 Then
+                    CCommon.SendEmail(sCC, "Digital Learning Solutions Activity Complete", sbBody.ToString(), True)
+                End If
             End If
         End If
     End Sub
