@@ -590,7 +590,7 @@ Public Class CCommon
                    "&UserCentreID=" & nCentreID.ToString
                 Dim sbBody As New StringBuilder
                 sbBody.Append("<body style=""font-family: Calibri; font-size: small;"">")
-                sbBody.Append("<p>Dear " & tDelegate.First.FirstName & ",</p>")
+                sbBody.Append("<p>Dear " & tDelegate.First.FirstName & " " & tDelegate.First.LastName & " (" & tDelegate.First.CandidateNumber & "),</p>")
                 sbBody.Append("<p>You have completed the Digital Learning Solutions learning activity - " & sCourse & "</p>")
                 If nCompStatus = 2 Then
                     sbBody.Append("<p>To evaluate the activity and access your certificate of completion, click <a href=""" & sURL & """>here</a>.</p>")
@@ -601,7 +601,7 @@ Public Class CCommon
                     sbBody.Append("<p>This activity is related to <b>" & nLogItemsCompleted.ToString & "</b> planned development log actions in other activities in your Learning Portal. These have automatically been marked as complete.</p>")
                 End If
                 If sCC.Length > 2 Then
-                    sbBody.Append("<p><b>Note:</b> This message has been copied to the administrator(s) managing this activity, for their information.</p>")
+                    sbBody.Append("<p><b>Note:</b> This message has been sent to the administrator(s) managing this activity, for their information.</p>")
                 End If
                 sbBody.Append("</body>")
                 If Not CCommon.SendEmail(tDelegate.First.EmailAddress, "Digital Learning Solutions Activity Complete", sbBody.ToString(), True,, sCC,, 11, nCandidateID) And sCC.Length > 1 Then
