@@ -15,7 +15,7 @@ Option Explicit On
 Namespace My
     
     <Global.System.Runtime.CompilerServices.CompilerGeneratedAttribute(),  _
-     Global.System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "16.10.0.0"),  _
+     Global.System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "17.6.0.0"),  _
      Global.System.ComponentModel.EditorBrowsableAttribute(Global.System.ComponentModel.EditorBrowsableState.Advanced)>  _
     Partial Friend NotInheritable Class MySettings
         Inherits Global.System.Configuration.ApplicationSettingsBase
@@ -74,16 +74,6 @@ Namespace My
         
         <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
          Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.Configuration.SpecialSettingAttribute(Global.System.Configuration.SpecialSetting.ConnectionString),  _
-         Global.System.Configuration.DefaultSettingValueAttribute("Data Source=localhost;Initial Catalog=mbdbx101;Integrated Security=True")>  _
-        Public ReadOnly Property csITSPDB() As String
-            Get
-                Return CType(Me("csITSPDB"),String)
-            End Get
-        End Property
-        
-        <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
-         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.Configuration.DefaultSettingValueAttribute("https://localhost:44367/tracking/")>  _
         Public ReadOnly Property ITSPTrackingURL() As String
             Get
@@ -112,7 +102,7 @@ Namespace My
         <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
          Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.Configuration.SpecialSettingAttribute(Global.System.Configuration.SpecialSetting.WebServiceUrl),  _
-         Global.System.Configuration.DefaultSettingValueAttribute("https://localhost:44367/services.asmx")>  _
+         Global.System.Configuration.DefaultSettingValueAttribute("http://localhost:1976/services.asmx")>  _
         Public ReadOnly Property ITSP_TrackingSystemRefactor_ts_services_services() As String
             Get
                 Return CType(Me("ITSP_TrackingSystemRefactor_ts_services_services"),String)
@@ -152,6 +142,16 @@ Namespace My
         Public ReadOnly Property RefactoredAppBaseURL() As String
             Get
                 Return CType(Me("RefactoredAppBaseURL"),String)
+            End Get
+        End Property
+        
+        <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.SpecialSettingAttribute(Global.System.Configuration.SpecialSetting.ConnectionString),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("Data Source=localhost;Initial Catalog=mbdbx101;Integrated Security=True")>  _
+        Public ReadOnly Property csITSPDB() As String
+            Get
+                Return CType(Me("csITSPDB"),String)
             End Get
         End Property
     End Class
