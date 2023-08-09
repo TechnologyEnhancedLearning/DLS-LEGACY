@@ -71,42 +71,36 @@ Public Class SiteMaster
                         CCommon.AdminUserLogout()
                         Response.Redirect("~/Home?action=login&app=ts")
                     End If
-                    hlHelp.NavigateUrl = "~/help/Dashboard.html"
                     liCentre.Attributes.Add("class", "nav-item dropdown active")
                 Case "delegates"
                     If Not Session("UserCentreAdmin") Then
                         CCommon.AdminUserLogout()
                         Response.Redirect("~/Home?action=login&app=ts")
                     End If
-                    hlHelp.NavigateUrl = "~/help/AllDelegates.html"
                     liDelegates.Attributes.Add("class", "nav-item dropdown active")
                 Case "delegategroups"
                     If Not Session("UserCentreAdmin") Then
                         CCommon.AdminUserLogout()
                         Response.Redirect("~/Home?action=login&app=ts")
                     End If
-                    hlHelp.NavigateUrl = "~/help/AllDelegates.html"
                     liDelegates.Attributes.Add("class", "nav-item dropdown active")
                 Case "coursedelegates"
                     If Not Session("UserCentreAdmin") Then
                         CCommon.AdminUserLogout()
                         Response.Redirect("~/Home?action=login&app=ts")
                     End If
-                    hlHelp.NavigateUrl = "~/help/CourseDelegates.html"
                     liDelegates.Attributes.Add("class", "nav-item dropdown active")
                 Case "approvedelegates"
                     If Not Session("UserCentreAdmin") Then
                         CCommon.AdminUserLogout()
                         Response.Redirect("~/Home?action=login&app=ts")
                     End If
-                    hlHelp.NavigateUrl = "~/help/ApprovingDelegateRegistrations.html"
                     liDelegates.Attributes.Add("class", "nav-item dropdown active")
                 Case "coursesetup"
                     If Not Session("UserCentreAdmin") Then
                         CCommon.AdminUserLogout()
                         Response.Redirect("~/Home?action=login&app=ts")
                     End If
-                    hlHelp.NavigateUrl = "~/help/CourseSetup.html"
                     liCourseSetup.Attributes.Add("class", "nav-item active")
                 Case "sv-schedule"
                     If Not Session("IsSupervisor") Then
@@ -114,46 +108,37 @@ Public Class SiteMaster
                         Response.Redirect("~/Home?action=login&app=ts")
                     End If
                     liSupervisor.Attributes.Add("class", "nav-item dropdown active")
-                    hlHelp.NavigateUrl = "~/help/SuperviseDelegates.html"
                 Case "sv-schedule"
                     If Not Session("IsSupervisor") Then
                         CCommon.AdminUserLogout()
                         Response.Redirect("~/Home?action=login&app=ts")
                     End If
                     liSupervisor.Attributes.Add("class", "nav-item dropdown active")
-                    hlHelp.NavigateUrl = "~/help/ScheduleBeta.html"
                 Case "centrelogins"
                     If Not Session("UserCentreManager") Then
                         CCommon.AdminUserLogout()
                         Response.Redirect("~/Home?action=login&app=ts")
                     End If
-                    hlHelp.NavigateUrl = "~/help/ApprovingaCentreUserRegistration.html"
                     liCentre.Attributes.Add("class", "nav-item dropdown active")
                 Case "learningportal"
-                    hlHelp.NavigateUrl = "~/help/LearningPortalConfiguration.html"
                     liCentre.Attributes.Add("class", "nav-item dropdown active")
                 Case "resources"
-                    hlHelp.NavigateUrl = "~/help/Resources.html"
                     liSupport.Attributes.Add("class", "nav-item dropdown active")
                 Case "reports"
-                    hlHelp.NavigateUrl = "~/help/Reports.html"
                     liCentre.Attributes.Add("class", "nav-item dropdown active")
                 Case "reportfwa"
                     If Not Session("UserCentreReports") Then
                         CCommon.AdminUserLogout()
                         Response.Redirect("~/Home?action=login&app=ts")
                     End If
-                    hlHelp.NavigateUrl = "~/help/Reports.html"
                     liCentre.Attributes.Add("class", "nav-item dropdown active")
                 Case "faqs", "tickets"
-                    hlHelp.NavigateUrl = "~/help/FAQs.html"
                     liSupport.Attributes.Add("class", "nav-item dropdown active")
                 Case "tickets"
                     If Not Session("UserCentreAdmin") And Not Session("UserUserAdmin") Then
                         CCommon.AdminUserLogout()
                         Response.Redirect("~/Home?action=login&app=ts")
                     End If
-                    hlHelp.NavigateUrl = "~/help/SupportTickets.html"
                     liSupport.Attributes.Add("class", "nav-item dropdown active")
                 Case "statsdetail"
                     If Not Session("UserUserAdmin") And Not Session("UserSummaryReports") Then
@@ -171,7 +156,6 @@ Public Class SiteMaster
                     End If
                     liAdmin.Attributes.Add("class", "nav-item dropdown active")
             End Select
-            hlHelpBtn.NavigateUrl = hlHelp.NavigateUrl
         End If
 
         '

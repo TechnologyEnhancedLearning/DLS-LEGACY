@@ -256,8 +256,6 @@
                             <li id="liSupport" runat="server" class="nav-item dropdown">
                                 <a href="support" data-hover="dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link dropdown-toggle">Support <i class="fas fa-angle-down"></i></a>
                                 <ul class="dropdown-menu ddmain">
-                                    <li>
-                                        <asp:HyperLink ID="hlHelp" Target="_blank" CssClass="dropdown-item" runat="server" NavigateUrl="~/help/Introduction.html">Help</asp:HyperLink></li>
                                     <li><a href="faqs" class="dropdown-item">FAQs</a></li>
                                     <li runat="server" id="liTickets"><a href="tickets" class="dropdown-item">Tickets</a></li>
                                     <li><a href="resources" class="dropdown-item">Resources</a></li>

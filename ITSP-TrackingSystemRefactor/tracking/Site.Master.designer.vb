@@ -122,15 +122,6 @@ Partial Public Class SiteMaster
     Protected WithEvents liSupport As Global.System.Web.UI.HtmlControls.HtmlGenericControl
 
     '''<summary>
-    '''hlHelp control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents hlHelp As Global.System.Web.UI.WebControls.HyperLink
-
-    '''<summary>
     '''liTickets control.
     '''</summary>
     '''<remarks>
