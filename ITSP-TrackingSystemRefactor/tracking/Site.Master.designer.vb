@@ -230,15 +230,6 @@ Partial Public Class SiteMaster
     Protected WithEvents usermx As Global.ITSP_TrackingSystemRefactor.usermx
 
     '''<summary>
-    '''hlHelpBtn control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents hlHelpBtn As Global.System.Web.UI.WebControls.HyperLink
-
-    '''<summary>
     '''breadtray control.
     '''</summary>
     '''<remarks>
@@ -318,15 +309,6 @@ Partial Public Class SiteMaster
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents sch4 As Global.System.Web.UI.HtmlControls.HtmlGenericControl
-
-    '''<summary>
-    '''hlHelp2 control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents hlHelp2 As Global.System.Web.UI.WebControls.HyperLink
 
     '''<summary>
     '''liTickets1 control.
