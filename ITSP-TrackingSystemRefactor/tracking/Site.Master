@@ -256,8 +256,6 @@
                             <li id="liSupport" runat="server" class="nav-item dropdown">
                                 <a href="support" data-hover="dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link dropdown-toggle">Support <i class="fas fa-angle-down"></i></a>
                                 <ul class="dropdown-menu ddmain">
-                                    <li>
-                                        <asp:HyperLink ID="hlHelp" Target="_blank" CssClass="dropdown-item" runat="server" NavigateUrl="~/help/Introduction.html">Help</asp:HyperLink></li>
                                     <li><a href="faqs" class="dropdown-item">FAQs</a></li>
                                     <li runat="server" id="liTickets"><a href="tickets" class="dropdown-item">Tickets</a></li>
                                     <li><a href="resources" class="dropdown-item">Resources</a></li>
@@ -284,14 +282,7 @@
                                 <uc1:usermx runat="server" class="nav-link" ID="usermx" />
                             </li>
                         </ul>
-
                     </div>
-                    <div class="form-inline my-2 my-lg-0">
-
-                        <asp:HyperLink ID="hlHelpBtn" CssClass="nav-item btn btn-circle-lg btn-outline-light my-2 my-sm-0" ToolTip="Help" Target="_blank" runat="server" NavigateUrl="~/help/Introduction.html"><i class="fas fa-question"></i></asp:HyperLink>
-                    </div>
-
-
                 </div>
             </nav>
             <div class="container container-full">
@@ -373,8 +364,6 @@
                         <a class="collapsed" role="button" data-toggle="collapse" href="#sc4" aria-expanded="false" aria-controls="sc4">
                             <i class="fas fa-life-ring"></i>Support </a>
                         <ul id="sc4" class="card-collapse collapse" role="tabpanel" aria-labelledby="sch4" data-parent="#slidebar-menu">
-                            <li>
-                                <asp:HyperLink ID="hlHelp2" Target="_blank" CssClass="dropdown-item" runat="server" NavigateUrl="~/help/Introduction.html">Help</asp:HyperLink></li>
                             <li><a href="faqs" class="dropdown-item">FAQs</a></li>
                             <li runat="server" id="liTickets1"><a href="tickets" class="dropdown-item">Tickets</a></li>
                             <li><a href="resources" class="dropdown-item">Resources</a></li>
