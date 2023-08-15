@@ -823,69 +823,68 @@ ORDER BY [Job Group], [Centre Field 1], [Centre Field 2], [Centre Field 3], Stat
                  FROM    SelfAssessmentResults AS sar INNER JOIN
                               Competencies AS co ON sar.CompetencyID = co.ID INNER JOIN
                               SelfAssessmentStructure AS sas ON co.ID = sas.CompetencyID
-                 WHERE (sar.AssessmentQuestionID = 1) AND (sas.CompetencyGroupID = 1) AND (sar.CandidateID = ca.CandidateID)) AS [Data, information and content - Confidence],
+                 WHERE (sar.AssessmentQuestionID = 1) AND (sas.CompetencyGroupID = 1) AND (sar.DelegateUserID = ca.UserID)) AS [Data, information and content - Confidence],
                  (SELECT AVG(sar.Result) AS AvgConfidence
                  FROM    SelfAssessmentResults AS sar INNER JOIN
                               Competencies AS co ON sar.CompetencyID = co.ID INNER JOIN
                               SelfAssessmentStructure AS sas ON co.ID = sas.CompetencyID
-                 WHERE (sar.AssessmentQuestionID = 2) AND (sas.CompetencyGroupID = 1) AND (sar.CandidateID = ca.CandidateID)) AS [Data, information and content - Relevance],
+                 WHERE (sar.AssessmentQuestionID = 2) AND (sas.CompetencyGroupID = 1) AND (sar.DelegateUserID = ca.UserID)) AS [Data, information and content - Relevance],
                  (SELECT AVG(sar.Result) AS AvgConfidence
                  FROM    SelfAssessmentResults AS sar INNER JOIN
                               Competencies AS co ON sar.CompetencyID = co.ID INNER JOIN
                               SelfAssessmentStructure AS sas ON co.ID = sas.CompetencyID
-                 WHERE (sar.AssessmentQuestionID = 1) AND (sas.CompetencyGroupID = 2) AND (sar.CandidateID = ca.CandidateID)) AS [Teaching, learning and self-development - Confidence],
+                 WHERE (sar.AssessmentQuestionID = 1) AND (sas.CompetencyGroupID = 2) AND (sar.DelegateUserID = ca.UserID)) AS [Teaching, learning and self-development - Confidence],
                  (SELECT AVG(sar.Result) AS AvgConfidence
                  FROM    SelfAssessmentResults AS sar INNER JOIN
                               Competencies AS co ON sar.CompetencyID = co.ID INNER JOIN
                               SelfAssessmentStructure AS sas ON co.ID = sas.CompetencyID
-                 WHERE (sar.AssessmentQuestionID = 2) AND (sas.CompetencyGroupID = 2) AND (sar.CandidateID = ca.CandidateID)) AS [Teaching, learning and self-development - Relevance],
+                 WHERE (sar.AssessmentQuestionID = 2) AND (sas.CompetencyGroupID = 2) AND (sar.DelegateUserID = ca.UserID)) AS [Teaching, learning and self-development - Relevance],
                  (SELECT AVG(sar.Result) AS AvgConfidence
                  FROM    SelfAssessmentResults AS sar INNER JOIN
                               Competencies AS co ON sar.CompetencyID = co.ID INNER JOIN
                               SelfAssessmentStructure AS sas ON co.ID = sas.CompetencyID
-                 WHERE (sar.AssessmentQuestionID = 1) AND (sas.CompetencyGroupID = 3) AND (sar.CandidateID = ca.CandidateID)) AS [Communication, collaboration and participation - Confidence],
+                 WHERE (sar.AssessmentQuestionID = 1) AND (sas.CompetencyGroupID = 3) AND (sar.DelegateUserID = ca.UserID)) AS [Communication, collaboration and participation - Confidence],
                  (SELECT AVG(sar.Result) AS AvgConfidence
                  FROM    SelfAssessmentResults AS sar INNER JOIN
                               Competencies AS co ON sar.CompetencyID = co.ID INNER JOIN
                               SelfAssessmentStructure AS sas ON co.ID = sas.CompetencyID
-                 WHERE (sar.AssessmentQuestionID = 2) AND (sas.CompetencyGroupID = 3) AND (sar.CandidateID = ca.CandidateID)) AS [Communication, collaboration and participation - Relevance],
+                 WHERE (sar.AssessmentQuestionID = 2) AND (sas.CompetencyGroupID = 3) AND (sar.DelegateUserID = ca.UserID)) AS [Communication, collaboration and participation - Relevance],
                  (SELECT AVG(sar.Result) AS AvgConfidence
                  FROM    SelfAssessmentResults AS sar INNER JOIN
                               Competencies AS co ON sar.CompetencyID = co.ID INNER JOIN
                               SelfAssessmentStructure AS sas ON co.ID = sas.CompetencyID
-                 WHERE (sar.AssessmentQuestionID = 1) AND (sas.CompetencyGroupID = 4) AND (sar.CandidateID = ca.CandidateID)) AS [Technical proficiency - Confidence],
+                 WHERE (sar.AssessmentQuestionID = 1) AND (sas.CompetencyGroupID = 4) AND (sar.DelegateUserID = ca.UserID)) AS [Technical proficiency - Confidence],
                  (SELECT AVG(sar.Result) AS AvgConfidence
                  FROM    SelfAssessmentResults AS sar INNER JOIN
                               Competencies AS co ON sar.CompetencyID = co.ID INNER JOIN
                               SelfAssessmentStructure AS sas ON co.ID = sas.CompetencyID
-                 WHERE (sar.AssessmentQuestionID = 2) AND (sas.CompetencyGroupID = 4) AND (sar.CandidateID = ca.CandidateID)) AS [Technical proficiency - Relevance],
+                 WHERE (sar.AssessmentQuestionID = 2) AND (sas.CompetencyGroupID = 4) AND (sar.DelegateUserID = ca.UserID)) AS [Technical proficiency - Relevance],
                  (SELECT AVG(sar.Result) AS AvgConfidence
                  FROM    SelfAssessmentResults AS sar INNER JOIN
                               Competencies AS co ON sar.CompetencyID = co.ID INNER JOIN
                               SelfAssessmentStructure AS sas ON co.ID = sas.CompetencyID
-                 WHERE (sar.AssessmentQuestionID = 1) AND (sas.CompetencyGroupID = 5) AND (sar.CandidateID = ca.CandidateID)) AS [Creation, innovation and research - Confidence],
+                 WHERE (sar.AssessmentQuestionID = 1) AND (sas.CompetencyGroupID = 5) AND (sar.DelegateUserID = ca.UserID)) AS [Creation, innovation and research - Confidence],
                  (SELECT AVG(sar.Result) AS AvgConfidence
                  FROM    SelfAssessmentResults AS sar INNER JOIN
                               Competencies AS co ON sar.CompetencyID = co.ID INNER JOIN
                               SelfAssessmentStructure AS sas ON co.ID = sas.CompetencyID
-                 WHERE (sar.AssessmentQuestionID = 2) AND (sas.CompetencyGroupID = 5) AND (sar.CandidateID = ca.CandidateID)) AS [Creation, innovation and research - Relevance],
+                 WHERE (sar.AssessmentQuestionID = 2) AND (sas.CompetencyGroupID = 5) AND (sar.DelegateUserID = ca.UserID)) AS [Creation, innovation and research - Relevance],
                  (SELECT AVG(sar.Result) AS AvgConfidence
                  FROM    SelfAssessmentResults AS sar INNER JOIN
                               Competencies AS co ON sar.CompetencyID = co.ID INNER JOIN
                               SelfAssessmentStructure AS sas ON co.ID = sas.CompetencyID
-                 WHERE (sar.AssessmentQuestionID = 1) AND (sas.CompetencyGroupID = 6) AND (sar.CandidateID = ca.CandidateID)) AS [Digital identity, wellbeing, safety and security - Confidence],
+                 WHERE (sar.AssessmentQuestionID = 1) AND (sas.CompetencyGroupID = 6) AND (sar.DelegateUserID = ca.UserID)) AS [Digital identity, wellbeing, safety and security - Confidence],
                  (SELECT AVG(sar.Result) AS AvgConfidence
                  FROM    SelfAssessmentResults AS sar INNER JOIN
                               Competencies AS co ON sar.CompetencyID = co.ID INNER JOIN
                               SelfAssessmentStructure AS sas ON co.ID = sas.CompetencyID
-                 WHERE (sar.AssessmentQuestionID = 2) AND (sas.CompetencyGroupID = 6) AND (sar.CandidateID = ca.CandidateID)) AS [Digital identity, wellbeing, safety and security - Relevance]
+                 WHERE (sar.AssessmentQuestionID = 2) AND (sas.CompetencyGroupID = 6) AND (sar.DelegateUserID = ca.UserID)) AS [Digital identity, wellbeing, safety and security - Relevance]
 FROM   Candidates AS ca INNER JOIN
-             CandidateAssessments AS caa ON ca.CandidateID = caa.CandidateID INNER JOIN
+             CandidateAssessments AS caa ON ca.UserID = caa.DelegateUserID INNER JOIN
              JobGroups AS jg ON ca.JobGroupID = jg.JobGroupID INNER JOIN
              Centres AS c ON ca.CentreID = c.CentreID INNER JOIN
              Regions AS r ON c.RegionID = r.RegionID
-WHERE (ca.Active = 1) AND (caa.SelfAssessmentID = 1)
-ORDER BY Region, Centre</CommandText>
+WHERE (ca.Active = 1) AND (caa.SelfAssessmentID = 1)</CommandText>
                     <Parameters />
                   </DbCommand>
                 </SelectCommand>
