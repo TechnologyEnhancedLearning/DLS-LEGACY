@@ -17620,21 +17620,21 @@ Namespace ITSPStatsTableAdapters
             Me._commandCollection = New Global.System.Data.SqlClient.SqlCommand(0) {}
             Me._commandCollection(0) = New Global.System.Data.SqlClient.SqlCommand()
             Me._commandCollection(0).Connection = Me.Connection
-            Me._commandCollection(0).CommandText = "SELECT        (SELECT        COUNT(CandidateID) AS Submitted"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                   "& _ 
-                "       FROM            CandidateAssessments"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                          WHERE    "& _ 
-                "    (SelfAssessmentID = 1) AND (SubmittedDate IS NOT NULL)) AS Submitted,"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"     "& _ 
-                "                        (SELECT        COUNT(CandidateID) AS Review"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"           "& _ 
-                "                    FROM            CandidateAssessments AS CandidateAssessments"& _ 
-                "_2"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                               WHERE        (SelfAssessmentID = 1) AND (User"& _ 
-                "Bookmark LIKE N'/LearningPortal/SelfAssessment/1/Review') AND (SubmittedDate IS "& _ 
-                "NULL)) AS Reviewing,"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                             (SELECT        COUNT(Candidat"& _ 
-                "eID) AS Incomplete"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                               FROM            CandidateAsse"& _ 
-                "ssments AS CandidateAssessments_1"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                               WHERE        ("& _ 
-                "SelfAssessmentID = 1) AND (UserBookmark NOT LIKE N'/LearningPortal/SelfAssessmen"& _ 
-                "t/1/Filtered%' OR"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                                                         User"& _ 
-                "Bookmark IS NULL) AND (UserBookmark NOT LIKE N'/LearningPortal/SelfAssessment/1/"& _ 
-                "Review' OR"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                                                         UserBookmar"& _ 
-                "k IS NULL) AND (SubmittedDate IS NULL)) AS Incomplete"
+            Me._commandCollection(0).CommandText = "SELECT        (SELECT        COUNT(DelegateUserID) AS Submitted"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                "& _ 
+                "          FROM            CandidateAssessments"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                          WHERE "& _ 
+                "       (SelfAssessmentID = 1) AND (SubmittedDate IS NOT NULL)) AS Submitted,"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"  "& _ 
+                "                           (SELECT        COUNT(DelegateUserID) AS Review"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"     "& _ 
+                "                          FROM            CandidateAssessments AS CandidateAsses"& _ 
+                "sments_2"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                               WHERE        (SelfAssessmentID = 1) AND"& _ 
+                " (UserBookmark LIKE N'/LearningPortal/SelfAssessment/1/Review') AND (SubmittedDa"& _ 
+                "te IS NULL)) AS Reviewing,"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                             (SELECT        COUNT(De"& _ 
+                "legateUserID) AS Incomplete"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                               FROM            Cand"& _ 
+                "idateAssessments AS CandidateAssessments_1"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                               WHERE"& _ 
+                "        (SelfAssessmentID = 1) AND (UserBookmark NOT LIKE N'/LearningPortal/Self"& _ 
+                "Assessment/1/Filtered%' OR"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                                                    "& _ 
+                "     UserBookmark IS NULL) AND (UserBookmark NOT LIKE N'/LearningPortal/SelfAsse"& _ 
+                "ssment/1/Review' OR"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                                                         Us"& _ 
+                "erBookmark IS NULL) AND (SubmittedDate IS NULL)) AS Incomplete"
             Me._commandCollection(0).CommandType = Global.System.Data.CommandType.Text
         End Sub
         
