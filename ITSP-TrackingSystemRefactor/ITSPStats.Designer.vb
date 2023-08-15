@@ -17620,21 +17620,21 @@ Namespace ITSPStatsTableAdapters
             Me._commandCollection = New Global.System.Data.SqlClient.SqlCommand(0) {}
             Me._commandCollection(0) = New Global.System.Data.SqlClient.SqlCommand()
             Me._commandCollection(0).Connection = Me.Connection
-            Me._commandCollection(0).CommandText = "SELECT        (SELECT        COUNT(CandidateID) AS Submitted"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                   "& _ 
-                "       FROM            CandidateAssessments"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                          WHERE    "& _ 
-                "    (SelfAssessmentID = 1) AND (SubmittedDate IS NOT NULL)) AS Submitted,"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"     "& _ 
-                "                        (SELECT        COUNT(CandidateID) AS Review"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"           "& _ 
-                "                    FROM            CandidateAssessments AS CandidateAssessments"& _ 
-                "_2"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                               WHERE        (SelfAssessmentID = 1) AND (User"& _ 
-                "Bookmark LIKE N'/LearningPortal/SelfAssessment/1/Review') AND (SubmittedDate IS "& _ 
-                "NULL)) AS Reviewing,"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                             (SELECT        COUNT(Candidat"& _ 
-                "eID) AS Incomplete"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                               FROM            CandidateAsse"& _ 
-                "ssments AS CandidateAssessments_1"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                               WHERE        ("& _ 
-                "SelfAssessmentID = 1) AND (UserBookmark NOT LIKE N'/LearningPortal/SelfAssessmen"& _ 
-                "t/1/Filtered%' OR"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                                                         User"& _ 
-                "Bookmark IS NULL) AND (UserBookmark NOT LIKE N'/LearningPortal/SelfAssessment/1/"& _ 
-                "Review' OR"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                                                         UserBookmar"& _ 
-                "k IS NULL) AND (SubmittedDate IS NULL)) AS Incomplete"
+            Me._commandCollection(0).CommandText = "SELECT        (SELECT        COUNT(DelegateUserID) AS Submitted"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                "& _ 
+                "          FROM            CandidateAssessments"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                          WHERE "& _ 
+                "       (SelfAssessmentID = 1) AND (SubmittedDate IS NOT NULL)) AS Submitted,"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"  "& _ 
+                "                           (SELECT        COUNT(DelegateUserID) AS Review"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"     "& _ 
+                "                          FROM            CandidateAssessments AS CandidateAsses"& _ 
+                "sments_2"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                               WHERE        (SelfAssessmentID = 1) AND"& _ 
+                " (UserBookmark LIKE N'/LearningPortal/SelfAssessment/1/Review') AND (SubmittedDa"& _ 
+                "te IS NULL)) AS Reviewing,"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                             (SELECT        COUNT(De"& _ 
+                "legateUserID) AS Incomplete"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                               FROM            Cand"& _ 
+                "idateAssessments AS CandidateAssessments_1"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                               WHERE"& _ 
+                "        (SelfAssessmentID = 1) AND (UserBookmark NOT LIKE N'/LearningPortal/Self"& _ 
+                "Assessment/1/Filtered%' OR"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                                                    "& _ 
+                "     UserBookmark IS NULL) AND (UserBookmark NOT LIKE N'/LearningPortal/SelfAsse"& _ 
+                "ssment/1/Review' OR"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                                                         Us"& _ 
+                "erBookmark IS NULL) AND (SubmittedDate IS NULL)) AS Incomplete"
             Me._commandCollection(0).CommandType = Global.System.Data.CommandType.Text
         End Sub
         
@@ -18270,79 +18270,77 @@ Namespace ITSPStatsTableAdapters
                 " Competencies AS co ON sar.CompetencyID = co.ID INNER JOIN"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                    "& _ 
                 "          SelfAssessmentStructure AS sas ON co.ID = sas.CompetencyID"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"          "& _ 
                 "       WHERE (sar.AssessmentQuestionID = 1) AND (sas.CompetencyGroupID = 1) AND "& _ 
-                "(sar.CandidateID = ca.CandidateID)) AS [Data, information and content - Confiden"& _ 
-                "ce],"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                 (SELECT AVG(sar.Result) AS AvgConfidence"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"               "& _ 
-                "  FROM    SelfAssessmentResults AS sar INNER JOIN"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                             "& _ 
-                " Competencies AS co ON sar.CompetencyID = co.ID INNER JOIN"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                    "& _ 
-                "          SelfAssessmentStructure AS sas ON co.ID = sas.CompetencyID"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"          "& _ 
-                "       WHERE (sar.AssessmentQuestionID = 2) AND (sas.CompetencyGroupID = 1) AND "& _ 
-                "(sar.CandidateID = ca.CandidateID)) AS [Data, information and content - Relevanc"& _ 
-                "e],"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                 (SELECT AVG(sar.Result) AS AvgConfidence"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                "& _ 
-                " FROM    SelfAssessmentResults AS sar INNER JOIN"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                              "& _ 
-                "Competencies AS co ON sar.CompetencyID = co.ID INNER JOIN"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                     "& _ 
-                "         SelfAssessmentStructure AS sas ON co.ID = sas.CompetencyID"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"           "& _ 
-                "      WHERE (sar.AssessmentQuestionID = 1) AND (sas.CompetencyGroupID = 2) AND ("& _ 
-                "sar.CandidateID = ca.CandidateID)) AS [Teaching, learning and self-development -"& _ 
-                " Confidence],"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                 (SELECT AVG(sar.Result) AS AvgConfidence"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"      "& _ 
-                "           FROM    SelfAssessmentResults AS sar INNER JOIN"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                    "& _ 
-                "          Competencies AS co ON sar.CompetencyID = co.ID INNER JOIN"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"           "& _ 
-                "                   SelfAssessmentStructure AS sas ON co.ID = sas.CompetencyID"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&" "& _ 
-                "                WHERE (sar.AssessmentQuestionID = 2) AND (sas.CompetencyGroupID "& _ 
-                "= 2) AND (sar.CandidateID = ca.CandidateID)) AS [Teaching, learning and self-dev"& _ 
-                "elopment - Relevance],"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                 (SELECT AVG(sar.Result) AS AvgConfidenc"& _ 
+                "(sar.DelegateUserID = ca.UserID)) AS [Data, information and content - Confidence"& _ 
+                "],"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                 (SELECT AVG(sar.Result) AS AvgConfidence"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                 "& _ 
+                "FROM    SelfAssessmentResults AS sar INNER JOIN"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                              C"& _ 
+                "ompetencies AS co ON sar.CompetencyID = co.ID INNER JOIN"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                      "& _ 
+                "        SelfAssessmentStructure AS sas ON co.ID = sas.CompetencyID"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"            "& _ 
+                "     WHERE (sar.AssessmentQuestionID = 2) AND (sas.CompetencyGroupID = 1) AND (s"& _ 
+                "ar.DelegateUserID = ca.UserID)) AS [Data, information and content - Relevance],"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                 (SELECT AVG(sar.Result) AS AvgConfidence"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                 FRO"& _ 
+                "M    SelfAssessmentResults AS sar INNER JOIN"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                              Comp"& _ 
+                "etencies AS co ON sar.CompetencyID = co.ID INNER JOIN"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         "& _ 
+                "     SelfAssessmentStructure AS sas ON co.ID = sas.CompetencyID"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"               "& _ 
+                "  WHERE (sar.AssessmentQuestionID = 1) AND (sas.CompetencyGroupID = 2) AND (sar."& _ 
+                "DelegateUserID = ca.UserID)) AS [Teaching, learning and self-development - Confi"& _ 
+                "dence],"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                 (SELECT AVG(sar.Result) AS AvgConfidence"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"            "& _ 
+                "     FROM    SelfAssessmentResults AS sar INNER JOIN"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                          "& _ 
+                "    Competencies AS co ON sar.CompetencyID = co.ID INNER JOIN"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                 "& _ 
+                "             SelfAssessmentStructure AS sas ON co.ID = sas.CompetencyID"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"       "& _ 
+                "          WHERE (sar.AssessmentQuestionID = 2) AND (sas.CompetencyGroupID = 2) A"& _ 
+                "ND (sar.DelegateUserID = ca.UserID)) AS [Teaching, learning and self-development"& _ 
+                " - Relevance],"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                 (SELECT AVG(sar.Result) AS AvgConfidence"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"     "& _ 
+                "            FROM    SelfAssessmentResults AS sar INNER JOIN"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                   "& _ 
+                "           Competencies AS co ON sar.CompetencyID = co.ID INNER JOIN"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"          "& _ 
+                "                    SelfAssessmentStructure AS sas ON co.ID = sas.CompetencyID"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)& _ 
+                "                 WHERE (sar.AssessmentQuestionID = 1) AND (sas.CompetencyGroupID"& _ 
+                " = 3) AND (sar.DelegateUserID = ca.UserID)) AS [Communication, collaboration and"& _ 
+                " participation - Confidence],"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                 (SELECT AVG(sar.Result) AS AvgCo"& _ 
+                "nfidence"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                 FROM    SelfAssessmentResults AS sar INNER JOIN"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"    "& _ 
+                "                          Competencies AS co ON sar.CompetencyID = co.ID INNER J"& _ 
+                "OIN"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                              SelfAssessmentStructure AS sas ON co.ID = sas"& _ 
+                ".CompetencyID"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                 WHERE (sar.AssessmentQuestionID = 2) AND (sas.Co"& _ 
+                "mpetencyGroupID = 3) AND (sar.DelegateUserID = ca.UserID)) AS [Communication, co"& _ 
+                "llaboration and participation - Relevance],"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                 (SELECT AVG(sar.Re"& _ 
+                "sult) AS AvgConfidence"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                 FROM    SelfAssessmentResults AS sar IN"& _ 
+                "NER JOIN"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                              Competencies AS co ON sar.CompetencyID ="& _ 
+                " co.ID INNER JOIN"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                              SelfAssessmentStructure AS sas "& _ 
+                "ON co.ID = sas.CompetencyID"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                 WHERE (sar.AssessmentQuestionID = "& _ 
+                "1) AND (sas.CompetencyGroupID = 4) AND (sar.DelegateUserID = ca.UserID)) AS [Tec"& _ 
+                "hnical proficiency - Confidence],"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                 (SELECT AVG(sar.Result) AS A"& _ 
+                "vgConfidence"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                 FROM    SelfAssessmentResults AS sar INNER JOIN"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)& _ 
+                "                              Competencies AS co ON sar.CompetencyID = co.ID INN"& _ 
+                "ER JOIN"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                              SelfAssessmentStructure AS sas ON co.ID ="& _ 
+                " sas.CompetencyID"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                 WHERE (sar.AssessmentQuestionID = 2) AND (sa"& _ 
+                "s.CompetencyGroupID = 4) AND (sar.DelegateUserID = ca.UserID)) AS [Technical pro"& _ 
+                "ficiency - Relevance],"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                 (SELECT AVG(sar.Result) AS AvgConfidenc"& _ 
                 "e"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                 FROM    SelfAssessmentResults AS sar INNER JOIN"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"           "& _ 
                 "                   Competencies AS co ON sar.CompetencyID = co.ID INNER JOIN"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"  "& _ 
                 "                            SelfAssessmentStructure AS sas ON co.ID = sas.Compet"& _ 
                 "encyID"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                 WHERE (sar.AssessmentQuestionID = 1) AND (sas.Competenc"& _ 
-                "yGroupID = 3) AND (sar.CandidateID = ca.CandidateID)) AS [Communication, collabo"& _ 
-                "ration and participation - Confidence],"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                 (SELECT AVG(sar.Result"& _ 
-                ") AS AvgConfidence"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                 FROM    SelfAssessmentResults AS sar INNER "& _ 
-                "JOIN"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                              Competencies AS co ON sar.CompetencyID = co."& _ 
-                "ID INNER JOIN"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                              SelfAssessmentStructure AS sas ON c"& _ 
-                "o.ID = sas.CompetencyID"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                 WHERE (sar.AssessmentQuestionID = 2) A"& _ 
-                "ND (sas.CompetencyGroupID = 3) AND (sar.CandidateID = ca.CandidateID)) AS [Commu"& _ 
-                "nication, collaboration and participation - Relevance],"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                 (SELEC"& _ 
-                "T AVG(sar.Result) AS AvgConfidence"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                 FROM    SelfAssessmentResul"& _ 
-                "ts AS sar INNER JOIN"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                              Competencies AS co ON sar.Co"& _ 
-                "mpetencyID = co.ID INNER JOIN"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                              SelfAssessmentStruc"& _ 
-                "ture AS sas ON co.ID = sas.CompetencyID"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                 WHERE (sar.AssessmentQ"& _ 
-                "uestionID = 1) AND (sas.CompetencyGroupID = 4) AND (sar.CandidateID = ca.Candida"& _ 
-                "teID)) AS [Technical proficiency - Confidence],"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                 (SELECT AVG(sa"& _ 
-                "r.Result) AS AvgConfidence"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                 FROM    SelfAssessmentResults AS sa"& _ 
-                "r INNER JOIN"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                              Competencies AS co ON sar.Competency"& _ 
-                "ID = co.ID INNER JOIN"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                              SelfAssessmentStructure AS "& _ 
-                "sas ON co.ID = sas.CompetencyID"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                 WHERE (sar.AssessmentQuestionI"& _ 
-                "D = 2) AND (sas.CompetencyGroupID = 4) AND (sar.CandidateID = ca.CandidateID)) A"& _ 
-                "S [Technical proficiency - Relevance],"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                 (SELECT AVG(sar.Result)"& _ 
-                " AS AvgConfidence"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                 FROM    SelfAssessmentResults AS sar INNER J"& _ 
-                "OIN"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                              Competencies AS co ON sar.CompetencyID = co.I"& _ 
-                "D INNER JOIN"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                              SelfAssessmentStructure AS sas ON co"& _ 
-                ".ID = sas.CompetencyID"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                 WHERE (sar.AssessmentQuestionID = 1) AN"& _ 
-                "D (sas.CompetencyGroupID = 5) AND (sar.CandidateID = ca.CandidateID)) AS [Creati"& _ 
-                "on, innovation and research - Confidence],"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                 (SELECT AVG(sar.Res"& _ 
+                "yGroupID = 5) AND (sar.DelegateUserID = ca.UserID)) AS [Creation, innovation and"& _ 
+                " research - Confidence],"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                 (SELECT AVG(sar.Result) AS AvgConfide"& _ 
+                "nce"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                 FROM    SelfAssessmentResults AS sar INNER JOIN"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"         "& _ 
+                "                     Competencies AS co ON sar.CompetencyID = co.ID INNER JOIN"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)& _ 
+                "                              SelfAssessmentStructure AS sas ON co.ID = sas.Comp"& _ 
+                "etencyID"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                 WHERE (sar.AssessmentQuestionID = 2) AND (sas.Compete"& _ 
+                "ncyGroupID = 5) AND (sar.DelegateUserID = ca.UserID)) AS [Creation, innovation a"& _ 
+                "nd research - Relevance],"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                 (SELECT AVG(sar.Result) AS AvgConfid"& _ 
+                "ence"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                 FROM    SelfAssessmentResults AS sar INNER JOIN"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"        "& _ 
+                "                      Competencies AS co ON sar.CompetencyID = co.ID INNER JOIN"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                              SelfAssessmentStructure AS sas ON co.ID = sas.Com"& _ 
+                "petencyID"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                 WHERE (sar.AssessmentQuestionID = 1) AND (sas.Compet"& _ 
+                "encyGroupID = 6) AND (sar.DelegateUserID = ca.UserID)) AS [Digital identity, wel"& _ 
+                "lbeing, safety and security - Confidence],"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                 (SELECT AVG(sar.Res"& _ 
                 "ult) AS AvgConfidence"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                 FROM    SelfAssessmentResults AS sar INN"& _ 
                 "ER JOIN"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                              Competencies AS co ON sar.CompetencyID = "& _ 
                 "co.ID INNER JOIN"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                              SelfAssessmentStructure AS sas O"& _ 
                 "N co.ID = sas.CompetencyID"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                 WHERE (sar.AssessmentQuestionID = 2"& _ 
-                ") AND (sas.CompetencyGroupID = 5) AND (sar.CandidateID = ca.CandidateID)) AS [Cr"& _ 
-                "eation, innovation and research - Relevance],"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                 (SELECT AVG(sar."& _ 
-                "Result) AS AvgConfidence"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                 FROM    SelfAssessmentResults AS sar "& _ 
-                "INNER JOIN"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                              Competencies AS co ON sar.CompetencyID"& _ 
-                " = co.ID INNER JOIN"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                              SelfAssessmentStructure AS sa"& _ 
-                "s ON co.ID = sas.CompetencyID"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                 WHERE (sar.AssessmentQuestionID "& _ 
-                "= 1) AND (sas.CompetencyGroupID = 6) AND (sar.CandidateID = ca.CandidateID)) AS "& _ 
-                "[Digital identity, wellbeing, safety and security - Confidence],"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"              "& _ 
-                "   (SELECT AVG(sar.Result) AS AvgConfidence"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                 FROM    SelfAssess"& _ 
-                "mentResults AS sar INNER JOIN"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                              Competencies AS co "& _ 
-                "ON sar.CompetencyID = co.ID INNER JOIN"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                              SelfAssess"& _ 
-                "mentStructure AS sas ON co.ID = sas.CompetencyID"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                 WHERE (sar.As"& _ 
-                "sessmentQuestionID = 2) AND (sas.CompetencyGroupID = 6) AND (sar.CandidateID = c"& _ 
-                "a.CandidateID)) AS [Digital identity, wellbeing, safety and security - Relevance"& _ 
-                "]"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"FROM   Candidates AS ca INNER JOIN"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"             CandidateAssessments AS caa "& _ 
-                "ON ca.CandidateID = caa.CandidateID INNER JOIN"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"             JobGroups AS jg ON "& _ 
-                "ca.JobGroupID = jg.JobGroupID INNER JOIN"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"             Centres AS c ON ca.Centre"& _ 
-                "ID = c.CentreID INNER JOIN"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"             Regions AS r ON c.RegionID = r.RegionID"& _ 
-                ""&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"WHERE (ca.Active = 1) AND (caa.SelfAssessmentID = 1)"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"ORDER BY Region, Centre"
+                ") AND (sas.CompetencyGroupID = 6) AND (sar.DelegateUserID = ca.UserID)) AS [Digi"& _ 
+                "tal identity, wellbeing, safety and security - Relevance]"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"FROM   Candidates AS "& _ 
+                "ca INNER JOIN"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"             CandidateAssessments AS caa ON ca.UserID = caa.Deleg"& _ 
+                "ateUserID INNER JOIN"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"             JobGroups AS jg ON ca.JobGroupID = jg.JobGrou"& _ 
+                "pID INNER JOIN"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"             Centres AS c ON ca.CentreID = c.CentreID INNER JOIN"& _ 
+                ""&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"             Regions AS r ON c.RegionID = r.RegionID"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"WHERE (ca.Active = 1) AN"& _ 
+                "D (caa.SelfAssessmentID = 1)"
             Me._commandCollection(0).CommandType = Global.System.Data.CommandType.Text
         End Sub
         
