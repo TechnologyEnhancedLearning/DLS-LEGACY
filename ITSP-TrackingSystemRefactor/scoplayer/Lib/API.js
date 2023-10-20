@@ -67,7 +67,10 @@ API.LMSFinish = function(param) {
 	return API.$0.LMSFinish(param);
 }
 
-API.LMSGetValue = function(element) { return API.$0.LMSGetValue(element); }
+API.LMSGetValue = function (element) {
+	return DLSGetValue(element);
+	return API.$0.LMSGetValue(element);
+}
 API.LMSSetValue = function (element, value) {
     ITSPSetValue(element, value);
     return API.$0.LMSSetValue(element, value);
@@ -128,6 +131,19 @@ function StoredSuccess(v)
 	if (v !== "") {
 		window.parent.closeMpe();
     }
+}
+async function DLSGetValue(e) {
+	const result = '';
+	if (e === "cmi.suspend_data") {
+		var data = { action: "StoreASPAssessNoSession", CandidateID: vcandidate, CustomisationID: vcust, Version: vversion, SectionID: vsection, Score: s }
+		result = await $.ajax({
+			type: "GET",
+			url: trackurl,
+			dataType: String
+		});
+	} 
+	return result;
+	}
 }
 function ITSPSetValue(e, v) {
 //	if (e === "cmi.core.session_time") {
