@@ -223,6 +223,12 @@ function ITSPSetValue(e, v) {
 				CandidateID: vcandidate,
 				suspendData: v
 			}
+			$.ajax({
+				type: "GET",
+				url: trackurl,
+				data: data,
+				dataType: String
+			});
 		}
 	}
 
