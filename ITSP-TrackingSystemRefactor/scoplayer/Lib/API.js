@@ -231,7 +231,7 @@ function ITSPSetValue(e, v) {
 			});
 		}
 	}
-	if (e === "cmi.lesson_location") {
+	if (e === "cmi.core.lesson_location") {
 		if (v.length > 0) {
 			var data = {
 				action: "StoreLessonLocation",
@@ -284,7 +284,7 @@ function DLSGetValue(e) {
 			return result;
 		})
 	}
-	else if (e === "cmi.lesson_location") {
+	else if (e === "cmi.core.lesson_location") {
 		var data = {
 			action: "GetLessonLocation",
 			progressId: vprog,
