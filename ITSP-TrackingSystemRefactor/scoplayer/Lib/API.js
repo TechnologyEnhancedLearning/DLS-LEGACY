@@ -67,7 +67,7 @@ API.LMSFinish = function(param) {
 	return API.$0.LMSFinish(param);
 }
 
-API.LMSGetValue = function(element) { return API.$0.LMSGetValue(element); }
+API.LMSGetValue = function (element) { return DLSGetValue(element); }
 API.LMSSetValue = function (element, value) {
     ITSPSetValue(element, value);
     return API.$0.LMSSetValue(element, value);
@@ -231,8 +231,87 @@ function ITSPSetValue(e, v) {
 			});
 		}
 	}
-
+	if (e === "cmi.lesson_location") {
+		if (v.length > 0) {
+			var data = {
+				action: "StoreLessonLocation",
+				progressId: vprog,
+				TutorialID: vtutorialid,
+				CustomisationID: vcust,
+				CandidateID: vcandidate,
+				lessonLocation: v
+			}
+			$.ajax({
+				type: "GET",
+				url: trackurl,
+				data: data,
+				dataType: String
+			});
+		}
+	}
 }
+function DLSGetValue(e) {
+	var result = '';
+	if (e === "cmi.suspend_data") {
+		var data = {
+			action: "GetSuspendData",
+			progressId: vprog,
+			TutorialID: vtutorialid,
+			CandidateID: vcandidate,
+			CustomisationID: vcust
+		};
+		// Create a new Promise
+		var promise = new Promise(function (resolve, reject) {
+			$.ajax({
+				type: "GET",
+				url: trackurl,
+				data: data,
+				success: function (response) {
+					resolve(response);
+				},
+				error: function (error) {
+					reject(error);
+				}
+			});
+		});
+
+		// Use then() to handle the asynchronous operation
+		promise.then(function (response) {
+			result = response;
+			return result;
+		}).catch(function (error) {
+			console.error("Error fetching data:", error);
+			return result;
+		})
+	}
+	else if (e === "cmi.lesson_location") {
+		var data = {
+			action: "GetLessonLocation",
+			progressId: vprog,
+			TutorialID: vtutorialid,
+			CandidateID: vcandidate,
+			CustomisationID: vcust
+		};
+		// Create a new Promise
+		var promise = new Promise(function (resolve, reject) {
+			$.ajax({
+				type: "GET",
+				url: trackurl,
+				data: data,
+				success: function (response) {
+					resolve(response);
+				},
+				error: function (error) {
+					reject(error);
+				}
+			});
+		});
+	}
+	else {
+		return result;
+	};
+}
+
 function saveSuccess(d) {
 	//alert('erm');
 }
