@@ -251,64 +251,17 @@ function ITSPSetValue(e, v) {
 	}
 }
 function DLSGetValue(e) {
-	var result = '';
 	if (e === "cmi.suspend_data") {
-		var data = {
-			action: "GetSuspendData",
-			progressId: vprog,
-			TutorialID: vtutorialid,
-			CandidateID: vcandidate,
-			CustomisationID: vcust
-		};
-		// Create a new Promise
-		var promise = new Promise(function (resolve, reject) {
-			$.ajax({
-				type: "GET",
-				url: trackurl,
-				data: data,
-				success: function (response) {
-					resolve(response);
-				},
-				error: function (error) {
-					reject(error);
-				}
-			});
-		});
-
-		// Use then() to handle the asynchronous operation
-		promise.then(function (response) {
-			result = response;
-			return result;
-		}).catch(function (error) {
-			console.error("Error fetching data:", error);
-			return result;
-		})
+		var r = document.getElementById('hfSuspendData').value;
+		return r || '';
 	}
 	else if (e === "cmi.core.lesson_location") {
-		var data = {
-			action: "GetLessonLocation",
-			progressId: vprog,
-			TutorialID: vtutorialid,
-			CandidateID: vcandidate,
-			CustomisationID: vcust
-		};
-		// Create a new Promise
-		var promise = new Promise(function (resolve, reject) {
-			$.ajax({
-				type: "GET",
-				url: trackurl,
-				data: data,
-				success: function (response) {
-					resolve(response);
-				},
-				error: function (error) {
-					reject(error);
-				}
-			});
-		});
+		var r = document.getElementById('hfLessonLocation').value;
+		return r || '';
 	}
 	else {
-		return result;
+		var r = API.$0.LMSGetValue(e);
+		return r; 
 	};
 }
 
