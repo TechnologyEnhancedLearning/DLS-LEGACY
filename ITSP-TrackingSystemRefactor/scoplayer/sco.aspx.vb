@@ -40,6 +40,14 @@
             Else
                 Dim taq As New LearnMenuTableAdapters.QueriesTableAdapter
                 sProgressID = taq.GetProgressID(CInt(sCandidateID), CInt(sCustomisationID))
+                If sTutorialID > 0 And sProgressID > 0 Then
+                    Dim taAspProgress As New LearnMenuTableAdapters.aspProgressTableAdapter
+                    Dim tAspProgress = taAspProgress.GetData(sTutorialID, sProgressID)
+                    If tAspProgress.Rows.Count = 1 Then
+                        hfSuspendData.Value = tAspProgress.First.SuspendData()
+                        hfLessonLocation.Value = tAspProgress.First.LessonLocation()
+                    End If
+                End If
             End If
             hfcandidate.Value = sCandidateID
             hfcustomisation.Value = sCustomisationID

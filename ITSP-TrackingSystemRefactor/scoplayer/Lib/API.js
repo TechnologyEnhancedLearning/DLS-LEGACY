@@ -47,7 +47,7 @@ API.LMSFinish = function(param) {
         var jstring = JSON.stringify(objson);
         var data = { action: "StoreDiagnosticJson", ProgressID: vprog, DiagnosticOutcome: jstring }
         $.ajax({
-            type: "POST",
+            type: "GET",
             url: trackurl,
             data: data,
             success: saveSuccess(data),
@@ -57,7 +57,7 @@ API.LMSFinish = function(param) {
     if (vtype === "pl" && s >= 1) {
         var data = { action: "StoreASPAssessNoSession", CandidateID: vcandidate, CustomisationID: vcust, Version: vversion, SectionID: vsection, Score: s }
         $.ajax({
-            type: "POST",
+            type: "GET",
             url: trackurl,
             data: data,
             dataType: String
@@ -67,7 +67,7 @@ API.LMSFinish = function(param) {
 	return API.$0.LMSFinish(param);
 }
 
-API.LMSGetValue = function(element) { return API.$0.LMSGetValue(element); }
+API.LMSGetValue = function (element) { return DLSGetValue(element); }
 API.LMSSetValue = function (element, value) {
     ITSPSetValue(element, value);
     return API.$0.LMSSetValue(element, value);
@@ -159,7 +159,7 @@ function ITSPSetValue(e, v) {
 	        var jstring = JSON.stringify(objson);
 	        var data = { action: "StoreDiagnosticJson", ProgressID: vprog, DiagnosticOutcome: jstring }
 	        $.ajax({
-	            type: "POST",
+	            type: "GET",
 	            url: trackurl,
 	            data: data,
 	            success: saveSuccess(data),
@@ -169,7 +169,7 @@ function ITSPSetValue(e, v) {
 	    if (vtype === "pl" && s >= 1) {
 	        var data = { action: "StoreASPAssessNoSession", CandidateID: vcandidate, CustomisationID: vcust, Version: vversion, SectionID: vsection, Score: s }
 	        $.ajax({
-	            type: "POST",
+	            type: "GET",
 	            url: trackurl,
 	            data: data,
 				success: StoredSuccess(v),
@@ -206,15 +206,65 @@ function ITSPSetValue(e, v) {
 			var data = { action: "StoreASPProgressV2", TutorialStatus: stat, TutorialTime: fixedtime, ProgressID: vprog, CandidateID: vcandidate, Version: vversion, CustomisationID: vcust, TutorialID: vtutorialid }
         }
 		$.ajax({
-			type: "POST",
+			type: "GET",
 			url: trackurl,
 			data: data,
 			success: saveSuccess(data),
 			dataType: String
 		});
 	}
-
+	if (e === "cmi.suspend_data") {
+		if (v.length > 0) {
+			var data = {
+				action: "StoreSuspendData",
+				progressId: vprog,
+				TutorialID: vtutorialid,
+				CustomisationID: vcust,
+				CandidateID: vcandidate,
+				suspendData: v
+			}
+			$.ajax({
+				type: "GET",
+				url: trackurl,
+				data: data,
+				dataType: String
+			});
+		}
+	}
+	if (e === "cmi.core.lesson_location") {
+		if (v.length > 0) {
+			var data = {
+				action: "StoreLessonLocation",
+				progressId: vprog,
+				TutorialID: vtutorialid,
+				CustomisationID: vcust,
+				CandidateID: vcandidate,
+				lessonLocation: v
+			}
+			$.ajax({
+				type: "GET",
+				url: trackurl,
+				data: data,
+				dataType: String
+			});
+		}
+	}
 }
+function DLSGetValue(e) {
+	if (e === "cmi.suspend_data") {
+		var r = document.getElementById('hfSuspendData').value;
+		return r || '';
+	}
+	else if (e === "cmi.core.lesson_location") {
+		var r = document.getElementById('hfLessonLocation').value;
+		return r || '';
+	}
+	else {
+		var r = API.$0.LMSGetValue(e);
+		return r; 
+	};
+}
+
 function saveSuccess(d) {
 	//alert('erm');
 }
