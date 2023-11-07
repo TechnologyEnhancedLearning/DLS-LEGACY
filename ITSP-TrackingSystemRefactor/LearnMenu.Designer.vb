@@ -20897,11 +20897,11 @@ Partial Public Class LearnMenu
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
         Public Property SuspendData() As String
             Get
-                Try 
+                If Me.IsSuspendDataNull Then
+                    Return String.Empty
+                Else
                     Return CType(Me(Me.tableaspProgress.SuspendDataColumn),String)
-                Catch e As Global.System.InvalidCastException
-                    Throw New Global.System.Data.StrongTypingException("The value for column 'SuspendData' in table 'aspProgress' is DBNull.", e)
-                End Try
+                End If
             End Get
             Set
                 Me(Me.tableaspProgress.SuspendDataColumn) = value
@@ -20912,11 +20912,11 @@ Partial Public Class LearnMenu
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
         Public Property LessonLocation() As String
             Get
-                Try 
+                If Me.IsLessonLocationNull Then
+                    Return String.Empty
+                Else
                     Return CType(Me(Me.tableaspProgress.LessonLocationColumn),String)
-                Catch e As Global.System.InvalidCastException
-                    Throw New Global.System.Data.StrongTypingException("The value for column 'LessonLocation' in table 'aspProgress' is DBNull.", e)
-                End Try
+                End If
             End Get
             Set
                 Me(Me.tableaspProgress.LessonLocationColumn) = value

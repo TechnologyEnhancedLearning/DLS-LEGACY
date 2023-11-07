@@ -1083,6 +1083,7 @@
     <Content Include="product.aspx" />
     <Content Include="register.aspx" />
     <Content Include="reset.aspx" />
+    <Content Include="scoplayer\blank.html" />
     <Content Include="Scripts\adminreg.js" />
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
