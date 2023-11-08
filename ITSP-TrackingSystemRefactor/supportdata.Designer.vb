@@ -7790,22 +7790,18 @@ Namespace supportdataTableAdapters
             Me._commandCollection(0).CommandType = Global.System.Data.CommandType.Text
             Me._commandCollection(0).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@TicketID", Global.System.Data.SqlDbType.Int, 4, Global.System.Data.ParameterDirection.Input, 0, 0, "TicketID", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
             Me._commandCollection(0).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@CentreID", Global.System.Data.SqlDbType.Int, 4, Global.System.Data.ParameterDirection.Input, 0, 0, "CentreID", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._commandCollection(0).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IsSuperAdmin", Global.System.Data.SqlDbType.VarChar, 1024, Global.System.Data.ParameterDirection.Input, 0, 0, "", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._commandCollection(0).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IsSuperAdmin", Global.System.Data.SqlDbType.Bit, 1024, Global.System.Data.ParameterDirection.Input, 0, 0, "", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0"),  _
          Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
          Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.[Select], true)>  _
-        Public Overloads Overridable Function GetData(ByVal TicketID As Integer, ByVal CentreID As Integer, ByVal IsSuperAdmin As String) As supportdata.TicketDetailDataTable
+        Public Overloads Overridable Function GetData(ByVal TicketID As Integer, ByVal CentreID As Integer, ByVal IsSuperAdmin As Boolean) As supportdata.TicketDetailDataTable
             Me.Adapter.SelectCommand = Me.CommandCollection(0)
             Me.Adapter.SelectCommand.Parameters(0).Value = CType(TicketID,Integer)
             Me.Adapter.SelectCommand.Parameters(1).Value = CType(CentreID,Integer)
-            If (IsSuperAdmin Is Nothing) Then
-                Throw New Global.System.ArgumentNullException("IsSuperAdmin")
-            Else
-                Me.Adapter.SelectCommand.Parameters(2).Value = CType(IsSuperAdmin,String)
-            End If
+            Me.Adapter.SelectCommand.Parameters(2).Value = CType(IsSuperAdmin,Boolean)
             Dim dataTable As supportdata.TicketDetailDataTable = New supportdata.TicketDetailDataTable()
             Me.Adapter.Fill(dataTable)
             Return dataTable
