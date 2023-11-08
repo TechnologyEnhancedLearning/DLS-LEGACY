@@ -2200,29 +2200,13 @@ Partial Public Class supportdata
         
         Private columnTicketCategoryID As Global.System.Data.DataColumn
         
-        Private columnBrowserID As Global.System.Data.DataColumn
-        
-        Private columnBrowserVersion As Global.System.Data.DataColumn
-        
-        Private columnOperatingSystemID As Global.System.Data.DataColumn
-        
-        Private columnDeviceTypeID As Global.System.Data.DataColumn
-        
         Private columnCourseID As Global.System.Data.DataColumn
         
         Private columnDelegateID As Global.System.Data.DataColumn
         
         Private columnCategoryOther As Global.System.Data.DataColumn
         
-        Private columnBrowser As Global.System.Data.DataColumn
-        
-        Private columnOS As Global.System.Data.DataColumn
-        
-        Private columnDevice As Global.System.Data.DataColumn
-        
         Private columnCentreID As Global.System.Data.DataColumn
-        
-        Private columnShockwaveInfo As Global.System.Data.DataColumn
         
         Private columnAdminUserID As Global.System.Data.DataColumn
         
@@ -2415,38 +2399,6 @@ Partial Public Class supportdata
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
-        Public ReadOnly Property BrowserIDColumn() As Global.System.Data.DataColumn
-            Get
-                Return Me.columnBrowserID
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
-        Public ReadOnly Property BrowserVersionColumn() As Global.System.Data.DataColumn
-            Get
-                Return Me.columnBrowserVersion
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
-        Public ReadOnly Property OperatingSystemIDColumn() As Global.System.Data.DataColumn
-            Get
-                Return Me.columnOperatingSystemID
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
-        Public ReadOnly Property DeviceTypeIDColumn() As Global.System.Data.DataColumn
-            Get
-                Return Me.columnDeviceTypeID
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
         Public ReadOnly Property CourseIDColumn() As Global.System.Data.DataColumn
             Get
                 Return Me.columnCourseID
@@ -2471,41 +2423,9 @@ Partial Public Class supportdata
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
-        Public ReadOnly Property BrowserColumn() As Global.System.Data.DataColumn
-            Get
-                Return Me.columnBrowser
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
-        Public ReadOnly Property OSColumn() As Global.System.Data.DataColumn
-            Get
-                Return Me.columnOS
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
-        Public ReadOnly Property DeviceColumn() As Global.System.Data.DataColumn
-            Get
-                Return Me.columnDevice
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
         Public ReadOnly Property CentreIDColumn() As Global.System.Data.DataColumn
             Get
                 Return Me.columnCentreID
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
-        Public ReadOnly Property ShockwaveInfoColumn() As Global.System.Data.DataColumn
-            Get
-                Return Me.columnShockwaveInfo
             End Get
         End Property
         
@@ -2573,20 +2493,12 @@ Partial Public Class supportdata
                     ByVal ResolveBy As Date,  _
                     ByVal TicketTypeID As Integer,  _
                     ByVal TicketCategoryID As Integer,  _
-                    ByVal BrowserID As Integer,  _
-                    ByVal BrowserVersion As String,  _
-                    ByVal OperatingSystemID As Integer,  _
-                    ByVal DeviceTypeID As Integer,  _
                     ByVal CourseID As Integer,  _
                     ByVal DelegateID As String,  _
                     ByVal CategoryOther As String,  _
-                    ByVal Browser As String,  _
-                    ByVal OS As String,  _
-                    ByVal Device As String,  _
-                    ByVal ShockwaveInfo As String,  _
                     ByVal AdminUserID As Integer) As TicketDetailRow
             Dim rowTicketDetailRow As TicketDetailRow = CType(Me.NewRow,TicketDetailRow)
-            Dim columnValuesArray() As Object = New Object() {Nothing, ReporterName, CentreName, RaisedDate, QuerySubject, TStatusID, TStatus, AssignedToName, AssignedToEmail, ArchivedDate, LastActivityDate, Forename, Email, Type, Category, ResolveInDays, ResolveBy, TicketTypeID, TicketCategoryID, BrowserID, BrowserVersion, OperatingSystemID, DeviceTypeID, CourseID, DelegateID, CategoryOther, Browser, OS, Device, Nothing, ShockwaveInfo, AdminUserID}
+            Dim columnValuesArray() As Object = New Object() {Nothing, ReporterName, CentreName, RaisedDate, QuerySubject, TStatusID, TStatus, AssignedToName, AssignedToEmail, ArchivedDate, LastActivityDate, Forename, Email, Type, Category, ResolveInDays, ResolveBy, TicketTypeID, TicketCategoryID, CourseID, DelegateID, CategoryOther, Nothing, AdminUserID}
             rowTicketDetailRow.ItemArray = columnValuesArray
             Me.Rows.Add(rowTicketDetailRow)
             Return rowTicketDetailRow
@@ -2634,18 +2546,10 @@ Partial Public Class supportdata
             Me.columnResolveBy = MyBase.Columns("ResolveBy")
             Me.columnTicketTypeID = MyBase.Columns("TicketTypeID")
             Me.columnTicketCategoryID = MyBase.Columns("TicketCategoryID")
-            Me.columnBrowserID = MyBase.Columns("BrowserID")
-            Me.columnBrowserVersion = MyBase.Columns("BrowserVersion")
-            Me.columnOperatingSystemID = MyBase.Columns("OperatingSystemID")
-            Me.columnDeviceTypeID = MyBase.Columns("DeviceTypeID")
             Me.columnCourseID = MyBase.Columns("CourseID")
             Me.columnDelegateID = MyBase.Columns("DelegateID")
             Me.columnCategoryOther = MyBase.Columns("CategoryOther")
-            Me.columnBrowser = MyBase.Columns("Browser")
-            Me.columnOS = MyBase.Columns("OS")
-            Me.columnDevice = MyBase.Columns("Device")
             Me.columnCentreID = MyBase.Columns("CentreID")
-            Me.columnShockwaveInfo = MyBase.Columns("ShockwaveInfo")
             Me.columnAdminUserID = MyBase.Columns("AdminUserID")
         End Sub
         
@@ -2690,30 +2594,14 @@ Partial Public Class supportdata
             MyBase.Columns.Add(Me.columnTicketTypeID)
             Me.columnTicketCategoryID = New Global.System.Data.DataColumn("TicketCategoryID", GetType(Integer), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnTicketCategoryID)
-            Me.columnBrowserID = New Global.System.Data.DataColumn("BrowserID", GetType(Integer), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnBrowserID)
-            Me.columnBrowserVersion = New Global.System.Data.DataColumn("BrowserVersion", GetType(String), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnBrowserVersion)
-            Me.columnOperatingSystemID = New Global.System.Data.DataColumn("OperatingSystemID", GetType(Integer), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnOperatingSystemID)
-            Me.columnDeviceTypeID = New Global.System.Data.DataColumn("DeviceTypeID", GetType(Integer), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnDeviceTypeID)
             Me.columnCourseID = New Global.System.Data.DataColumn("CourseID", GetType(Integer), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnCourseID)
             Me.columnDelegateID = New Global.System.Data.DataColumn("DelegateID", GetType(String), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnDelegateID)
             Me.columnCategoryOther = New Global.System.Data.DataColumn("CategoryOther", GetType(String), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnCategoryOther)
-            Me.columnBrowser = New Global.System.Data.DataColumn("Browser", GetType(String), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnBrowser)
-            Me.columnOS = New Global.System.Data.DataColumn("OS", GetType(String), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnOS)
-            Me.columnDevice = New Global.System.Data.DataColumn("Device", GetType(String), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnDevice)
             Me.columnCentreID = New Global.System.Data.DataColumn("CentreID", GetType(Integer), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnCentreID)
-            Me.columnShockwaveInfo = New Global.System.Data.DataColumn("ShockwaveInfo", GetType(String), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnShockwaveInfo)
             Me.columnAdminUserID = New Global.System.Data.DataColumn("AdminUserID", GetType(Integer), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnAdminUserID)
             Me.Constraints.Add(New Global.System.Data.UniqueConstraint("Constraint1", New Global.System.Data.DataColumn() {Me.columnTicketID}, true))
@@ -2740,6 +2628,7 @@ Partial Public Class supportdata
             Me.columnLastActivityDate.ReadOnly = true
             Me.columnForename.AllowDBNull = false
             Me.columnForename.MaxLength = 250
+            Me.columnEmail.AllowDBNull = false
             Me.columnEmail.MaxLength = 250
             Me.columnType.ReadOnly = true
             Me.columnType.MaxLength = 50
@@ -2749,24 +2638,13 @@ Partial Public Class supportdata
             Me.columnResolveBy.ReadOnly = true
             Me.columnTicketTypeID.AllowDBNull = false
             Me.columnTicketCategoryID.AllowDBNull = false
-            Me.columnBrowserID.AllowDBNull = false
-            Me.columnBrowserVersion.MaxLength = 10
-            Me.columnOperatingSystemID.AllowDBNull = false
-            Me.columnDeviceTypeID.AllowDBNull = false
             Me.columnDelegateID.MaxLength = 10
             Me.columnCategoryOther.MaxLength = 50
-            Me.columnBrowser.ReadOnly = true
-            Me.columnBrowser.MaxLength = 50
-            Me.columnOS.ReadOnly = true
-            Me.columnOS.MaxLength = 50
-            Me.columnDevice.ReadOnly = true
-            Me.columnDevice.MaxLength = 50
             Me.columnCentreID.AutoIncrement = true
             Me.columnCentreID.AutoIncrementSeed = -1
             Me.columnCentreID.AutoIncrementStep = -1
             Me.columnCentreID.AllowDBNull = false
             Me.columnCentreID.ReadOnly = true
-            Me.columnShockwaveInfo.MaxLength = 100
             Me.columnAdminUserID.AllowDBNull = false
         End Sub
         
@@ -5752,11 +5630,7 @@ Partial Public Class supportdata
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
         Public Property Email() As String
             Get
-                If Me.IsEmailNull Then
-                    Return String.Empty
-                Else
-                    Return CType(Me(Me.tableTicketDetail.EmailColumn),String)
-                End If
+                Return CType(Me(Me.tableTicketDetail.EmailColumn),String)
             End Get
             Set
                 Me(Me.tableTicketDetail.EmailColumn) = value
@@ -5843,54 +5717,6 @@ Partial Public Class supportdata
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
-        Public Property BrowserID() As Integer
-            Get
-                Return CType(Me(Me.tableTicketDetail.BrowserIDColumn),Integer)
-            End Get
-            Set
-                Me(Me.tableTicketDetail.BrowserIDColumn) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
-        Public Property BrowserVersion() As String
-            Get
-                If Me.IsBrowserVersionNull Then
-                    Return String.Empty
-                Else
-                    Return CType(Me(Me.tableTicketDetail.BrowserVersionColumn),String)
-                End If
-            End Get
-            Set
-                Me(Me.tableTicketDetail.BrowserVersionColumn) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
-        Public Property OperatingSystemID() As Integer
-            Get
-                Return CType(Me(Me.tableTicketDetail.OperatingSystemIDColumn),Integer)
-            End Get
-            Set
-                Me(Me.tableTicketDetail.OperatingSystemIDColumn) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
-        Public Property DeviceTypeID() As Integer
-            Get
-                Return CType(Me(Me.tableTicketDetail.DeviceTypeIDColumn),Integer)
-            End Get
-            Set
-                Me(Me.tableTicketDetail.DeviceTypeIDColumn) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
         Public Property CourseID() As Integer
             Get
                 Try 
@@ -5936,72 +5762,12 @@ Partial Public Class supportdata
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
-        Public Property Browser() As String
-            Get
-                If Me.IsBrowserNull Then
-                    Return String.Empty
-                Else
-                    Return CType(Me(Me.tableTicketDetail.BrowserColumn),String)
-                End If
-            End Get
-            Set
-                Me(Me.tableTicketDetail.BrowserColumn) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
-        Public Property OS() As String
-            Get
-                If Me.IsOSNull Then
-                    Return String.Empty
-                Else
-                    Return CType(Me(Me.tableTicketDetail.OSColumn),String)
-                End If
-            End Get
-            Set
-                Me(Me.tableTicketDetail.OSColumn) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
-        Public Property Device() As String
-            Get
-                If Me.IsDeviceNull Then
-                    Return String.Empty
-                Else
-                    Return CType(Me(Me.tableTicketDetail.DeviceColumn),String)
-                End If
-            End Get
-            Set
-                Me(Me.tableTicketDetail.DeviceColumn) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
         Public Property CentreID() As Integer
             Get
                 Return CType(Me(Me.tableTicketDetail.CentreIDColumn),Integer)
             End Get
             Set
                 Me(Me.tableTicketDetail.CentreIDColumn) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
-        Public Property ShockwaveInfo() As String
-            Get
-                If Me.IsShockwaveInfoNull Then
-                    Return String.Empty
-                Else
-                    Return CType(Me(Me.tableTicketDetail.ShockwaveInfoColumn),String)
-                End If
-            End Get
-            Set
-                Me(Me.tableTicketDetail.ShockwaveInfoColumn) = value
             End Set
         End Property
         
@@ -6090,18 +5856,6 @@ Partial Public Class supportdata
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
-        Public Function IsEmailNull() As Boolean
-            Return Me.IsNull(Me.tableTicketDetail.EmailColumn)
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
-        Public Sub SetEmailNull()
-            Me(Me.tableTicketDetail.EmailColumn) = Global.System.Convert.DBNull
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
         Public Function IsTypeNull() As Boolean
             Return Me.IsNull(Me.tableTicketDetail.TypeColumn)
         End Function
@@ -6138,18 +5892,6 @@ Partial Public Class supportdata
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
-        Public Function IsBrowserVersionNull() As Boolean
-            Return Me.IsNull(Me.tableTicketDetail.BrowserVersionColumn)
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
-        Public Sub SetBrowserVersionNull()
-            Me(Me.tableTicketDetail.BrowserVersionColumn) = Global.System.Convert.DBNull
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
         Public Function IsCourseIDNull() As Boolean
             Return Me.IsNull(Me.tableTicketDetail.CourseIDColumn)
         End Function
@@ -6182,54 +5924,6 @@ Partial Public Class supportdata
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
         Public Sub SetCategoryOtherNull()
             Me(Me.tableTicketDetail.CategoryOtherColumn) = Global.System.Convert.DBNull
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
-        Public Function IsBrowserNull() As Boolean
-            Return Me.IsNull(Me.tableTicketDetail.BrowserColumn)
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
-        Public Sub SetBrowserNull()
-            Me(Me.tableTicketDetail.BrowserColumn) = Global.System.Convert.DBNull
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
-        Public Function IsOSNull() As Boolean
-            Return Me.IsNull(Me.tableTicketDetail.OSColumn)
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
-        Public Sub SetOSNull()
-            Me(Me.tableTicketDetail.OSColumn) = Global.System.Convert.DBNull
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
-        Public Function IsDeviceNull() As Boolean
-            Return Me.IsNull(Me.tableTicketDetail.DeviceColumn)
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
-        Public Sub SetDeviceNull()
-            Me(Me.tableTicketDetail.DeviceColumn) = Global.System.Convert.DBNull
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
-        Public Function IsShockwaveInfoNull() As Boolean
-            Return Me.IsNull(Me.tableTicketDetail.ShockwaveInfoColumn)
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
-        Public Sub SetShockwaveInfoNull()
-            Me(Me.tableTicketDetail.ShockwaveInfoColumn) = Global.System.Convert.DBNull
         End Sub
     End Class
     
@@ -8050,18 +7744,10 @@ Namespace supportdataTableAdapters
             tableMapping.ColumnMappings.Add("ResolveBy", "ResolveBy")
             tableMapping.ColumnMappings.Add("TicketTypeID", "TicketTypeID")
             tableMapping.ColumnMappings.Add("TicketCategoryID", "TicketCategoryID")
-            tableMapping.ColumnMappings.Add("BrowserID", "BrowserID")
-            tableMapping.ColumnMappings.Add("BrowserVersion", "BrowserVersion")
-            tableMapping.ColumnMappings.Add("OperatingSystemID", "OperatingSystemID")
-            tableMapping.ColumnMappings.Add("DeviceTypeID", "DeviceTypeID")
             tableMapping.ColumnMappings.Add("CourseID", "CourseID")
             tableMapping.ColumnMappings.Add("DelegateID", "DelegateID")
             tableMapping.ColumnMappings.Add("CategoryOther", "CategoryOther")
-            tableMapping.ColumnMappings.Add("Browser", "Browser")
-            tableMapping.ColumnMappings.Add("OS", "OS")
-            tableMapping.ColumnMappings.Add("Device", "Device")
             tableMapping.ColumnMappings.Add("CentreID", "CentreID")
-            tableMapping.ColumnMappings.Add("ShockwaveInfo", "ShockwaveInfo")
             tableMapping.ColumnMappings.Add("AdminUserID", "AdminUserID")
             Me._adapter.TableMappings.Add(tableMapping)
         End Sub
@@ -8096,34 +7782,30 @@ Namespace supportdataTableAdapters
                 "egory"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                       FROM      TicketCategories"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                      "& _ 
                 " WHERE   (TicketCategoryID = t.TicketCategoryID)) AS Category, t.ResolveInDays, "& _ 
                 "DATEADD(D, t.ResolveInDays, t.RaisedDate) AS ResolveBy, t.TicketTypeID, "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"      "& _ 
-                "            t.TicketCategoryID, t.BrowserID,"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                      (SELECT Brow"& _ 
-                "ser"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                       FROM      Browsers"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                       WHERE   ("& _ 
-                "BrowserID = t.BrowserID)) AS Browser, t.BrowserVersion, t.OperatingSystemID,"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"  "& _ 
-                "                    (SELECT OperatingSystem"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                       FROM      Op"& _ 
-                "eratingSystems"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                       WHERE   (OperatingSystemID = t.OperatingS"& _ 
-                "ystemID)) AS OS, t.DeviceTypeID,"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                      (SELECT DeviceType"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"    "& _ 
-                "                   FROM      DeviceTypes"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                       WHERE   (Device"& _ 
-                "TypeID = t.DeviceTypeID)) AS Device, t.CourseID, t.DelegateID, t.CategoryOther, "& _ 
-                "t.ShockwaveInfo, t.AdminUserID"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"FROM     Tickets AS t INNER JOIN"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"              "& _ 
-                "    AdminUsers AS a ON a.AdminID = t.AdminUserID INNER JOIN"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                  C"& _ 
-                "entres AS c ON a.CentreID = c.CentreID"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"WHERE  (t.TicketID = @TicketID) AND (c.C"& _ 
-                "entreID = @CentreID) OR"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                  (t.TicketID = @TicketID) AND (@IsSupe"& _ 
-                "rAdmin = 1)"
+                "            t.TicketCategoryID, t.CourseID, t.DelegateID, t.CategoryOther, t.Adm"& _ 
+                "inUserID"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"FROM     Tickets AS t INNER JOIN"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                  AdminUsers AS a ON"& _ 
+                " a.AdminID = t.AdminUserID INNER JOIN"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                  Centres AS c ON a.Centr"& _ 
+                "eID = c.CentreID"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"WHERE  (t.TicketID = @TicketID) AND (c.CentreID = @CentreID) O"& _ 
+                "R"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                  (t.TicketID = @TicketID) AND (@IsSuperAdmin = 1)"
             Me._commandCollection(0).CommandType = Global.System.Data.CommandType.Text
             Me._commandCollection(0).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@TicketID", Global.System.Data.SqlDbType.Int, 4, Global.System.Data.ParameterDirection.Input, 0, 0, "TicketID", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
             Me._commandCollection(0).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@CentreID", Global.System.Data.SqlDbType.Int, 4, Global.System.Data.ParameterDirection.Input, 0, 0, "CentreID", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._commandCollection(0).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IsSuperAdmin", Global.System.Data.SqlDbType.Bit, 1024, Global.System.Data.ParameterDirection.Input, 0, 0, "", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._commandCollection(0).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IsSuperAdmin", Global.System.Data.SqlDbType.VarChar, 1024, Global.System.Data.ParameterDirection.Input, 0, 0, "", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0"),  _
          Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
          Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.[Select], true)>  _
-        Public Overloads Overridable Function GetData(ByVal TicketID As Integer, ByVal CentreID As Integer, ByVal IsSuperAdmin As Boolean) As supportdata.TicketDetailDataTable
+        Public Overloads Overridable Function GetData(ByVal TicketID As Integer, ByVal CentreID As Integer, ByVal IsSuperAdmin As String) As supportdata.TicketDetailDataTable
             Me.Adapter.SelectCommand = Me.CommandCollection(0)
             Me.Adapter.SelectCommand.Parameters(0).Value = CType(TicketID,Integer)
             Me.Adapter.SelectCommand.Parameters(1).Value = CType(CentreID,Integer)
-            Me.Adapter.SelectCommand.Parameters(2).Value = CType(IsSuperAdmin,Boolean)
+            If (IsSuperAdmin Is Nothing) Then
+                Throw New Global.System.ArgumentNullException("IsSuperAdmin")
+            Else
+                Me.Adapter.SelectCommand.Parameters(2).Value = CType(IsSuperAdmin,String)
+            End If
             Dim dataTable As supportdata.TicketDetailDataTable = New supportdata.TicketDetailDataTable()
             Me.Adapter.Fill(dataTable)
             Return dataTable

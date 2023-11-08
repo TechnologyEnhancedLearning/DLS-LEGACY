@@ -88,20 +88,14 @@ Public Class tickets
             ddTicketCategoryManage.SelectedValue = tTicket.First.TicketCategoryID
             If tTicket.First.TStatusID = 4 Then
                 lbtArchiveTicket.Visible = False
-                lbtUnarchive.Visible = True
             Else
                 lbtArchiveTicket.Visible = True
-                lbtUnarchive.Visible = False
             End If
             lblAddedDate.Text = tTicket.First.RaisedDate.ToString()
             lblLastUpdate.Text = tTicket.First.LastActivityDate.ToString()
             If tTicket.First.TicketTypeID = 4 Then
                 pnlProblemContext.Visible = True
                 pnlTicketHeader.CssClass = "col-12 col-md-8 "
-                lblBrowser.Text = tTicket.First.Browser & " (v" & tTicket.First.BrowserVersion & ")"
-                lblOS.Text = tTicket.First.OS
-                lblDevice.Text = tTicket.First.Device
-                lblShockwave.Text = tTicket.First.ShockwaveInfo
                 If tTicket.First.DelegateID.Length > 0 Then
                     lblDelID.Text = tTicket.First.DelegateID
                 Else
@@ -152,10 +146,7 @@ Public Class tickets
 
 
     End Sub
-    Private Sub lbtRaiseTicket_Click(sender As Object, e As EventArgs) Handles lbtRaiseTicket.Click
-        mvSupportTickets.SetActiveView(vAddTicket)
-    End Sub
-    Private Sub lbtCloseTicket_Click(sender As Object, e As EventArgs) Handles lbtCancelNewTicket.Click, lbtCloseTicket.Click
+    Private Sub lbtCloseTicket_Click(sender As Object, e As EventArgs) Handles lbtCloseTicket.Click
         Dim sUri As Uri = New Uri(Request.Url.AbsoluteUri)
         Dim sURL = sUri.Scheme & Uri.SchemeDelimiter & sUri.Authority & sUri.AbsolutePath
         If Request.QueryString("nonav") IsNot Nothing Then
@@ -200,17 +191,6 @@ Public Class tickets
     End Sub
     Private Sub lbtArchiveTicket_Click(sender As Object, e As EventArgs) Handles lbtArchiveTicket.Click
         ArchiveTicket(CInt(hfTicketID.Value))
-    End Sub
-
-    Private Sub lbtSubmitNewSupportTicket_Click(sender As Object, e As EventArgs) Handles lbtSubmitNewSupportTicket.Click
-        Dim taQ As New supportdataTableAdapters.QueriesTableAdapter
-        Dim nAdminID As Integer = CInt(Session("UserAdminID"))
-        Dim nTicketID As Integer = taQ.InsertTicket(nAdminID, tbSubject.Text, ddBrowser.SelectedValue, tbBrowserVersion.Text, ddOS.SelectedValue, ddDeviceType.SelectedValue, ddCourse.SelectedValue, tbDelegateID.Text, ddTicketType.SelectedValue, tbShockwave.Text)
-        taQ.InsertTicketComment(nTicketID, htmlNewTicket.Html, nAdminID)
-        _SendEmailNewTicketAdmin(nTicketID)
-        _SendHoldingEmailToTicketRaiser(nTicketID)
-        mvSupportTickets.SetActiveView(vTicketList)
-        Response.Redirect(Request.Url.AbsoluteUri)
     End Sub
     Protected Sub _SendEmailNewTicketAdmin(ByVal nTicketID As Integer)
         Dim taTickets As New supportdataTableAdapters.TicketDetailTableAdapter
@@ -410,18 +390,6 @@ Public Class tickets
         sbBody.Append(vbCrLf)
         sbBody.Append("Please don't reply to this email as it has been automatically generated." & vbCrLf)
         CCommon.SendEmail(sTo, sSubject, sbBody.ToString(), False)
-    End Sub
-
-    Private Sub lbtUnarchive_Click(sender As Object, e As EventArgs) Handles lbtUnarchive.Click
-        ReopenTicket(hfTicketID.Value)
-    End Sub
-
-    Protected Sub ReopenTicket(ByVal nTicketID As Integer)
-        'send e-mails:
-        Dim taq As New supportdataTableAdapters.QueriesTableAdapter
-        taq.ReopenTicket(nTicketID)
-        OpenTicket(nTicketID)
-        rptComments.DataBind()
     End Sub
 
     Private Sub ddTicketTypeManage_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ddTicketTypeManage.SelectedIndexChanged

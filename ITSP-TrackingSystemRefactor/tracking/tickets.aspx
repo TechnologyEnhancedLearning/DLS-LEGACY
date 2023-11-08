@@ -75,23 +75,7 @@
             </asp:ObjectDataSource>
             <asp:ObjectDataSource ID="dsTicketTypes" runat="server" OldValuesParameterFormatString="original_{0}" SelectMethod="GetData" TypeName="ITSP_TrackingSystemRefactor.supportdataTableAdapters.TicketTypesTableAdapter"></asp:ObjectDataSource>
             <asp:ObjectDataSource ID="dsCategoryID" runat="server" OldValuesParameterFormatString="original_{0}" SelectMethod="GetData" TypeName="ITSP_TrackingSystemRefactor.supportdataTableAdapters.TicketCategoriesTableAdapter"></asp:ObjectDataSource>
-            <asp:ObjectDataSource ID="dsBrowsers" runat="server" OldValuesParameterFormatString="original_{0}" SelectMethod="GetData" TypeName="ITSP_TrackingSystemRefactor.supportdataTableAdapters.BrowsersTableAdapter"></asp:ObjectDataSource>
-            <asp:ObjectDataSource ID="dsOperatingSystems" runat="server" OldValuesParameterFormatString="original_{0}" SelectMethod="GetData" TypeName="ITSP_TrackingSystemRefactor.supportdataTableAdapters.OperatingSystemsTableAdapter"></asp:ObjectDataSource>
-            <asp:ObjectDataSource ID="dsDeviceTypes" runat="server" OldValuesParameterFormatString="original_{0}" SelectMethod="GetData" TypeName="ITSP_TrackingSystemRefactor.supportdataTableAdapters.DeviceTypesTableAdapter"></asp:ObjectDataSource>
 
-<%--    <div class="row">
-                <div class="col-xs-6">
-                   
-                    </div>
-        <div class="col-xs-6">
-                    <div class="btn-group float-right" role="group" aria-label="...">
-                          <asp:LinkButton ID="lbtClearFilters" runat="server" CssClass="btn btn-outline-secondary"><i aria-hidden="true" class="fas fa-times"></i> Clear filters</asp:LinkButton>
-                      
-                             <asp:LinkButton ID="lbtExcelExport" CssClass="btn btn-success" runat="server"><i aria-hidden="true" class="fa fa-file-excel-o"></i> Download to Excel</asp:LinkButton>  
-             
-                    </div>
-                </div>
-            </div>--%>
             <div class="row">
                 <div class="col">
                     <div class="float-right">
@@ -188,110 +172,8 @@
                         <SettingsSearchPanel Visible="True" AllowTextInputTimer="false" />
                     </dx:BootstrapGridView>
                     </div>
-                    <div class="float-right mt-2">
-                 <asp:LinkButton ID="lbtRaiseTicket" CssClass="btn btn-primary btn-lg float-right" ToolTip="Raise new support request" CausesValidation="false" runat="server"><i aria-hidden="true" class="fas fa-life-ring"></i> <b>New Support Request</b> </asp:LinkButton>
-            </div>
             </asp:View>
-         <asp:View ID="vAddTicket" runat="server">
-             <div class="card card-primary">
-                 <div class="card-header">
-                <h4>New Support Ticket</h4></div>
-                 <div class="card-body">
-                <div class="m-3">
-                    <div class="form-group row">
-                        <asp:Label ID="lblSubject" CssClass="control-label col-3" runat="server" AssociatedControlID="tbSubject">Subject:</asp:Label>
-                        <div class="col-9">
-                            <asp:TextBox ID="tbSubject" CssClass="form-control" runat="server"></asp:TextBox>
-                             <asp:RequiredFieldValidator ID="RequiredFieldValidator4" ValidationGroup="NewTicket" runat="server" ControlToValidate="tbSubject" Display="Dynamic"
-                                        CssClass="field-validation-error" ErrorMessage="The Subject field is required" />
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <asp:Label ID="Label6" CssClass="control-label col-3" runat="server" AssociatedControlID="ddTicketType">Request type:</asp:Label>
-                        <div class="col-9">
-                            <asp:DropDownList  CssClass="form-control" AppendDataBoundItems="true" ClientIDMode="Static" ID="ddTicketType" runat="server" DataSourceID="dsTicketTypes" DataTextField="TypePrompt" DataValueField="TicketTypeID">
-                                <asp:ListItem Text="Please select..." Value="0"></asp:ListItem>
-                            </asp:DropDownList>
-                            <asp:CompareValidator ID="CompareValidator1" ControlToValidate="ddTicketType" Display="Dynamic" CssClass="field-validation-error" ValidationGroup="NewTicket" runat="server" ErrorMessage="Choose a support request type" Operator="GreaterThan" ValueToCompare="0"></asp:CompareValidator>
-                        </div>
-                    </div>
-                     </div>
-                    <div class="collapse" id="ProblemDetails"><hr />
-                    <h4>Problem Context <br /><small>(where did you experience the problem?)</small></h4>
-                     <div class="m-3"><div class="form-group row">
-                        <asp:Label ID="Label2" CssClass="control-label col-3" runat="server" AssociatedControlID="ddBrowser">Browser:</asp:Label>
-                         <div class="col-md-4 col-9">
-                             
-                                 <asp:DropDownList ID="ddBrowser" ClientIDMode="Static" CssClass="form-control" runat="server" DataSourceID="dsBrowsers" DataTextField="Browser" DataValueField="BrowserID"></asp:DropDownList>
-                               
-                              </div>
-                        <asp:Label ID="Label7" CssClass="control-label col-md-2 col-3" runat="server" AssociatedControlID="ddBrowser">Browser Version:</asp:Label>
- <div class="col-md-3 col-9">
-  <asp:TextBox ID="tbBrowserVersion" placeholder="Version" ClientIDMode="Static" CssClass="form-control" runat="server"></asp:TextBox>
-                             
- </div>
-                    </div>
-                     <div class="form-group row">
-                          <asp:Label ID="Label5" CssClass="control-label col-sm-3 col-4" runat="server" AssociatedControlID="ddOS">Operating system:</asp:Label>
-                         <div class="col-9 col-8 col-md-4">
-                              <asp:DropDownList ID="ddOS" CssClass="form-control" ClientIDMode="Static" runat="server" DataSourceID="dsOperatingSystems" DataTextField="OperatingSystem" DataValueField="OperatingSystemID"></asp:DropDownList>
-                             
-                              </div>
-                         <asp:Label ID="Label4" CssClass="control-label col-sm-3 col-4 col-md-2" runat="server" AssociatedControlID="ddDeviceType">Device type:</asp:Label>
-                         <div class="col-sm-9 col-8 col-md-3">
-                                 <asp:DropDownList ID="ddDeviceType" ClientIDMode="Static" CssClass="form-control" runat="server" DataSourceID="dsDeviceTypes" DataTextField="DeviceType" DataValueField="DeviceTypeID"></asp:DropDownList>
-                              </div>
- 
-                    </div>
-                         <div class="form-group row">
-                             <asp:Label ID="Label11" CssClass="control-label col-4 col-sm-3" runat="server" AssociatedControlID="tbShockwave">Shockwave Player info:</asp:Label>
-                             <div class="col-sm-9 col-8">
-                                  <asp:TextBox ID="tbShockwave" ClientIDMode="Static" placeholder="Optional - please supply if requesting help about Shockwave courses" CssClass="form-control" runat="server"></asp:TextBox>
-                             </div>
-
-                         </div>
-                     <div class="form-group row">
-                         <asp:Label ID="Label8" CssClass="control-label col-4 col-sm-3" runat="server" AssociatedControlID="ddCourse">Course:</asp:Label>
-                         <div class="col-9 col-8">
-                              <asp:DropDownList ID="ddCourse" CssClass="form-control" runat="server" DataSourceID="dsCustomisations" DataTextField="CustomisationName" DataValueField="CustomisationID" AppendDataBoundItems="True">
-                                  <asp:ListItem Value="0" Text="Not applicable"></asp:ListItem>
-                              </asp:DropDownList>
-                             
-                              </div>
-                         </div>
-                         <div class="form-group row">
-                           <asp:Label ID="Label9" CssClass="control-label col-4 col-sm-3 visible-sm-inline visible-xs-inline" runat="server" AssociatedControlID="ddCourse">Test delegate ID:</asp:Label>
-                       
-                         <div class="col-4">
-                                 <asp:TextBox ID="tbDelegateID" placeholder="Test delegate ID" CssClass="form-control" runat="server"></asp:TextBox>
-                              </div>
-                    </div>
-                         
-                        <hr />
-                    </div> </div>
-                 <div class="m-3 collapse" id="descriptiongroup">
-                    <div class="form-group row">
-                        <asp:Label ID="Label3" CssClass="control-label col-3" runat="server" AssociatedControlID="htmlNewTicket">Details:</asp:Label>
-                        <div class="col-9">
-                            <dx:ASPxHtmlEditor ID="htmlNewTicket" Height="250px"  runat="server" Settings-AllowPreview="False" Settings-AllowHtmlView="false" Width="100%">
-                                   <SettingsDialogs>
-                                            <InsertImageDialog>
-                                                <SettingsImageUpload>
-                                                    <FileSystemSettings UploadFolder="~\Images\uploaded\tickets\" />
-                                                </SettingsImageUpload>
-                                            </InsertImageDialog>
-                                        </SettingsDialogs>
-                            </dx:ASPxHtmlEditor>
-                        </div>
-                    </div>
-                     </div>
-                    </div>
-                <div class="card-footer clearfix">
-                    <asp:LinkButton ID="lbtCancelNewTicket" CssClass="btn btn-outline-secondary mr-auto" runat="server">Cancel</asp:LinkButton>
-                    <asp:LinkButton ID="lbtSubmitNewSupportTicket" ValidationGroup="NewTicket" CssClass="btn btn-primary float-right" runat="server">Submit</asp:LinkButton>
-                </div>
-            </div>
-         </asp:View>
+         
          <asp:View ID="vManageTicket" runat="server">
              <asp:HiddenField ID="hfTicketID" runat="server" />
             <asp:HiddenField ID="hfReporterEmail" runat="server" />
@@ -309,8 +191,7 @@
                     <div class="btn-toolbar float-right">
                         <div class="btn-group" role="group" aria-label="...">
                             <asp:LinkButton ID="lbtArchiveTicket" CssClass="btn btn-outline-danger" ToolTip="Archive Ticket" OnClientClick="return confirm('Are you sure you wish to archive this ticket?');" runat="server"><i aria-hidden="true" class="fas fa-trash"></i> Archive</asp:LinkButton>
-                            <asp:LinkButton ID="lbtUnarchive" CssClass="btn btn-outline-success" ToolTip="Reopen Ticket" OnClientClick="return confirm('Are you sure you wish to reopen this ticket?');" runat="server"><i aria-hidden="true" class="fas fa-refresh"></i> Reopen</asp:LinkButton>
-                           <asp:Panel ID="pnlAssignTo" runat="server" CssClass="btn-group">
+                             <asp:Panel ID="pnlAssignTo" runat="server" CssClass="btn-group">
                                 <button type="button" id="btnAssignTo" runat="server" class="btn btn-outline-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     <asp:Label ID="lblAssignTo" runat="server" Text="Assign to"></asp:Label>
                                     <span class="caret"></span>
@@ -400,14 +281,7 @@
                             <div class="alert alert-info small" style="padding-left:15px;margin-top:15px;">
                                 <div class="row"><div class="col-12">
                                 <h5>Problem context</h5></div></div>
-                                <div class="row"><div class="col">OS:</div><div class="col-8">
-                                    <asp:Label ID="lblOS" runat="server" Font-Bold="true" Text="Label"></asp:Label></div></div>
-                                <div class="row"><div class="col">Browser:</div><div class="col-8">
-                                    <asp:Label ID="lblBrowser" runat="server" Font-Bold="true" Text="Label"></asp:Label></div></div>
-                                <div class="row"><div class="col">Device:</div><div class="col-8">
-                                    <asp:Label ID="lblDevice" runat="server" Font-Bold="true" Text="Label"></asp:Label></div></div>
-                                <div class="row"><div class="col">Shockwave:</div><div class="col-8">
-                                    <asp:Label ID="lblShockwave" runat="server" Font-Bold="true" Text="Label"></asp:Label></div></div>
+                                
                                 <div class="row"><div class="col">Link:</div><div class="col-8">
                                     <asp:LinkButton ID="lbtLaunchCourse" Font-Bold="true" runat="server" Text=""></asp:LinkButton><asp:Label ID="lblNoCourse" Font-Bold="true" runat="server" Text="Not supplied"></asp:Label></div>
                                    
@@ -481,24 +355,7 @@
                 </div>
              </asp:View>
          </asp:MultiView>
-      <!-- Modal -->
-    <div class="modal fade" id="deviceInfoModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="myModalLabel">
-                        Retrieve Device and Browser Information</h5>
-                </div>
-                <div class="modal-body">
-                    <p>Was the problem you are reporting experienced on (or can it be reproduced on) this PC  or device?</p>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-danger float-left mr-auto" data-dismiss="modal">No</button>
-                    <asp:LinkButton ID="lbtGetDetails" data-dismiss="modal" ClientIDMode="Static" CssClass="btn btn-success float-right" OnClientClick="return false;" runat="server">Yes</asp:LinkButton>
-                </div>
-            </div>
-        </div>
-    </div>
+
             <%--standard modal--%>
        <div class="modal fade" id="messageModal" tabindex="-1" role="dialog" aria-labelledby="lblModalTitle">
   <div class="modal-dialog" role="document">

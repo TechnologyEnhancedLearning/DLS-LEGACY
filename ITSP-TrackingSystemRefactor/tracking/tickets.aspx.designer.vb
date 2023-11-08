@@ -86,33 +86,6 @@ Partial Public Class tickets
     Protected WithEvents dsCategoryID As Global.System.Web.UI.WebControls.ObjectDataSource
 
     '''<summary>
-    '''dsBrowsers control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents dsBrowsers As Global.System.Web.UI.WebControls.ObjectDataSource
-
-    '''<summary>
-    '''dsOperatingSystems control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents dsOperatingSystems As Global.System.Web.UI.WebControls.ObjectDataSource
-
-    '''<summary>
-    '''dsDeviceTypes control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents dsDeviceTypes As Global.System.Web.UI.WebControls.ObjectDataSource
-
-    '''<summary>
     '''bscbIncludeArchive control.
     '''</summary>
     '''<remarks>
@@ -138,240 +111,6 @@ Partial Public Class tickets
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents bsgvTickets As Global.DevExpress.Web.Bootstrap.BootstrapGridView
-
-    '''<summary>
-    '''lbtRaiseTicket control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents lbtRaiseTicket As Global.System.Web.UI.WebControls.LinkButton
-
-    '''<summary>
-    '''vAddTicket control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents vAddTicket As Global.System.Web.UI.WebControls.View
-
-    '''<summary>
-    '''lblSubject control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents lblSubject As Global.System.Web.UI.WebControls.Label
-
-    '''<summary>
-    '''tbSubject control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents tbSubject As Global.System.Web.UI.WebControls.TextBox
-
-    '''<summary>
-    '''RequiredFieldValidator4 control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents RequiredFieldValidator4 As Global.System.Web.UI.WebControls.RequiredFieldValidator
-
-    '''<summary>
-    '''Label6 control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents Label6 As Global.System.Web.UI.WebControls.Label
-
-    '''<summary>
-    '''ddTicketType control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents ddTicketType As Global.System.Web.UI.WebControls.DropDownList
-
-    '''<summary>
-    '''CompareValidator1 control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents CompareValidator1 As Global.System.Web.UI.WebControls.CompareValidator
-
-    '''<summary>
-    '''Label2 control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents Label2 As Global.System.Web.UI.WebControls.Label
-
-    '''<summary>
-    '''ddBrowser control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents ddBrowser As Global.System.Web.UI.WebControls.DropDownList
-
-    '''<summary>
-    '''Label7 control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents Label7 As Global.System.Web.UI.WebControls.Label
-
-    '''<summary>
-    '''tbBrowserVersion control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents tbBrowserVersion As Global.System.Web.UI.WebControls.TextBox
-
-    '''<summary>
-    '''Label5 control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents Label5 As Global.System.Web.UI.WebControls.Label
-
-    '''<summary>
-    '''ddOS control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents ddOS As Global.System.Web.UI.WebControls.DropDownList
-
-    '''<summary>
-    '''Label4 control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents Label4 As Global.System.Web.UI.WebControls.Label
-
-    '''<summary>
-    '''ddDeviceType control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents ddDeviceType As Global.System.Web.UI.WebControls.DropDownList
-
-    '''<summary>
-    '''Label11 control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents Label11 As Global.System.Web.UI.WebControls.Label
-
-    '''<summary>
-    '''tbShockwave control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents tbShockwave As Global.System.Web.UI.WebControls.TextBox
-
-    '''<summary>
-    '''Label8 control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents Label8 As Global.System.Web.UI.WebControls.Label
-
-    '''<summary>
-    '''ddCourse control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents ddCourse As Global.System.Web.UI.WebControls.DropDownList
-
-    '''<summary>
-    '''Label9 control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents Label9 As Global.System.Web.UI.WebControls.Label
-
-    '''<summary>
-    '''tbDelegateID control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents tbDelegateID As Global.System.Web.UI.WebControls.TextBox
-
-    '''<summary>
-    '''Label3 control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents Label3 As Global.System.Web.UI.WebControls.Label
-
-    '''<summary>
-    '''htmlNewTicket control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents htmlNewTicket As Global.DevExpress.Web.ASPxHtmlEditor.ASPxHtmlEditor
-
-    '''<summary>
-    '''lbtCancelNewTicket control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents lbtCancelNewTicket As Global.System.Web.UI.WebControls.LinkButton
-
-    '''<summary>
-    '''lbtSubmitNewSupportTicket control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents lbtSubmitNewSupportTicket As Global.System.Web.UI.WebControls.LinkButton
 
     '''<summary>
     '''vManageTicket control.
@@ -444,15 +183,6 @@ Partial Public Class tickets
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lbtArchiveTicket As Global.System.Web.UI.WebControls.LinkButton
-
-    '''<summary>
-    '''lbtUnarchive control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents lbtUnarchive As Global.System.Web.UI.WebControls.LinkButton
 
     '''<summary>
     '''pnlAssignTo control.
@@ -680,42 +410,6 @@ Partial Public Class tickets
     Protected WithEvents pnlProblemContext As Global.System.Web.UI.WebControls.Panel
 
     '''<summary>
-    '''lblOS control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents lblOS As Global.System.Web.UI.WebControls.Label
-
-    '''<summary>
-    '''lblBrowser control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents lblBrowser As Global.System.Web.UI.WebControls.Label
-
-    '''<summary>
-    '''lblDevice control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents lblDevice As Global.System.Web.UI.WebControls.Label
-
-    '''<summary>
-    '''lblShockwave control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents lblShockwave As Global.System.Web.UI.WebControls.Label
-
-    '''<summary>
     '''lbtLaunchCourse control.
     '''</summary>
     '''<remarks>
@@ -777,15 +471,6 @@ Partial Public Class tickets
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents rptComments As Global.System.Web.UI.WebControls.Repeater
-
-    '''<summary>
-    '''lbtGetDetails control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents lbtGetDetails As Global.System.Web.UI.WebControls.LinkButton
 
     '''<summary>
     '''lblModalTitle control.
