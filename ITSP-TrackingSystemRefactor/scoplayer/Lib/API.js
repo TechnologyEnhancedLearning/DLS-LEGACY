@@ -1,4 +1,3 @@
-
 Type.createNamespace('SCORM_1_2'); SCORM_1_2.ActivityTreeNode = function() { this.$1 = []; this.$E = {}; this.$F = SCORM_1_2.API_LIB.defaulT_LESSON_STATUS; this.$11 = []; }
 SCORM_1_2.ActivityTreeNode.prototype = {
 	$0: 0, $2: null, $3: null, $4: null, $5: null, $6: null, $7: false, $8: true, $9: null, $A: null, $B: null, $C: null, $D: null, $10: null, addNode: function(title, identifier, url, scormType, isvisible) { var $0 = new SCORM_1_2.ActivityTreeNode(); $0.$2 = this; $0.$3 = title; $0.$4 = identifier; $0.$5 = url; $0.$6 = scormType; $0.$7 = isvisible; $0.$11.add('exit'); $0.$11.add('abandon'); $0.$11.add('abandonall'); $0.$11.add('suspendall'); this.$1.add($0); return $0; }, getChildrens: function() { return this.$1; }, isLeaf: function() { return this.getChildrensCount() === 0; }, getParent: function() { return this.$2; }, getRoot: function() { if (this.$2 == null) { return (Type.canCast(this, SCORM_1_2.ActivityTree)) ? this : null; } else { return this.$2.getRoot(); } }, getPath: function(toNode, inclusiveThis, inclusiveTo, reverse) { throw new Error('Not implemented!'); }, getLevel: function() { throw new Error('Not implemented!'); }, getOrderIndex: function() { return this.$0; }, setOrderIndex: function(orderIndex) { this.$0 = orderIndex; }, getChildrensCount: function() { return this.$1.length; }, isVisible: function() { return this.$7; }, isEnabled: function() { return this.$8; }, setEnabled: function(enabled) { this.$8 = enabled; }, getTitle: function() { return this.$3; }, setTitle: function(title) { this.$3 = title; }, setMaxtimeallowed: function(maxtimeallowed) { this.$9 = maxtimeallowed; }, getMaxtimeallowed: function() { return this.$9; }, setTimelimitaction: function(timelimitaction) { this.$A = timelimitaction; }, getTimelimitaction: function() { return this.$A; }, setDatafromlms: function(datafromlms) { this.$B = datafromlms; }, getDatafromlms: function() { return this.$B; }, setPrerequisites: function(prerequisites) { this.$D = prerequisites; }, getPrerequisites: function() { return this.$D; }, setMasteryscore: function(masteryscore) { this.$C = masteryscore; }, getMasteryscore: function() { return this.$C; }, getUrl: function() { return this.$5; }, getScormType: function() { return this.$6; }, getHideLMSUI: function() { return this.$11; }, getIdentifier: function() { return this.$4; }, getLessonstatus: function() { return this.$F; }, setLessonstatus: function(lessonstatus) { this.$F = lessonstatus; if (this.getRoot() != null) { this.getRoot().getStoredStatuses()[this.getIdentifier()] = lessonstatus; } }, getNextNode: function() {
@@ -50,7 +49,7 @@ API.LMSFinish = function(param) {
             type: "GET",
             url: trackurl,
             data: data,
-            success: saveSuccess(data),
+            success: finishRequest(data),
             dataType: String
         });
     }
@@ -100,6 +99,7 @@ var objson;
 var interactionid;
 var attempted = false;
 var assessmentsubmitted = false;
+var processingRequest = false;
 
 function setupTrackingVars() {
 	trackurl = document.getElementById('hftrackurl').value;
@@ -112,6 +112,7 @@ function setupTrackingVars() {
 	vtype = document.getElementById('hfContentType').value;
 	if (vtype != "learn") {
 		var data = { action: "GetObjectiveArray", CustomisationID: vcust, SectionID: vsection }
+		processingRequest = true;
 		$.ajax({
 			type: "GET",
 			url: trackurl,
@@ -130,123 +131,131 @@ function StoredSuccess(v)
     }
 }
 function ITSPSetValue(e, v) {
-//	if (e === "cmi.core.session_time") {
+	if (processingRequest) {
+		window.setTimeout(ITSPSetValue(e, v), 250);
+	}
+	else {
+		var earr = e.split(".");
+		if (earr[1] === "interactions" && earr[3] === "result") {
+			attempted = true;
+			if (v != "wrong") {
+				interactionid = earr[2]
+				$.each(objson, function (i, item) {
+					var intarray = item["interactions"];
+					if ($.inArray(parseInt(interactionid), intarray) >= 0 || interactionid.toString() === intarray.toString()) {
+						objson[i]["myscore"] = objson[i]["myscore"] + 1;
+					}
+				});
+			}
+		}
+		if (e === "cmi.core.score.raw") {
+			s = v;
 
-//		var rawtime = v;
-//		accumulatedTime = accumulatedTime + rawtime;
-//		fixedtime = parseInt(fixedtime) + parseInt(rawtime.substring(5, 7));
-	//	}
-	var earr = e.split(".");
-	if (earr[1] === "interactions" && earr[3] === "result") {
-		attempted = true;
-		if (v != "wrong") {
-			interactionid = earr[2]
-			$.each(objson, function(i, item) {
-				var intarray = item["interactions"];
-				if ($.inArray(parseInt(interactionid), intarray) >= 0 || interactionid.toString() === intarray.toString()) {
-					objson[i]["myscore"] = objson[i]["myscore"] + 1;
+		}
+		if (e === "cmi.core.exit") {
+
+			if (vtype === "diag" && attempted === true) {
+				var jstring = JSON.stringify(objson);
+				var data = { action: "StoreDiagnosticJson", ProgressID: vprog, DiagnosticOutcome: jstring }
+				processingRequest = true;
+				$.ajax({
+					type: "GET",
+					url: trackurl,
+					data: data,
+					success: finishRequest(data),
+					error: finishRequest(false),
+					dataType: String
+				});
+			}
+			if (vtype === "pl" && s >= 1) {
+				var data = { action: "StoreASPAssessNoSession", CandidateID: vcandidate, CustomisationID: vcust, Version: vversion, SectionID: vsection, Score: s }
+				processingRequest = true;
+				$.ajax({
+					type: "GET",
+					url: trackurl,
+					data: data,
+					success: StoredSuccess(v),
+					error: finishRequest(false),
+					dataType: String
+				});
+			}
+			else if (vtype !== "pl" && v === "") {
+				//Store complete
+				window.parent.closeMpe();
+			}
+		}
+		if (e === "cmi.core.lesson_status") {
+			var stat;
+			if (startDate != 0) {
+				var currentDate = new Date().getTime();
+				fixedtime = ((currentDate - startDate) / 60000);
+			}
+			if (v === "passed" | v === "completed" | v === "complete") {
+
+				//Store complete
+				stat = "2";
+
+			}
+			else {
+				//Store "started" 
+				stat = "1";
+			}
+			//Store  to ITSP tracking:
+			if (vtutorialid == null | vtutorialid == '0') {
+				var data = { action: "StoreASPProgressNoSession", TutorialStatus: stat, TutorialTime: fixedtime, ProgressID: vprog, CandidateID: vcandidate, Version: vversion, CustomisationID: vcust }
+			}
+			else {
+				var data = { action: "StoreASPProgressV2", TutorialStatus: stat, TutorialTime: fixedtime, ProgressID: vprog, CandidateID: vcandidate, Version: vversion, CustomisationID: vcust, TutorialID: vtutorialid }
+			}
+			processingRequest = true;
+			$.ajax({
+				type: "GET",
+				url: trackurl,
+				data: data,
+				success: finishRequest(data),
+				error: finishRequest(false),
+				dataType: String
+			});
+		}
+		if (e === "cmi.suspend_data") {
+			if (v.length > 0) {
+				var data = {
+					action: "StoreSuspendData",
+					progressId: vprog,
+					TutorialID: vtutorialid,
+					CustomisationID: vcust,
+					CandidateID: vcandidate,
+					suspendData: v
 				}
-			});
-		}
-	}
-	if (e === "cmi.core.score.raw") {
-	    s = v;
-	    
-	}
-    if (e === "cmi.core.exit") {
-       
-		if (vtype === "diag" && attempted === true) {
-	        var jstring = JSON.stringify(objson);
-	        var data = { action: "StoreDiagnosticJson", ProgressID: vprog, DiagnosticOutcome: jstring }
-	        $.ajax({
-	            type: "GET",
-	            url: trackurl,
-	            data: data,
-	            success: saveSuccess(data),
-	            dataType: String
-	        });
-	    }
-	    if (vtype === "pl" && s >= 1) {
-	        var data = { action: "StoreASPAssessNoSession", CandidateID: vcandidate, CustomisationID: vcust, Version: vversion, SectionID: vsection, Score: s }
-	        $.ajax({
-	            type: "GET",
-	            url: trackurl,
-	            data: data,
-				success: StoredSuccess(v),
-	            dataType: String
-	        });
-        }
-		else if (vtype !== "pl" && v === "") {
-            //Store complete
-            window.parent.closeMpe();
-        }
-    }
-	if (e === "cmi.core.lesson_status") {
-		var stat;
-		if (startDate != 0) {
-			var currentDate = new Date().getTime();
-			fixedtime = ((currentDate - startDate) / 60000);
-		}
-		if (v === "passed" | v === "completed" | v === "complete") {
-
-			//Store complete
-		    stat = "2";
-
-		}
-		else {
-		    //Store "started" 
-		    stat = "1";
-		}
-	    //Store  to ITSP tracking:
-		if (vtutorialid == null | vtutorialid == '0') {
-			var data = { action: "StoreASPProgressNoSession", TutorialStatus: stat, TutorialTime: fixedtime, ProgressID: vprog, CandidateID: vcandidate, Version: vversion, CustomisationID: vcust }
-		}
-		else
-		{
-			var data = { action: "StoreASPProgressV2", TutorialStatus: stat, TutorialTime: fixedtime, ProgressID: vprog, CandidateID: vcandidate, Version: vversion, CustomisationID: vcust, TutorialID: vtutorialid }
-        }
-		$.ajax({
-			type: "GET",
-			url: trackurl,
-			data: data,
-			success: saveSuccess(data),
-			dataType: String
-		});
-	}
-	if (e === "cmi.suspend_data") {
-		if (v.length > 0) {
-			var data = {
-				action: "StoreSuspendData",
-				progressId: vprog,
-				TutorialID: vtutorialid,
-				CustomisationID: vcust,
-				CandidateID: vcandidate,
-				suspendData: v
+				processingRequest = true;
+				$.ajax({
+					type: "GET",
+					url: trackurl,
+					data: data,
+					success: finishRequest(data),
+					error: finishRequest(false)
+				});
 			}
-			$.ajax({
-				type: "GET",
-				url: trackurl,
-				data: data,
-				dataType: String
-			});
 		}
-	}
-	if (e === "cmi.core.lesson_location") {
-		if (v.length > 0) {
-			var data = {
-				action: "StoreLessonLocation",
-				progressId: vprog,
-				TutorialID: vtutorialid,
-				CustomisationID: vcust,
-				CandidateID: vcandidate,
-				lessonLocation: v
+		if (e === "cmi.core.lesson_location") {
+			if (v.length > 0) {
+				var data = {
+					action: "StoreLessonLocation",
+					progressId: vprog,
+					TutorialID: vtutorialid,
+					CustomisationID: vcust,
+					CandidateID: vcandidate,
+					lessonLocation: v
+				}
+				processingRequest = true;
+				$.ajax({
+					type: "GET",
+					url: trackurl,
+					data: data,
+					error: finishRequest(false),
+					success: finishRequest(data)
+				});
 			}
-			$.ajax({
-				type: "GET",
-				url: trackurl,
-				data: data,
-				dataType: String
-			});
 		}
 	}
 }
@@ -265,12 +274,13 @@ function DLSGetValue(e) {
 	};
 }
 
-function saveSuccess(d) {
-	//alert('erm');
+function finishRequest(d) {
+	processingRequest = false;
 }
 
 function setUpObjectiveArray(data, textStatus, jqXHR) {
 	objson = data["objectives"];
+	processingRequest = false;
 }
 var getUrlParameter = function getUrlParameter(sParam) {
 	var sPageURL = decodeURIComponent(window.location.search.substring(1)),
