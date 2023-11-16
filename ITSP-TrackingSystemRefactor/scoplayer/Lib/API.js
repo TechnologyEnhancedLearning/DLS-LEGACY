@@ -37,8 +37,9 @@ SCORM_1_2.API_LIB.prototype = { $0: null, $1: null, $2: null, $3: null, $4: null
 API = function () { }
 API.setAPI_LIB = function (api_lib) { API.$0 = api_lib; }
 API.LMSInitialize = function (param) {
+    API.$0.LMSInitialize(param);
     setupTrackingVars();
-    return API.$0.LMSInitialize(param);
+    return true;
 }
 API.LMSFinish = function (param) {
     if (processingRequest) {
@@ -159,8 +160,8 @@ function setupTrackingVars() {
     vprog = document.getElementById('hfprog').value;
     vcust = document.getElementById('hfcustomisation').value;
     vtype = document.getElementById('hfContentType').value;
-    this.$0.$1F.$E["cmi.suspend_data"].value = document.getElementById('hfSuspendData').value;
-    this.$0.$1F.$E["cmi.core.lesson_location"].value = document.getElementById('hfLessonLocation').value;
+    API.$0.$1F.$E["cmi.suspend_data"].value = document.getElementById('hfSuspendData').value;
+    API.$0.$1F.$E["cmi.core.lesson_location"].value = document.getElementById('hfLessonLocation').value;
     if (vtype != "learn") {
         var data = { action: "GetObjectiveArray", CustomisationID: vcust, SectionID: vsection }
         processingRequest = true;
