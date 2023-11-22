@@ -55,6 +55,7 @@ API.LMSGetValue = function (element) {
     return API.$0.LMSGetValue(element);
 }
 API.LMSSetValue = function (element, value) {
+    lastRequestType = 'LMSSetValue';
     var earr = element.split(".");
     if (earr[1] === "interactions" && earr[3] === "result") {
         attempted = true;
@@ -71,10 +72,14 @@ API.LMSSetValue = function (element, value) {
     return API.$0.LMSSetValue(element, value);
 }
 API.LMSCommit = function (param) {
-    if (processingRequest) {
-        window.setTimeout(API.LMSCommit(param), 250);
+    if (lastRequestType == 'LMSCommit') {
+        return false;
+    }
+    else if (processingRequest) {
+            window.setTimeout(API.LMSCommit(param), 250);
     }
     else {
+        lastRequestType = 'LMSCommit';
         s = parseInt(this.$0.$1F.$E["cmi.core.score.raw"].value);
         var data = {};
         //Handle the request based on the content type:
@@ -109,7 +114,7 @@ API.LMSCommit = function (param) {
                 startDate = currentDate;
             }
             //Setup ajax call data
-            var data = { action: "UpdateLessonState", TutorialID: vtutorialid, ProgressID: vprog, CandidateID: vcandidate, CustomisationID: vcust, TutorialTime: fixedtime, TutorialStatus: stat, SuspendData: suspendData, LessonLocation: lessonLocation }
+            var data = { action: "UpdateLessonState", TutorialID: vtutorialid, ProgressID: vprog, CandidateID: vcandidate, CustomisationID: vcust, TutorialTime: tutTime, TutorialStatus: stat, SuspendData: suspendData, LessonLocation: lessonLocation }
         }
         if (data !== {}) {
             processingRequest = true;
@@ -150,6 +155,7 @@ var interactionid;
 var attempted = false;
 var assessmentsubmitted = false;
 var processingRequest = false;
+var lastRequestType = '';
 
 function setupTrackingVars() {
     trackurl = document.getElementById('hftrackurl').value;
