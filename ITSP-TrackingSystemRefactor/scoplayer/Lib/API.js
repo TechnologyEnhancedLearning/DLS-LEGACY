@@ -55,7 +55,6 @@ API.LMSGetValue = function (element) {
     return API.$0.LMSGetValue(element);
 }
 API.LMSSetValue = function (element, value) {
-    lastRequestType = 'LMSSetValue';
     var earr = element.split(".");
     if (earr[1] === "interactions" && earr[3] === "result") {
         attempted = true;
@@ -72,14 +71,9 @@ API.LMSSetValue = function (element, value) {
     return API.$0.LMSSetValue(element, value);
 }
 API.LMSCommit = function (param) {
-    if (lastRequestType == 'LMSCommit') {
-        return false;
-    }
-    else if (processingRequest) {
-            window.setTimeout(API.LMSCommit(param), 250);
-    }
-    else {
-        lastRequestType = 'LMSCommit';
+    var currentDate = new Date().getTime();
+    if ((currentDate - lastCommit) > 60000) {
+        lastCommit = currentDate;
         s = parseInt(this.$0.$1F.$E["cmi.core.score.raw"].value);
         var data = {};
         //Handle the request based on the content type:
@@ -128,7 +122,9 @@ API.LMSCommit = function (param) {
             });
         }
     }
-    //return API.$0.LMSCommit(param);
+    else {
+        return API.$0.LMSCommit(param);
+    }
 }
 API.LMSGetLastError = function () { return API.$0.LMSGetLastError(); };
 API.LMSGetErrorString = function (param) { return API.$0.LMSGetErrorString(param); };
@@ -155,7 +151,7 @@ var interactionid;
 var attempted = false;
 var assessmentsubmitted = false;
 var processingRequest = false;
-var lastRequestType = '';
+var lastCommit = 0;
 
 function setupTrackingVars() {
     trackurl = document.getElementById('hftrackurl').value;
