@@ -12,13 +12,4 @@ Option Explicit On
 
 
 Partial Public Class learning
-    
-    '''<summary>
-    '''brand control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents brand As Global.ITSP_TrackingSystemRefactor.brand
 End Class

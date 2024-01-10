@@ -1,12 +1,5 @@
 ﻿<%@ Page Title="Welcome" Language="vb" AutoEventWireup="false" MasterPageFile="~/Landing.Master" CodeBehind="home.aspx.vb" Inherits="ITSP_TrackingSystemRefactor.home" %>
 
-<%@ Register Src="~/controls/brands.ascx" TagPrefix="uc1" TagName="brands" %>
-<%@ Register Src="~/controls/products.ascx" TagPrefix="uc1" TagName="products" %>
-<%@ Register Src="~/controls/cstories.ascx" TagPrefix="uc1" TagName="cstories" %>
-<%@ Register Src="~/controls/quotes.ascx" TagPrefix="uc1" TagName="quotes" %>
-<%@ Register Src="~/controls/newstimeline.ascx" TagPrefix="uc1" TagName="newstimeline" %>
-
-
 <asp:Content ID="ContentSkipLink" ContentPlaceHolderID="SkipToContentLink" runat="server">
     <a id="go-content" href="#intro-next" class="skip-link">
                 <i class="fas fa-arrow-down"></i> Skip to Content
@@ -114,22 +107,7 @@
             <div class="header-spacer"></div>
             </div>
          </div>
-     <section id="learning">
-             <uc1:brands runat="server" ID="brands" />
-        </section>
-    <section id="products">
-        <uc1:products runat="server" ID="products1" />
-
-        </section>
-    <section id="customerstories">
-        <uc1:cstories runat="server" ID="cstories" />
-    </section>
-    <section id="quotes">
-        <uc1:quotes runat="server" ID="quotes1" ResultCount="100" BrandID="0" ProductID="0" />
-    </section>
-    <section id="news">
-        <uc1:newstimeline runat="server" ID="newstimeline" ResultCount="100" BrandID="0" ProductID="0" />
-    </section>
+   
   <section id="team">
           <div class="container pt-6">
             <h2 class="color-primary text-center wow fadeInUp animation-delay-2">Meet the Team</h2>
