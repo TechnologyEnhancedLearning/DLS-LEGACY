@@ -14461,20 +14461,20 @@ Namespace itspdbTableAdapters
             Me._commandCollection(4).Connection = Me.Connection
             Me._commandCollection(4).CommandText = "SELECT ApplicationID, ApplicationInfo, ApplicationName, ArchivedBy, ArchivedDate,"& _ 
                 " AssessAttempts, BrandID, CoreContent, CourseCategoryID, CourseImage, CourseTopi"& _ 
-                "cID, (SELECT Forename + ' ' + Surname AS Expr1 FROM AdminUsers WHERE (AdminID = "& _ 
-                "a.CreatedByID)) AS CreatedBy, (SELECT CentreName FROM Centres WHERE (CentreID = "& _ 
-                "a.CreatedByCentreID)) AS CreatedByCentre, CreatedByCentreID, CreatedByID, Create"& _ 
-                "dDate, Debug, DefaultContentTypeID, DiagAssess, CAST(hEmbedRes AS varchar) + 'x'"& _ 
-                " + CAST(vEmbedRes AS varchar) AS Dimensions, DisplayFormatID, IncludeCertificati"& _ 
-                "on, IncludeLearningLog, PLAPassThreshold, PLAssess, ServerSpace, ShortAppName, h"& _ 
-                "EmbedRes, vEmbedRes FROM Applications AS a WHERE (ASPMenu = 1) AND (CreatedByCen"& _ 
-                "treID = @CentreID) AND (ArchivedDate IS NULL) OR (ASPMenu = 1) AND (CreatedByCen"& _ 
-                "treID = @CentreID) AND (@ShowArchived = 1) OR (ASPMenu = 1) AND (ArchivedDate IS"& _ 
-                " NULL) AND (@PublishToAll = 1) AND (@ShowOnlyMine = 0) OR (ASPMenu = 1) AND (@Sh"& _ 
-                "owArchived = 1) AND (@PublishToAll = 1) AND (@ShowOnlyMine = 0) ORDER BY (SELECT"& _ 
-                " ApplicationGroup FROM ApplicationGroups WHERE (AppGroupID = a.AppGroupID)), (SE"& _ 
-                "LECT OfficeApplication FROM OfficeApplications WHERE (OfficeAppID = a.OfficeAppI"& _ 
-                "D)), ApplicationName"
+                "cID,"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                 (SELECT Forename + ' ' + Surname AS Expr1"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"              "& _ 
+                "   FROM    AdminUsers"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                 WHERE (AdminID = a.CreatedByID)) AS Crea"& _ 
+                "tedBy,"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                 (SELECT CentreName"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                 FROM    Centres"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&" "& _ 
+                "                WHERE (CentreID = a.CreatedByCentreID)) AS CreatedByCentre, Crea"& _ 
+                "tedByCentreID, CreatedByID, CreatedDate, Debug, DefaultContentTypeID, DiagAssess"& _ 
+                ", CAST(hEmbedRes AS varchar) + 'x' + CAST(vEmbedRes AS varchar) AS Dimensions, D"& _ 
+                "isplayFormatID, "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"             IncludeCertification, IncludeLearningLog, PLAPass"& _ 
+                "Threshold, PLAssess, ServerSpace, ShortAppName, hEmbedRes, vEmbedRes"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"FROM   App"& _ 
+                "lications AS a"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"WHERE (ASPMenu = 1) AND (CreatedByCentreID = @CentreID) AND (Arc"& _ 
+                "hivedDate IS NULL) OR"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"             (ASPMenu = 1) AND (CreatedByCentreID = @Cent"& _ 
+                "reID) AND (@ShowArchived = 1) OR"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"             (ASPMenu = 1) AND (ArchivedDate I"& _ 
+                "S NULL) AND (@PublishToAll = 1) AND (@ShowOnlyMine = 0) OR"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"             (ASPMen"& _ 
+                "u = 1) AND (@ShowArchived = 1) AND (@PublishToAll = 1) AND (@ShowOnlyMine = 0)"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)& _ 
+                "ORDER BY ApplicationName"
             Me._commandCollection(4).CommandType = Global.System.Data.CommandType.Text
             Me._commandCollection(4).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@CentreID", Global.System.Data.SqlDbType.Int, 4, Global.System.Data.ParameterDirection.Input, 0, 0, "CreatedByCentreID", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
             Me._commandCollection(4).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@ShowArchived", Global.System.Data.SqlDbType.Bit, 1024, Global.System.Data.ParameterDirection.Input, 0, 0, "", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
