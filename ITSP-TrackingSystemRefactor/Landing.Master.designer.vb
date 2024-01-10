@@ -12,7 +12,7 @@ Option Explicit On
 
 
 Partial Public Class Landing
-    
+
     '''<summary>
     '''form1 control.
     '''</summary>
@@ -21,7 +21,7 @@ Partial Public Class Landing
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents form1 As Global.System.Web.UI.HtmlControls.HtmlForm
-    
+
     '''<summary>
     '''ScriptManager1 control.
     '''</summary>
@@ -30,7 +30,7 @@ Partial Public Class Landing
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents ScriptManager1 As Global.System.Web.UI.ScriptManager
-    
+
     '''<summary>
     '''dsBrandsList control.
     '''</summary>
@@ -39,16 +39,7 @@ Partial Public Class Landing
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents dsBrandsList As Global.System.Web.UI.WebControls.ObjectDataSource
-    
-    '''<summary>
-    '''dsProductsList control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents dsProductsList As Global.System.Web.UI.WebControls.ObjectDataSource
-    
+
     '''<summary>
     '''SkipToContentLink control.
     '''</summary>
@@ -57,7 +48,7 @@ Partial Public Class Landing
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents SkipToContentLink As Global.System.Web.UI.WebControls.ContentPlaceHolder
-    
+
     '''<summary>
     '''rptBrandsList control.
     '''</summary>
@@ -66,16 +57,7 @@ Partial Public Class Landing
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents rptBrandsList As Global.System.Web.UI.WebControls.Repeater
-    
-    '''<summary>
-    '''rptProductsList control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents rptProductsList As Global.System.Web.UI.WebControls.Repeater
-    
+
     '''<summary>
     '''usermx control.
     '''</summary>
@@ -84,7 +66,7 @@ Partial Public Class Landing
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents usermx As Global.ITSP_TrackingSystemRefactor.usermx
-    
+
     '''<summary>
     '''MainContent control.
     '''</summary>
@@ -93,7 +75,7 @@ Partial Public Class Landing
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents MainContent As Global.System.Web.UI.WebControls.ContentPlaceHolder
-    
+
     '''<summary>
     '''usermxmodals control.
     '''</summary>
@@ -102,7 +84,7 @@ Partial Public Class Landing
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents usermxmodals As Global.ITSP_TrackingSystemRefactor.usermxmodals
-    
+
     '''<summary>
     '''Repeater1 control.
     '''</summary>
@@ -111,16 +93,7 @@ Partial Public Class Landing
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents Repeater1 As Global.System.Web.UI.WebControls.Repeater
-    
-    '''<summary>
-    '''Repeater2 control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents Repeater2 As Global.System.Web.UI.WebControls.Repeater
-    
+
     '''<summary>
     '''lbltermsHeading control.
     '''</summary>
@@ -129,7 +102,7 @@ Partial Public Class Landing
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lbltermsHeading As Global.System.Web.UI.WebControls.Label
-    
+
     '''<summary>
     '''litTOUDetail control.
     '''</summary>
@@ -138,7 +111,7 @@ Partial Public Class Landing
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents litTOUDetail As Global.System.Web.UI.WebControls.Literal
-    
+
     '''<summary>
     '''label8 control.
     '''</summary>
@@ -147,7 +120,7 @@ Partial Public Class Landing
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents label8 As Global.System.Web.UI.WebControls.Label
-    
+
     '''<summary>
     '''litPrivacy control.
     '''</summary>
@@ -156,7 +129,7 @@ Partial Public Class Landing
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents litPrivacy As Global.System.Web.UI.WebControls.Literal
-    
+
     '''<summary>
     '''label9 control.
     '''</summary>
@@ -165,7 +138,7 @@ Partial Public Class Landing
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents label9 As Global.System.Web.UI.WebControls.Label
-    
+
     '''<summary>
     '''litAccess control.
     '''</summary>

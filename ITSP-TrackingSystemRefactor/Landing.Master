@@ -137,7 +137,6 @@
 
         </script>
         <asp:ObjectDataSource ID="dsBrandsList" runat="server" OldValuesParameterFormatString="original_{0}" SelectMethod="GetData" TypeName="ITSP_TrackingSystemRefactor.prelogindataTableAdapters.BrandsListTableAdapter"></asp:ObjectDataSource>
-        <asp:ObjectDataSource ID="dsProductsList" runat="server" OldValuesParameterFormatString="original_{0}" SelectMethod="GetData" TypeName="ITSP_TrackingSystemRefactor.prelogindataTableAdapters.pl_ProductsListTableAdapter"></asp:ObjectDataSource>
         <div id="ms-preload" class="ms-preload">
             <div id="status">
                 <div class="spinner">
@@ -201,22 +200,7 @@
                                         <a href="home#learning" data-scroll class="dropdown-item">Learning content</a>
 
                                     </li>
-                                    <li>
-                                        <a href="home#products" data-scroll class="dropdown-item">Product overview</a>
-
-                                    </li>
-                                    <li>
-                                        <a href="home#customerstories" data-scroll class="dropdown-item">Customer stories</a>
-
-                                    </li>
-                                    <li>
-                                        <a href="home#quotes" data-scroll class="dropdown-item">Testimonials</a>
-
-                                    </li>
-                                    <li>
-                                        <a href="home#news" data-scroll class="dropdown-item">News</a>
-
-                                    </li>
+                                    
                                     <li>
                                         <a href="home#team" data-scroll class="dropdown-item">Meet the team</a>
 
@@ -248,39 +232,8 @@
                                 </ul>
 
                             </li>
-                            <li class="nav-item dropdown">
-                                <a href="products" class="nav-link dropdown-toggle animated fadeIn animation-delay-7" data-toggle="dropdown" data-hover="dropdown" role="button" aria-haspopup="true" data-name="page">Products
-                  <i class="fas fa-angle-down"></i>
-                                </a>
-                                <ul class="dropdown-menu" aria-expanded="false">
-                                    <asp:Repeater ID="rptProductsList" runat="server" DataSourceID="dsProductsList">
-                                        <ItemTemplate>
-                                            <li>
-                                                <a href='<%# "Product?product=" & Eval("ProductName").Replace(" ", "") %>' class="dropdown-item"><%# Eval("ProductName") %></a>
-
-                                            </li>
-                                        </ItemTemplate>
-                                    </asp:Repeater>
-                                    <li>
-                                        <a href="pricing" class="dropdown-item">Pricing</a>
-                                    </li>
-                                </ul>
-                            </li>
-                            <li class="nav-item dropdown">
-                                <a href="#" class="nav-link dropdown-toggle animated fadeIn animation-delay-7" data-toggle="dropdown" data-hover="dropdown" role="button" aria-haspopup="true" data-name="component">Publications
-                  <i class="fas fa-angle-down"></i>
-                                </a>
-                                <ul class="dropdown-menu" aria-expanded="false">
-                                    <li>
-                                        <a href="customerstories" class="dropdown-item">Customer Stories</a>
-
-                                    </li>
-                                    <li>
-                                        <a href="bulletin" class="dropdown-item">Bulletins</a>
-
-                                    </li>
-                                </ul>
-                            </li>
+                          
+                            
                             <li class="nav-item">
  <uc1:usermx class="nav-link" runat="server" id="usermx" />
                             </li>
@@ -353,22 +306,7 @@
                                         <a href="home#learning" data-scroll>Learning content</a>
 
                                     </li>
-                                    <li>
-                                        <a href="home#products" data-scroll>Product overview</a>
-
-                                    </li>
-                                    <li>
-                                        <a href="home#customerstories" data-scroll>Customer stories</a>
-
-                                    </li>
-                                    <li>
-                                        <a href="home#quotes" data-scroll>Testimonials</a>
-
-                                    </li>
-                                    <li>
-                                        <a href="home#news" data-scroll>News</a>
-
-                                    </li>
+                                    
                             <li>
                                         <a href="home#team" data-scroll>Meet the team</a>
 
@@ -396,20 +334,7 @@
                                             </li>
                         </ul>
                     </li>
-                    <li class="card" role="tab" id="sch4">
-                        <a class="collapsed" role="button" data-toggle="collapse" href="#sc4" aria-expanded="false" aria-controls="sc4">
-                            <i class="fas fa-desktop"></i>Products </a>
-                        <ul id="sc4" class="card-collapse collapse" role="tabpanel" aria-labelledby="sch4" data-parent="#slidebar-menu">
-                            <asp:Repeater ID="Repeater2" runat="server" DataSourceID="dsProductsList">
-                                        <ItemTemplate>
-                                            <li>
-                                                <a href='<%# "Product?product=" & Eval("ProductName").Replace(" ", "") %>' class="dropdown-item"><%# Eval("ProductName") %></a>
-
-                                            </li>
-                                        </ItemTemplate>
-                                    </asp:Repeater>
-                        </ul>
-                    </li>
+                    
                     <li class="card" role="tab" id="sch5">
                         <a class="collapsed" role="button" data-toggle="collapse" href="#sc5" aria-expanded="false" aria-controls="sc5">
                             <i class="fas fa-shopping-basket"></i>Publications </a>

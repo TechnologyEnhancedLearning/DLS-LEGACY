@@ -613,7 +613,6 @@
                     <asp:Parameter Name="ContentTypeID" Type="Int32" />
                     <asp:Parameter Name="LearnerMarksCompletion" Type="Boolean" />
                     <asp:Parameter Name="DefaultMethodID" Type="Int32" />
-                    <asp:Parameter Name="AssessmentTypeID" Type="Int32" />
                     <asp:Parameter Name="EvidenceText" Type="String" />
                     <asp:Parameter Name="IncludeActionPlan" Type="Boolean" />
                     <asp:Parameter Name="SupervisorVerify" Type="Boolean" />
@@ -642,7 +641,6 @@
                     <asp:Parameter Name="ContentTypeID" Type="Int32" />
                     <asp:Parameter Name="LearnerMarksCompletion" Type="Boolean" />
                     <asp:Parameter Name="DefaultMethodID" Type="Int32" />
-                    <asp:Parameter Name="AssessmentTypeID" Type="Int32" />
                     <asp:Parameter Name="EvidenceText" Type="String" />
                     <asp:Parameter Name="IncludeActionPlan" Type="Boolean" />
                     <asp:Parameter Name="SupervisorVerify" Type="Boolean" />
@@ -784,16 +782,7 @@
                                     </div>
                                 </asp:Panel>
                              
-
-                                    
-                                <div class="form-group row">
-                                    <asp:Label ID="lblAssessType" CssClass="control-label col-md-4" runat="server" AssociatedControlID="ddAssessmentTypeID">Assessment Type:</asp:Label>
-                                    <div class="col-md-8">
-                                        <asp:DropDownList CssClass="form-control" ClientIDMode="Static" DataSourceID="dsAssessmentTypes" DataTextField="AssessmentType" DataValueField="AssessmentTypeID" SelectedValue='<%# Bind("AssessmentTypeID") %>' ID="ddAssessmentTypeID" runat="server" AppendDataBoundItems="True">
-                                            <asp:ListItem Text="Online Diagnostic / Post Learning Assessment" Value="0"></asp:ListItem>
-                                        </asp:DropDownList>
-                                    </div>
-                                </div>   
+  
                                 
                                 <div ID="pnlDiagnosticConfig">
 <div class="form-group row">
@@ -987,14 +976,6 @@
  <asp:Label ID="lblEvidence" CssClass="col-md-4 control-label" runat="server" AssociatedControlID="htmlEvidenceText" ClientIDMode="Static" Text="Evidence text:"></asp:Label>
                                     <div class="col-md-8">
                                         <dx:ASPxHtmlEditor Width="100%" Html='<%# Bind("EvidenceText") %>' ID="htmlEvidenceText" Height="200px" runat="server" Settings-AllowCustomColorsInColorPickers="False" SettingsHtmlEditing-AllowIdAttributes="False" SettingsHtmlEditing-PasteMode="PlainText" SettingsText-DesignViewTab="Edit"></dx:ASPxHtmlEditor>
-                                    </div>
-                                </div>
-                                <div class="form-group row">
-                                    <asp:Label ID="lblAssessType" CssClass="control-label col-md-4" runat="server" AssociatedControlID="ddAssessmentTypeID">Assessment Type:</asp:Label>
-                                    <div class="col-md-8">
-                                        <asp:DropDownList CssClass="form-control" DataSourceID="dsAssessmentTypes" DataTextField="AssessmentType" ClientIDMode="Static" DataValueField="AssessmentTypeID" SelectedValue='<%# Bind("AssessmentTypeID") %>' ID="ddAssessmentTypeID" runat="server" AppendDataBoundItems="True">
-                                            <asp:ListItem Text="Online Diagnostic / Post Learning Assessment" Value="0"></asp:ListItem>
-                                        </asp:DropDownList>
                                     </div>
                                 </div>
                                 <div id="pnlDiagnosticConfig">
