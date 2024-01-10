@@ -364,7 +364,6 @@
     <Import Include="System.Web.UI.HtmlControls" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="bulletin.aspx" />
     <Content Include="CBFAQs.aspx" />
     <Content Include="cms\Config.aspx" />
     <Content Include="cms\ContentCreator.aspx" />
@@ -404,17 +403,12 @@
     <Content Include="Content\owl.theme.css" />
     <Content Include="Content\owl.transitions.css" />
     <Content Include="Content\usermx.css" />
-    <Content Include="controls\brandtutorials.ascx" />
-    <Content Include="controls\bulletinspreview.aspx" />
-    <Content Include="controls\bulletins.ascx" />
     <Content Include="controls\DelegatesModals.ascx" />
     <Content Include="controls\filemx.ascx" />
     <Content Include="controls\filemxsess.ascx" />
-    <Content Include="controls\itspbenefits.ascx" />
     <Content Include="controls\userinfo.ascx" />
     <Content Include="controls\usermx.ascx" />
     <Content Include="controls\usermxmodals.ascx" />
-    <Content Include="customerstories.aspx" />
     <Content Include="default.aspx" />
     <Content Include="DevExpress\ASPxSchedulerForms\AppointmentDragToolTip.ascx" />
     <Content Include="DevExpress\ASPxSchedulerForms\AppointmentForm.ascx" />
@@ -1308,22 +1302,6 @@
     <Content Include="Content\themes\base\theme.css" />
     <Content Include="Content\themes\base\tooltip.css" />
     <Content Include="Content\themes\jquery.fonticonpicker.bootstrap.min.css" />
-    <Content Include="controls\brand.ascx" />
-    <Content Include="controls\brandpreview.aspx" />
-    <Content Include="controls\brands.ascx" />
-    <Content Include="controls\brandspreview.aspx" />
-    <Content Include="controls\cstories.ascx" />
-    <Content Include="controls\cstoriespreview.aspx" />
-    <Content Include="controls\cstory.ascx" />
-    <Content Include="controls\cstorypreview.aspx" />
-    <Content Include="controls\newstimelinepreview.aspx" />
-    <Content Include="controls\newstimeline.ascx" />
-    <Content Include="controls\product.ascx" />
-    <Content Include="controls\products.ascx" />
-    <Content Include="controls\productpreview.aspx" />
-    <Content Include="controls\productspreview.aspx" />
-    <Content Include="controls\quotes.ascx" />
-    <Content Include="controls\quotespreview.aspx" />
     <Content Include="tracking\coursedelegates.aspx" />
     <Content Include="tracking\coursesetup.aspx" />
     <Content Include="tracking\dashboard.aspx" />
@@ -1675,13 +1653,6 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Authenticate.xsd</DependentUpon>
     </Compile>
-    <Compile Include="bulletin.aspx.designer.vb">
-      <DependentUpon>bulletin.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="bulletin.aspx.vb">
-      <DependentUpon>bulletin.aspx</DependentUpon>
-      <SubType>ASPXCodebehind</SubType>
-    </Compile>
     <Compile Include="CBFAQs.aspx.designer.vb">
       <DependentUpon>CBFAQs.aspx</DependentUpon>
     </Compile>
@@ -1745,27 +1716,6 @@
       <DependentUpon>sco.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="controls\brandtutorials.ascx.designer.vb">
-      <DependentUpon>brandtutorials.ascx</DependentUpon>
-    </Compile>
-    <Compile Include="controls\brandtutorials.ascx.vb">
-      <DependentUpon>brandtutorials.ascx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="controls\bulletinspreview.aspx.designer.vb">
-      <DependentUpon>bulletinspreview.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="controls\bulletinspreview.aspx.vb">
-      <DependentUpon>bulletinspreview.aspx</DependentUpon>
-      <SubType>ASPXCodebehind</SubType>
-    </Compile>
-    <Compile Include="controls\bulletins.ascx.designer.vb">
-      <DependentUpon>bulletins.ascx</DependentUpon>
-    </Compile>
-    <Compile Include="controls\bulletins.ascx.vb">
-      <DependentUpon>bulletins.ascx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
     <Compile Include="controls\DelegatesModals.ascx.designer.vb">
       <DependentUpon>DelegatesModals.ascx</DependentUpon>
     </Compile>
@@ -1785,13 +1735,6 @@
     </Compile>
     <Compile Include="controls\filemxsess.ascx.vb">
       <DependentUpon>filemxsess.ascx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="controls\itspbenefits.ascx.designer.vb">
-      <DependentUpon>itspbenefits.ascx</DependentUpon>
-    </Compile>
-    <Compile Include="controls\itspbenefits.ascx.vb">
-      <DependentUpon>itspbenefits.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="controls\userinfo.ascx.designer.vb">
@@ -1816,13 +1759,6 @@
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="CourseSettings.vb" />
-    <Compile Include="customerstories.aspx.designer.vb">
-      <DependentUpon>customerstories.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="customerstories.aspx.vb">
-      <DependentUpon>customerstories.aspx</DependentUpon>
-      <SubType>ASPXCodebehind</SubType>
-    </Compile>
     <Compile Include="default.aspx.designer.vb">
       <DependentUpon>default.aspx</DependentUpon>
     </Compile>
@@ -2199,118 +2135,6 @@
       <DependentUpon>centresignature.aspx</DependentUpon>
       <SubType>ASPXCodebehind</SubType>
     </Compile>
-    <Compile Include="controls\brand.ascx.designer.vb">
-      <DependentUpon>brand.ascx</DependentUpon>
-    </Compile>
-    <Compile Include="controls\brand.ascx.vb">
-      <DependentUpon>brand.ascx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="controls\brandpreview.aspx.designer.vb">
-      <DependentUpon>brandpreview.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="controls\brandpreview.aspx.vb">
-      <DependentUpon>brandpreview.aspx</DependentUpon>
-      <SubType>ASPXCodebehind</SubType>
-    </Compile>
-    <Compile Include="controls\brands.ascx.designer.vb">
-      <DependentUpon>brands.ascx</DependentUpon>
-    </Compile>
-    <Compile Include="controls\brands.ascx.vb">
-      <DependentUpon>brands.ascx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="controls\brandspreview.aspx.designer.vb">
-      <DependentUpon>brandspreview.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="controls\brandspreview.aspx.vb">
-      <DependentUpon>brandspreview.aspx</DependentUpon>
-      <SubType>ASPXCodebehind</SubType>
-    </Compile>
-    <Compile Include="controls\cstories.ascx.designer.vb">
-      <DependentUpon>cstories.ascx</DependentUpon>
-    </Compile>
-    <Compile Include="controls\cstories.ascx.vb">
-      <DependentUpon>cstories.ascx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="controls\cstoriespreview.aspx.designer.vb">
-      <DependentUpon>cstoriespreview.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="controls\cstoriespreview.aspx.vb">
-      <DependentUpon>cstoriespreview.aspx</DependentUpon>
-      <SubType>ASPXCodebehind</SubType>
-    </Compile>
-    <Compile Include="controls\cstory.ascx.designer.vb">
-      <DependentUpon>cstory.ascx</DependentUpon>
-    </Compile>
-    <Compile Include="controls\cstory.ascx.vb">
-      <DependentUpon>cstory.ascx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="controls\cstorypreview.aspx.designer.vb">
-      <DependentUpon>cstorypreview.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="controls\cstorypreview.aspx.vb">
-      <DependentUpon>cstorypreview.aspx</DependentUpon>
-      <SubType>ASPXCodebehind</SubType>
-    </Compile>
-    <Compile Include="controls\newstimelinepreview.aspx.designer.vb">
-      <DependentUpon>newstimelinepreview.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="controls\newstimelinepreview.aspx.vb">
-      <DependentUpon>newstimelinepreview.aspx</DependentUpon>
-      <SubType>ASPXCodebehind</SubType>
-    </Compile>
-    <Compile Include="controls\newstimeline.ascx.designer.vb">
-      <DependentUpon>newstimeline.ascx</DependentUpon>
-    </Compile>
-    <Compile Include="controls\newstimeline.ascx.vb">
-      <DependentUpon>newstimeline.ascx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="controls\product.ascx.designer.vb">
-      <DependentUpon>product.ascx</DependentUpon>
-    </Compile>
-    <Compile Include="controls\product.ascx.vb">
-      <DependentUpon>product.ascx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="controls\products.ascx.designer.vb">
-      <DependentUpon>products.ascx</DependentUpon>
-    </Compile>
-    <Compile Include="controls\products.ascx.vb">
-      <DependentUpon>products.ascx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="controls\productpreview.aspx.designer.vb">
-      <DependentUpon>productpreview.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="controls\productpreview.aspx.vb">
-      <DependentUpon>productpreview.aspx</DependentUpon>
-      <SubType>ASPXCodebehind</SubType>
-    </Compile>
-    <Compile Include="controls\productspreview.aspx.designer.vb">
-      <DependentUpon>productspreview.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="controls\productspreview.aspx.vb">
-      <DependentUpon>productspreview.aspx</DependentUpon>
-      <SubType>ASPXCodebehind</SubType>
-    </Compile>
-    <Compile Include="controls\quotes.ascx.designer.vb">
-      <DependentUpon>quotes.ascx</DependentUpon>
-    </Compile>
-    <Compile Include="controls\quotes.ascx.vb">
-      <DependentUpon>quotes.ascx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="controls\quotespreview.aspx.designer.vb">
-      <DependentUpon>quotespreview.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="controls\quotespreview.aspx.vb">
-      <DependentUpon>quotespreview.aspx</DependentUpon>
-      <SubType>ASPXCodebehind</SubType>
-    </Compile>
     <Compile Include="tracking\coursedelegates.aspx.designer.vb">
       <DependentUpon>coursedelegates.aspx</DependentUpon>
     </Compile>
@@ -2629,9 +2453,6 @@
     <Compile Include="Landing.Master.vb">
       <DependentUpon>Landing.Master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="home.aspx.designer.vb">
-      <DependentUpon>home.aspx</DependentUpon>
     </Compile>
     <Compile Include="home.aspx.vb">
       <DependentUpon>home.aspx</DependentUpon>
