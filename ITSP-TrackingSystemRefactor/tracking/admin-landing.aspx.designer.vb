@@ -12,7 +12,7 @@ Option Explicit On
 
 
 Partial Public Class admin_landing
-    
+
     '''<summary>
     '''bspcLandingTabs control.
     '''</summary>
@@ -21,7 +21,7 @@ Partial Public Class admin_landing
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents bspcLandingTabs As Global.DevExpress.Web.Bootstrap.BootstrapPageControl
-    
+
     '''<summary>
     '''dsOrganisations control.
     '''</summary>
@@ -30,7 +30,7 @@ Partial Public Class admin_landing
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents dsOrganisations As Global.System.Web.UI.WebControls.ObjectDataSource
-    
+
     '''<summary>
     '''dsBrands control.
     '''</summary>
@@ -39,7 +39,7 @@ Partial Public Class admin_landing
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents dsBrands As Global.System.Web.UI.WebControls.ObjectDataSource
-    
+
     '''<summary>
     '''bsgvBrands control.
     '''</summary>
@@ -48,124 +48,7 @@ Partial Public Class admin_landing
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents bsgvBrands As Global.DevExpress.Web.Bootstrap.BootstrapGridView
-    
-    '''<summary>
-    '''dsProducts control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents dsProducts As Global.System.Web.UI.WebControls.ObjectDataSource
-    
-    '''<summary>
-    '''dsFeatures control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents dsFeatures As Global.System.Web.UI.WebControls.ObjectDataSource
-    
-    '''<summary>
-    '''bsgvProducts control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents bsgvProducts As Global.DevExpress.Web.Bootstrap.BootstrapGridView
-    
-    '''<summary>
-    '''dsBulletins control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents dsBulletins As Global.System.Web.UI.WebControls.ObjectDataSource
-    
-    '''<summary>
-    '''bsgvBulletins control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents bsgvBulletins As Global.DevExpress.Web.Bootstrap.BootstrapGridView
-    
-    '''<summary>
-    '''dsCaseStudies control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents dsCaseStudies As Global.System.Web.UI.WebControls.ObjectDataSource
-    
-    '''<summary>
-    '''dsCaseContent control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents dsCaseContent As Global.System.Web.UI.WebControls.ObjectDataSource
-    
-    '''<summary>
-    '''dsCSGroups control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents dsCSGroups As Global.System.Web.UI.WebControls.ObjectDataSource
-    
-    '''<summary>
-    '''bsgvCaseStudies control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents bsgvCaseStudies As Global.DevExpress.Web.Bootstrap.BootstrapGridView
-    
-    '''<summary>
-    '''dsQuotes control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents dsQuotes As Global.System.Web.UI.WebControls.ObjectDataSource
-    
-    '''<summary>
-    '''bsgvQuotes control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents bsgvQuotes As Global.DevExpress.Web.Bootstrap.BootstrapGridView
-    
-    '''<summary>
-    '''dsNews control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents dsNews As Global.System.Web.UI.WebControls.ObjectDataSource
-    
-    '''<summary>
-    '''bsgvNews control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents bsgvNews As Global.DevExpress.Web.Bootstrap.BootstrapGridView
-    
+
     '''<summary>
     '''bsppPreview control.
     '''</summary>
@@ -174,7 +57,7 @@ Partial Public Class admin_landing
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents bsppPreview As Global.DevExpress.Web.Bootstrap.BootstrapPopupControl
-    
+
     '''<summary>
     '''frmPreview control.
     '''</summary>

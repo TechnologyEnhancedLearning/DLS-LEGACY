@@ -3244,8 +3244,6 @@ Partial Public Class itspdb
         
         Private columnDefaultMethodID As Global.System.Data.DataColumn
         
-        Private columnAssessmentTypeID As Global.System.Data.DataColumn
-        
         Private columnEvidenceText As Global.System.Data.DataColumn
         
         Private columnIncludeActionPlan As Global.System.Data.DataColumn
@@ -3461,14 +3459,6 @@ Partial Public Class itspdb
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
-        Public ReadOnly Property AssessmentTypeIDColumn() As Global.System.Data.DataColumn
-            Get
-                Return Me.columnAssessmentTypeID
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
         Public ReadOnly Property EvidenceTextColumn() As Global.System.Data.DataColumn
             Get
                 Return Me.columnEvidenceText
@@ -3596,7 +3586,6 @@ Partial Public Class itspdb
                     ByVal ContentTypeID As Integer,  _
                     ByVal LearnerMarksCompletion As Boolean,  _
                     ByVal DefaultMethodID As Integer,  _
-                    ByVal AssessmentTypeID As Integer,  _
                     ByVal EvidenceText As String,  _
                     ByVal IncludeActionPlan As Boolean,  _
                     ByVal SupervisorVerify As Boolean,  _
@@ -3607,7 +3596,7 @@ Partial Public Class itspdb
                     ByVal RequireSupportMatsOpen As Boolean,  _
                     ByVal AllowPreview As Boolean) As TutorialsRow
             Dim rowTutorialsRow As TutorialsRow = CType(Me.NewRow,TutorialsRow)
-            Dim columnValuesArray() As Object = New Object() {Nothing, TutorialName, VideoPath, TutorialPath, SupportingMatsPath, Active, Objectives, DiagAssessOutOf, ObjectiveNum, Keywords, Nothing, hEmbedRes, vEmbedRes, OrderByNumber, CMIInteractionIDs, OverrideTutorialMins, Description, ContentTypeID, LearnerMarksCompletion, DefaultMethodID, AssessmentTypeID, EvidenceText, IncludeActionPlan, SupervisorVerify, SupervisorSuccessText, SupervisorFailText, RequireVideoPercent, RequireTutorialCompletion, RequireSupportMatsOpen, AllowPreview}
+            Dim columnValuesArray() As Object = New Object() {Nothing, TutorialName, VideoPath, TutorialPath, SupportingMatsPath, Active, Objectives, DiagAssessOutOf, ObjectiveNum, Keywords, Nothing, hEmbedRes, vEmbedRes, OrderByNumber, CMIInteractionIDs, OverrideTutorialMins, Description, ContentTypeID, LearnerMarksCompletion, DefaultMethodID, EvidenceText, IncludeActionPlan, SupervisorVerify, SupervisorSuccessText, SupervisorFailText, RequireVideoPercent, RequireTutorialCompletion, RequireSupportMatsOpen, AllowPreview}
             If (Not (parentSectionsRowByFK_Tutorials_Sections) Is Nothing) Then
                 columnValuesArray(10) = parentSectionsRowByFK_Tutorials_Sections(0)
             End If
@@ -3659,7 +3648,6 @@ Partial Public Class itspdb
             Me.columnContentTypeID = MyBase.Columns("ContentTypeID")
             Me.columnLearnerMarksCompletion = MyBase.Columns("LearnerMarksCompletion")
             Me.columnDefaultMethodID = MyBase.Columns("DefaultMethodID")
-            Me.columnAssessmentTypeID = MyBase.Columns("AssessmentTypeID")
             Me.columnEvidenceText = MyBase.Columns("EvidenceText")
             Me.columnIncludeActionPlan = MyBase.Columns("IncludeActionPlan")
             Me.columnSupervisorVerify = MyBase.Columns("SupervisorVerify")
@@ -3714,8 +3702,6 @@ Partial Public Class itspdb
             MyBase.Columns.Add(Me.columnLearnerMarksCompletion)
             Me.columnDefaultMethodID = New Global.System.Data.DataColumn("DefaultMethodID", GetType(Integer), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnDefaultMethodID)
-            Me.columnAssessmentTypeID = New Global.System.Data.DataColumn("AssessmentTypeID", GetType(Integer), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnAssessmentTypeID)
             Me.columnEvidenceText = New Global.System.Data.DataColumn("EvidenceText", GetType(String), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnEvidenceText)
             Me.columnIncludeActionPlan = New Global.System.Data.DataColumn("IncludeActionPlan", GetType(Boolean), Nothing, Global.System.Data.MappingType.Element)
@@ -3761,7 +3747,6 @@ Partial Public Class itspdb
             Me.columnContentTypeID.AllowDBNull = false
             Me.columnLearnerMarksCompletion.AllowDBNull = false
             Me.columnDefaultMethodID.AllowDBNull = false
-            Me.columnAssessmentTypeID.AllowDBNull = false
             Me.columnEvidenceText.MaxLength = 2147483647
             Me.columnIncludeActionPlan.AllowDBNull = false
             Me.columnSupervisorVerify.AllowDBNull = false
@@ -10977,17 +10962,6 @@ Partial Public Class itspdb
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
-        Public Property AssessmentTypeID() As Integer
-            Get
-                Return CType(Me(Me.tableTutorials.AssessmentTypeIDColumn),Integer)
-            End Get
-            Set
-                Me(Me.tableTutorials.AssessmentTypeIDColumn) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
         Public Property EvidenceText() As String
             Get
                 Try 
@@ -14425,56 +14399,58 @@ Namespace itspdbTableAdapters
             Me._commandCollection(2).Connection = Me.Connection
             Me._commandCollection(2).CommandText = "SELECT ApplicationID, ApplicationInfo, ApplicationName, ArchivedBy, ArchivedDate,"& _ 
                 " AssessAttempts, BrandID, CoreContent, CourseCategoryID, CourseImage, CourseTopi"& _ 
-                "cID, (SELECT Forename + ' ' + Surname AS Expr1 FROM AdminUsers WHERE (AdminID = "& _ 
-                "a.CreatedByID)) AS CreatedBy, (SELECT CentreName FROM Centres WHERE (CentreID = "& _ 
-                "a.CreatedByCentreID)) AS CreatedByCentre, CreatedByCentreID, CreatedByID, Create"& _ 
-                "dDate, Debug, DefaultContentTypeID, DiagAssess, CAST(hEmbedRes AS varchar) + 'x'"& _ 
-                " + CAST(vEmbedRes AS varchar) AS Dimensions, DisplayFormatID, IncludeCertificati"& _ 
-                "on, IncludeLearningLog, PLAPassThreshold, PLAssess, ServerSpace, ShortAppName, h"& _ 
-                "EmbedRes, vEmbedRes FROM Applications AS a WHERE (ASPMenu = 1) AND (ArchivedDate"& _ 
-                " IS NULL) AND (ApplicationID IN (SELECT ApplicationID FROM CentreApplications WH"& _ 
-                "ERE (CentreID = @CentreID) AND (Active = 1))) ORDER BY (SELECT ApplicationGroup "& _ 
-                "FROM ApplicationGroups WHERE (AppGroupID = a.AppGroupID)), ApplicationName"
+                "cID,"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                 (SELECT Forename + ' ' + Surname AS Expr1"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"              "& _ 
+                "   FROM    AdminUsers"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                 WHERE (AdminID = a.CreatedByID)) AS Crea"& _ 
+                "tedBy,"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                 (SELECT CentreName"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                 FROM    Centres"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&" "& _ 
+                "                WHERE (CentreID = a.CreatedByCentreID)) AS CreatedByCentre, Crea"& _ 
+                "tedByCentreID, CreatedByID, CreatedDate, Debug, DefaultContentTypeID, DiagAssess"& _ 
+                ", CAST(hEmbedRes AS varchar) + 'x' + CAST(vEmbedRes AS varchar) AS Dimensions, D"& _ 
+                "isplayFormatID, "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"             IncludeCertification, IncludeLearningLog, PLAPass"& _ 
+                "Threshold, PLAssess, ServerSpace, ShortAppName, hEmbedRes, vEmbedRes"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"FROM   App"& _ 
+                "lications AS a"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"WHERE (ASPMenu = 1) AND (ArchivedDate IS NULL) AND (ApplicationI"& _ 
+                "D IN"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                 (SELECT ApplicationID"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                 FROM    CentreApp"& _ 
+                "lications"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                 WHERE (CentreID = @CentreID) AND (Active = 1)))"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"ORD"& _ 
+                "ER BY ApplicationName"
             Me._commandCollection(2).CommandType = Global.System.Data.CommandType.Text
             Me._commandCollection(2).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@CentreID", Global.System.Data.SqlDbType.Int, 4, Global.System.Data.ParameterDirection.Input, 0, 0, "", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
             Me._commandCollection(3) = New Global.System.Data.SqlClient.SqlCommand()
             Me._commandCollection(3).Connection = Me.Connection
             Me._commandCollection(3).CommandText = "SELECT ApplicationID, ApplicationInfo, ApplicationName, ArchivedBy, ArchivedDate,"& _ 
                 " AssessAttempts, BrandID, CoreContent, CourseCategoryID, CourseImage, CourseTopi"& _ 
-                "cID, (SELECT Forename + ' ' + Surname AS Expr1 FROM AdminUsers WHERE (AdminID = "& _ 
-                "a.CreatedByID)) AS CreatedBy, (SELECT CentreName FROM Centres WHERE (CentreID = "& _ 
-                "a.CreatedByCentreID)) AS CreatedByCentre, CreatedByCentreID, CreatedByID, Create"& _ 
-                "dDate, Debug, DefaultContentTypeID, DiagAssess, CAST(hEmbedRes AS varchar) + 'x'"& _ 
-                " + CAST(vEmbedRes AS varchar) AS Dimensions, DisplayFormatID, IncludeCertificati"& _ 
-                "on, IncludeLearningLog, PLAPassThreshold, PLAssess, ServerSpace, ShortAppName, h"& _ 
-                "EmbedRes, vEmbedRes FROM Applications AS a WHERE (ASPMenu = 1) AND (CreatedByCen"& _ 
-                "treID = @CentreID) AND (ArchivedDate IS NULL) AND (Debug = 0) OR (ASPMenu = 1) A"& _ 
-                "ND (ArchivedDate IS NULL) AND (Debug = 0) AND (@PublishToAll = 1) AND (@ShowOnly"& _ 
-                "Mine = 0) ORDER BY (SELECT ApplicationGroup FROM ApplicationGroups WHERE (AppGro"& _ 
-                "upID = a.AppGroupID)), (SELECT OfficeApplication FROM OfficeApplications WHERE ("& _ 
-                "OfficeAppID = a.OfficeAppID)), ApplicationName"
+                "cID,"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                 (SELECT Forename + ' ' + Surname AS Expr1"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"              "& _ 
+                "   FROM    AdminUsers"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                 WHERE (AdminID = a.CreatedByID)) AS Crea"& _ 
+                "tedBy,"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                 (SELECT CentreName"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                 FROM    Centres"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&" "& _ 
+                "                WHERE (CentreID = a.CreatedByCentreID)) AS CreatedByCentre, Crea"& _ 
+                "tedByCentreID, CreatedByID, CreatedDate, Debug, DefaultContentTypeID, DiagAssess"& _ 
+                ", CAST(hEmbedRes AS varchar) + 'x' + CAST(vEmbedRes AS varchar) AS Dimensions, D"& _ 
+                "isplayFormatID, "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"             IncludeCertification, IncludeLearningLog, PLAPass"& _ 
+                "Threshold, PLAssess, ServerSpace, ShortAppName, hEmbedRes, vEmbedRes"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"FROM   App"& _ 
+                "lications AS a"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"WHERE (ASPMenu = 1) AND (CreatedByCentreID = @CentreID) AND (Arc"& _ 
+                "hivedDate IS NULL) AND (Debug = 0) OR"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"             (ASPMenu = 1) AND (ArchivedD"& _ 
+                "ate IS NULL) AND (Debug = 0) AND (@PublishToAll = 1) AND (@ShowOnlyMine = 0)"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"OR"& _ 
+                "DER BY ApplicationName"
             Me._commandCollection(3).CommandType = Global.System.Data.CommandType.Text
             Me._commandCollection(3).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@CentreID", Global.System.Data.SqlDbType.Int, 4, Global.System.Data.ParameterDirection.Input, 0, 0, "CreatedByCentreID", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._commandCollection(3).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@PublishToAll", Global.System.Data.SqlDbType.Bit, 1024, Global.System.Data.ParameterDirection.Input, 0, 0, "", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._commandCollection(3).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@ShowOnlyMine", Global.System.Data.SqlDbType.Bit, 1024, Global.System.Data.ParameterDirection.Input, 0, 0, "", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._commandCollection(3).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@PublishToAll", Global.System.Data.SqlDbType.VarChar, 1024, Global.System.Data.ParameterDirection.Input, 0, 0, "", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._commandCollection(3).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@ShowOnlyMine", Global.System.Data.SqlDbType.VarChar, 1024, Global.System.Data.ParameterDirection.Input, 0, 0, "", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
             Me._commandCollection(4) = New Global.System.Data.SqlClient.SqlCommand()
             Me._commandCollection(4).Connection = Me.Connection
             Me._commandCollection(4).CommandText = "SELECT ApplicationID, ApplicationInfo, ApplicationName, ArchivedBy, ArchivedDate,"& _ 
                 " AssessAttempts, BrandID, CoreContent, CourseCategoryID, CourseImage, CourseTopi"& _ 
-                "cID, (SELECT Forename + ' ' + Surname AS Expr1 FROM AdminUsers WHERE (AdminID = "& _ 
-                "a.CreatedByID)) AS CreatedBy, (SELECT CentreName FROM Centres WHERE (CentreID = "& _ 
-                "a.CreatedByCentreID)) AS CreatedByCentre, CreatedByCentreID, CreatedByID, Create"& _ 
-                "dDate, Debug, DefaultContentTypeID, DiagAssess, CAST(hEmbedRes AS varchar) + 'x'"& _ 
-                " + CAST(vEmbedRes AS varchar) AS Dimensions, DisplayFormatID, IncludeCertificati"& _ 
-                "on, IncludeLearningLog, PLAPassThreshold, PLAssess, ServerSpace, ShortAppName, h"& _ 
-                "EmbedRes, vEmbedRes FROM Applications AS a WHERE (ASPMenu = 1) AND (CreatedByCen"& _ 
-                "treID = @CentreID) AND (ArchivedDate IS NULL) OR (ASPMenu = 1) AND (CreatedByCen"& _ 
-                "treID = @CentreID) AND (@ShowArchived = 1) OR (ASPMenu = 1) AND (ArchivedDate IS"& _ 
-                " NULL) AND (@PublishToAll = 1) AND (@ShowOnlyMine = 0) OR (ASPMenu = 1) AND (@Sh"& _ 
-                "owArchived = 1) AND (@PublishToAll = 1) AND (@ShowOnlyMine = 0) ORDER BY (SELECT"& _ 
-                " ApplicationGroup FROM ApplicationGroups WHERE (AppGroupID = a.AppGroupID)), (SE"& _ 
-                "LECT OfficeApplication FROM OfficeApplications WHERE (OfficeAppID = a.OfficeAppI"& _ 
-                "D)), ApplicationName"
+                "cID,"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                 (SELECT Forename + ' ' + Surname AS Expr1"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"              "& _ 
+                "   FROM    AdminUsers"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                 WHERE (AdminID = a.CreatedByID)) AS Crea"& _ 
+                "tedBy,"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                 (SELECT CentreName"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                 FROM    Centres"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&" "& _ 
+                "                WHERE (CentreID = a.CreatedByCentreID)) AS CreatedByCentre, Crea"& _ 
+                "tedByCentreID, CreatedByID, CreatedDate, Debug, DefaultContentTypeID, DiagAssess"& _ 
+                ", CAST(hEmbedRes AS varchar) + 'x' + CAST(vEmbedRes AS varchar) AS Dimensions, D"& _ 
+                "isplayFormatID, "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"             IncludeCertification, IncludeLearningLog, PLAPass"& _ 
+                "Threshold, PLAssess, ServerSpace, ShortAppName, hEmbedRes, vEmbedRes"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"FROM   App"& _ 
+                "lications AS a"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"WHERE (ASPMenu = 1) AND (CreatedByCentreID = @CentreID) AND (Arc"& _ 
+                "hivedDate IS NULL) OR"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"             (ASPMenu = 1) AND (CreatedByCentreID = @Cent"& _ 
+                "reID) AND (@ShowArchived = 1) OR"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"             (ASPMenu = 1) AND (ArchivedDate I"& _ 
+                "S NULL) AND (@PublishToAll = 1) AND (@ShowOnlyMine = 0) OR"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"             (ASPMen"& _ 
+                "u = 1) AND (@ShowArchived = 1) AND (@PublishToAll = 1) AND (@ShowOnlyMine = 0)"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)& _ 
+                "ORDER BY ApplicationName"
             Me._commandCollection(4).CommandType = Global.System.Data.CommandType.Text
             Me._commandCollection(4).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@CentreID", Global.System.Data.SqlDbType.Int, 4, Global.System.Data.ParameterDirection.Input, 0, 0, "CreatedByCentreID", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
             Me._commandCollection(4).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@ShowArchived", Global.System.Data.SqlDbType.Bit, 1024, Global.System.Data.ParameterDirection.Input, 0, 0, "", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
@@ -14588,11 +14564,19 @@ Namespace itspdbTableAdapters
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0"),  _
          Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
          Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.[Select], false)>  _
-        Public Overloads Overridable Function GetForPublish(ByVal CentreID As Integer, ByVal PublishToAll As Boolean, ByVal ShowOnlyMine As Boolean) As itspdb.ApplicationsDataTable
+        Public Overloads Overridable Function GetForPublish(ByVal CentreID As Integer, ByVal PublishToAll As String, ByVal ShowOnlyMine As String) As itspdb.ApplicationsDataTable
             Me.Adapter.SelectCommand = Me.CommandCollection(3)
             Me.Adapter.SelectCommand.Parameters(0).Value = CType(CentreID,Integer)
-            Me.Adapter.SelectCommand.Parameters(1).Value = CType(PublishToAll,Boolean)
-            Me.Adapter.SelectCommand.Parameters(2).Value = CType(ShowOnlyMine,Boolean)
+            If (PublishToAll Is Nothing) Then
+                Throw New Global.System.ArgumentNullException("PublishToAll")
+            Else
+                Me.Adapter.SelectCommand.Parameters(1).Value = CType(PublishToAll,String)
+            End If
+            If (ShowOnlyMine Is Nothing) Then
+                Throw New Global.System.ArgumentNullException("ShowOnlyMine")
+            Else
+                Me.Adapter.SelectCommand.Parameters(2).Value = CType(ShowOnlyMine,String)
+            End If
             Dim dataTable As itspdb.ApplicationsDataTable = New itspdb.ApplicationsDataTable()
             Me.Adapter.Fill(dataTable)
             Return dataTable
@@ -15853,7 +15837,6 @@ Namespace itspdbTableAdapters
             tableMapping.ColumnMappings.Add("ContentTypeID", "ContentTypeID")
             tableMapping.ColumnMappings.Add("LearnerMarksCompletion", "LearnerMarksCompletion")
             tableMapping.ColumnMappings.Add("DefaultMethodID", "DefaultMethodID")
-            tableMapping.ColumnMappings.Add("AssessmentTypeID", "AssessmentTypeID")
             tableMapping.ColumnMappings.Add("EvidenceText", "EvidenceText")
             tableMapping.ColumnMappings.Add("IncludeActionPlan", "IncludeActionPlan")
             tableMapping.ColumnMappings.Add("SupervisorVerify", "SupervisorVerify")
@@ -15874,16 +15857,16 @@ Namespace itspdbTableAdapters
             Me._adapter.InsertCommand.CommandText = "INSERT INTO [Tutorials] ([TutorialName], [VideoPath], [TutorialPath], [Supporting"& _ 
                 "MatsPath], [Active], [Objectives], [DiagAssessOutOf], [ObjectiveNum], [Keywords]"& _ 
                 ", [SectionID], [OrderByNumber], [CMIInteractionIDs], [OverrideTutorialMins], [De"& _ 
-                "scription], [ContentTypeID], [LearnerMarksCompletion], [DefaultMethodID], [Asses"& _ 
-                "smentTypeID], [EvidenceText], [IncludeActionPlan], [SupervisorVerify], [Supervis"& _ 
-                "orSuccessText], [SupervisorFailText], [RequireVideoPercent], [RequireTutorialCom"& _ 
-                "pletion], [RequireSupportMatsOpen], [AllowPreview]) VALUES (@TutorialName, @Vide"& _ 
-                "oPath, @TutorialPath, @SupportingMatsPath, @Active, @Objectives, @DiagAssessOutO"& _ 
-                "f, @ObjectiveNum, @Keywords, @SectionID, @OrderByNumber, @CMIInteractionIDs, @Ov"& _ 
-                "errideTutorialMins, @Description, @ContentTypeID, @LearnerMarksCompletion, @Defa"& _ 
-                "ultMethodID, @AssessmentTypeID, @EvidenceText, @IncludeActionPlan, @SupervisorVe"& _ 
-                "rify, @SupervisorSuccessText, @SupervisorFailText, @RequireVideoPercent, @Requir"& _ 
-                "eTutorialCompletion, @RequireSupportMatsOpen, @AllowPreview)"
+                "scription], [ContentTypeID], [LearnerMarksCompletion], [DefaultMethodID], [Evide"& _ 
+                "nceText], [IncludeActionPlan], [SupervisorVerify], [SupervisorSuccessText], [Sup"& _ 
+                "ervisorFailText], [RequireVideoPercent], [RequireTutorialCompletion], [RequireSu"& _ 
+                "pportMatsOpen], [AllowPreview]) VALUES (@TutorialName, @VideoPath, @TutorialPath"& _ 
+                ", @SupportingMatsPath, @Active, @Objectives, @DiagAssessOutOf, @ObjectiveNum, @K"& _ 
+                "eywords, @SectionID, @OrderByNumber, @CMIInteractionIDs, @OverrideTutorialMins, "& _ 
+                "@Description, @ContentTypeID, @LearnerMarksCompletion, @DefaultMethodID, @Eviden"& _ 
+                "ceText, @IncludeActionPlan, @SupervisorVerify, @SupervisorSuccessText, @Supervis"& _ 
+                "orFailText, @RequireVideoPercent, @RequireTutorialCompletion, @RequireSupportMat"& _ 
+                "sOpen, @AllowPreview)"
             Me._adapter.InsertCommand.CommandType = Global.System.Data.CommandType.Text
             Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@TutorialName", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "TutorialName", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
             Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@VideoPath", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "VideoPath", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
@@ -15902,7 +15885,6 @@ Namespace itspdbTableAdapters
             Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@ContentTypeID", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "ContentTypeID", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
             Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@LearnerMarksCompletion", Global.System.Data.SqlDbType.Bit, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "LearnerMarksCompletion", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
             Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@DefaultMethodID", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "DefaultMethodID", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@AssessmentTypeID", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "AssessmentTypeID", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
             Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@EvidenceText", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "EvidenceText", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
             Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IncludeActionPlan", Global.System.Data.SqlDbType.Bit, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "IncludeActionPlan", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
             Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@SupervisorVerify", Global.System.Data.SqlDbType.Bit, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "SupervisorVerify", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
@@ -15921,13 +15903,13 @@ Namespace itspdbTableAdapters
                 "ID, [OrderByNumber] = @OrderByNumber, [CMIInteractionIDs] = @CMIInteractionIDs, "& _ 
                 "[OverrideTutorialMins] = @OverrideTutorialMins, [Description] = @Description, [C"& _ 
                 "ontentTypeID] = @ContentTypeID, [LearnerMarksCompletion] = @LearnerMarksCompleti"& _ 
-                "on, [DefaultMethodID] = @DefaultMethodID, [AssessmentTypeID] = @AssessmentTypeID"& _ 
-                ", [EvidenceText] = @EvidenceText, [IncludeActionPlan] = @IncludeActionPlan, [Sup"& _ 
-                "ervisorVerify] = @SupervisorVerify, [SupervisorSuccessText] = @SupervisorSuccess"& _ 
-                "Text, [SupervisorFailText] = @SupervisorFailText, [RequireVideoPercent] = @Requi"& _ 
-                "reVideoPercent, [RequireTutorialCompletion] = @RequireTutorialCompletion, [Requi"& _ 
-                "reSupportMatsOpen] = @RequireSupportMatsOpen, [AllowPreview] = @AllowPreview WHE"& _ 
-                "RE (([TutorialID] = @Original_TutorialID))"
+                "on, [DefaultMethodID] = @DefaultMethodID, [EvidenceText] = @EvidenceText, [Inclu"& _ 
+                "deActionPlan] = @IncludeActionPlan, [SupervisorVerify] = @SupervisorVerify, [Sup"& _ 
+                "ervisorSuccessText] = @SupervisorSuccessText, [SupervisorFailText] = @Supervisor"& _ 
+                "FailText, [RequireVideoPercent] = @RequireVideoPercent, [RequireTutorialCompleti"& _ 
+                "on] = @RequireTutorialCompletion, [RequireSupportMatsOpen] = @RequireSupportMats"& _ 
+                "Open, [AllowPreview] = @AllowPreview WHERE (([TutorialID] = @Original_TutorialID"& _ 
+                "))"
             Me._adapter.UpdateCommand.CommandType = Global.System.Data.CommandType.Text
             Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@TutorialName", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "TutorialName", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
             Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@VideoPath", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "VideoPath", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
@@ -15946,7 +15928,6 @@ Namespace itspdbTableAdapters
             Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@ContentTypeID", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "ContentTypeID", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
             Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@LearnerMarksCompletion", Global.System.Data.SqlDbType.Bit, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "LearnerMarksCompletion", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
             Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@DefaultMethodID", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "DefaultMethodID", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@AssessmentTypeID", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "AssessmentTypeID", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
             Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@EvidenceText", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "EvidenceText", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
             Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IncludeActionPlan", Global.System.Data.SqlDbType.Bit, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "IncludeActionPlan", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
             Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@SupervisorVerify", Global.System.Data.SqlDbType.Bit, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "SupervisorVerify", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
@@ -15981,60 +15962,60 @@ Namespace itspdbTableAdapters
                 " INNER JOIN"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                              Sections AS s ON a.ApplicationID = s."& _ 
                 "ApplicationID"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                 WHERE (s.SectionID = Tutorials.SectionID)) AS vE"& _ 
                 "mbedRes, OrderByNumber, CMIInteractionIDs, OverrideTutorialMins, Description, Co"& _ 
-                "ntentTypeID, LearnerMarksCompletion, DefaultMethodID, AssessmentTypeID, Evidence"& _ 
-                "Text, IncludeActionPlan, SupervisorVerify, "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"             SupervisorSuccessText,"& _ 
-                " SupervisorFailText, RequireVideoPercent, RequireTutorialCompletion, RequireSupp"& _ 
-                "ortMatsOpen, AllowPreview"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"FROM   Tutorials"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"WHERE (SectionID = @SectionID)"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"ORD"& _ 
-                "ER BY OrderByNumber"
+                "ntentTypeID, LearnerMarksCompletion, DefaultMethodID, EvidenceText, IncludeActio"& _ 
+                "nPlan, SupervisorVerify, SupervisorSuccessText, "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"             SupervisorFailTex"& _ 
+                "t, RequireVideoPercent, RequireTutorialCompletion, RequireSupportMatsOpen, Allow"& _ 
+                "Preview"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"FROM   Tutorials"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"WHERE (SectionID = @SectionID)"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"ORDER BY OrderByNumbe"& _ 
+                "r"
             Me._commandCollection(0).CommandType = Global.System.Data.CommandType.Text
             Me._commandCollection(0).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@SectionID", Global.System.Data.SqlDbType.Int, 4, Global.System.Data.ParameterDirection.Input, 0, 0, "SectionID", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
             Me._commandCollection(1) = New Global.System.Data.SqlClient.SqlCommand()
             Me._commandCollection(1).Connection = Me.Connection
-            Me._commandCollection(1).CommandText = "SELECT Active, AllowPreview, AssessmentTypeID, CMIInteractionIDs, ContentTypeID, "& _ 
-                "DefaultMethodID, Description, DiagAssessOutOf, EvidenceText, IncludeActionPlan, "& _ 
-                "Keywords, LearnerMarksCompletion, ObjectiveNum, Objectives, OrderByNumber, Overr"& _ 
-                "ideTutorialMins, RequireSupportMatsOpen, RequireTutorialCompletion, RequireVideo"& _ 
-                "Percent, SectionID, SupervisorFailText, SupervisorSuccessText, SupervisorVerify,"& _ 
-                " SupportingMatsPath, TutorialID, TutorialName, TutorialPath, VideoPath, (SELECT "& _ 
-                "a.hEmbedRes FROM Applications AS a INNER JOIN Sections AS s ON a.ApplicationID ="& _ 
-                " s.ApplicationID WHERE (s.SectionID = Tutorials.SectionID)) AS hEmbedRes, (SELEC"& _ 
-                "T a.vEmbedRes FROM Applications AS a INNER JOIN Sections AS s ON a.ApplicationID"& _ 
-                " = s.ApplicationID WHERE (s.SectionID = Tutorials.SectionID)) AS vEmbedRes FROM "& _ 
-                "Tutorials WHERE (SectionID = @SectionID) AND (ArchivedDate IS NULL) ORDER BY Ord"& _ 
-                "erByNumber"
+            Me._commandCollection(1).CommandText = "SELECT Active, AllowPreview, CMIInteractionIDs, ContentTypeID, DefaultMethodID, D"& _ 
+                "escription, DiagAssessOutOf, EvidenceText, IncludeActionPlan, Keywords, LearnerM"& _ 
+                "arksCompletion, ObjectiveNum, Objectives, OrderByNumber, OverrideTutorialMins, R"& _ 
+                "equireSupportMatsOpen, "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"             RequireTutorialCompletion, RequireVideoPer"& _ 
+                "cent, SectionID, SupervisorFailText, SupervisorSuccessText, SupervisorVerify, Su"& _ 
+                "pportingMatsPath, TutorialID, TutorialName, TutorialPath, VideoPath,"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"          "& _ 
+                "       (SELECT a.hEmbedRes"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                 FROM    Applications AS a INNER JOI"& _ 
+                "N"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                              Sections AS s ON a.ApplicationID = s.Applicatio"& _ 
+                "nID"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                 WHERE (s.SectionID = Tutorials.SectionID)) AS hEmbedRes,"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)& _ 
+                "                 (SELECT a.vEmbedRes"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                 FROM    Applications AS a"& _ 
+                " INNER JOIN"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                              Sections AS s ON a.ApplicationID = s."& _ 
+                "ApplicationID"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                 WHERE (s.SectionID = Tutorials.SectionID)) AS vE"& _ 
+                "mbedRes"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"FROM   Tutorials"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"WHERE (SectionID = @SectionID) AND (ArchivedDate IS N"& _ 
+                "ULL)"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"ORDER BY OrderByNumber"
             Me._commandCollection(1).CommandType = Global.System.Data.CommandType.Text
             Me._commandCollection(1).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@SectionID", Global.System.Data.SqlDbType.Int, 4, Global.System.Data.ParameterDirection.Input, 0, 0, "SectionID", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
             Me._commandCollection(2) = New Global.System.Data.SqlClient.SqlCommand()
             Me._commandCollection(2).Connection = Me.Connection
-            Me._commandCollection(2).CommandText = "SELECT Active, AllowPreview, AssessmentTypeID, CMIInteractionIDs, ContentTypeID, "& _ 
-                "DefaultMethodID, Description, DiagAssessOutOf, EvidenceText, IncludeActionPlan, "& _ 
-                "Keywords, LearnerMarksCompletion, ObjectiveNum, Objectives, OrderByNumber, Overr"& _ 
-                "ideTutorialMins, RequireSupportMatsOpen, RequireTutorialCompletion, RequireVideo"& _ 
-                "Percent, SectionID, SupervisorFailText, SupervisorSuccessText, SupervisorVerify,"& _ 
-                " SupportingMatsPath, TutorialID, TutorialName, TutorialPath, VideoPath FROM Tuto"& _ 
-                "rials WHERE (TutorialID = @TutorialID)"
+            Me._commandCollection(2).CommandText = "SELECT Active, AllowPreview, CMIInteractionIDs, ContentTypeID, DefaultMethodID, D"& _ 
+                "escription, DiagAssessOutOf, EvidenceText, IncludeActionPlan, Keywords, LearnerM"& _ 
+                "arksCompletion, ObjectiveNum, Objectives, OrderByNumber, OverrideTutorialMins, R"& _ 
+                "equireSupportMatsOpen, "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"             RequireTutorialCompletion, RequireVideoPer"& _ 
+                "cent, SectionID, SupervisorFailText, SupervisorSuccessText, SupervisorVerify, Su"& _ 
+                "pportingMatsPath, TutorialID, TutorialName, TutorialPath, VideoPath"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"FROM   Tuto"& _ 
+                "rials"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"WHERE (TutorialID = @TutorialID)"
             Me._commandCollection(2).CommandType = Global.System.Data.CommandType.Text
             Me._commandCollection(2).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@TutorialID", Global.System.Data.SqlDbType.Int, 4, Global.System.Data.ParameterDirection.Input, 0, 0, "TutorialID", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
             Me._commandCollection(3) = New Global.System.Data.SqlClient.SqlCommand()
             Me._commandCollection(3).Connection = Me.Connection
-            Me._commandCollection(3).CommandText = "INSERT INTO Tutorials"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         (TutorialName, TutorialPath, Supp"& _ 
-                "ortingMatsPath, Active, Objectives, DiagAssessOutOf, ObjectiveNum, Keywords, Sec"& _ 
-                "tionID, VideoPath, OrderByNumber, CMIInteractionIDs, OverrideTutorialMins, Conte"& _ 
-                "ntTypeID, Description, "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         LearnerMarksCompletion, Defaul"& _ 
-                "tMethodID, AssessmentTypeID, EvidenceText, IncludeActionPlan, SupervisorVerify, "& _ 
-                "SupervisorSuccessText, SupervisorFailText, RequireVideoPercent, RequireTutorialC"& _ 
-                "ompletion, "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         RequireSupportMatsOpen, AllowPreview)"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"VAL"& _ 
-                "UES        (@TutorialName,@TutorialPath,@SupportingMatsPath,@Active,@Objectives,"& _ 
-                "@DiagAssessOutOf, COALESCE"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                             ((SELECT        MAX(Obj"& _ 
-                "ectiveNum) AS Expr1"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                                 FROM            Tutorials"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                                 WHERE        (SectionID = @SectionID)) + 1, 1)"& _ 
-                ", @Keywords, @SectionID, @VideoPath, COALESCE"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                             ((SE"& _ 
-                "LECT        MAX(OrderByNumber) AS Expr1"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                                 FROM  "& _ 
-                "          Tutorials"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                                 WHERE        (SectionID = "& _ 
-                "@SectionID)) + 1, 1), @CMIInteractionIDs, @OverrideTutorialMins, @ContentTypeID,"& _ 
-                " @Description, @LearnerMarksCompletion, @DefaultMethodID, @AssessmentTypeID, @Ev"& _ 
-                "idenceText, "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         @IncludeActionPlan, @SupervisorVerify, @S"& _ 
-                "upervisorSuccessText, @SupervisorFailText, @RequireVideoPercent, @RequireTutoria"& _ 
-                "lCompletion, @RequireSupportMatsOpen, @AllowPreview)"
+            Me._commandCollection(3).CommandText = "INSERT INTO Tutorials"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"             (TutorialName, TutorialPath, SupportingMatsPa"& _ 
+                "th, Active, Objectives, DiagAssessOutOf, ObjectiveNum, Keywords, SectionID, Vide"& _ 
+                "oPath, OrderByNumber, CMIInteractionIDs, OverrideTutorialMins, ContentTypeID, De"& _ 
+                "scription, LearnerMarksCompletion, DefaultMethodID, "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"             EvidenceText,"& _ 
+                " IncludeActionPlan, SupervisorVerify, SupervisorSuccessText, SupervisorFailText,"& _ 
+                " RequireVideoPercent, RequireTutorialCompletion, RequireSupportMatsOpen, AllowPr"& _ 
+                "eview)"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"VALUES (@TutorialName,@TutorialPath,@SupportingMatsPath,@Active,@Objecti"& _ 
+                "ves,@DiagAssessOutOf, COALESCE"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                 ((SELECT MAX(ObjectiveNum) AS E"& _ 
+                "xpr1"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                  FROM    Tutorials"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                  WHERE (SectionID = "& _ 
+                "@SectionID)) + 1, 1), @Keywords, @SectionID, @VideoPath, COALESCE"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"             "& _ 
+                "    ((SELECT MAX(OrderByNumber) AS Expr1"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                  FROM    Tutorials"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&" "& _ 
+                "                 WHERE (SectionID = @SectionID)) + 1, 1), @CMIInteractionIDs, @O"& _ 
+                "verrideTutorialMins, @ContentTypeID, @Description, @LearnerMarksCompletion, @Def"& _ 
+                "aultMethodID, @EvidenceText, @IncludeActionPlan, @SupervisorVerify, @SupervisorS"& _ 
+                "uccessText, @SupervisorFailText, "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"             @RequireVideoPercent, @RequireTu"& _ 
+                "torialCompletion, @RequireSupportMatsOpen, @AllowPreview)"
             Me._commandCollection(3).CommandType = Global.System.Data.CommandType.Text
             Me._commandCollection(3).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@TutorialName", Global.System.Data.SqlDbType.NVarChar, 255, Global.System.Data.ParameterDirection.Input, 0, 0, "TutorialName", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
             Me._commandCollection(3).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@TutorialPath", Global.System.Data.SqlDbType.NVarChar, 255, Global.System.Data.ParameterDirection.Input, 0, 0, "TutorialPath", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
@@ -16051,7 +16032,6 @@ Namespace itspdbTableAdapters
             Me._commandCollection(3).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Description", Global.System.Data.SqlDbType.NVarChar, 500, Global.System.Data.ParameterDirection.Input, 0, 0, "Description", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
             Me._commandCollection(3).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@LearnerMarksCompletion", Global.System.Data.SqlDbType.Bit, 1, Global.System.Data.ParameterDirection.Input, 0, 0, "LearnerMarksCompletion", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
             Me._commandCollection(3).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@DefaultMethodID", Global.System.Data.SqlDbType.Int, 4, Global.System.Data.ParameterDirection.Input, 0, 0, "DefaultMethodID", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._commandCollection(3).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@AssessmentTypeID", Global.System.Data.SqlDbType.Int, 4, Global.System.Data.ParameterDirection.Input, 0, 0, "AssessmentTypeID", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
             Me._commandCollection(3).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@EvidenceText", Global.System.Data.SqlDbType.NVarChar, 2147483647, Global.System.Data.ParameterDirection.Input, 0, 0, "EvidenceText", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
             Me._commandCollection(3).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IncludeActionPlan", Global.System.Data.SqlDbType.Bit, 1, Global.System.Data.ParameterDirection.Input, 0, 0, "IncludeActionPlan", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
             Me._commandCollection(3).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@SupervisorVerify", Global.System.Data.SqlDbType.Bit, 1, Global.System.Data.ParameterDirection.Input, 0, 0, "SupervisorVerify", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
@@ -16063,20 +16043,18 @@ Namespace itspdbTableAdapters
             Me._commandCollection(3).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@AllowPreview", Global.System.Data.SqlDbType.Bit, 1, Global.System.Data.ParameterDirection.Input, 0, 0, "AllowPreview", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
             Me._commandCollection(4) = New Global.System.Data.SqlClient.SqlCommand()
             Me._commandCollection(4).Connection = Me.Connection
-            Me._commandCollection(4).CommandText = "UPDATE       Tutorials"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"SET                TutorialName = @TutorialName, VideoPat"& _ 
-                "h = @VideoPath, TutorialPath = @TutorialPath, SupportingMatsPath = @SupportingMa"& _ 
-                "tsPath, Active = @Active, Objectives = @Objectives, DiagAssessOutOf = @DiagAsses"& _ 
-                "sOutOf, "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         Keywords = @Keywords, CMIInteractionIDs = @CM"& _ 
-                "IInteractionIDs, OverrideTutorialMins = @OverrideTutorialMins, Description = @De"& _ 
-                "scription, ContentTypeID = @ContentTypeID, "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         LearnerMar"& _ 
-                "ksCompletion = @LearnerMarksCompletion, DefaultMethodID = @DefaultMethodID, Asse"& _ 
-                "ssmentTypeID = @AssessmentTypeID, EvidenceText = @EvidenceText, IncludeActionPla"& _ 
-                "n = @IncludeActionPlan, "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         SupervisorVerify = @Superviso"& _ 
-                "rVerify, SupervisorSuccessText = @SupervisorSuccessText, SupervisorFailText = @S"& _ 
-                "upervisorFailText, RequireVideoPercent = @RequireVideoPercent, "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"               "& _ 
-                "          RequireTutorialCompletion = @RequireTutorialCompletion, RequireSupport"& _ 
-                "MatsOpen = @RequireSupportMatsOpen, AllowPreview = @AllowPreview"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"WHERE        ("& _ 
-                "TutorialID = @Original_TutorialID)"
+            Me._commandCollection(4).CommandText = "UPDATE Tutorials"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"SET       TutorialName = @TutorialName, VideoPath = @VideoPath,"& _ 
+                " TutorialPath = @TutorialPath, SupportingMatsPath = @SupportingMatsPath, Active "& _ 
+                "= @Active, Objectives = @Objectives, DiagAssessOutOf = @DiagAssessOutOf, Keyword"& _ 
+                "s = @Keywords, "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"             CMIInteractionIDs = @CMIInteractionIDs, OverrideTu"& _ 
+                "torialMins = @OverrideTutorialMins, Description = @Description, ContentTypeID = "& _ 
+                "@ContentTypeID, LearnerMarksCompletion = @LearnerMarksCompletion, DefaultMethodI"& _ 
+                "D = @DefaultMethodID, EvidenceText = @EvidenceText, "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"             IncludeAction"& _ 
+                "Plan = @IncludeActionPlan, SupervisorVerify = @SupervisorVerify, SupervisorSucce"& _ 
+                "ssText = @SupervisorSuccessText, SupervisorFailText = @SupervisorFailText, Requi"& _ 
+                "reVideoPercent = @RequireVideoPercent, "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"             RequireTutorialCompletion "& _ 
+                "= @RequireTutorialCompletion, RequireSupportMatsOpen = @RequireSupportMatsOpen, "& _ 
+                "AllowPreview = @AllowPreview"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"WHERE (TutorialID = @Original_TutorialID)"
             Me._commandCollection(4).CommandType = Global.System.Data.CommandType.Text
             Me._commandCollection(4).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@TutorialName", Global.System.Data.SqlDbType.NVarChar, 255, Global.System.Data.ParameterDirection.Input, 0, 0, "TutorialName", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
             Me._commandCollection(4).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@VideoPath", Global.System.Data.SqlDbType.NVarChar, 255, Global.System.Data.ParameterDirection.Input, 0, 0, "VideoPath", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
@@ -16092,7 +16070,6 @@ Namespace itspdbTableAdapters
             Me._commandCollection(4).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@ContentTypeID", Global.System.Data.SqlDbType.Int, 4, Global.System.Data.ParameterDirection.Input, 0, 0, "ContentTypeID", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
             Me._commandCollection(4).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@LearnerMarksCompletion", Global.System.Data.SqlDbType.Bit, 1, Global.System.Data.ParameterDirection.Input, 0, 0, "LearnerMarksCompletion", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
             Me._commandCollection(4).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@DefaultMethodID", Global.System.Data.SqlDbType.Int, 4, Global.System.Data.ParameterDirection.Input, 0, 0, "DefaultMethodID", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._commandCollection(4).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@AssessmentTypeID", Global.System.Data.SqlDbType.Int, 4, Global.System.Data.ParameterDirection.Input, 0, 0, "AssessmentTypeID", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
             Me._commandCollection(4).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@EvidenceText", Global.System.Data.SqlDbType.NVarChar, 2147483647, Global.System.Data.ParameterDirection.Input, 0, 0, "EvidenceText", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
             Me._commandCollection(4).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IncludeActionPlan", Global.System.Data.SqlDbType.Bit, 1, Global.System.Data.ParameterDirection.Input, 0, 0, "IncludeActionPlan", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
             Me._commandCollection(4).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@SupervisorVerify", Global.System.Data.SqlDbType.Bit, 1, Global.System.Data.ParameterDirection.Input, 0, 0, "SupervisorVerify", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
@@ -16212,7 +16189,6 @@ Namespace itspdbTableAdapters
                     ByVal ContentTypeID As Integer,  _
                     ByVal LearnerMarksCompletion As Boolean,  _
                     ByVal DefaultMethodID As Integer,  _
-                    ByVal AssessmentTypeID As Integer,  _
                     ByVal EvidenceText As String,  _
                     ByVal IncludeActionPlan As Boolean,  _
                     ByVal SupervisorVerify As Boolean,  _
@@ -16271,40 +16247,39 @@ Namespace itspdbTableAdapters
             Me.Adapter.InsertCommand.Parameters(14).Value = CType(ContentTypeID,Integer)
             Me.Adapter.InsertCommand.Parameters(15).Value = CType(LearnerMarksCompletion,Boolean)
             Me.Adapter.InsertCommand.Parameters(16).Value = CType(DefaultMethodID,Integer)
-            Me.Adapter.InsertCommand.Parameters(17).Value = CType(AssessmentTypeID,Integer)
             If (EvidenceText Is Nothing) Then
-                Me.Adapter.InsertCommand.Parameters(18).Value = Global.System.DBNull.Value
+                Me.Adapter.InsertCommand.Parameters(17).Value = Global.System.DBNull.Value
             Else
-                Me.Adapter.InsertCommand.Parameters(18).Value = CType(EvidenceText,String)
+                Me.Adapter.InsertCommand.Parameters(17).Value = CType(EvidenceText,String)
             End If
-            Me.Adapter.InsertCommand.Parameters(19).Value = CType(IncludeActionPlan,Boolean)
-            Me.Adapter.InsertCommand.Parameters(20).Value = CType(SupervisorVerify,Boolean)
+            Me.Adapter.InsertCommand.Parameters(18).Value = CType(IncludeActionPlan,Boolean)
+            Me.Adapter.InsertCommand.Parameters(19).Value = CType(SupervisorVerify,Boolean)
             If (SupervisorSuccessText Is Nothing) Then
-                Me.Adapter.InsertCommand.Parameters(21).Value = Global.System.DBNull.Value
+                Me.Adapter.InsertCommand.Parameters(20).Value = Global.System.DBNull.Value
             Else
-                Me.Adapter.InsertCommand.Parameters(21).Value = CType(SupervisorSuccessText,String)
+                Me.Adapter.InsertCommand.Parameters(20).Value = CType(SupervisorSuccessText,String)
             End If
             If (SupervisorFailText Is Nothing) Then
-                Me.Adapter.InsertCommand.Parameters(22).Value = Global.System.DBNull.Value
+                Me.Adapter.InsertCommand.Parameters(21).Value = Global.System.DBNull.Value
             Else
-                Me.Adapter.InsertCommand.Parameters(22).Value = CType(SupervisorFailText,String)
+                Me.Adapter.InsertCommand.Parameters(21).Value = CType(SupervisorFailText,String)
             End If
             If (RequireVideoPercent.HasValue = true) Then
-                Me.Adapter.InsertCommand.Parameters(23).Value = CType(RequireVideoPercent.Value,Integer)
+                Me.Adapter.InsertCommand.Parameters(22).Value = CType(RequireVideoPercent.Value,Integer)
+            Else
+                Me.Adapter.InsertCommand.Parameters(22).Value = Global.System.DBNull.Value
+            End If
+            If (RequireTutorialCompletion.HasValue = true) Then
+                Me.Adapter.InsertCommand.Parameters(23).Value = CType(RequireTutorialCompletion.Value,Boolean)
             Else
                 Me.Adapter.InsertCommand.Parameters(23).Value = Global.System.DBNull.Value
             End If
-            If (RequireTutorialCompletion.HasValue = true) Then
-                Me.Adapter.InsertCommand.Parameters(24).Value = CType(RequireTutorialCompletion.Value,Boolean)
+            If (RequireSupportMatsOpen.HasValue = true) Then
+                Me.Adapter.InsertCommand.Parameters(24).Value = CType(RequireSupportMatsOpen.Value,Boolean)
             Else
                 Me.Adapter.InsertCommand.Parameters(24).Value = Global.System.DBNull.Value
             End If
-            If (RequireSupportMatsOpen.HasValue = true) Then
-                Me.Adapter.InsertCommand.Parameters(25).Value = CType(RequireSupportMatsOpen.Value,Boolean)
-            Else
-                Me.Adapter.InsertCommand.Parameters(25).Value = Global.System.DBNull.Value
-            End If
-            Me.Adapter.InsertCommand.Parameters(26).Value = CType(AllowPreview,Boolean)
+            Me.Adapter.InsertCommand.Parameters(25).Value = CType(AllowPreview,Boolean)
             Dim previousConnectionState As Global.System.Data.ConnectionState = Me.Adapter.InsertCommand.Connection.State
             If ((Me.Adapter.InsertCommand.Connection.State And Global.System.Data.ConnectionState.Open)  _
                         <> Global.System.Data.ConnectionState.Open) Then
@@ -16342,7 +16317,6 @@ Namespace itspdbTableAdapters
                     ByVal ContentTypeID As Integer,  _
                     ByVal LearnerMarksCompletion As Boolean,  _
                     ByVal DefaultMethodID As Integer,  _
-                    ByVal AssessmentTypeID As Integer,  _
                     ByVal EvidenceText As String,  _
                     ByVal IncludeActionPlan As Boolean,  _
                     ByVal SupervisorVerify As Boolean,  _
@@ -16402,41 +16376,40 @@ Namespace itspdbTableAdapters
             Me.Adapter.UpdateCommand.Parameters(14).Value = CType(ContentTypeID,Integer)
             Me.Adapter.UpdateCommand.Parameters(15).Value = CType(LearnerMarksCompletion,Boolean)
             Me.Adapter.UpdateCommand.Parameters(16).Value = CType(DefaultMethodID,Integer)
-            Me.Adapter.UpdateCommand.Parameters(17).Value = CType(AssessmentTypeID,Integer)
             If (EvidenceText Is Nothing) Then
-                Me.Adapter.UpdateCommand.Parameters(18).Value = Global.System.DBNull.Value
+                Me.Adapter.UpdateCommand.Parameters(17).Value = Global.System.DBNull.Value
             Else
-                Me.Adapter.UpdateCommand.Parameters(18).Value = CType(EvidenceText,String)
+                Me.Adapter.UpdateCommand.Parameters(17).Value = CType(EvidenceText,String)
             End If
-            Me.Adapter.UpdateCommand.Parameters(19).Value = CType(IncludeActionPlan,Boolean)
-            Me.Adapter.UpdateCommand.Parameters(20).Value = CType(SupervisorVerify,Boolean)
+            Me.Adapter.UpdateCommand.Parameters(18).Value = CType(IncludeActionPlan,Boolean)
+            Me.Adapter.UpdateCommand.Parameters(19).Value = CType(SupervisorVerify,Boolean)
             If (SupervisorSuccessText Is Nothing) Then
-                Me.Adapter.UpdateCommand.Parameters(21).Value = Global.System.DBNull.Value
+                Me.Adapter.UpdateCommand.Parameters(20).Value = Global.System.DBNull.Value
             Else
-                Me.Adapter.UpdateCommand.Parameters(21).Value = CType(SupervisorSuccessText,String)
+                Me.Adapter.UpdateCommand.Parameters(20).Value = CType(SupervisorSuccessText,String)
             End If
             If (SupervisorFailText Is Nothing) Then
-                Me.Adapter.UpdateCommand.Parameters(22).Value = Global.System.DBNull.Value
+                Me.Adapter.UpdateCommand.Parameters(21).Value = Global.System.DBNull.Value
             Else
-                Me.Adapter.UpdateCommand.Parameters(22).Value = CType(SupervisorFailText,String)
+                Me.Adapter.UpdateCommand.Parameters(21).Value = CType(SupervisorFailText,String)
             End If
             If (RequireVideoPercent.HasValue = true) Then
-                Me.Adapter.UpdateCommand.Parameters(23).Value = CType(RequireVideoPercent.Value,Integer)
+                Me.Adapter.UpdateCommand.Parameters(22).Value = CType(RequireVideoPercent.Value,Integer)
+            Else
+                Me.Adapter.UpdateCommand.Parameters(22).Value = Global.System.DBNull.Value
+            End If
+            If (RequireTutorialCompletion.HasValue = true) Then
+                Me.Adapter.UpdateCommand.Parameters(23).Value = CType(RequireTutorialCompletion.Value,Boolean)
             Else
                 Me.Adapter.UpdateCommand.Parameters(23).Value = Global.System.DBNull.Value
             End If
-            If (RequireTutorialCompletion.HasValue = true) Then
-                Me.Adapter.UpdateCommand.Parameters(24).Value = CType(RequireTutorialCompletion.Value,Boolean)
+            If (RequireSupportMatsOpen.HasValue = true) Then
+                Me.Adapter.UpdateCommand.Parameters(24).Value = CType(RequireSupportMatsOpen.Value,Boolean)
             Else
                 Me.Adapter.UpdateCommand.Parameters(24).Value = Global.System.DBNull.Value
             End If
-            If (RequireSupportMatsOpen.HasValue = true) Then
-                Me.Adapter.UpdateCommand.Parameters(25).Value = CType(RequireSupportMatsOpen.Value,Boolean)
-            Else
-                Me.Adapter.UpdateCommand.Parameters(25).Value = Global.System.DBNull.Value
-            End If
-            Me.Adapter.UpdateCommand.Parameters(26).Value = CType(AllowPreview,Boolean)
-            Me.Adapter.UpdateCommand.Parameters(27).Value = CType(Original_TutorialID,Integer)
+            Me.Adapter.UpdateCommand.Parameters(25).Value = CType(AllowPreview,Boolean)
+            Me.Adapter.UpdateCommand.Parameters(26).Value = CType(Original_TutorialID,Integer)
             Dim previousConnectionState As Global.System.Data.ConnectionState = Me.Adapter.UpdateCommand.Connection.State
             If ((Me.Adapter.UpdateCommand.Connection.State And Global.System.Data.ConnectionState.Open)  _
                         <> Global.System.Data.ConnectionState.Open) Then
@@ -16472,7 +16445,6 @@ Namespace itspdbTableAdapters
                     ByVal Description As String,  _
                     ByVal LearnerMarksCompletion As Boolean,  _
                     ByVal DefaultMethodID As Integer,  _
-                    ByVal AssessmentTypeID As Integer,  _
                     ByVal EvidenceText As String,  _
                     ByVal IncludeActionPlan As Boolean,  _
                     ByVal SupervisorVerify As Boolean,  _
@@ -16530,40 +16502,39 @@ Namespace itspdbTableAdapters
             End If
             command.Parameters(13).Value = CType(LearnerMarksCompletion,Boolean)
             command.Parameters(14).Value = CType(DefaultMethodID,Integer)
-            command.Parameters(15).Value = CType(AssessmentTypeID,Integer)
             If (EvidenceText Is Nothing) Then
-                command.Parameters(16).Value = Global.System.DBNull.Value
+                command.Parameters(15).Value = Global.System.DBNull.Value
             Else
-                command.Parameters(16).Value = CType(EvidenceText,String)
+                command.Parameters(15).Value = CType(EvidenceText,String)
             End If
-            command.Parameters(17).Value = CType(IncludeActionPlan,Boolean)
-            command.Parameters(18).Value = CType(SupervisorVerify,Boolean)
+            command.Parameters(16).Value = CType(IncludeActionPlan,Boolean)
+            command.Parameters(17).Value = CType(SupervisorVerify,Boolean)
             If (SupervisorSuccessText Is Nothing) Then
-                command.Parameters(19).Value = Global.System.DBNull.Value
+                command.Parameters(18).Value = Global.System.DBNull.Value
             Else
-                command.Parameters(19).Value = CType(SupervisorSuccessText,String)
+                command.Parameters(18).Value = CType(SupervisorSuccessText,String)
             End If
             If (SupervisorFailText Is Nothing) Then
-                command.Parameters(20).Value = Global.System.DBNull.Value
+                command.Parameters(19).Value = Global.System.DBNull.Value
             Else
-                command.Parameters(20).Value = CType(SupervisorFailText,String)
+                command.Parameters(19).Value = CType(SupervisorFailText,String)
             End If
             If (RequireVideoPercent.HasValue = true) Then
-                command.Parameters(21).Value = CType(RequireVideoPercent.Value,Integer)
+                command.Parameters(20).Value = CType(RequireVideoPercent.Value,Integer)
+            Else
+                command.Parameters(20).Value = Global.System.DBNull.Value
+            End If
+            If (RequireTutorialCompletion.HasValue = true) Then
+                command.Parameters(21).Value = CType(RequireTutorialCompletion.Value,Boolean)
             Else
                 command.Parameters(21).Value = Global.System.DBNull.Value
             End If
-            If (RequireTutorialCompletion.HasValue = true) Then
-                command.Parameters(22).Value = CType(RequireTutorialCompletion.Value,Boolean)
+            If (RequireSupportMatsOpen.HasValue = true) Then
+                command.Parameters(22).Value = CType(RequireSupportMatsOpen.Value,Boolean)
             Else
                 command.Parameters(22).Value = Global.System.DBNull.Value
             End If
-            If (RequireSupportMatsOpen.HasValue = true) Then
-                command.Parameters(23).Value = CType(RequireSupportMatsOpen.Value,Boolean)
-            Else
-                command.Parameters(23).Value = Global.System.DBNull.Value
-            End If
-            command.Parameters(24).Value = CType(AllowPreview,Boolean)
+            command.Parameters(23).Value = CType(AllowPreview,Boolean)
             Dim previousConnectionState As Global.System.Data.ConnectionState = command.Connection.State
             If ((command.Connection.State And Global.System.Data.ConnectionState.Open)  _
                         <> Global.System.Data.ConnectionState.Open) Then
@@ -16599,7 +16570,6 @@ Namespace itspdbTableAdapters
                     ByVal ContentTypeID As Integer,  _
                     ByVal LearnerMarksCompletion As Boolean,  _
                     ByVal DefaultMethodID As Integer,  _
-                    ByVal AssessmentTypeID As Integer,  _
                     ByVal EvidenceText As String,  _
                     ByVal IncludeActionPlan As Boolean,  _
                     ByVal SupervisorVerify As Boolean,  _
@@ -16657,41 +16627,40 @@ Namespace itspdbTableAdapters
             command.Parameters(11).Value = CType(ContentTypeID,Integer)
             command.Parameters(12).Value = CType(LearnerMarksCompletion,Boolean)
             command.Parameters(13).Value = CType(DefaultMethodID,Integer)
-            command.Parameters(14).Value = CType(AssessmentTypeID,Integer)
             If (EvidenceText Is Nothing) Then
-                command.Parameters(15).Value = Global.System.DBNull.Value
+                command.Parameters(14).Value = Global.System.DBNull.Value
             Else
-                command.Parameters(15).Value = CType(EvidenceText,String)
+                command.Parameters(14).Value = CType(EvidenceText,String)
             End If
-            command.Parameters(16).Value = CType(IncludeActionPlan,Boolean)
-            command.Parameters(17).Value = CType(SupervisorVerify,Boolean)
+            command.Parameters(15).Value = CType(IncludeActionPlan,Boolean)
+            command.Parameters(16).Value = CType(SupervisorVerify,Boolean)
             If (SupervisorSuccessText Is Nothing) Then
-                command.Parameters(18).Value = Global.System.DBNull.Value
+                command.Parameters(17).Value = Global.System.DBNull.Value
             Else
-                command.Parameters(18).Value = CType(SupervisorSuccessText,String)
+                command.Parameters(17).Value = CType(SupervisorSuccessText,String)
             End If
             If (SupervisorFailText Is Nothing) Then
-                command.Parameters(19).Value = Global.System.DBNull.Value
+                command.Parameters(18).Value = Global.System.DBNull.Value
             Else
-                command.Parameters(19).Value = CType(SupervisorFailText,String)
+                command.Parameters(18).Value = CType(SupervisorFailText,String)
             End If
             If (RequireVideoPercent.HasValue = true) Then
-                command.Parameters(20).Value = CType(RequireVideoPercent.Value,Integer)
+                command.Parameters(19).Value = CType(RequireVideoPercent.Value,Integer)
+            Else
+                command.Parameters(19).Value = Global.System.DBNull.Value
+            End If
+            If (RequireTutorialCompletion.HasValue = true) Then
+                command.Parameters(20).Value = CType(RequireTutorialCompletion.Value,Boolean)
             Else
                 command.Parameters(20).Value = Global.System.DBNull.Value
             End If
-            If (RequireTutorialCompletion.HasValue = true) Then
-                command.Parameters(21).Value = CType(RequireTutorialCompletion.Value,Boolean)
+            If (RequireSupportMatsOpen.HasValue = true) Then
+                command.Parameters(21).Value = CType(RequireSupportMatsOpen.Value,Boolean)
             Else
                 command.Parameters(21).Value = Global.System.DBNull.Value
             End If
-            If (RequireSupportMatsOpen.HasValue = true) Then
-                command.Parameters(22).Value = CType(RequireSupportMatsOpen.Value,Boolean)
-            Else
-                command.Parameters(22).Value = Global.System.DBNull.Value
-            End If
-            command.Parameters(23).Value = CType(AllowPreview,Boolean)
-            command.Parameters(24).Value = CType(Original_TutorialID,Integer)
+            command.Parameters(22).Value = CType(AllowPreview,Boolean)
+            command.Parameters(23).Value = CType(Original_TutorialID,Integer)
             Dim previousConnectionState As Global.System.Data.ConnectionState = command.Connection.State
             If ((command.Connection.State And Global.System.Data.ConnectionState.Open)  _
                         <> Global.System.Data.ConnectionState.Open) Then
