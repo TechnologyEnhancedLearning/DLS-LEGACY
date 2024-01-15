@@ -121,6 +121,7 @@ API.LMSCommit = function (param) {
                 dataType: String
             });
         }
+        return true;
     }
     else {
         return API.$0.LMSCommit(param);
