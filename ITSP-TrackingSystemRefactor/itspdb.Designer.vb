@@ -14431,8 +14431,8 @@ Namespace itspdbTableAdapters
                 "DER BY ApplicationName"
             Me._commandCollection(3).CommandType = Global.System.Data.CommandType.Text
             Me._commandCollection(3).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@CentreID", Global.System.Data.SqlDbType.Int, 4, Global.System.Data.ParameterDirection.Input, 0, 0, "CreatedByCentreID", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._commandCollection(3).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@PublishToAll", Global.System.Data.SqlDbType.VarChar, 1024, Global.System.Data.ParameterDirection.Input, 0, 0, "", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._commandCollection(3).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@ShowOnlyMine", Global.System.Data.SqlDbType.VarChar, 1024, Global.System.Data.ParameterDirection.Input, 0, 0, "", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._commandCollection(3).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@PublishToAll", Global.System.Data.SqlDbType.Bit, 1024, Global.System.Data.ParameterDirection.Input, 0, 0, "", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._commandCollection(3).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@ShowOnlyMine", Global.System.Data.SqlDbType.Bit, 1024, Global.System.Data.ParameterDirection.Input, 0, 0, "", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
             Me._commandCollection(4) = New Global.System.Data.SqlClient.SqlCommand()
             Me._commandCollection(4).Connection = Me.Connection
             Me._commandCollection(4).CommandText = "SELECT ApplicationID, ApplicationInfo, ApplicationName, ArchivedBy, ArchivedDate,"& _ 
@@ -14564,19 +14564,11 @@ Namespace itspdbTableAdapters
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0"),  _
          Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
          Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.[Select], false)>  _
-        Public Overloads Overridable Function GetForPublish(ByVal CentreID As Integer, ByVal PublishToAll As String, ByVal ShowOnlyMine As String) As itspdb.ApplicationsDataTable
+        Public Overloads Overridable Function GetForPublish(ByVal CentreID As Integer, ByVal PublishToAll As Boolean, ByVal ShowOnlyMine As Boolean) As itspdb.ApplicationsDataTable
             Me.Adapter.SelectCommand = Me.CommandCollection(3)
             Me.Adapter.SelectCommand.Parameters(0).Value = CType(CentreID,Integer)
-            If (PublishToAll Is Nothing) Then
-                Throw New Global.System.ArgumentNullException("PublishToAll")
-            Else
-                Me.Adapter.SelectCommand.Parameters(1).Value = CType(PublishToAll,String)
-            End If
-            If (ShowOnlyMine Is Nothing) Then
-                Throw New Global.System.ArgumentNullException("ShowOnlyMine")
-            Else
-                Me.Adapter.SelectCommand.Parameters(2).Value = CType(ShowOnlyMine,String)
-            End If
+            Me.Adapter.SelectCommand.Parameters(1).Value = CType(PublishToAll,Boolean)
+            Me.Adapter.SelectCommand.Parameters(2).Value = CType(ShowOnlyMine,Boolean)
             Dim dataTable As itspdb.ApplicationsDataTable = New itspdb.ApplicationsDataTable()
             Me.Adapter.Fill(dataTable)
             Return dataTable
