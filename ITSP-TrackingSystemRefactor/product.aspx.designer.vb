@@ -12,13 +12,4 @@ Option Explicit On
 
 
 Partial Public Class product1
-    
-    '''<summary>
-    '''product control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents product As Global.ITSP_TrackingSystemRefactor.product
 End Class

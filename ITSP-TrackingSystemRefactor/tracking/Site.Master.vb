@@ -1,5 +1,4 @@
-﻿Imports System.Security.Cryptography
-Public Class SiteMaster
+﻿Public Class SiteMaster
     Inherits MasterPage
     Protected Sub Page_Init(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Init
         ' Check if session is still alive and logoff if not:
