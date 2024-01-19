@@ -42,13 +42,8 @@ API.LMSInitialize = function (param) {
     return true;
 }
 API.LMSFinish = function (param) {
-    if (processingRequest) {
-        window.setTimeout(API.LMSFinish(param), 250);
-    }
-    else {
-        setTimeout(function () { window.parent.closeMpe(); }, 250);
-        return API.$0.LMSFinish(param);
-    }
+    setTimeout(function () { window.parent.closeMpe(); }, 250);
+    return API.$0.LMSFinish(param);
 }
 
 API.LMSGetValue = function (element) {
@@ -113,11 +108,17 @@ API.LMSCommit = function (param) {
         if (data !== {}) {
             processingRequest = true;
             $.ajax({
-                type: "GET",
+                type: "POST",
                 url: trackurl,
                 data: data,
-                success: finishRequest(data),
-                error: finishRequest(false),
+                success: function (response) {
+                    // Handle the success response using the 'response' variable
+                    finishRequest(response);
+                },
+                error: function () {
+                    // Handle the error here if needed
+                    finishRequest(false);
+                },
                 dataType: String
             });
         }
@@ -168,7 +169,7 @@ function setupTrackingVars() {
         var data = { action: "GetObjectiveArray", CustomisationID: vcust, SectionID: vsection }
         processingRequest = true;
         $.ajax({
-            type: "GET",
+            type: "POST",
             url: trackurl,
             data: data,
             success: setUpObjectiveArray,
