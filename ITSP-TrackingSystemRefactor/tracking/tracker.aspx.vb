@@ -14,42 +14,44 @@ Imports System.Data
 Imports System.Text.RegularExpressions
 Imports Newtonsoft.Json
 Imports Newtonsoft.Json.Linq
+Imports DevExpress.Web.Bootstrap.Internal
+Imports DocumentFormat.OpenXml.Bibliography
 
 
 Partial Public Class CTrackerAPI
-	Inherits System.Web.UI.Page
+    Inherits System.Web.UI.Page
 
-	Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
-		Dim sResponse As String
-		Dim sLogMessage As String = ""
+    Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
+        Dim sResponse As String
+        Dim sLogMessage As String = ""
 
-		Response.ContentType = "application/json"
-		'
-		' Check for parameters. If set, return appropriate values.
-		'
-		Dim sAction As String = Page.Request.Item("Action")
-		If sAction Is Nothing Then
-			sResponse = "[#Result:-15]"
-		ElseIf sAction = "InternalErrorTestForHugh" Then
-			sResponse = GenerateInternalError()
-		Else
-			Try
-				Select Case sAction.ToUpper()
-					Case "GETAPPLICATIONINFO"
-						sResponse = GetApplicationInfo(Page.Request.Item("ApplicationID"))
-					Case "JOBGROUPLIST"
-						sResponse = JobGroupList()
-					Case "REGIONLIST"
-						sResponse = RegionList()
-					Case "CENTRELIST"
-						sResponse = CentreList(Page.Request.Item("RegionID"))
-					Case "VERIFYCENTRE"
-						sResponse = VerifyCentre(Page.Request.Item("CentreID"))
-					Case "SEARCHCANDIDATE"
-						sResponse = SearchCandidate(Page.Request.Item("LastName"), _
-														Page.Request.Item("CentreID"), _
-														Page.Request.Item("MonthStart"))
-					Case "CREATECANDIDATE"
+        Response.ContentType = "application/json"
+        '
+        ' Check for parameters. If set, return appropriate values.
+        '
+        Dim sAction As String = Page.Request.Item("Action")
+        If sAction Is Nothing Then
+            sResponse = "[#Result:-15]"
+        ElseIf sAction = "InternalErrorTestForHugh" Then
+            sResponse = GenerateInternalError()
+        Else
+            Try
+                Select Case sAction.ToUpper()
+                    Case "GETAPPLICATIONINFO"
+                        sResponse = GetApplicationInfo(Page.Request.Item("ApplicationID"))
+                    Case "JOBGROUPLIST"
+                        sResponse = JobGroupList()
+                    Case "REGIONLIST"
+                        sResponse = RegionList()
+                    Case "CENTRELIST"
+                        sResponse = CentreList(Page.Request.Item("RegionID"))
+                    Case "VERIFYCENTRE"
+                        sResponse = VerifyCentre(Page.Request.Item("CentreID"))
+                    Case "SEARCHCANDIDATE"
+                        sResponse = SearchCandidate(Page.Request.Item("LastName"),
+                                                        Page.Request.Item("CentreID"),
+                                                        Page.Request.Item("MonthStart"))
+                    Case "CREATECANDIDATE"
                         sResponse = CreateCandidate(Page.Request.Item("CentreID"),
                                                         Page.Request.Item("FirstName"),
                                                         Page.Request.Item("LastName"),
@@ -61,48 +63,48 @@ Partial Public Class CTrackerAPI
                                                         Page.Request.Item("Answer5"),
                                                         Page.Request.Item("Answer6"))
                     Case "VERIFYCANDIDATE"
-						sResponse = VerifyCandidate(Page.Request.Item("CentreID"), _
-														Page.Request.Item("CandidateNumber"))
-					Case "STORENEWCUSTOMISATION"
-						sResponse = StoreNewCustomisation(Page.Request.Item("ApplicationID"), _
-														Page.Request.Item("CentreID"), _
-														Page.Request.Item("CustomisationName"), _
-														Page.Request.Item("Active"), _
-														Page.Request.Item("CustomisationText"), _
-														Page.Request.Item("Question1"), _
-														Page.Request.Item("Question2"), _
-														Page.Request.Item("Question3"), _
-														Page.Request.Item("IsAssessed"))
-					Case "UPDATECUSTOMISATION"
-						sResponse = UpdateCustomisation(Page.Request.Item("CustomisationID"), _
-														Page.Request.Item("CustomisationName"), _
-														Page.Request.Item("CustomisationText"), _
-														Page.Request.Item("Question1"), _
-														Page.Request.Item("Question2"), _
-														Page.Request.Item("Question3"), _
-														Page.Request.Item("IsAssessed"))
-					Case "CHANGECUSTOMISATIONSTATUS"
-						sResponse = ChangeCustomisationStatus(Page.Request.Item("CustomisationID"), _
-														Page.Request.Item("Active"))
-					Case "LOADCUSTOMISATION"
-						sResponse = LoadCustomisation(Page.Request.Item("CentreID"), _
-														Page.Request.Item("CustomisationID"), _
-														Page.Request.Item("ApplicationID"), _
-														Page.Request.Item("CustomisationName"))
-					Case "LISTCUSTOMISATIONS"
-						sResponse = ListCustomisation(Page.Request.Item("CentreID"), _
-														Page.Request.Item("ApplicationID"))
-					Case "CANDIDATELOGIN"
-						sResponse = CandidateLogin(Page.Request.Item("CandidateNumber"), _
-														Page.Request.Item("CustomisationID"))
-					Case "QUERYPROGRESS"
-						sResponse = QueryProgress(Page.Request.Item("CandidateNumber"), _
-														Page.Request.Item("CentreID"))
-					Case "LOADPROGRESS"
-						sResponse = LoadProgress(Page.Request.Item("CandidateNumber"), _
-														Page.Request.Item("CustomisationID"), _
-														Page.Request.Item("SessionID"))
-					Case "STOREPROGRESS"
+                        sResponse = VerifyCandidate(Page.Request.Item("CentreID"),
+                                                        Page.Request.Item("CandidateNumber"))
+                    Case "STORENEWCUSTOMISATION"
+                        sResponse = StoreNewCustomisation(Page.Request.Item("ApplicationID"),
+                                                        Page.Request.Item("CentreID"),
+                                                        Page.Request.Item("CustomisationName"),
+                                                        Page.Request.Item("Active"),
+                                                        Page.Request.Item("CustomisationText"),
+                                                        Page.Request.Item("Question1"),
+                                                        Page.Request.Item("Question2"),
+                                                        Page.Request.Item("Question3"),
+                                                        Page.Request.Item("IsAssessed"))
+                    Case "UPDATECUSTOMISATION"
+                        sResponse = UpdateCustomisation(Page.Request.Item("CustomisationID"),
+                                                        Page.Request.Item("CustomisationName"),
+                                                        Page.Request.Item("CustomisationText"),
+                                                        Page.Request.Item("Question1"),
+                                                        Page.Request.Item("Question2"),
+                                                        Page.Request.Item("Question3"),
+                                                        Page.Request.Item("IsAssessed"))
+                    Case "CHANGECUSTOMISATIONSTATUS"
+                        sResponse = ChangeCustomisationStatus(Page.Request.Item("CustomisationID"),
+                                                        Page.Request.Item("Active"))
+                    Case "LOADCUSTOMISATION"
+                        sResponse = LoadCustomisation(Page.Request.Item("CentreID"),
+                                                        Page.Request.Item("CustomisationID"),
+                                                        Page.Request.Item("ApplicationID"),
+                                                        Page.Request.Item("CustomisationName"))
+                    Case "LISTCUSTOMISATIONS"
+                        sResponse = ListCustomisation(Page.Request.Item("CentreID"),
+                                                        Page.Request.Item("ApplicationID"))
+                    Case "CANDIDATELOGIN"
+                        sResponse = CandidateLogin(Page.Request.Item("CandidateNumber"),
+                                                        Page.Request.Item("CustomisationID"))
+                    Case "QUERYPROGRESS"
+                        sResponse = QueryProgress(Page.Request.Item("CandidateNumber"),
+                                                        Page.Request.Item("CentreID"))
+                    Case "LOADPROGRESS"
+                        sResponse = LoadProgress(Page.Request.Item("CandidateNumber"),
+                                                        Page.Request.Item("CustomisationID"),
+                                                        Page.Request.Item("SessionID"))
+                    Case "STOREPROGRESS"
                         sResponse = StoreProgress(Page.Request.Item("CandidateNumber"),
                                                         Page.Request.Item("CustomisationID"),
                                                         Page.Request.Item("Version"),
@@ -113,12 +115,12 @@ Partial Public Class CTrackerAPI
                                                         Page.Request.Item("DiagnosticScore"),
                                                         Page.Request.Item("LearningTime"))
                     Case "STOREASPASSESSNOSESSION"
-						sResponse = StoreASPAssessNoSession(Page.Request.Item("CandidateID"), _
-						Page.Request.Item("CustomisationID"), _
-							 Page.Request.Item("Version"), _
-						Page.Request.Item("SectionID"), _
-						Page.Request.Item("Score"))
-					Case "STOREASPPROGRESSNOSESSION"
+                        sResponse = StoreASPAssessNoSession(Page.Request.Item("CandidateID"),
+                        Page.Request.Item("CustomisationID"),
+                             Page.Request.Item("Version"),
+                        Page.Request.Item("SectionID"),
+                        Page.Request.Item("Score"))
+                    Case "STOREASPPROGRESSNOSESSION"
                         sResponse = StoreASPProgressNoSession(Page.Request.Item("TutorialStatus"),
                           Page.Request.Item("TutorialTime"),
                         Page.Request.Item("ProgressID"),
@@ -134,113 +136,123 @@ Partial Public Class CTrackerAPI
                         Page.Request.Item("CustomisationID"),
 Page.Request.Item("TutorialID"))
                     Case "STOREASPDIAGSCORENOSESSION"
-						sResponse = StoreAspDiagScoreNoSession(Page.Request.Item("ObjectiveNum"), _
-						Page.Request.Item("CandidateID"), _
-						   Page.Request.Item("CustomisationID"), _
-						Page.Request.Item("ProgressID"), _
-						Page.Request.Item("Version"), _
-						Page.Request.Item("SectionID"), _
-							  Page.Request.Item("Score"))
-					Case "STOREASPPROGRESS"
-						sResponse = StoreASPProgress(Page.Request.Item("TutorialStatus"), _
-						  Page.Request.Item("TutorialTime"))
-					Case "STOREASSESSATTEMPT"
-						sResponse = StoreAssessAttempt(Page.Request.Item("CandidateNumber"), _
-														Page.Request.Item("CustomisationID"), _
-														Page.Request.Item("Version"), _
-														Page.Request.Item("AssessInstance"), _
-														Page.Request.Item("SectionNumber"), _
-														Page.Request.Item("Score"), _
-														Page.Request.Item("Status"), _
-														Page.Request.Item("SessionID"))
-					Case "STOREASPASSESSATTEMPT"
-						sResponse = StoreASPAssessAttempt(Page.Request.Item("Score"), _
-														Page.Request.Item("Status"))
-					Case "CANDIDATELOGOUT"
-						sResponse = CandidateLogout(Page.Request.Item("CandidateNumber"), _
-														Page.Request.Item("CustomisationID"), _
-														Page.Request.Item("SessionID"))
-					Case "GETTUTORIALLISTFORDIAG"
-						sResponse = GetTutorialListForDiag()
-					Case "GETTUTORIALLISTFORPL"
-						sResponse = GetTutorialListForPL()
-					Case "STOREASPDIAGSCORE"
-						sResponse = StoreAspDiagScore(Page.Request.Item("ObjectiveNum"), _
-													  Page.Request.Item("Score"))
-					Case "GETOBJECTIVEARRAY"
+                        sResponse = StoreAspDiagScoreNoSession(Page.Request.Item("ObjectiveNum"),
+                        Page.Request.Item("CandidateID"),
+                           Page.Request.Item("CustomisationID"),
+                        Page.Request.Item("ProgressID"),
+                        Page.Request.Item("Version"),
+                        Page.Request.Item("SectionID"),
+                              Page.Request.Item("Score"))
+                    Case "STOREASPPROGRESS"
+                        sResponse = StoreASPProgress(Page.Request.Item("TutorialStatus"),
+                          Page.Request.Item("TutorialTime"))
+                    Case "STOREASSESSATTEMPT"
+                        sResponse = StoreAssessAttempt(Page.Request.Item("CandidateNumber"),
+                                                        Page.Request.Item("CustomisationID"),
+                                                        Page.Request.Item("Version"),
+                                                        Page.Request.Item("AssessInstance"),
+                                                        Page.Request.Item("SectionNumber"),
+                                                        Page.Request.Item("Score"),
+                                                        Page.Request.Item("Status"),
+                                                        Page.Request.Item("SessionID"))
+                    Case "STOREASPASSESSATTEMPT"
+                        sResponse = StoreASPAssessAttempt(Page.Request.Item("Score"),
+                                                        Page.Request.Item("Status"))
+                    Case "CANDIDATELOGOUT"
+                        sResponse = CandidateLogout(Page.Request.Item("CandidateNumber"),
+                                                        Page.Request.Item("CustomisationID"),
+                                                        Page.Request.Item("SessionID"))
+                    Case "GETTUTORIALLISTFORDIAG"
+                        sResponse = GetTutorialListForDiag()
+                    Case "GETTUTORIALLISTFORPL"
+                        sResponse = GetTutorialListForPL()
+                    Case "STOREASPDIAGSCORE"
+                        sResponse = StoreAspDiagScore(Page.Request.Item("ObjectiveNum"),
+                                                      Page.Request.Item("Score"))
+                    Case "GETOBJECTIVEARRAY"
                         sResponse = GetObjectiveArray(CInt(Page.Request.Item("CustomisationID")), CInt(Page.Request.Item("SectionID")))
                     Case "GETOBJECTIVEARRAYCC"
                         sResponse = GetObjectiveArrayCC(CInt(Page.Request.Item("CustomisationID")), CInt(Page.Request.Item("SectionID")), CBool(Page.Request.Item("IsPostLearning")))
-					Case "STOREDIAGNOSTICJSON"
-						sResponse = StoreDiagnosticJson(CInt(Page.Request.Item("ProgressID")), _
-								   Page.Request.Item("DiagnosticOutcome"))
-					Case Else
-						sResponse = "[#Result:-2]"
-				End Select
-			Catch ex As ApplicationException
-				'
-				' Message being sent from code!
-				'
-				Select Case ex.Message
-					Case "sCandidateNumber not found"
-						sResponse = "[#Result:-10]"
+                    Case "STOREDIAGNOSTICJSON"
+                        sResponse = StoreDiagnosticJson(CInt(Page.Request.Item("ProgressID")),
+                                   Page.Request.Item("DiagnosticOutcome"))
+                    Case "UPDATELESSONSTATE"
+                        sResponse = UpdateLessonState(Page.Request.Item("TutorialID"),
+                          Page.Request.Item("ProgressID"),
+                        Page.Request.Item("CandidateID"),
+                        Page.Request.Item("CustomisationID"),
+                        Page.Request.Item("TutorialStatus"),
+                        Page.Request.Item("TutorialTime"),
+                        Page.Request.Item("SuspendData"),
+                        Page.Request.Item("LessonLocation")
+                        )
+                    Case Else
+                        sResponse = "[#Result:-2]"
+                End Select
+            Catch ex As ApplicationException
+                '
+                ' Message being sent from code!
+                '
+                Select Case ex.Message
+                    Case "sCandidateNumber not found"
+                        sResponse = "[#Result:-10]"
 
-					Case "sCandidateNumber duplicated"
-						sResponse = "[#Result:-11]"
+                    Case "sCandidateNumber duplicated"
+                        sResponse = "[#Result:-11]"
 
-					Case "Session not found"
-						sResponse = "[#Result:-12]"
+                    Case "Session not found"
+                        sResponse = "[#Result:-12]"
 
-					Case "Centre manager not logged in"
-						sResponse = "[#Result:-13]"
+                    Case "Centre manager not logged in"
+                        sResponse = "[#Result:-13]"
 
-					Case Else
-						sResponse = "[#Result:-1]"
-						CCommon.LogErrorToEmail(ex)
-				End Select
-				sLogMessage = ex.Message
-			Catch ex As Exception
-				'
-				' There was an internal error
-				'
-				sResponse = "[#Result:-1]"
-				sLogMessage = ex.Message
-				'
-				' Send an email about it
-				'
-				CCommon.LogErrorToEmail(ex)
-			End Try
-		End If
-		'
-		' Check for any errors and log if so.
-		' Don't log comon errors for SearchCandidate and VerifyCandidate.
-		'
-		If sResponse.Contains("Result:-") And _
-			Not (sResponse.Contains("Result:-24") Or sResponse.Contains("Result:-27")) Then
-			LogResponseErrors(sResponse, sLogMessage)
-		End If
-		'
-		' Finally write the response
-		'
-		Response.Write(sResponse)
-		Response.End()
-	End Sub
+                    Case Else
+                        sResponse = "[#Result:-1]"
+                        CCommon.LogErrorToEmail(ex)
+                End Select
+                sLogMessage = ex.Message
+            Catch ex As Exception
+                '
+                ' There was an internal error
+                '
+                sResponse = "[#Result:-1]"
+                sLogMessage = ex.Message
+                '
+                ' Send an email about it
+                '
+                CCommon.LogErrorToEmail(ex)
+            End Try
+        End If
+        '
+        ' Check for any errors and log if so.
+        ' Don't log comon errors for SearchCandidate and VerifyCandidate.
+        '
+        If sResponse.Contains("Result:-") And
+            Not (sResponse.Contains("Result:-24") Or sResponse.Contains("Result:-27")) Then
+            LogResponseErrors(sResponse, sLogMessage)
+        End If
+        '
+        ' Finally write the response
+        '
+        Response.Write(sResponse)
+        Response.End()
+    End Sub
 
 #Region "API Handler Functions"
 
-	''' <summary>
-	''' Handles the GetApplicationInfo API query
-	''' </summary>
-	''' <param name="sApplicationID">Application to load info for</param>
-	''' <returns>Lingo property list containing result code and info string</returns>
-	''' <remarks></remarks>
-	Protected Function GetApplicationInfo(ByRef sApplicationID As String) As String
-		'
-		' Check parameters are present
-		'
-		If sApplicationID Is Nothing Then
-			Return "[#Result:-14]"
-		End If
+    ''' <summary>
+    ''' Handles the GetApplicationInfo API query
+    ''' </summary>
+    ''' <param name="sApplicationID">Application to load info for</param>
+    ''' <returns>Lingo property list containing result code and info string</returns>
+    ''' <remarks></remarks>
+    Protected Function GetApplicationInfo(ByRef sApplicationID As String) As String
+        '
+        ' Check parameters are present
+        '
+        If sApplicationID Is Nothing Then
+            Return "[#Result:-14]"
+        End If
 
         Dim applicationAdapter As New ITSPTableAdapters.ApplicationsTableAdapter()
         Dim tApplications As ITSP.ApplicationsDataTable
@@ -1801,6 +1813,20 @@ Page.Request.Item("TutorialID"))
         End Try
         Return "[#Result:1]"
     End Function
+    Protected Function UpdateLessonState(ByVal tutorialId As String, ByVal progressId As String, ByVal candidateId As String, ByVal customisationId As String, ByVal tutStat As String, ByVal tutTime As String, ByVal suspendData As String, ByVal lessonLocation As String) As String
+        Dim taq As New LearnMenuTableAdapters.QueriesTableAdapter
+        Try
+            taq.UpdateLessonState(CByte(tutStat), CInt(tutTime), suspendData, lessonLocation, CInt(tutorialId), CInt(progressId), CInt(candidateId), CInt(customisationId))
+        Catch ex As Exception
+            CCommon.LogErrorToEmail(ex)
+            Return "[#Result:-26]"
+        End Try
+        If CByte(tutStat) > 0 Then
+            Dim nCentreID As Integer = CInt(taq.GetCentreIDForCandidate(CInt(candidateId)))
+            CCommon.CheckProgressForCompletion(CInt(progressId), CInt(candidateId), nCentreID)
+        End If
+        Return "[#Result:1]"
+    End Function
 #End Region
 
 #Region "Utility Functions to aupport API"
@@ -1827,10 +1853,10 @@ Page.Request.Item("TutorialID"))
         '
         Dim sessionAdapter As New ITSPTableAdapters.SessionsTableAdapter
         Dim nCount As Integer
-		'
-		' If learning time is 0 then we might be logging off. Don't update the duration.
-		'
-		If nLearningTime = 0 Then
+        '
+        ' If learning time is 0 then we might be logging off. Don't update the duration.
+        '
+        If nLearningTime = 0 Then
             nCount = CInt(sessionAdapter.UpdateActive(nCandidateID, nCustomisationID, bActive, nSessionID))
         ElseIf nLearningTime > 0 Then
             '
@@ -1843,24 +1869,24 @@ Page.Request.Item("TutorialID"))
             '
             nCount = CInt(sessionAdapter.UpdateDurationV4(nCandidateID, nCustomisationID, nLearningTime, bActive))
         End If
-		If nCount <> 1 Then
-			Throw New ApplicationException("Session not found")
-		End If
-	End Sub
+        If nCount <> 1 Then
+            Throw New ApplicationException("Session not found")
+        End If
+    End Sub
 
-	''' <summary>
-	''' Check if the centre administrator is logged in
-	''' </summary>
-	''' <param name="nCentreID">Centre ID being changed</param>
-	''' <remarks>Throws an exception if CentreID doesn't match logged in user</remarks>
-	Protected Sub CheckCentreAdmin(ByVal nCentreID As Integer)
-		'
-		' Check if the session variables match
-		'
-		If Session("UserName") Is Nothing OrElse CInt(Session("UserCentreID")) <> nCentreID Then
-			Throw New ApplicationException("Centre manager not logged in")
-		End If
-	End Sub
+    ''' <summary>
+    ''' Check if the centre administrator is logged in
+    ''' </summary>
+    ''' <param name="nCentreID">Centre ID being changed</param>
+    ''' <remarks>Throws an exception if CentreID doesn't match logged in user</remarks>
+    Protected Sub CheckCentreAdmin(ByVal nCentreID As Integer)
+        '
+        ' Check if the session variables match
+        '
+        If Session("UserName") Is Nothing OrElse CInt(Session("UserCentreID")) <> nCentreID Then
+            Throw New ApplicationException("Centre manager not logged in")
+        End If
+    End Sub
 
     ''' <summary>
     ''' Convert status to boolean 1/0
@@ -1889,24 +1915,24 @@ Page.Request.Item("TutorialID"))
     ''' <param name="sLogMessage">Possible log error message</param>
     ''' <remarks></remarks>
     Protected Sub LogResponseErrors(ByRef sResponse As String, ByRef sLogMessage As String)
-		Dim rxResultCode As New Regex("Result\:(?<code>[0123456789-]+)", RegexOptions.Compiled Or RegexOptions.IgnoreCase)
-		'
-		' Test if there's an error code in the request. The regex matches any number preceded by
-		' the text "Result:"
-		'
-		Dim matches As MatchCollection = rxResultCode.Matches(sResponse)
-		If matches.Count = 1 Then
-			'
-			' Extract the error code
-			'
-			Dim groups As GroupCollection = matches.Item(0).Groups
-			Dim sCode As String = groups.Item("code").Value
-			'
-			' Log the bad request
-			'
-			CCommon.LogErrorToDatabase(0, sCode, sLogMessage, Request)
-		End If
-	End Sub
+        Dim rxResultCode As New Regex("Result\:(?<code>[0123456789-]+)", RegexOptions.Compiled Or RegexOptions.IgnoreCase)
+        '
+        ' Test if there's an error code in the request. The regex matches any number preceded by
+        ' the text "Result:"
+        '
+        Dim matches As MatchCollection = rxResultCode.Matches(sResponse)
+        If matches.Count = 1 Then
+            '
+            ' Extract the error code
+            '
+            Dim groups As GroupCollection = matches.Item(0).Groups
+            Dim sCode As String = groups.Item("code").Value
+            '
+            ' Log the bad request
+            '
+            CCommon.LogErrorToDatabase(0, sCode, sLogMessage, Request)
+        End If
+    End Sub
 #End Region
 End Class
 
