@@ -1652,7 +1652,6 @@ Page.Request.Item("TutorialID"))
         Dim nCandidateID = CInt(sCandidateID)
         Dim nCentreID = CInt(taq.GetCentreIDForCandidate(nCandidateID))
         CCommon.CheckProgressForCompletion(nProgressID, nCandidateID, nCentreID)
-        CheckCompletion()
         Return "[#Result:1]"
     End Function
     Protected Function StoreASPProgressNoSession(ByRef sTutorialStatus As String,
@@ -1811,6 +1810,7 @@ Page.Request.Item("TutorialID"))
             CCommon.LogErrorToEmail(ex)
             Return "[#Result:-25]"
         End Try
+        CheckCompletion()
         Return "[#Result:1]"
     End Function
     Protected Function UpdateLessonState(ByVal tutorialId As String, ByVal progressId As String, ByVal candidateId As String, ByVal customisationId As String, ByVal tutStat As String, ByVal tutTime As String, ByVal suspendData As String, ByVal lessonLocation As String) As String
