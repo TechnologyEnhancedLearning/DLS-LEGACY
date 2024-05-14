@@ -1810,7 +1810,12 @@ Page.Request.Item("TutorialID"))
             CCommon.LogErrorToEmail(ex)
             Return "[#Result:-25]"
         End Try
-        CheckCompletion()
+        Dim tap As New LearnMenuTableAdapters.ProgressForCheckCompleteTableAdapter
+        Dim tp As New LearnMenu.ProgressForCheckCompleteDataTable
+        tp = tap.GetData(ProgressID)
+        Dim candidateId As Int32 = tp.First.CandidateID
+        Dim nCentreId As Int32 = tp.First.CentreID
+        CCommon.CheckProgressForCompletion(CInt(ProgressID), CInt(candidateId), nCentreID)
         Return "[#Result:1]"
     End Function
     Protected Function UpdateLessonState(ByVal tutorialId As String, ByVal progressId As String, ByVal candidateId As String, ByVal customisationId As String, ByVal tutStat As String, ByVal tutTime As String, ByVal suspendData As String, ByVal lessonLocation As String) As String
