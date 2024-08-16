@@ -65,95 +65,31 @@
             Response.Cache.SetCacheability(HttpCacheability.NoCache)
             Response.Cache.SetNoStore()
             Select Case thisURL
-                Case "dashboard"
-                    If Not Session("UserCentreAdmin") Then
-                        CCommon.AdminUserLogout()
-                        Response.Redirect("~/Home?action=login&app=ts")
-                    End If
-                    liCentre.Attributes.Add("class", "nav-item dropdown active")
-                Case "delegates"
-                    If Not Session("UserCentreAdmin") Then
-                        CCommon.AdminUserLogout()
-                        Response.Redirect("~/Home?action=login&app=ts")
-                    End If
-                    liDelegates.Attributes.Add("class", "nav-item dropdown active")
-                Case "delegategroups"
-                    If Not Session("UserCentreAdmin") Then
-                        CCommon.AdminUserLogout()
-                        Response.Redirect("~/Home?action=login&app=ts")
-                    End If
-                    liDelegates.Attributes.Add("class", "nav-item dropdown active")
-                Case "coursedelegates"
-                    If Not Session("UserCentreAdmin") Then
-                        CCommon.AdminUserLogout()
-                        Response.Redirect("~/Home?action=login&app=ts")
-                    End If
-                    liDelegates.Attributes.Add("class", "nav-item dropdown active")
-                Case "approvedelegates"
-                    If Not Session("UserCentreAdmin") Then
-                        CCommon.AdminUserLogout()
-                        Response.Redirect("~/Home?action=login&app=ts")
-                    End If
-                    liDelegates.Attributes.Add("class", "nav-item dropdown active")
-                Case "coursesetup"
-                    If Not Session("UserCentreAdmin") Then
-                        CCommon.AdminUserLogout()
-                        Response.Redirect("~/Home?action=login&app=ts")
-                    End If
-                    liCourseSetup.Attributes.Add("class", "nav-item active")
-                Case "sv-schedule"
-                    If Not Session("IsSupervisor") Then
-                        CCommon.AdminUserLogout()
-                        Response.Redirect("~/Home?action=login&app=ts")
-                    End If
-                    liSupervisor.Attributes.Add("class", "nav-item dropdown active")
-                Case "sv-schedule"
-                    If Not Session("IsSupervisor") Then
-                        CCommon.AdminUserLogout()
-                        Response.Redirect("~/Home?action=login&app=ts")
-                    End If
-                    liSupervisor.Attributes.Add("class", "nav-item dropdown active")
-                Case "centrelogins"
-                    If Not Session("UserCentreManager") Then
-                        CCommon.AdminUserLogout()
-                        Response.Redirect("~/Home?action=login&app=ts")
-                    End If
-                    liCentre.Attributes.Add("class", "nav-item dropdown active")
-                Case "learningportal"
-                    liCentre.Attributes.Add("class", "nav-item dropdown active")
-                Case "resources"
-                    liSupport.Attributes.Add("class", "nav-item dropdown active")
-                Case "reports"
-                    liCentre.Attributes.Add("class", "nav-item dropdown active")
-                Case "reportfwa"
-                    If Not Session("UserCentreReports") Then
-                        CCommon.AdminUserLogout()
-                        Response.Redirect("~/Home?action=login&app=ts")
-                    End If
-                    liCentre.Attributes.Add("class", "nav-item dropdown active")
-                Case "faqs", "tickets"
-                    liSupport.Attributes.Add("class", "nav-item dropdown active")
-                Case "tickets"
-                    If Not Session("UserCentreAdmin") And Not Session("UserUserAdmin") Then
-                        CCommon.AdminUserLogout()
-                        Response.Redirect("~/Home?action=login&app=ts")
-                    End If
-                    liSupport.Attributes.Add("class", "nav-item dropdown active")
-                Case "statsdetail"
-                    If Not Session("UserUserAdmin") And Not Session("UserSummaryReports") Then
-                        'There is a problem, logout:
-                        CCommon.AdminUserLogout()
-                        Response.Redirect("~/Home?action=login&app=ts")
-                    End If
-                    liAdmin.Attributes.Add("class", "nav-item dropdown active")
 
-                Case "admin-configuration", "admin-resources", "admin-faqs", "admin-centres", "admin-centrecourses", "admin-adminusers", "admin-delegates", "admin-notifications", "admin-landing", "statsdetail"
+                Case "admin-configuration"
                     If Not Session("UserUserAdmin") Then
-                        'There is a problem, logout:
                         CCommon.AdminUserLogout()
                         Response.Redirect("~/Home?action=login&app=ts")
                     End If
-                    liAdmin.Attributes.Add("class", "nav-item dropdown active")
+                    liPrelogin.Attributes.Add("class", "nav-item active")
+                Case "admin-faqs"
+                    If Not Session("UserUserAdmin") Then
+                        CCommon.AdminUserLogout()
+                        Response.Redirect("~/Home?action=login&app=ts")
+                    End If
+                    liAdminfaqs.Attributes.Add("class", "nav-item active")
+                Case "admin-notifications"
+                    If Not Session("UserUserAdmin") Then
+                        CCommon.AdminUserLogout()
+                        Response.Redirect("~/Home?action=login&app=ts")
+                    End If
+                    liAdminNotifications.Attributes.Add("class", "nav-item active")
+                Case "admin-resources"
+                    If Not Session("UserUserAdmin") Then
+                        CCommon.AdminUserLogout()
+                        Response.Redirect("~/Home?action=login&app=ts")
+                    End If
+                    liAdminresources.Attributes.Add("class", "nav-item active")
             End Select
         End If
 
@@ -162,45 +98,6 @@
         '
         If Not Session("UserAdminID") Is Nothing And Not thisURL.StartsWith("error") Then
             CCommon.UpdateAdminUserSession(Session("UserAdminSessionID"), True)
-
-            'show and hide tabs as appropriate
-            If CInt(Session("IsSupervisor")) = 0 Then
-                liSupervisor.Visible = False
-                sch6.Visible = False
-            End If
-            If CInt(Session("UserCentreAdmin")) = 0 And CInt(Session("UserUserAdmin")) = 0 Then
-                liCentre.Visible = False
-                liDelegates.Visible = False
-                liCourseSetup.Visible = False
-                liTickets.Visible = False
-                liTickets1.Visible = False
-                sch1.Visible = False
-                sch2.Visible = False
-                sch3.Visible = False
-                sch4.Visible = False
-            End If
-            If CInt(Session("UserUserAdmin")) = 0 Then
-                liAdmin.Visible = False
-                liAdminadminusers.Visible = False
-                liAdmincentrecourses.Visible = False
-                liAdmindelegates.Visible = False
-                liAdmincentres.Visible = False
-                liAdminConfiguration.Visible = False
-                liAdminfaqs.Visible = False
-                liAdminresources.Visible = False
-                sch5.Visible = False
-            End If
-            If CInt(Session("UserCentreReports")) = 0 Then
-                liReportFWA.Visible = False
-            End If
-            If CInt(Session("UserCentreManager")) = 0 Then
-                liCentreLogins.Visible = False
-                liCentreLogins2.Visible = False
-            End If
-            Dim taq As New ITSPTableAdapters.QueriesTableAdapter
-            If taq.CheckCentreDCSA(Session("UserCentreID")) = 0 Then
-                liDCSReport.Visible = False
-            End If
         End If
 
 
@@ -217,25 +114,7 @@
         nhsdlogo.Visible = Not Session("logoVisible")
         Page.MaintainScrollPositionOnPostBack = True
     End Sub
-    'Private Function GenerateHashKey() As String
-    '    Dim myStr As New StringBuilder()
-    '    myStr.Append(Request.Browser.Browser)
-    '    myStr.Append(Request.Browser.Platform)
-    '    myStr.Append(Request.Browser.MajorVersion)
-    '    myStr.Append(Request.Browser.MinorVersion)
-    '    'myStr.Append(Request.LogonUserIdentity.User.Value);
-    '    Dim sha As SHA1 = New SHA1CryptoServiceProvider()
-    '    Dim hashdata As Byte() = sha.ComputeHash(Encoding.UTF8.GetBytes(myStr.ToString()))
-    '    Return Convert.ToBase64String(hashdata)
-    'End Function
 
-    ''' <summary>
-    ''' The page has been loaded and all code has been set. All profile values, if being changed, 
-    ''' should have been changed. So we can save the profile if it is dirty.
-    ''' </summary>
-    ''' <param name="sender"></param>
-    ''' <param name="e"></param>
-    ''' <remarks></remarks>
     Protected Sub Page_Unload(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Unload
         Dim EITSProfileData As CEITSProfile = CEITSProfile.GetProfile(Session)
 
@@ -253,16 +132,5 @@
         End If
     End Sub
 
-    Private Sub lbtDownloadDCSReport_Click(sender As Object, e As EventArgs) Handles lbtDownloadDCSReport.Click
-        Dim taDCSA As New ITSPStatsTableAdapters.CentreDigitalCapabilityLearnerStatusTableAdapter
-        Dim tDCSA As ITSPStats.CentreDigitalCapabilityLearnerStatusDataTable = taDCSA.GetData(Session("UserCentreID"))
-        tDCSA.TableName = "DCSA Delegate Completion Status"
-        Dim taDCSA2 As New ITSPStatsTableAdapters.CentreDigitalCapabilitySATableAdapter
-        Dim tDCSA2 As ITSPStats.CentreDigitalCapabilitySADataTable = taDCSA2.GetData(Session("UserCentreID"))
-        tDCSA2.TableName = "DCSA Outcome Summary"
-        Dim DS_Export As New DataSet("Digital Capability Self Assessment Report")
-        DS_Export.Tables.Add(tDCSA)
-        DS_Export.Tables.Add(tDCSA2)
-        XMLExport.ExportToExcel(DS_Export, "DLS DCSA Report - Centre " & Session("UserCentreID").ToString & " - " & CCommon.sCurrentDate & ".xlsx", Page.Response)
-    End Sub
+
 End Class
