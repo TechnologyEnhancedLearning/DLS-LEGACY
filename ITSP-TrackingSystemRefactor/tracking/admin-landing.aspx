@@ -7,10 +7,7 @@
 <%@ Register Assembly="DevExpress.Web.ASPxSpellChecker.v19.2, Version=19.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" Namespace="DevExpress.Web.ASPxSpellChecker" TagPrefix="dx" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="breadtray" runat="server">
-   <ol class="breadcrumb breadcrumb-slash">
-        <li class="breadcrumb-item"><a href="admin-configuration">Admin </a></li>
-        <li class="breadcrumb-item active">Landing Content</li>
-    </ol>
+   <h1>Brands</h1>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
     <link rel="stylesheet" type="text/css" href="https://unpkg.com/@fonticonpicker/fonticonpicker/dist/css/base/jquery.fonticonpicker.min.css">

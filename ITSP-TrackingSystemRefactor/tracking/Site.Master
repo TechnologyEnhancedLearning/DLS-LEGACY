@@ -12,7 +12,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no" />
-    <title><%: Page.Title %> - Digital Learning Solutions Tracking System</title>
+    <title><%: Page.Title %> - Digital Learning Solutions Super Administrator</title>
     <style>
         .help-btn {
             margin-right: 10px;
@@ -38,7 +38,7 @@
     <script src="../Scripts/bootstrap-toggle.min.js"></script>
     <script src="../Scripts/app.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.4/js/bootstrap-datepicker.min.js"></script>
-    <meta name="description" content="The Digital Learning Solutions Tracking System" />
+    <meta name="description" content="The Digital Learning Solutions Super Administrator" />
     <style>
         @media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
             /* IE11 fix for button positioning issue in modal footer */
@@ -196,7 +196,7 @@
                             <span>
                                 <img alt="Digital Learning Solutions Logo" src="../Images/DLS-Logo-Colour-sm.png" /></span>
                             <h1 class="text-break">
-                                <span>Digital Learning Solutions</span>&nbsp; Tracking System
+                                <span>Digital Learning Solutions</span>&nbsp; Super Administrator
                             </h1>
                         </a>
                     </asp:Panel>

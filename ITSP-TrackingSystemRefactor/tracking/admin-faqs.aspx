@@ -6,10 +6,7 @@
 
 <%@ Register Assembly="DevExpress.Web.ASPxHtmlEditor.v19.2, Version=19.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" Namespace="DevExpress.Web.ASPxHtmlEditor" TagPrefix="dx" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="breadtray" runat="server">
-   <ol class="breadcrumb breadcrumb-slash">
-        <li class="breadcrumb-item"><a href="admin-configuration">Admin </a></li>
-        <li class="breadcrumb-item active">FAQs</li>
-    </ol>
+   <h1>FAQs</h1>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
 

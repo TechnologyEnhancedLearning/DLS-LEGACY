@@ -8,10 +8,7 @@
     <link href="../Content/themes/base/jquery-ui.min.css" rel="stylesheet" />
     <link href="../Content/fileup.css" rel="stylesheet" />
     <script src="../Scripts/jquery-ui-1.12.1.min.js"></script>
-   <ol class="breadcrumb breadcrumb-slash">
-        <li class="breadcrumb-item"><a href="admin-configuration">Admin </a></li>
-        <li class="breadcrumb-item active">Resources</li>
-    </ol>
+   <h1>Resources</h1>
     <script>
        function BindEvents() {
 
