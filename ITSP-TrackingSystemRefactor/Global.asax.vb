@@ -65,11 +65,11 @@ Public Class Global_asax
         If uriObject.Contains("tracking/support") Then
             Response.RedirectPermanent(baseUrl & "TrackingSystem/Support")
         End If
+        If uriObject.Contains("tracking/tickets") Then
+            Response.RedirectPermanent(baseUrl & "TrackingSystem/RequestSupport")
+        End If
         If uriObject.Contains("tracking/centredetails") Then
             Response.RedirectPermanent(baseUrl & "TrackingSystem/Centre/Configuration")
-        End If
-        If uriObject.Contains("pricing") Then
-            Response.RedirectPermanent(baseUrl & "error/404")
         End If
         If uriObject.Contains("product") Then
             Response.RedirectPermanent(baseUrl & "Home/Products")
@@ -79,6 +79,21 @@ Public Class Global_asax
         End If
         If uriObject.Contains("findyourcentre") Then
             Response.RedirectPermanent(baseUrl & "FindYourCentre")
+        End If
+        If uriObject.Contains("admin-adminusers") Then
+            Response.RedirectPermanent(baseUrl & "SuperAdmin/AdminAccounts")
+        End If
+        If uriObject.Contains("admin-centrecourses") Or uriObject.Contains("admin-centres") Then
+            Response.RedirectPermanent(baseUrl & "SuperAdmin/Centres")
+        End If
+        If uriObject.Contains("admin-delegates") Then
+            Response.RedirectPermanent(baseUrl & "SuperAdmin/Delegates")
+        End If
+        If uriObject.Contains("statsdetail") Then
+            Response.RedirectPermanent(baseUrl & "SuperAdmin/Reports")
+        End If
+        If uriObject.Contains("admin-configuration") Or uriObject.Contains("pricing") Then
+            Response.RedirectPermanent(baseUrl & "error/404")
         End If
     End Sub
     Private Sub Session_Start(ByVal sender As Object, ByVal e As EventArgs)
