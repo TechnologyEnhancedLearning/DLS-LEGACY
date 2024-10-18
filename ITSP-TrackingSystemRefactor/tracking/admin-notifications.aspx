@@ -5,10 +5,7 @@
 <%@ Register Assembly="DevExpress.Web.Bootstrap.v19.2, Version=19.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" Namespace="DevExpress.Web.Bootstrap" TagPrefix="dx" %>
 <%@ Register TagPrefix="dx" Namespace="DevExpress.Web" Assembly="DevExpress.Web.v19.2, Version=19.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="breadtray" runat="server">
-    <ol class="breadcrumb breadcrumb-slash">
-        <li class="breadcrumb-item"><a href="admin-configuration">Admin </a></li>
-        <li class="breadcrumb-item active">Notifications</li>
-    </ol>
+    <h1>Notifications</h1>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
     <div class="row">

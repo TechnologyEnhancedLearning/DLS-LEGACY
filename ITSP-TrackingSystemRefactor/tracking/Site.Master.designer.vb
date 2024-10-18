@@ -41,114 +41,6 @@ Partial Public Class SiteMaster
     Protected WithEvents nhsdlogo As Global.System.Web.UI.HtmlControls.HtmlImage
 
     '''<summary>
-    '''liCentre control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents liCentre As Global.System.Web.UI.HtmlControls.HtmlGenericControl
-
-    '''<summary>
-    '''liCentreLogins control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents liCentreLogins As Global.System.Web.UI.HtmlControls.HtmlGenericControl
-
-    '''<summary>
-    '''liReportFWA control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents liReportFWA As Global.System.Web.UI.HtmlControls.HtmlGenericControl
-
-    '''<summary>
-    '''liDCSReport control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents liDCSReport As Global.System.Web.UI.HtmlControls.HtmlGenericControl
-
-    '''<summary>
-    '''lbtDownloadDCSReport control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents lbtDownloadDCSReport As Global.System.Web.UI.WebControls.LinkButton
-
-    '''<summary>
-    '''liDelegates control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents liDelegates As Global.System.Web.UI.HtmlControls.HtmlGenericControl
-
-    '''<summary>
-    '''liCourseSetup control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents liCourseSetup As Global.System.Web.UI.HtmlControls.HtmlGenericControl
-
-    '''<summary>
-    '''liSupervisor control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents liSupervisor As Global.System.Web.UI.HtmlControls.HtmlGenericControl
-
-    '''<summary>
-    '''liSupport control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents liSupport As Global.System.Web.UI.HtmlControls.HtmlGenericControl
-
-    '''<summary>
-    '''liTickets control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents liTickets As Global.System.Web.UI.HtmlControls.HtmlGenericControl
-
-    '''<summary>
-    '''liAdmin control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents liAdmin As Global.System.Web.UI.HtmlControls.HtmlGenericControl
-
-    '''<summary>
-    '''liAdminConfiguration control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents liAdminConfiguration As Global.System.Web.UI.HtmlControls.HtmlGenericControl
-
-    '''<summary>
     '''liPrelogin control.
     '''</summary>
     '''<remarks>
@@ -158,40 +50,13 @@ Partial Public Class SiteMaster
     Protected WithEvents liPrelogin As Global.System.Web.UI.HtmlControls.HtmlGenericControl
 
     '''<summary>
-    '''liAdminadminusers control.
+    '''liAdminNotifications control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents liAdminadminusers As Global.System.Web.UI.HtmlControls.HtmlGenericControl
-
-    '''<summary>
-    '''liAdmincentres control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents liAdmincentres As Global.System.Web.UI.HtmlControls.HtmlGenericControl
-
-    '''<summary>
-    '''liAdmincentrecourses control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents liAdmincentrecourses As Global.System.Web.UI.HtmlControls.HtmlGenericControl
-
-    '''<summary>
-    '''liAdmindelegates control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents liAdmindelegates As Global.System.Web.UI.HtmlControls.HtmlGenericControl
+    Protected WithEvents liAdminNotifications As Global.System.Web.UI.HtmlControls.HtmlGenericControl
 
     '''<summary>
     '''liAdminresources control.
@@ -210,15 +75,6 @@ Partial Public Class SiteMaster
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents liAdminfaqs As Global.System.Web.UI.HtmlControls.HtmlGenericControl
-
-    '''<summary>
-    '''liAdminNotifications control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents liAdminNotifications As Global.System.Web.UI.HtmlControls.HtmlGenericControl
 
     '''<summary>
     '''usermx control.
@@ -257,33 +113,6 @@ Partial Public Class SiteMaster
     Protected WithEvents usermxmodals As Global.ITSP_TrackingSystemRefactor.usermxmodals
 
     '''<summary>
-    '''sch1 control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents sch1 As Global.System.Web.UI.HtmlControls.HtmlGenericControl
-
-    '''<summary>
-    '''liCentreLogins2 control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents liCentreLogins2 As Global.System.Web.UI.HtmlControls.HtmlGenericControl
-
-    '''<summary>
-    '''sch2 control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents sch2 As Global.System.Web.UI.HtmlControls.HtmlGenericControl
-
-    '''<summary>
     '''sch3 control.
     '''</summary>
     '''<remarks>
@@ -302,40 +131,22 @@ Partial Public Class SiteMaster
     Protected WithEvents sch6 As Global.System.Web.UI.HtmlControls.HtmlGenericControl
 
     '''<summary>
-    '''sch4 control.
+    '''Li1 control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents sch4 As Global.System.Web.UI.HtmlControls.HtmlGenericControl
+    Protected WithEvents Li1 As Global.System.Web.UI.HtmlControls.HtmlGenericControl
 
     '''<summary>
-    '''liTickets1 control.
+    '''Li3 control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents liTickets1 As Global.System.Web.UI.HtmlControls.HtmlGenericControl
-
-    '''<summary>
-    '''sch5 control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents sch5 As Global.System.Web.UI.HtmlControls.HtmlGenericControl
-
-    '''<summary>
-    '''li2 control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents li2 As Global.System.Web.UI.HtmlControls.HtmlGenericControl
+    Protected WithEvents Li3 As Global.System.Web.UI.HtmlControls.HtmlGenericControl
 
     '''<summary>
     '''lbltermsHeading control.
