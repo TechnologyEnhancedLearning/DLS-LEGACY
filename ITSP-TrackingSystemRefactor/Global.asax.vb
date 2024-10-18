@@ -50,9 +50,6 @@ Public Class Global_asax
         If uriObject.Contains("tracking/delegates") Then
             Response.RedirectPermanent(baseUrl & "TrackingSystem/Delegates/All")
         End If
-        If uriObject.Contains("tracking/download") Or uriObject.Contains("tracking/resources") Then
-            Response.RedirectPermanent(baseUrl & "TrackingSystem/Resources")
-        End If
         If uriObject.Contains("tracking/faqs") Then
             Response.RedirectPermanent(baseUrl & "TrackingSystem/Support/FAQs")
         End If
