@@ -52,7 +52,7 @@
   <ItemGroup>
     <Reference Include="AjaxControlToolkit, Version=15.1.1.100, Culture=neutral, PublicKeyToken=28f01b0e84b6d53e, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\net-dlls\AjaxControlToolkit.dll</HintPath>
+      <HintPath>..\..\..\dlls\AjaxControlToolkit.dll</HintPath>
     </Reference>
     <Reference Include="Antlr3.Runtime, Version=3.5.0.2, Culture=neutral, PublicKeyToken=eb42632606e9261f, processorArchitecture=MSIL">
       <HintPath>..\packages\Antlr.3.5.0.2\lib\Antlr3.Runtime.dll</HintPath>
@@ -94,31 +94,31 @@
       <HintPath>..\packages\EntityFramework.6.4.4\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
     <Reference Include="Google.Apis">
-      <HintPath>..\..\..\net-dlls\Google.Apis.dll</HintPath>
+      <HintPath>..\..\..\dlls\Google.Apis.dll</HintPath>
     </Reference>
     <Reference Include="Google.Apis.Auth">
-      <HintPath>..\..\..\net-dlls\Google.Apis.Auth.dll</HintPath>
+      <HintPath>..\..\..\dlls\Google.Apis.Auth.dll</HintPath>
     </Reference>
     <Reference Include="Google.Apis.Auth.PlatformServices">
-      <HintPath>..\..\..\net-dlls\Google.Apis.Auth.PlatformServices.dll</HintPath>
+      <HintPath>..\..\..\dlls\Google.Apis.Auth.PlatformServices.dll</HintPath>
     </Reference>
     <Reference Include="Google.Apis.Core">
-      <HintPath>..\..\..\net-dlls\Google.Apis.Core.dll</HintPath>
+      <HintPath>..\..\..\dlls\Google.Apis.Core.dll</HintPath>
     </Reference>
     <Reference Include="Google.Apis.PlatformServices">
-      <HintPath>..\..\..\net-dlls\Google.Apis.PlatformServices.dll</HintPath>
+      <HintPath>..\..\..\dlls\Google.Apis.PlatformServices.dll</HintPath>
     </Reference>
     <Reference Include="Google.Apis.YouTube.v3">
-      <HintPath>..\..\..\net-dlls\Google.Apis.YouTube.v3.dll</HintPath>
+      <HintPath>..\..\..\dlls\Google.Apis.YouTube.v3.dll</HintPath>
     </Reference>
     <Reference Include="GoogleReCaptcha">
-      <HintPath>..\..\..\net-dlls\GoogleReCaptcha.dll</HintPath>
+      <HintPath>..\..\..\dlls\GoogleReCaptcha.dll</HintPath>
     </Reference>
     <Reference Include="HiQPdf">
-      <HintPath>..\..\..\net-dlls\HiQPdf.dll</HintPath>
+      <HintPath>..\..\..\dlls\HiQPdf.dll</HintPath>
     </Reference>
     <Reference Include="Ionic.Zip">
-      <HintPath>..\..\..\net-dlls\Ionic.Zip.dll</HintPath>
+      <HintPath>..\..\..\dlls\Ionic.Zip.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.AspNet.EntityDataSource, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.AspNet.EntityDataSource.6.0.0\lib\net40\Microsoft.AspNet.EntityDataSource.dll</HintPath>
