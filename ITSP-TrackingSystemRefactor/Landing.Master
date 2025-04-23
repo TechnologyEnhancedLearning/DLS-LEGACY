@@ -252,7 +252,7 @@
             <uc1:usermxmodals runat="server" id="usermxmodals" />
            <footer class="ms-footer">
                 <div class="container">
-                    <p>Copyright &copy; Digital Learning Solutions, Health Education England <%: DateTime.Now.Year %></p>
+                    <p>Copyright &copy; Digital Learning Solutions, NHS England <%: DateTime.Now.Year %></p>
                 
                      <p class="float-right" style="padding-right:8px;">
                                 <a href="javascript:void(0)" style="cursor: pointer;" class="btn btn-dark btn-sm" data-toggle="modal" data-target="#termsMessage"><i aria-hidden="true" class="far fa-check-square hidden-sm"></i>
