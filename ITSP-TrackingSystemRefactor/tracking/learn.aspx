@@ -143,7 +143,7 @@
     <link href="../Content/master.css" rel="stylesheet" />
     <link href="../Content/login.css" rel="stylesheet" />
     <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/all.min.css">
     <link href="../Content/LearnMenu.css" rel="stylesheet" />
     <link href="../Content/bootstrap-toggle.min.css" rel="stylesheet" />
     <script src="../Scripts/plugins.min.js"></script>
