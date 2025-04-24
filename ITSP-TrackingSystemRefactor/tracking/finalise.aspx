@@ -8,7 +8,7 @@
 <head id="Head1" runat="server">
   <title>Digital Learning Solutions Certificate</title>
     <link href="../Content/bootstrap.min.css" rel="stylesheet" />
-   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/all.min.css">
   <!--[if lt IE 7]> <link  runat="server" href="~/css/ie6.css" rel="stylesheet" type="text/css"  /><![endif]-->
   <!--[if IE 7]> <link  href="css/ie7.css" rel="stylesheet" type="text/css"  /><![endif]-->
   <style type="text/css">
