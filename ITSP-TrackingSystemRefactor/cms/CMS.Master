@@ -104,7 +104,7 @@
                     <div class="float-right">
                         <asp:Image ID="logoImage" AlternateText="Organisation Logo" Visible="false" runat="server" ImageUrl="~/centrelogo"
                         Height="100px" Width="300px" />
-                        <img runat="server" id="nhsdlogo" alt="Health Education England Logo" style="padding-top: 10px" src="../Images/hee-logo-sm.png" />
+                        <img runat="server" id="nhsdlogo" alt="NHS England Logo" style="padding-top: 10px" src="../Images/hee-logo-sm.png" />
 
                     </div>
 
@@ -166,7 +166,7 @@
                         <div class="footer clearfix">
                 <div class="text-muted">
                     <div class="float-left" style="padding-left:8px;padding-top:5px;">
-&copy; <%: DateTime.Now.Year %> - Digital Learning Solutions, Health Education England.
+&copy; <%: DateTime.Now.Year %> - Digital Learning Solutions, NHS England.
                             </div>
                             <div class="float-right" style="padding-right:8px;">
                                    <a style="cursor: pointer;" class="btn btn-outline-secondary btn-sm" data-toggle="modal" data-target="#termsMessage"><i aria-hidden="true" class="far fa-check-square hidden-sm"></i>

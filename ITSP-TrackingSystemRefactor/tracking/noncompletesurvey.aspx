@@ -4,7 +4,7 @@
 
 <html  >
 <head id="Head1" runat="server">
-    <title>Health Education England Learning Solutions Feedback</title>
+    <title>NHS England Learning Solutions Feedback</title>
     <link href="../Content/bootstrap.min.css" rel="stylesheet" />
 
   <!--[if lt IE 7]> <link  runat="server" href="~/css/ie6.css" rel="stylesheet" type="text/css"  /><![endif]-->

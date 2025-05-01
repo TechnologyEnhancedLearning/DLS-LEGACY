@@ -57,7 +57,7 @@
                         </a>
                     </div>
                     <div class="float-right clearfix">
-                        <img style="padding-top: 10px" src="Images/hee-logo-sm.png" alt="Health Education England Logo" />
+                        <img style="padding-top: 10px" src="Images/hee-logo-sm.png" alt="NHS England Logo" />
 
                     </div>
 

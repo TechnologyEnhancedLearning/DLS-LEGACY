@@ -978,7 +978,7 @@
                     <div class="container">
                         <div class="text-muted">
                             <div class="float-left" style="padding-left: 8px; padding-top: 5px;">
-                                &copy; <%: DateTime.Now.Year %> - Digital Learning Solutions, Health Education England.  <%: Session("BannerText") %>
+                                &copy; <%: DateTime.Now.Year %> - Digital Learning Solutions, NHS England.  <%: Session("BannerText") %>
                             </div>
                             <div class="float-right" style="padding-right: 8px;">
                                 <a style="cursor: pointer;" class="btn btn-outline-secondary btn-sm" data-toggle="modal" data-target="#termsMessage"><i aria-hidden="true" class="far fa-check-square hidden-sm"></i>
